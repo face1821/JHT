@@ -33,7 +33,7 @@ namespace Game.Player
 
         private void OnEnable()
         {
-            PlayerInput.OnIdle += OnOnIdle;
+            PlayerInput.OnIdle += OnIdle;
             PlayerInput.OnMove += OnMove;
         }
 
@@ -48,7 +48,7 @@ namespace Game.Player
 
         #region 输入接收
 
-        private void OnOnIdle() { RequestToChangeState(StateIdle); }
+        private void OnIdle() { RequestToChangeState(StateIdle); }
 
         private void OnMove(int moveDir)
         {
@@ -73,6 +73,8 @@ namespace Game.Player
 
         private void ChangeState(PlayerStateBase state)
         {
+            if (_currentState == state) return;
+
             _currentState?.OnExit();
             _currentState = state;
             _currentState.OnEnter();
