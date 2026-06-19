@@ -6,7 +6,17 @@ namespace Game.Player
         {
             base.OnEnter();
 
-            Paramaters.IsGrounded = false;
+            Body.SetVelocityY(Paramaters.JumpSpeed);
+        }
+
+        public override void OnFixedUpdate()
+        {
+            base.OnFixedUpdate();
+
+            if (Body.Velocity.y <= 0f)
+            {
+                StateMachine.RequestToChangeState(StateMachine.StateFall);
+            }
         }
     }
 }

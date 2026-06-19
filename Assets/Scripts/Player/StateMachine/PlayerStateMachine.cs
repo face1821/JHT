@@ -1,4 +1,5 @@
 using System;
+using Maxy.GameFramework.Game2D.Tool;
 using UnityEngine;
 
 namespace Game.Player
@@ -15,6 +16,13 @@ namespace Game.Player
 
         #endregion
 
+        #region 组件
+
+        [SerializeField] private PlayerBody _body;
+        [SerializeField] private BoxDetection2D _groundDetection;
+
+        #endregion
+
         private PlayerStateMachineParamaters _paramaters;
         private PlayerStateBase _currentState;
 
@@ -24,6 +32,9 @@ namespace Game.Player
         {
             _paramaters = new PlayerStateMachineParamaters();
             _paramaters.StateMachine = this;
+            _paramaters.Body = _body;
+            _paramaters.MoveSpeed = _body.MoveSpeed;
+            _paramaters.JumpSpeed = _body.JumpSpeed;
 
             StateIdle = new PlayerStateIdle() { Paramaters = _paramaters };
             StateMove = new PlayerStateMove() { Paramaters = _paramaters };
@@ -35,14 +46,27 @@ namespace Game.Player
         {
             PlayerInput.OnIdle += OnIdle;
             PlayerInput.OnMove += OnMove;
+            PlayerInput.OnJump += OnJump;
         }
 
 
-        private void OnDisable() { PlayerInput.OnMove -= OnMove; }
+        private void OnDisable()
+        {
+            PlayerInput.OnIdle -= OnIdle;
+            PlayerInput.OnMove -= OnMove;
+            PlayerInput.OnJump -= OnJump;
+        }
 
         private void Update() { _currentState.OnUpdate(); }
 
-        private void FixedUpdate() { _currentState.OnFixedUpdate(); }
+        private void FixedUpdate()
+        {
+            //更新地面标记
+            _paramaters.IsGrounded = _groundDetection.Detect();
+
+
+            _currentState.OnFixedUpdate();
+        }
 
         #endregion
 
@@ -57,6 +81,8 @@ namespace Game.Player
                 _paramaters.MoveDirection = moveDir;
             }
         }
+
+        private void OnJump() { RequestToChangeState(StateJump); }
 
         #endregion
 

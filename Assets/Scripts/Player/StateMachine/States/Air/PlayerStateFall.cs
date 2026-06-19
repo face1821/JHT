@@ -2,11 +2,14 @@ namespace Game.Player
 {
     public class PlayerStateFall : PlayerStateAir
     {
-        public override void OnExit()
+        public override void OnFixedUpdate()
         {
-            base.OnEnter();
+            base.OnFixedUpdate();
 
-            Paramaters.IsGrounded = true;
+            if (Paramaters.IsGrounded)
+            {
+                StateMachine.RequestToChangeState(StateMachine.StateIdle);
+            }
         }
     }
 }

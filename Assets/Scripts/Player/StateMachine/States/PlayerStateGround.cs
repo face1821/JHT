@@ -6,10 +6,9 @@ namespace Game.Player
         {
             base.OnFixedUpdate();
 
-            //TODO: 当不在地面时
-            if (false)
+            //当不在地面时
+            if (!Paramaters.IsGrounded)
             {
-                Paramaters.IsGrounded = false;
                 StateMachine.RequestToChangeState(StateMachine.StateFall);
             }
         }
