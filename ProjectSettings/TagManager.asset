@@ -9,11 +9,11 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - 
-  - 
+  - Map
+  - Entity
   - 
   - 
   - 
@@ -41,4 +41,28 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Bottom
+    uniqueID: 1158265661
+    locked: 0
+  - name: Mid
+    uniqueID: 1583263929
+    locked: 0
+  - name: Entity
+    uniqueID: 1693125961
+    locked: 0
+  - name: Player
+    uniqueID: 1805600847
+    locked: 0
+  - name: Effect
+    uniqueID: 4227092611
+    locked: 0
+  - name: Top
+    uniqueID: 3771203483
+    locked: 0
+  - name: Lighting
+    uniqueID: 2160593419
+    locked: 0
+  - name: UI
+    uniqueID: 3414679541
     locked: 0

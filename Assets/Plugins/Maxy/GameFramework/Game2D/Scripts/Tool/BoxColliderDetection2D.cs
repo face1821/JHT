@@ -1,21 +1,22 @@
 using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Maxy.GameFramework.Game2D.Tool
 {
+    [RequireComponent(typeof(BoxCollider2D))]
     public class BoxColliderDetection2D : MonoBehaviour
     {
         public event Action<Collider2D> OnTouched;
         public event Action<Collider2D> OnLeave;
 
-        public LayerMask LayerMask;
-        public bool AutoRun;
-        public bool Touched;
-
+        [ShowInInspector, ReadOnly] public bool Touched { get; private set; }
         public Transform ObjectTouched => _ColliderArrayCache[0].transform;
 
-        private Collider2D[] _ColliderArrayCache = new Collider2D[1];
+        public LayerMask LayerMask;
+        public bool AutoRun;
 
+        private Collider2D[] _ColliderArrayCache = new Collider2D[1];
         private BoxCollider2D _boxCollider2D;
 
         private void Awake() { _boxCollider2D = GetComponent<BoxCollider2D>(); }

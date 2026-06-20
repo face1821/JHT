@@ -118,8 +118,8 @@
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\Types\Unity Types\Component Types\ES3Type_CapsuleCollider.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\Types\Unity Types\ES3Type_GradientAlphaKey.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\Types\Unity Types\ES3Type_Texture2D.cs" />
-    <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Scripts\Tool\DestroyWhenApplicationIn.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\Types\Unity Types\ES3Type_Burst.cs" />
+    <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Scripts\Tool\DestroyWhenApplicationIn.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Scripts\System\KeySystem\KeySystem.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\Types\ES3ComponentType.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\Types\Collection Types\ES3ObservableListType.cs" />
@@ -155,6 +155,7 @@
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\ES3ReferenceMgrBase.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Scripts\EventBus\Events\PlayButtonAudioEvent.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\Types\Primitive Types\ES3Type_bool.cs" />
+    <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Scripts\Tool\BoxColliderDetection.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\Types\Unity Types\Component Types\ES3Type_Transform.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Demigiant\DOTween\Modules\DOTweenModulePhysics2D.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\Settings\ES3DefaultSettings.cs" />
@@ -164,8 +165,8 @@
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\Types\Unity Types\ES3Type_Quaternion.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\Types\ES3GenericType.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Demigiant\DOTweenPro\DOTweenTextMeshPro.cs" />
-    <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\ES3File.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Scripts\Tool\AddressableAsset.cs" />
+    <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\ES3File.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\Types\Unity Types\UnityObjectType.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\Types\Unity Types\ES3Type_SubEmittersModule.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Scripts\Tool\UI\ValueAwakeSync\SliderValueAwakeSync.cs" />
@@ -227,7 +228,6 @@
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Game2D\Scripts\Tool\BoxColliderDetection2D.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Scripts\Tool\AddressablePrefab.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\Types\NET Types\ES3Type_Type.cs" />
-    <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Scripts\Tool\BoxColliderxDetection.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\Save Slots\ES3SlotManager.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Demigiant\DOTween\Modules\DOTweenModuleSprite.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Scripts\Tool\BoxDetection.cs" />
@@ -541,17 +541,26 @@
     <Reference Include="UnityEditor.UnityConnectModule">
       <HintPath>D:\Unity2022\2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEditor.UnityConnectModule.dll</HintPath>
     </Reference>
+    <Reference Include="Sirenix.Reflection.Editor">
+      <HintPath>D:\Unity_WorkSpace\JHT\Assets\Plugins\Maxy\GameFramework\Common\Plugins\Sirenix\Assemblies\Sirenix.Reflection.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Collections.LowLevel.ILSupport">
       <HintPath>D:\Unity_WorkSpace\JHT\Library\PackageCache\com.unity.collections@1.2.4\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
-      <HintPath>D:\Unity_WorkSpace\JHT\Library\PackageCache\com.unity.visualscripting@1.9.4\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
+    <Reference Include="Sirenix.Serialization">
+      <HintPath>D:\Unity_WorkSpace\JHT\Assets\Plugins\Maxy\GameFramework\Common\Plugins\Sirenix\Assemblies\Sirenix.Serialization.dll</HintPath>
     </Reference>
-    <Reference Include="Sirenix.OdinInspector.Attributes">
-      <HintPath>D:\Unity_WorkSpace\JHT\Assets\Plugins\Maxy\GameFramework\Common\Plugins\Sirenix\Assemblies\Sirenix.OdinInspector.Attributes.dll</HintPath>
+    <Reference Include="DemiLib">
+      <HintPath>D:\Unity_WorkSpace\JHT\Assets\Plugins\Maxy\GameFramework\Common\Plugins\Demigiant\DemiLib\Core\DemiLib.dll</HintPath>
     </Reference>
     <Reference Include="Sirenix.Serialization.Config">
       <HintPath>D:\Unity_WorkSpace\JHT\Assets\Plugins\Maxy\GameFramework\Common\Plugins\Sirenix\Assemblies\Sirenix.Serialization.Config.dll</HintPath>
+    </Reference>
+    <Reference Include="Sirenix.OdinInspector.Editor">
+      <HintPath>D:\Unity_WorkSpace\JHT\Assets\Plugins\Maxy\GameFramework\Common\Plugins\Sirenix\Assemblies\Sirenix.OdinInspector.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Sirenix.OdinInspector.Attributes">
+      <HintPath>D:\Unity_WorkSpace\JHT\Assets\Plugins\Maxy\GameFramework\Common\Plugins\Sirenix\Assemblies\Sirenix.OdinInspector.Attributes.dll</HintPath>
     </Reference>
     <Reference Include="Sirenix.Utilities">
       <HintPath>D:\Unity_WorkSpace\JHT\Assets\Plugins\Maxy\GameFramework\Common\Plugins\Sirenix\Assemblies\Sirenix.Utilities.dll</HintPath>
@@ -559,26 +568,17 @@
     <Reference Include="DOTween">
       <HintPath>D:\Unity_WorkSpace\JHT\Assets\Plugins\Maxy\GameFramework\Common\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>
     </Reference>
-    <Reference Include="Sirenix.Serialization">
-      <HintPath>D:\Unity_WorkSpace\JHT\Assets\Plugins\Maxy\GameFramework\Common\Plugins\Sirenix\Assemblies\Sirenix.Serialization.dll</HintPath>
+    <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
+      <HintPath>D:\Unity_WorkSpace\JHT\Library\PackageCache\com.unity.visualscripting@1.9.4\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="Sirenix.Reflection.Editor">
-      <HintPath>D:\Unity_WorkSpace\JHT\Assets\Plugins\Maxy\GameFramework\Common\Plugins\Sirenix\Assemblies\Sirenix.Reflection.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Sirenix.OdinInspector.Editor">
-      <HintPath>D:\Unity_WorkSpace\JHT\Assets\Plugins\Maxy\GameFramework\Common\Plugins\Sirenix\Assemblies\Sirenix.OdinInspector.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="DemiLib">
-      <HintPath>D:\Unity_WorkSpace\JHT\Assets\Plugins\Maxy\GameFramework\Common\Plugins\Demigiant\DemiLib\Core\DemiLib.dll</HintPath>
+    <Reference Include="DOTweenPro">
+      <HintPath>D:\Unity_WorkSpace\JHT\Assets\Plugins\Maxy\GameFramework\Common\Plugins\Demigiant\DOTweenPro\DOTweenPro.dll</HintPath>
     </Reference>
     <Reference Include="Sirenix.Utilities.Editor">
       <HintPath>D:\Unity_WorkSpace\JHT\Assets\Plugins\Maxy\GameFramework\Common\Plugins\Sirenix\Assemblies\Sirenix.Utilities.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>D:\Unity_WorkSpace\JHT\Assets\Plugins\Maxy\GameFramework\Common\Plugins\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="DOTweenPro">
-      <HintPath>D:\Unity_WorkSpace\JHT\Assets\Plugins\Maxy\GameFramework\Common\Plugins\Demigiant\DOTweenPro\DOTweenPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Android.Types">
       <HintPath>D:\Unity2022\2022.3.62f3\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>
@@ -1120,8 +1120,8 @@
     <Reference Include="Unity.VisualScripting.State">
       <HintPath>D:\Unity_WorkSpace\JHT\Library\ScriptAssemblies\Unity.VisualScripting.State.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.2D.SpriteShape.Editor">
-      <HintPath>D:\Unity_WorkSpace\JHT\Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll</HintPath>
+    <Reference Include="Unity.ScriptableBuildPipeline.Editor">
+      <HintPath>D:\Unity_WorkSpace\JHT\Library\ScriptAssemblies\Unity.ScriptableBuildPipeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Editor">
       <HintPath>D:\Unity_WorkSpace\JHT\Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll</HintPath>
@@ -1135,8 +1135,8 @@
     <Reference Include="Unity.Addressables">
       <HintPath>D:\Unity_WorkSpace\JHT\Library\ScriptAssemblies\Unity.Addressables.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.ScriptableBuildPipeline.Editor">
-      <HintPath>D:\Unity_WorkSpace\JHT\Library\ScriptAssemblies\Unity.ScriptableBuildPipeline.Editor.dll</HintPath>
+    <Reference Include="Unity.2D.SpriteShape.Editor">
+      <HintPath>D:\Unity_WorkSpace\JHT\Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

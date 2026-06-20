@@ -7,6 +7,7 @@ namespace Maxy.GameFramework.Common.Tool
     public class Follow : MonoBehaviour
     {
         public Transform Target;
+        public Vector3 Offset;
         public bool SmoothFollow;
         [EnableIf("SmoothFollow")]
         public float InterpolateRate = 0.5f;
@@ -27,7 +28,10 @@ namespace Maxy.GameFramework.Common.Tool
             {
                 if (RotationSmoothFollow)
                 {
-                    transform.rotation = Quaternion.Lerp(transform.rotation, Target.rotation, RotationInterpolateRate);
+                    // 帧率无关的指数衰减
+                    // Rate 越大，跟随越紧。Rate = 1 时几乎每帧到达
+                    float t = 1 - Mathf.Exp(-InterpolateRate * Time.deltaTime * 60f);
+                    transform.rotation = Quaternion.Lerp(transform.rotation, Target.rotation, t);
                 }
                 else
                 {
@@ -37,11 +41,18 @@ namespace Maxy.GameFramework.Common.Tool
 
             if (SmoothFollow)
             {
-                transform.position = Vector3.Lerp(transform.position, Target.position, InterpolateRate);
+                // 帧率无关的指数衰减
+                // Rate 越大，跟随越紧。Rate = 1 时几乎每帧到达
+                float t = 1 - Mathf.Exp(-InterpolateRate * Time.deltaTime * 60f);
+                transform.position = Vector3.Lerp(
+                    transform.position,
+                    Offset + Target.position,
+                    t
+                );
             }
             else
             {
-                transform.position = Target.position;
+                transform.position = Offset + Target.position;
             }
         }
     }

@@ -1,20 +1,24 @@
-
-
+using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Game.Player
 {
+    [Serializable]
     public class PlayerStateMachineParamaters
     {
-        public PlayerStateMachine StateMachine;
-        public PlayerBody Body;
-        
-        public float MoveSpeed;
-        public float JumpSpeed;
-        
-        public int MoveDirection;
+        [HideInInspector] public PlayerStateMachine StateMachine;
+        [HideInInspector] public PlayerBody Body;
 
-        //地面标记
-        public bool IsGrounded;
+        [Header("基本属性")]
+        [LabelText("移动速度")] public float MoveSpeed;
+        [LabelText("跳跃速度")] public float JumpSpeed;
+
+        [Header("布尔参数")]
+        [LabelText("地面标记")] public bool IsGrounded;
+
+        [Header("整数参数")]
+        [LabelText("朝向")] public int FaceDirection = 1;
+        [LabelText("移动方向")] public int MoveDirection = 1;
     }
 }

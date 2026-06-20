@@ -1,5 +1,6 @@
 using System;
 using Maxy.GameFramework.Common.Tool;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Game.Player

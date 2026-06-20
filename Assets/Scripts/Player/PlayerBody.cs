@@ -16,10 +16,12 @@ namespace Game.Player
         private Rigidbody2D _body;
 
         private void Awake() { _body = GetComponent<Rigidbody2D>(); }
-        
+
         public void ZeroVelocity() { _body.velocity = Vector2.zero; }
         public void ZeroVelocityX() { _body.velocity = new Vector2(0f, _body.velocity.y); }
         public void SetVelocityX(float x) { _body.velocity = new Vector2(x, _body.velocity.y); }
         public void SetVelocityY(float y) { _body.velocity = new Vector2(_body.velocity.x, y); }
+
+        public void SetFaceX(int faceDirectionX) { transform.localScale = new Vector3(faceDirectionX, 1, 1); }
     }
 }

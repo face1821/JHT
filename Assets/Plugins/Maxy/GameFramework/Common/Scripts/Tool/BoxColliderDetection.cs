@@ -1,4 +1,5 @@
 using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Maxy.GameFramework.Common.Tool
@@ -9,14 +10,13 @@ namespace Maxy.GameFramework.Common.Tool
         public event Action<Collider> OnTouched;
         public event Action<Collider> OnLeave;
 
-        public LayerMask LayerMask;
-        public bool AutoRun;
-        public bool Touched;
-
+        [ShowInInspector, ReadOnly] public bool Touched { get; private set; }
         public Transform ObjectTouched => _ColliderArrayCache[0].transform;
 
-        private Collider[] _ColliderArrayCache = new Collider[1];
+        public LayerMask LayerMask;
+        public bool AutoRun;
 
+        private Collider[] _ColliderArrayCache = new Collider[1];
         private BoxCollider _boxCollider;
 
         private void Awake() { _boxCollider = GetComponent<BoxCollider>(); }
