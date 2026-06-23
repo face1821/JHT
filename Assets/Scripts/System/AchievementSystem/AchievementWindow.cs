@@ -38,9 +38,9 @@ namespace Game.System
             //显示动画
             var rect = transform as RectTransform;
             rect!.anchoredPosition = _system.StartPos;
-            rect.DOMoveY(_system.EndY, _system.Duration).SetEase(Ease.InQuad).OnComplete(() =>
+            rect.DOAnchorPosY(_system.EndY, _system.Duration).SetEase(Ease.OutQuad).OnComplete(() =>
             {
-                rect.DOMoveY(_system.StartPos.y, _system.Duration).SetEase(Ease.InQuad).SetDelay(3f).OnComplete(() =>
+                rect.DOAnchorPosY(_system.StartPos.y, _system.Duration).SetEase(Ease.InQuad).SetDelay(3f).OnComplete(() =>
                 {
                     _isRunning = false;
 
