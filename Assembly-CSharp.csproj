@@ -47,16 +47,24 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Player\StateMachine\States\Ground\PlayerStateIdle.cs" />
     <Compile Include="Assets\Scripts\Player\StateMachine\States\PlayerStateAir.cs" />
+    <Compile Include="Assets\Scripts\InteractableObject\IInteractableObject.cs" />
     <Compile Include="Assets\Scripts\MainMenu\MainMenuManager.cs" />
+    <Compile Include="Assets\Scripts\CheckPoint\Events\AddPlayerInteractableObjectEvent.cs" />
+    <Compile Include="Assets\Scripts\CheckPoint\CheckPointMenu.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Player\StateMachine\States\Ground\PlayerStateMove.cs" />
+    <Compile Include="Assets\Scripts\CheckPoint\Events\RemovePlayerInteractableObjectEvent.cs" />
     <Compile Include="Assets\Scripts\Player\StateMachine\States\Ground\PlayerStateJump.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerInteract.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerBody.cs" />
     <Compile Include="Assets\Scripts\Player\StateMachine\States\PlayerStateGround.cs" />
     <Compile Include="Assets\Scripts\Player\StateMachine\States\Air\PlayerStateFall.cs" />
+    <Compile Include="Assets\Scripts\CheckPoint\CheckPoint.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerInput.cs" />
     <Compile Include="Assets\Scripts\Player\StateMachine\PlayerStateMachine.cs" />
     <Compile Include="Assets\Scripts\Player\StateMachine\States\PlayerStateBase.cs" />
     <Compile Include="Assets\Scripts\Player\StateMachine\PlayerStateMachineParamaters.cs" />
+    <Compile Include="Assets\Scripts\Tool\InstanceFinder.cs" />
     <Reference Include="UnityEngine">
       <HintPath>D:\Unity2022\2022.3.62f3\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>

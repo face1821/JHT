@@ -197,6 +197,7 @@
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\Types\Collection Types\ES3HashSetType.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\Types\Primitive Types\ES3Type_int.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\Types\Unity Types\ES3Type_Vector2Int.cs" />
+    <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Scripts\System\LogSystem\LogSystem.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\Types\ES3UnityObjectType.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Demigiant\DOTweenPro\DOTweenTk2d.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\Types\Unity Types\ES3Type_Sprite.cs" />
