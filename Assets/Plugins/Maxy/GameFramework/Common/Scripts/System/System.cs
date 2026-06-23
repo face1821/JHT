@@ -9,7 +9,8 @@ namespace Maxy.GameFramework.Common.System
 
         private void BindToRoot()
         {
-            _instance = new GameObject(this.GetType().Name).AddComponent<T>();
+            _instance = this as T;
+            _instance!.name = typeof(T).Name;
 
             //寻找SystemRoot
             var root = GameObject.FindWithTag("SystemList");

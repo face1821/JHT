@@ -20,6 +20,7 @@ namespace Maxy.GameFramework.Common.System
             }
 
             //创建对象并返回
+            MLogger.Log($"系统中心：创建 {typeof(T).Name}");
             var gameObject = GameObject.Instantiate(_systemConfig.Get<T>());
             var component = gameObject.GetComponent<T>();
             component.Init();
