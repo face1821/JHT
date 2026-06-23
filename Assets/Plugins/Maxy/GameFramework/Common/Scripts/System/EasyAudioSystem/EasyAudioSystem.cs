@@ -7,83 +7,88 @@ using UnityEngine.Audio;
 
 namespace Maxy.GameFramework.Common.System
 {
-    public class EasyAudioSystem : ComponentSystem<EasyAudioSystem>
+    public class EasyAudioSystem : System<EasyAudioSystem>, IAudioSystem
     {
         #region 字段
-        
-        public static AudioMixer GlobalAudioMixer;
+
+        public AudioMixer GlobalAudioMixer;
 
         #region 公开音量属性
 
-        public static float MasterVolume
+        public float MasterVolume
         {
             get => _masterVolume;
             set
             {
                 ES3.Save("MasterVolume", value);
                 _masterVolume = value;
+                GlobalAudioMixer.SetFloat("MasterVolume", ToDB(_masterVolume));
             }
         }
-        private static float _masterVolume;
-        public static float MusicVolume
+        private float _masterVolume;
+        public float MusicVolume
         {
             get => _musicVolume;
             set
             {
                 ES3.Save("MusicVolume", value);
                 _musicVolume = value;
+                GlobalAudioMixer.SetFloat("MusicVolume", ToDB(_musicVolume));
             }
         }
-        private static float _musicVolume;
-        public static float SfxVolume
+        private float _musicVolume;
+        public float SfxVolume
         {
             get => _sfxVolume;
             set
             {
                 ES3.Save("SfxVolume", value);
                 _sfxVolume = value;
+                GlobalAudioMixer.SetFloat("SfxVolume", ToDB(_sfxVolume));
             }
         }
-        private static float _sfxVolume;
-        public static float VoiceVolume
+        private float _sfxVolume;
+        public float VoiceVolume
         {
             get => _voiceVolume;
             set
             {
                 ES3.Save("VoiceVolume", value);
                 _voiceVolume = value;
+                GlobalAudioMixer.SetFloat("VoiceVolume", ToDB(_voiceVolume));
             }
         }
-        private static float _voiceVolume;
-        public static float AmbientVolume
+        private float _voiceVolume;
+        public float AmbientVolume
         {
             get => _ambientVolume;
             set
             {
                 ES3.Save("AmbientVolume", value);
                 _ambientVolume = value;
+                GlobalAudioMixer.SetFloat("AmbientVolume", ToDB(_ambientVolume));
             }
         }
-        private static float _ambientVolume;
+        private float _ambientVolume;
 
         #endregion
 
-        private static AudioSource _musicSource;
-        private static AudioSource _sfxSource;
-        private static AudioSource _voiceSource;
-        private static AudioSource _ambientSource;
+        private AudioSource _musicSource;
+        private AudioSource _sfxSource;
+        private AudioSource _voiceSource;
+        private AudioSource _ambientSource;
 
-        private static List<AudioSource> _sfxSourceList;
-        private static List<AudioSource> _voiceSourceList;
-        private static List<AudioSource> _ambientSourceList;
-        
+        private List<AudioSource> _sfxSourceList;
+        private List<AudioSource> _voiceSourceList;
+        private List<AudioSource> _ambientSourceList;
+
         #endregion
 
-        # region Awake
-        
-        private void Awake()
+        # region Init
+
+        public override void Init()
         {
-            BindToRoot("EasyAudioSystem");
+            base.Init();
 
             _masterVolume = ES3.Load("MasterVolume", 1f);
             _musicVolume = ES3.Load("MusicVolume", 1f);
@@ -114,14 +119,14 @@ namespace Maxy.GameFramework.Common.System
             _ambientSource.transform.SetParent(transform);
             _ambientSource.outputAudioMixerGroup = GlobalAudioMixer.FindMatchingGroups("Ambient")[0];
         }
-        
+
         #endregion
 
         #region Tool
 
-        private static float ToDB(float volume) => Mathf.Log10(Mathf.Clamp(volume, 0.0001f, 10f)) * 20;
+        private float ToDB(float volume) => Mathf.Log10(Mathf.Clamp(volume, 0.0001f, 10f)) * 20;
 
-        private static IEnumerator DestroyWhenEnd(AudioSource target)
+        private IEnumerator DestroyWhenEnd(AudioSource target)
         {
             yield return new WaitUntil(() => target.gameObject == null || !target.isPlaying);
 
@@ -133,7 +138,7 @@ namespace Maxy.GameFramework.Common.System
 
         #region Music
 
-        public static void PlayMusic(AudioClip clip, bool loop = true, bool withFadeOutAndIn = true)
+        public void PlayMusic(AudioClip clip, bool loop = true, bool withFadeOutAndIn = true)
         {
             if (!withFadeOutAndIn)
             {
@@ -156,7 +161,7 @@ namespace Maxy.GameFramework.Common.System
             });
         }
 
-        public static void StopMusic(bool withFadeOut = true)
+        public void StopMusic(bool withFadeOut = true)
         {
             if (!withFadeOut)
             {
@@ -170,7 +175,7 @@ namespace Maxy.GameFramework.Common.System
                 .OnComplete(() => _musicSource.Stop());
         }
 
-        public static void PauseMusic(bool withFadeOut = true)
+        public void PauseMusic(bool withFadeOut = true)
         {
             if (!withFadeOut)
             {
@@ -184,7 +189,7 @@ namespace Maxy.GameFramework.Common.System
                 .OnComplete(() => _musicSource.Pause());
         }
 
-        public static void UnPauseMusic(bool withFadeIn = true)
+        public void UnPauseMusic(bool withFadeIn = true)
         {
             if (!withFadeIn)
             {
@@ -202,7 +207,7 @@ namespace Maxy.GameFramework.Common.System
 
         #region Sfx
 
-        public static void PlaySfx(AudioClip clip, string clipName = null, Transform objectToFollow = null)
+        public void PlaySfx(AudioClip clip, string clipName = null, Transform objectToFollow = null)
         {
             if (objectToFollow == null)
             {
@@ -235,7 +240,7 @@ namespace Maxy.GameFramework.Common.System
             _instance.StartCoroutine(DestroyWhenEnd(obj));
         }
 
-        public static void PlaySfxAt(AudioClip clip, Vector3 pos, string clipName)
+        public void PlaySfxAt(AudioClip clip, Vector3 pos, string clipName)
         {
             var obj = new GameObject("SfxSourceFromEasyAudioSystem").AddComponent<AudioSource>();
             obj.transform.position = pos;
@@ -253,7 +258,7 @@ namespace Maxy.GameFramework.Common.System
             _instance.StartCoroutine(DestroyWhenEnd(obj));
         }
 
-        public static void StopSfx(string clipName)
+        public void StopSfx(string clipName)
         {
             clipName = $"SfxSource-{clipName}";
 
@@ -267,7 +272,7 @@ namespace Maxy.GameFramework.Common.System
             }
         }
 
-        public static void StopAllSfxs()
+        public void StopAllSfxs()
         {
             foreach (var item in _sfxSourceList)
             {
@@ -279,7 +284,7 @@ namespace Maxy.GameFramework.Common.System
 
         #region Voice
 
-        public static void PlayVoice(AudioClip clip, string voiceName = null, Transform objectToFollow = null)
+        public void PlayVoice(AudioClip clip, string voiceName = null, Transform objectToFollow = null)
         {
             if (objectToFollow == null)
             {
@@ -312,7 +317,7 @@ namespace Maxy.GameFramework.Common.System
             _instance.StartCoroutine(DestroyWhenEnd(obj));
         }
 
-        public static void StopVoice(string voiceName)
+        public void StopVoice(string voiceName)
         {
             voiceName = $"SfxSource-{voiceName}";
 
@@ -326,7 +331,7 @@ namespace Maxy.GameFramework.Common.System
             }
         }
 
-        public static void PauseVoice(string voiceName)
+        public void PauseVoice(string voiceName)
         {
             voiceName = $"SfxSource-{voiceName}";
 
@@ -340,7 +345,7 @@ namespace Maxy.GameFramework.Common.System
             }
         }
 
-        public static void UnPauseVoice(string voiceName)
+        public void UnPauseVoice(string voiceName)
         {
             voiceName = $"SfxSource-{voiceName}";
 
@@ -354,7 +359,7 @@ namespace Maxy.GameFramework.Common.System
             }
         }
 
-        public static void StopAllVoices()
+        public void StopAllVoices()
         {
             foreach (var item in _voiceSourceList)
             {
@@ -366,7 +371,7 @@ namespace Maxy.GameFramework.Common.System
 
         #region Ambient
 
-        public static void PlayAmbient(AudioClip clip, string ambientName, bool loop = false, Transform objectToFollow = null)
+        public void PlayAmbient(AudioClip clip, string ambientName, bool loop = false, Transform objectToFollow = null)
         {
             if (objectToFollow == null)
             {
@@ -399,7 +404,7 @@ namespace Maxy.GameFramework.Common.System
             _instance.StartCoroutine(DestroyWhenEnd(obj));
         }
 
-        public static void StopAmbient(string ambientName)
+        public void StopAmbient(string ambientName)
         {
             ambientName = $"AmbientSource-{ambientName}";
 
@@ -413,7 +418,7 @@ namespace Maxy.GameFramework.Common.System
             }
         }
 
-        public static void PauseAmbient(string voiceName)
+        public void PauseAmbient(string voiceName)
         {
             voiceName = $"AmbientSource-{voiceName}";
 
@@ -427,7 +432,7 @@ namespace Maxy.GameFramework.Common.System
             }
         }
 
-        public static void UnPauseAmbient(string voiceName)
+        public void UnPauseAmbient(string voiceName)
         {
             voiceName = $"AmbientSource-{voiceName}";
 
@@ -441,7 +446,7 @@ namespace Maxy.GameFramework.Common.System
             }
         }
 
-        public static void StopAllAmbients()
+        public void StopAllAmbients()
         {
             foreach (var item in _ambientSourceList)
             {
@@ -453,11 +458,11 @@ namespace Maxy.GameFramework.Common.System
 
         #region Volume
 
-        public static void SetMasterVolume(float volume) => MasterVolume = volume;
-        public static void SetMusicVolume(float volume) => MusicVolume = volume;
-        public static void SetSfxVolume(float volume) => SfxVolume = volume;
-        public static void SetVoiceVolume(float volume) => VoiceVolume = volume;
-        public static void SetAmbientVolume(float volume) => AmbientVolume = volume;
+        public void SetMasterVolume(float volume) => MasterVolume = volume;
+        public void SetMusicVolume(float volume) => MusicVolume = volume;
+        public void SetSfxVolume(float volume) => SfxVolume = volume;
+        public void SetVoiceVolume(float volume) => VoiceVolume = volume;
+        public void SetAmbientVolume(float volume) => AmbientVolume = volume;
 
         #endregion
     }

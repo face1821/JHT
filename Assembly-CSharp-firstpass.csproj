@@ -50,6 +50,7 @@
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\Types\Unity Types\ES3Type_InheritVelocityModule.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\Types\Primitive Types\ES3Type_double.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\Streams\ES3Stream.cs" />
+    <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Scripts\System\KeySystem\IKeySystem.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\Types\Unity Types\ES3Type_Guid.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\Types\Unity Types\ES3Type_Mesh.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\Types\Collection Types\ES3ListType.cs" />
@@ -108,6 +109,7 @@
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\Types\NET Types\ES3Type_Nullable.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\Types\Reflected Types\ES3ReflectedValueType.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\Settings\ES3Settings.cs" />
+    <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Scripts\System\SystemConfig.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\Types\Unity Types\Component Types\ES3Type_Text.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\Types\Unity Types\ES3Type_ForceOverLifetimeModule.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\Types\Unity Types\Component Types\ES3Type_BoxCollider.cs" />
@@ -125,6 +127,7 @@
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\Types\Collection Types\ES3ObservableListType.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Scripts\Tool\UI\ValueAwakeSync\ToggleValueAwakeSync.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\Types\Unity Types\Component Types\ES3Type_Rigidbody.cs" />
+    <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Scripts\System\EasyAudioSystem\IAudioSystem.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\Types\Primitive Types\ES3Type_decimal.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Game2D\Scripts\Shadow\CharacterSpriteShadow.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\Types\ES3ObjectType.cs" />
@@ -146,6 +149,7 @@
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\Types\Primitive Types\ES3Type_sbyte.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\ES3SerializableDictionary.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\ES3GlobalManager.cs" />
+    <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Scripts\System\System.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\Types\Unity Types\ES3Type_SkinnedMeshRenderer.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\Writers\ES3Binary.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Scripts\Tool\UI\ValueAwakeSync\TextValueAwakeSync.cs" />
@@ -173,6 +177,7 @@
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Scripts\Tool\MTool.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\Types\Collection Types\ES3Type_ArrayList.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\Auto Save\ES3AutoSaveMgr.cs" />
+    <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Scripts\System\ISystem.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\Types\Unity Types\ES3Type_RenderTexture.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\Types\Primitive Types\ES3Type_uint.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\Types\Unity Types\Component Types\ES3Type_Image.cs" />
@@ -224,12 +229,12 @@
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\Types\NET Types\ES3Type_Random.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Game2D\Scripts\Tool\BoxDetection2D.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\Types\Collection Types\ES3ArrayType.cs" />
-    <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Scripts\System\ComponentSystem.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Game2D\Scripts\Tool\BoxColliderDetection2D.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Scripts\Tool\AddressablePrefab.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\Types\NET Types\ES3Type_Type.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\Save Slots\ES3SlotManager.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Demigiant\DOTween\Modules\DOTweenModuleSprite.cs" />
+    <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Scripts\System\SystemCenter.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Scripts\Tool\BoxDetection.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\Types\Unity Types\ES3Type_TextureSheetAnimationModule.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Easy Save 3\Scripts\Types\Unity Types\ES3Type_Gradient.cs" />

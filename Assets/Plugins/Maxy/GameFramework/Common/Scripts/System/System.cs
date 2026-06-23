@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace Maxy.GameFramework.Common.System
 {
-    public class ComponentSystem<T> : MonoBehaviour where T : ComponentSystem<T>
+    public class System<T> : MonoBehaviour where T : System<T>
     {
         protected static T _instance;
 
-        protected static void BindToRoot(string systemName)
+        private void BindToRoot()
         {
-            _instance = new GameObject(systemName).AddComponent<T>();
+            _instance = new GameObject(this.GetType().Name).AddComponent<T>();
 
             //寻找SystemRoot
             var root = GameObject.FindWithTag("SystemList");
@@ -21,5 +21,9 @@ namespace Maxy.GameFramework.Common.System
 
             _instance.transform.SetParent(root.transform);
         }
+
+        public virtual void Init() { BindToRoot(); }
+
+        public void Destory() { DestroyImmediate(gameObject); }
     }
 }

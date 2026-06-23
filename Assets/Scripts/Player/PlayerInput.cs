@@ -58,7 +58,7 @@ namespace Game.Player
 
         public void BtnPressMoveRight() { _isMoveRight = true; }
         public void BtnReleaseMoveRight() { _isMoveRight = false; }
-
+    
         public void BtnJump() { OnJump?.Invoke(); }
 
         #endregion

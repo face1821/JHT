@@ -10,7 +10,7 @@ namespace Maxy.GameFramework.Common.Tool
     public static class SetSpritePivotToBottomCenter
     {
         // 注册右键菜单：priority值越小，菜单位置越靠上（默认1000即可）
-        [MenuItem("Assets/Set Pivot To Bottom Center", false, 0)]
+        [MenuItem("Assets/Maxy/Tool/Set Pivot To Bottom Center", false, 0)]
         private static void LogSelectedFilePath()
         {
             // 获取Project窗口中选中的单个文件/文件夹的工程相对路径
