@@ -30,17 +30,17 @@ namespace Game.System
         private void StartToShow(string achievementName, string description)
         {
             _isRunning = true;
-            
+
             //文本配置
             Title.text = achievementName;
             Description.text = description;
-            
+
             //显示动画
             var rect = transform as RectTransform;
             rect!.anchoredPosition = _system.StartPos;
-            rect.DOMoveY(_system.EndY, _system.Duration).SetEase(Ease.InQuad).SetDelay(3f).OnComplete(() =>
+            rect.DOMoveY(_system.EndY, _system.Duration).SetEase(Ease.InQuad).OnComplete(() =>
             {
-                rect.DOMoveY(_system.StartPos.y, _system.Duration).SetEase(Ease.InQuad).OnComplete(() =>
+                rect.DOMoveY(_system.StartPos.y, _system.Duration).SetEase(Ease.InQuad).SetDelay(3f).OnComplete(() =>
                 {
                     _isRunning = false;
 
