@@ -32,8 +32,6 @@ namespace Game.Player
 
         private void OnInteract()
         {
-            MLogger.Log("正在尝试交互...");
-
             var minDistance = 100f;
             IInteractableObject resultObj = null;
             foreach (var item in _interactableObjects)
@@ -49,7 +47,7 @@ namespace Game.Player
             if (resultObj == null) return;
 
             resultObj.Interact();
-            MLogger.Log("交互成功！");
+            MLogger.Log("交互中...");
         }
     }
 }

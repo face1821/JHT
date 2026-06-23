@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 726e301722d4499981ff8ad141a4376a, type: 3}
   m_Name: SystemConfig
   m_EditorClassIdentifier: 
-  SystemTypeReferences:
-  - IKeySystem
-  - IAudioSystem
-  - IInstanceFinderSystem
-  SystemGameObjectReferences:
-  - {fileID: 726098144942888200, guid: 33563e85b4d00074a8d4ec9759a71974, type: 3}
-  - {fileID: 1139880293578258032, guid: c94d09b69ded94e47a524476e3d1006e, type: 3}
-  - {fileID: 4639048403550587279, guid: 0a57db94ed2069e4b93e0646f35ed46e, type: 3}
+  Systems:
+  - InterfaceName: IKeySystem
+    Prefab: {fileID: 726098144942888200, guid: 33563e85b4d00074a8d4ec9759a71974, type: 3}
+  - InterfaceName: IAudioSystem
+    Prefab: {fileID: 1139880293578258032, guid: c94d09b69ded94e47a524476e3d1006e, type: 3}
+  - InterfaceName: IInstanceFinderSystem
+    Prefab: {fileID: 4639048403550587279, guid: 0a57db94ed2069e4b93e0646f35ed46e, type: 3}
+  - InterfaceName: IAchievementSystem
+    Prefab: {fileID: 6952551582228121801, guid: 500ee59ccf76fc2419388b27de8aaf0c, type: 3}

@@ -27,12 +27,7 @@ namespace Game.CheckPoint
 
         #region 交互
 
-        public float GetDistance()
-        {
-            var a = InstanceFinder.Player;
-            MLogger.Log(a);
-            return (InstanceFinder.Player.transform.position - transform.position).magnitude;
-        }
+        public float GetDistance() { return (InstanceFinder.Player.transform.position - transform.position).magnitude; }
 
         public void Interact()
         {

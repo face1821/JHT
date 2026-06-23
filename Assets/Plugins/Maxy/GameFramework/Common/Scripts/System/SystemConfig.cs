@@ -8,14 +8,23 @@ namespace Maxy.GameFramework.Common.System
     [CreateAssetMenu(fileName = "SystemConfig", menuName = "Maxy/GameFramework/System Config", order = 0)]
     public class SystemConfig : ScriptableObject
     {
-        public List<string> SystemTypeReferences = new List<string>();
-        public List<GameObject> SystemGameObjectReferences = new List<GameObject>();
+        [LabelText("系统列表")]
+        public List<SystemInfo> Systems = new List<SystemInfo>();
 
         public GameObject Get<T>()
         {
-            var index = SystemTypeReferences.IndexOf(typeof(T).Name);
+            var index = Systems.FindIndex(x => x.InterfaceName == typeof(T).Name);
 
-            return SystemGameObjectReferences[index];
+            return Systems[index].Prefab;
         }
+    }
+
+    [Serializable]
+    public class SystemInfo
+    {
+        [LabelText("接口名")]
+        public string InterfaceName;
+        [LabelText("预制体")]
+        public GameObject Prefab;
     }
 }

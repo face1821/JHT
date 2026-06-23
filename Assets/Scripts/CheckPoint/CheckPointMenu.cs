@@ -75,8 +75,8 @@ namespace Game.CheckPoint
             Close();
         }
 
-        private void GetSuccess() { MLogger.Log("QTE成功"); }
+        private void GetSuccess() { MLogger.Log("QTE成功！"); }
 
-        private void GetFailure() { MLogger.Log("QTE失败"); }
+        private void GetFailure() { MLogger.Log("QTE失败！"); }
     }
 }
