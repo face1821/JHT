@@ -2,6 +2,7 @@ using Game.CheckPoint.Events;
 using Game.InteractableObject;
 using Game.Tool;
 using Maxy.GameFramework.Common.Events;
+using Maxy.GameFramework.Common.System;
 using UnityEngine;
 
 namespace Game.CheckPoint
@@ -26,7 +27,12 @@ namespace Game.CheckPoint
 
         #region 交互
 
-        public float GetDistance() { return (InstanceFinder.Player.transform.position - transform.position).magnitude; }
+        public float GetDistance()
+        {
+            var a = InstanceFinder.Player;
+            MLogger.Log(a);
+            return (InstanceFinder.Player.transform.position - transform.position).magnitude;
+        }
 
         public void Interact()
         {

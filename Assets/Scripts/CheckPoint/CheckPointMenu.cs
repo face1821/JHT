@@ -32,6 +32,8 @@ namespace Game.CheckPoint
 
         private IEnumerator JudgeCircleHandle()
         {
+            var isRelease = false;
+
             while (true)
             {
                 //光环持续变小       
@@ -39,8 +41,14 @@ namespace Game.CheckPoint
 
                 yield return null;
 
+                //需要先等玩家松开了再判定
+                if (Input.touchCount == 0)
+                {
+                    isRelease = true;
+                }
+
                 //如果玩家在此刻按下了手指，就判定
-                if (Input.touchCount > 0)
+                if (isRelease && Input.touchCount > 0)
                 {
                     if (Mathf.Abs(_judgeCircle.localScale.x - _circle.localScale.x) < _maxOffset)
                     {
@@ -67,8 +75,8 @@ namespace Game.CheckPoint
             Close();
         }
 
-        private void GetSuccess() { LogSystem.Log("QTE成功"); }
+        private void GetSuccess() { MLogger.Log("QTE成功"); }
 
-        private void GetFailure() { LogSystem.Log("QTE失败"); }
+        private void GetFailure() { MLogger.Log("QTE失败"); }
     }
 }

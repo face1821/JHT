@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Game.CheckPoint.Events;
 using Game.InteractableObject;
 using Maxy.GameFramework.Common.Events;
+using Maxy.GameFramework.Common.System;
 using UnityEngine;
 
 namespace Game.Player
@@ -31,6 +32,8 @@ namespace Game.Player
 
         private void OnInteract()
         {
+            MLogger.Log("正在尝试交互...");
+
             var minDistance = 100f;
             IInteractableObject resultObj = null;
             foreach (var item in _interactableObjects)
@@ -46,6 +49,7 @@ namespace Game.Player
             if (resultObj == null) return;
 
             resultObj.Interact();
+            MLogger.Log("交互成功！");
         }
     }
 }
