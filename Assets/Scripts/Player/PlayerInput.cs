@@ -11,10 +11,25 @@ namespace Game.Player
         public static event Action<int> OnMove;
         public static event Action OnJump;
 
-        private void Update()
+        private bool _isMoveLeft;
+        private bool _isMoveRight;
+
+        private void Update() { PhoneInputHandle(); }
+
+        private void PhoneInputHandle()
+        {
+            if (!_isMoveLeft && !_isMoveRight || _isMoveLeft && _isMoveRight)
+                OnIdle?.Invoke();
+            else if (_isMoveLeft)
+                OnMove?.Invoke(-1);
+            else if (_isMoveRight)
+                OnMove?.Invoke(1);
+        }
+
+        private void PCInputHandle()
         {
             //输入的优先级由这里的事件发送顺序来表现
-            
+
             //移动
             var moveDir = MTool.GetMoveInput();
 
@@ -33,5 +48,19 @@ namespace Game.Player
                 OnJump?.Invoke();
             }
         }
+
+        #region 按钮事件触发
+
+        public void BtnIdle() { OnIdle?.Invoke(); }
+
+        public void BtnPressMoveLeft() { _isMoveLeft = true; }
+        public void BtnReleaseMoveLeft() { _isMoveLeft = false; }
+
+        public void BtnPressMoveRight() { _isMoveRight = true; }
+        public void BtnReleaseMoveRight() { _isMoveRight = false; }
+
+        public void BtnJump() { OnJump?.Invoke(); }
+
+        #endregion
     }
 }

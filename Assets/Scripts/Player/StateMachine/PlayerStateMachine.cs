@@ -9,6 +9,14 @@ namespace Game.Player
     [RequireComponent(typeof(PlayerInput), typeof(PlayerBody))]
     public class PlayerStateMachine : MonoBehaviour
     {
+        #region 事件
+
+        public static event Action OnIdle;
+        public static event Action<int> OnMove;
+        public static event Action OnJump;
+
+        #endregion
+
         #region 状态
 
         [ShowInInspector, ReadOnly] public string CurrentStateName => _currentState?.GetType().Name;
@@ -54,9 +62,9 @@ namespace Game.Player
 
         private void OnEnable()
         {
-            PlayerInput.OnIdle += OnIdle;
-            PlayerInput.OnMove += OnMove;
-            PlayerInput.OnJump += OnJump;
+            PlayerInput.OnIdle += OnInputIdle;
+            PlayerInput.OnMove += OnInputMove;
+            PlayerInput.OnJump += OnInputJump;
 
             _groundDetection.OnTouched += OnGroundTouched;
             _groundDetection.OnLeave += OnGroundLeave;
@@ -64,9 +72,9 @@ namespace Game.Player
 
         private void OnDisable()
         {
-            PlayerInput.OnIdle -= OnIdle;
-            PlayerInput.OnMove -= OnMove;
-            PlayerInput.OnJump -= OnJump;
+            PlayerInput.OnIdle -= OnInputIdle;
+            PlayerInput.OnMove -= OnInputMove;
+            PlayerInput.OnJump -= OnInputJump;
 
             _groundDetection.OnTouched -= OnGroundTouched;
             _groundDetection.OnLeave -= OnGroundLeave;
@@ -80,14 +88,14 @@ namespace Game.Player
 
         #region 输入接收
 
-        private void OnIdle()
+        private void OnInputIdle()
         {
             Paramaters.MoveDirection = 0;
 
             RequestToChangeState(StateIdle);
         }
 
-        private void OnMove(int moveDir)
+        private void OnInputMove(int moveDir)
         {
             Paramaters.MoveDirection = moveDir;
             Paramaters.FaceDirection = moveDir;
@@ -95,7 +103,7 @@ namespace Game.Player
             RequestToChangeState(StateMove);
         }
 
-        private void OnJump() { RequestToChangeState(StateJump); }
+        private void OnInputJump() { RequestToChangeState(StateJump); }
 
         #endregion
 
@@ -109,6 +117,8 @@ namespace Game.Player
 
         public bool RequestToChangeState(PlayerStateBase state)
         {
+            if (_currentState == state) return false;
+
             if (_currentState.CanBeInterrupt() && state.CanEnter())
             {
                 ChangeState(state);
@@ -120,11 +130,23 @@ namespace Game.Player
 
         private void ChangeState(PlayerStateBase state)
         {
-            if (_currentState == state) return;
-
             _currentState?.OnExit();
             _currentState = state;
             _currentState.OnEnter();
+
+            //状态变化的事件调用，供外部使用
+            switch (_currentState)
+            {
+                case PlayerStateIdle:
+                    OnIdle?.Invoke();
+                    return;
+                case PlayerStateMove:
+                    OnMove?.Invoke(Paramaters.MoveDirection);
+                    return;
+                case PlayerStateJump:
+                    OnJump?.Invoke();
+                    return;
+            }
         }
     }
 }
