@@ -1,4 +1,5 @@
 using System;
+using Maxy.GameFramework.Common.System;
 using Maxy.GameFramework.Common.Tool;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -7,24 +8,47 @@ namespace Game.Player
 {
     public class PlayerInput : MonoBehaviour
     {
+        #region 事件
+
         public static event Action OnIdle;
         public static event Action<int> OnMove;
         public static event Action OnJump;
+        public static event Action OnCrouch;
         public static event Action OnInteract;
 
-        private bool _isMoveLeft;
-        private bool _isMoveRight;
+        #endregion
+
+        #region 输入状态
+
+        public static int MoveDirection => (IsMoveLeft ? -1 : 0) + (IsMoveRight ? 1 : 0);
+        public static bool IsMoveLeft { get; private set; }
+        public static bool IsMoveRight { get; private set; }
+
+        public static int UpDownMoveDirection => (IsJumpHeld ? -1 : 0) + (IsJumpHeld ? 1 : 0);
+        public static bool IsJumpHeld { get; private set; }
+        public static bool IsCrouchHeld { get; private set; }
+
+        #endregion
 
         private void Update() { PhoneInputHandle(); }
 
         private void PhoneInputHandle()
         {
-            if (!_isMoveLeft && !_isMoveRight || _isMoveLeft && _isMoveRight)
+            //输入的优先级由这里的事件发送顺序来表现
+
+            //下蹲状态
+            if (IsCrouchHeld)
+            {
+                OnCrouch?.Invoke();
+            }
+            else if (MoveDirection == 0) //移动状态
+            {
                 OnIdle?.Invoke();
-            else if (_isMoveLeft)
-                OnMove?.Invoke(-1);
-            else if (_isMoveRight)
-                OnMove?.Invoke(1);
+            }
+            else //待机状态
+            {
+                OnMove?.Invoke(MoveDirection);
+            }
         }
 
         private void PCInputHandle()
@@ -52,15 +76,31 @@ namespace Game.Player
 
         #region 按钮事件触发
 
-        public void BtnIdle() { OnIdle?.Invoke(); }
+        public void BtnPressMoveLeft() { IsMoveLeft = true; }
+        public void BtnReleaseMoveLeft() { IsMoveLeft = false; }
 
-        public void BtnPressMoveLeft() { _isMoveLeft = true; }
-        public void BtnReleaseMoveLeft() { _isMoveLeft = false; }
+        public void BtnPressMoveRight() { IsMoveRight = true; }
+        public void BtnReleaseMoveRight() { IsMoveRight = false; }
 
-        public void BtnPressMoveRight() { _isMoveRight = true; }
-        public void BtnReleaseMoveRight() { _isMoveRight = false; }
+        public void SetJumpHeld(bool held)
+        {
+            IsJumpHeld = held;
 
-        public void BtnJump() { OnJump?.Invoke(); }
+            if (held)
+            {
+                OnJump?.Invoke();
+            }
+        }
+
+        public void SetCrouchHeld(bool held)
+        {
+            IsCrouchHeld = held;
+
+            if (held)
+            {
+                OnCrouch?.Invoke();
+            }
+        }
 
         public void BtnInteract() { OnInteract?.Invoke(); }
 

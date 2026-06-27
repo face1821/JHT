@@ -1,4 +1,5 @@
 using System;
+using Game.InteractableObject;
 using Maxy.GameFramework.Game2D.Tool;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -14,6 +15,9 @@ namespace Game.Player
         public static event Action OnIdle;
         public static event Action<int> OnMove;
         public static event Action OnJump;
+        public static event Action OnCrouch;
+        public static event Action OnFall;
+        public static event Action OnClimb;
 
         #endregion
 
@@ -22,8 +26,10 @@ namespace Game.Player
         [ShowInInspector, ReadOnly] public string CurrentStateName => _currentState?.GetType().Name;
         public PlayerStateBase StateIdle { get; private set; }
         public PlayerStateBase StateMove { get; private set; }
+        public PlayerStateBase StateCrouch { get; private set; }
         public PlayerStateBase StateJump { get; private set; }
         public PlayerStateBase StateFall { get; private set; }
+        public PlayerStateBase StateClimb { get; private set; }
 
         #endregion
 
@@ -35,6 +41,7 @@ namespace Game.Player
         #endregion
 
         [ShowInInspector] public PlayerStateMachineParamaters Paramaters { get; private set; }
+        public PlayerStateBase CurrentState => _currentState;
         private PlayerStateBase _currentState;
 
         #region Mono方法
@@ -54,8 +61,10 @@ namespace Game.Player
             //状态配置
             StateIdle = new PlayerStateIdle() { Paramaters = Paramaters };
             StateMove = new PlayerStateMove() { Paramaters = Paramaters };
+            StateCrouch = new PlayerStateCrouch() { Paramaters = Paramaters };
             StateJump = new PlayerStateJump() { Paramaters = Paramaters };
             StateFall = new PlayerStateFall() { Paramaters = Paramaters };
+            StateClimb = new PlayerStateClimb() { Paramaters = Paramaters };
 
             ChangeState(StateFall);
         }
@@ -65,6 +74,7 @@ namespace Game.Player
             PlayerInput.OnIdle += OnInputIdle;
             PlayerInput.OnMove += OnInputMove;
             PlayerInput.OnJump += OnInputJump;
+            PlayerInput.OnCrouch += OnInputCrouch;
 
             _groundDetection.OnTouched += OnGroundTouched;
             _groundDetection.OnLeave += OnGroundLeave;
@@ -75,6 +85,7 @@ namespace Game.Player
             PlayerInput.OnIdle -= OnInputIdle;
             PlayerInput.OnMove -= OnInputMove;
             PlayerInput.OnJump -= OnInputJump;
+            PlayerInput.OnCrouch -= OnInputCrouch;
 
             _groundDetection.OnTouched -= OnGroundTouched;
             _groundDetection.OnLeave -= OnGroundLeave;
@@ -105,6 +116,20 @@ namespace Game.Player
 
         private void OnInputJump() { RequestToChangeState(StateJump); }
 
+        private void OnInputCrouch() { RequestToChangeState(StateCrouch); }
+
+        #endregion
+
+        #region 外部状态申请
+
+        public void TryToClimb(IClimbingObject climbingObject)
+        {
+            if (RequestToChangeState(StateClimb))
+            {
+                Paramaters.ClimbingObject = climbingObject;
+            }
+        }
+
         #endregion
 
         #region 碰撞检测接收
@@ -132,6 +157,7 @@ namespace Game.Player
         {
             _currentState?.OnExit();
             _currentState = state;
+            Paramaters.CurrentState = state;
             _currentState.OnEnter();
 
             //状态变化的事件调用，供外部使用
@@ -145,6 +171,15 @@ namespace Game.Player
                     return;
                 case PlayerStateJump:
                     OnJump?.Invoke();
+                    return;
+                case PlayerStateCrouch:
+                    OnCrouch?.Invoke();
+                    return;
+                case PlayerStateFall:
+                    OnFall?.Invoke();
+                    return;
+                case PlayerStateClimb:
+                    OnClimb?.Invoke();
                     return;
             }
         }

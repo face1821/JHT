@@ -4,13 +4,14 @@ using Game.CheckPoint.Events;
 using Game.InteractableObject;
 using Maxy.GameFramework.Common.Events;
 using Maxy.GameFramework.Common.System;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Game.Player
 {
     public class PlayerInteract : MonoBehaviour
     {
-        [SerializeField] private List<IInteractableObject> _interactableObjects = new List<IInteractableObject>();
+        [ShowInInspector, ReadOnly] private List<IInteractableObject> _interactableObjects = new List<IInteractableObject>();
 
         private void OnEnable()
         {
@@ -32,6 +33,7 @@ namespace Game.Player
 
         private void OnInteract()
         {
+            //获取最近交互对象
             var minDistance = 100f;
             IInteractableObject resultObj = null;
             foreach (var item in _interactableObjects)

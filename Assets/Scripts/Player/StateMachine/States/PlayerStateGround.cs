@@ -14,6 +14,6 @@ namespace Game.Player
         }
 
         //任何地面状态都至少需要地面标记为true时，才能进入
-        public override bool CanEnter() => Paramaters.IsGrounded;
+        public override bool CanEnter() => Paramaters.IsGrounded && Paramaters.CurrentState is not PlayerStateClimb;
     }
 }
