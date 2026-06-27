@@ -36,19 +36,7 @@ namespace Game.Player
 
         private void OnInteract()
         {
-            if (_stateMachine.CurrentState is PlayerStateRope)
-            {
-                _stateMachine.RequestToChangeState(_stateMachine.StateFall, force: true);
-                return;
-            }
-
-            if (_stateMachine.Paramaters.NearbyRope != null)
-            {
-                _stateMachine.Paramaters.NearbyRope.Interact();
-                MLogger.Log("开始攀爬...");
-                return;
-            }
-
+            //获取最近交互对象
             var minDistance = 100f;
             IInteractableObject resultObj = null;
             foreach (var item in _interactableObjects)

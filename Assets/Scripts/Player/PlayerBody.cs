@@ -15,13 +15,11 @@ namespace Game.Player
 
         private Rigidbody2D _body;
         private float _defaultGravityScale;
-        private RigidbodyConstraints2D _defaultConstraints;
 
         private void Awake()
         {
             _body = GetComponent<Rigidbody2D>();
             _defaultGravityScale = _body.gravityScale;
-            _defaultConstraints = _body.constraints;
         }
 
         public void ZeroVelocity() { _body.velocity = Vector2.zero; }
@@ -29,21 +27,11 @@ namespace Game.Player
         public void SetVelocityX(float x) { _body.velocity = new Vector2(x, _body.velocity.y); }
         public void SetVelocityY(float y) { _body.velocity = new Vector2(_body.velocity.x, y); }
 
-        public void SetPositionX(float x)
-        {
-            var pos = _body.position;
-            pos.x = x;
-            _body.position = pos;
-        }
+        public void SetPositionX(float x) { _body.position = new Vector2(x, _body.position.y); }
 
-        public void SetGravityEnabled(bool enabled) { _body.gravityScale = enabled ? _defaultGravityScale : 0f; }
+        public void SetPositionY(float y) { _body.position = new Vector2(_body.position.x, y); }
 
-        public void SetFreezePositionX(bool freeze)
-        {
-            _body.constraints = freeze
-                ? _body.constraints | RigidbodyConstraints2D.FreezePositionX
-                : _defaultConstraints;
-        }
+        public void SetGravityEnabled(bool toggle) { _body.gravityScale = toggle ? _defaultGravityScale : 0f; }
 
         public void SetFaceX(int faceDirectionX) { transform.localScale = new Vector3(faceDirectionX, 1, 1); }
     }

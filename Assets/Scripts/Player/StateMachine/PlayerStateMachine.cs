@@ -1,4 +1,5 @@
 using System;
+using Game.InteractableObject;
 using Maxy.GameFramework.Game2D.Tool;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -15,6 +16,8 @@ namespace Game.Player
         public static event Action<int> OnMove;
         public static event Action OnJump;
         public static event Action OnCrouch;
+        public static event Action OnFall;
+        public static event Action OnClimb;
 
         #endregion
 
@@ -26,7 +29,7 @@ namespace Game.Player
         public PlayerStateBase StateCrouch { get; private set; }
         public PlayerStateBase StateJump { get; private set; }
         public PlayerStateBase StateFall { get; private set; }
-        public PlayerStateBase StateRope { get; private set; }
+        public PlayerStateBase StateClimb { get; private set; }
 
         #endregion
 
@@ -34,7 +37,6 @@ namespace Game.Player
 
         [SerializeField] private BoxColliderDetection2D _groundDetection;
         private PlayerBody _body;
-        private PlayerInput _input;
 
         #endregion
 
@@ -48,13 +50,11 @@ namespace Game.Player
         {
             //组件获取
             _body = GetComponent<PlayerBody>();
-            _input = GetComponent<PlayerInput>();
 
             //上下文参数配置
             Paramaters = new PlayerStateMachineParamaters();
             Paramaters.StateMachine = this;
             Paramaters.Body = _body;
-            Paramaters.Input = _input;
             Paramaters.MoveSpeed = _body.MoveSpeed;
             Paramaters.JumpSpeed = _body.JumpSpeed;
 
@@ -64,7 +64,7 @@ namespace Game.Player
             StateCrouch = new PlayerStateCrouch() { Paramaters = Paramaters };
             StateJump = new PlayerStateJump() { Paramaters = Paramaters };
             StateFall = new PlayerStateFall() { Paramaters = Paramaters };
-            StateRope = new PlayerStateRope() { Paramaters = Paramaters };
+            StateClimb = new PlayerStateClimb() { Paramaters = Paramaters };
 
             ChangeState(StateFall);
         }
@@ -103,9 +103,7 @@ namespace Game.Player
         {
             Paramaters.MoveDirection = 0;
 
-            if (_currentState is PlayerStateCrouch) return;
-
-            if (_currentState is PlayerStateRope) return;
+            if (_currentState is PlayerStateCrouch or PlayerStateClimb) return;
 
             RequestToChangeState(StateIdle);
         }
@@ -117,28 +115,30 @@ namespace Game.Player
 
             if (_currentState is PlayerStateCrouch) return;
 
-            if (_currentState is PlayerStateRope) return;
+            //当在攀爬时，按下左右键就会立刻脱离攀爬状态
+            if (_currentState is PlayerStateClimb)
+            {
+                RequestToChangeState(StateFall);
+                return;
+            }
 
             RequestToChangeState(StateMove);
         }
 
-        private void OnInputJump()
-        {
-            if (_currentState is PlayerStateRope) return;
+        private void OnInputJump() { RequestToChangeState(StateJump); }
 
-            RequestToChangeState(StateJump);
-        }
+        private void OnInputCrouch() { RequestToChangeState(StateCrouch); }
 
-        private void OnInputCrouch()
+        #endregion
+
+        #region 外部状态申请
+
+        public void TryToClimb(IClimbingObject climbingObject)
         {
-            if (_currentState is PlayerStateRope) return;
-            if (_currentState is PlayerStateCrouch)
+            if (RequestToChangeState(StateClimb))
             {
-                RequestToChangeState(Paramaters.MoveDirection != 0 ? StateMove : StateIdle);
-                return;
+                Paramaters.ClimbingObject = climbingObject;
             }
-
-            RequestToChangeState(StateCrouch);
         }
 
         #endregion
@@ -151,11 +151,11 @@ namespace Game.Player
 
         #endregion
 
-        public bool RequestToChangeState(PlayerStateBase state, bool force = false)
+        public bool RequestToChangeState(PlayerStateBase state)
         {
             if (_currentState == state) return false;
 
-            if (force || _currentState.CanBeInterrupt() && state.CanEnter())
+            if (_currentState.CanBeInterrupt() && state.CanEnter())
             {
                 ChangeState(state);
                 return true;
@@ -168,6 +168,7 @@ namespace Game.Player
         {
             _currentState?.OnExit();
             _currentState = state;
+            Paramaters.CurrentState = state;
             _currentState.OnEnter();
 
             //状态变化的事件调用，供外部使用
@@ -184,6 +185,12 @@ namespace Game.Player
                     return;
                 case PlayerStateCrouch:
                     OnCrouch?.Invoke();
+                    return;
+                case PlayerStateFall:
+                    OnFall?.Invoke();
+                    return;
+                case PlayerStateClimb:
+                    OnClimb?.Invoke();
                     return;
             }
         }

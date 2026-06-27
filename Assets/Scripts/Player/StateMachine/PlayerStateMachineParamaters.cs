@@ -1,4 +1,6 @@
 using System;
+using Game.InteractableObject;
+using Game.Prop;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -8,6 +10,7 @@ namespace Game.Player
     public class PlayerStateMachineParamaters
     {
         [HideInInspector] public PlayerStateMachine StateMachine;
+        [HideInInspector] public PlayerStateBase CurrentState;
         [HideInInspector] public PlayerBody Body;
         [HideInInspector] public PlayerInput Input;
 
@@ -23,8 +26,8 @@ namespace Game.Player
         [Header("整数参数")]
         [LabelText("朝向")] public int FaceDirection = 1;
         [LabelText("移动方向")] public int MoveDirection = 1;
+        [LabelText("上下移动方向")] public int UpDownMoveDirection;
 
-        [HideInInspector] public Game.Rope.Rope NearbyRope;
-        [HideInInspector] public Game.Rope.Rope ClimbingRope;
+        [LabelText("攀爬物"), ReadOnly] public IClimbingObject ClimbingObject;
     }
 }
