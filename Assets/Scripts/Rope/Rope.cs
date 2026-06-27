@@ -1,14 +1,43 @@
-using System.Collections;
-using System.Collections.Generic;
+using Game.InteractableObject;
 using Game.Player;
 using Game.Tool;
 using UnityEngine;
 
-public class Rope : MonoBehaviour
+namespace Game.Rope
 {
-    private void OnTriggerEnter2D(Collider2D other)
+    public class Rope : MonoBehaviour, IInteractableObject
     {
-        PlayerStateMachine playerStateMachine = InstanceFinder.Player.StateMachine;
-        
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (!other.CompareTag("Player")) return;
+
+            InstanceFinder.Player.StateMachine.Paramaters.NearbyRope = this;
+        }
+
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            if (!other.CompareTag("Player")) return;
+
+            var stateMachine = InstanceFinder.Player.StateMachine;
+            var paramaters = stateMachine.Paramaters;
+
+            if (paramaters.NearbyRope == this)
+                paramaters.NearbyRope = null;
+
+            if (stateMachine.CurrentState is PlayerStateRope && paramaters.ClimbingRope == this)
+                stateMachine.RequestToChangeState(stateMachine.StateFall, force: true);
+        }
+
+        public float GetDistance()
+        {
+            return (InstanceFinder.Player.transform.position - transform.position).magnitude;
+        }
+
+        public void Interact()
+        {
+            var stateMachine = InstanceFinder.Player.StateMachine;
+            stateMachine.Paramaters.ClimbingRope = this;
+            stateMachine.RequestToChangeState(stateMachine.StateRope);
+        }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using Maxy.GameFramework.Common.System;
 using Maxy.GameFramework.Common.Tool;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -16,7 +17,10 @@ namespace Game.Player
         private bool _isMoveLeft;
         private bool _isMoveRight;
 
-        private void Update() { PhoneInputHandle(); }
+        public bool IsJumpHeld { get; private set; }
+        public bool IsCrouchHeld { get; private set; }
+
+        private void Update() { PhoneInputHandle(); MLogger.Log(IsJumpHeld + "  adad  " + IsCrouchHeld); }
 
         private void PhoneInputHandle()
         {
@@ -64,6 +68,10 @@ namespace Game.Player
         public void BtnJump() { OnJump?.Invoke(); }
 
         public void BtnCrouch() { OnCrouch?.Invoke(); }
+
+        public void SetJumpHeld(bool held) => IsJumpHeld = held;
+
+        public void SetCrouchHeld(bool held) => IsCrouchHeld = held;
 
         public void BtnInteract() { OnInteract?.Invoke(); }
 

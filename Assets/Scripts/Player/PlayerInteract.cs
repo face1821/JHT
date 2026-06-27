@@ -12,6 +12,10 @@ namespace Game.Player
     {
         [SerializeField] private List<IInteractableObject> _interactableObjects = new List<IInteractableObject>();
 
+        private PlayerStateMachine _stateMachine;
+
+        private void Awake() { _stateMachine = GetComponent<PlayerStateMachine>(); }
+
         private void OnEnable()
         {
             PlayerInput.OnInteract += OnInteract;
@@ -32,6 +36,19 @@ namespace Game.Player
 
         private void OnInteract()
         {
+            if (_stateMachine.CurrentState is PlayerStateRope)
+            {
+                _stateMachine.RequestToChangeState(_stateMachine.StateFall, force: true);
+                return;
+            }
+
+            if (_stateMachine.Paramaters.NearbyRope != null)
+            {
+                _stateMachine.Paramaters.NearbyRope.Interact();
+                MLogger.Log("开始攀爬...");
+                return;
+            }
+
             var minDistance = 100f;
             IInteractableObject resultObj = null;
             foreach (var item in _interactableObjects)

@@ -26,6 +26,7 @@ namespace Game.Player
         public PlayerStateBase StateCrouch { get; private set; }
         public PlayerStateBase StateJump { get; private set; }
         public PlayerStateBase StateFall { get; private set; }
+        public PlayerStateBase StateRope { get; private set; }
 
         #endregion
 
@@ -33,10 +34,12 @@ namespace Game.Player
 
         [SerializeField] private BoxColliderDetection2D _groundDetection;
         private PlayerBody _body;
+        private PlayerInput _input;
 
         #endregion
 
         [ShowInInspector] public PlayerStateMachineParamaters Paramaters { get; private set; }
+        public PlayerStateBase CurrentState => _currentState;
         private PlayerStateBase _currentState;
 
         #region Mono方法
@@ -45,11 +48,13 @@ namespace Game.Player
         {
             //组件获取
             _body = GetComponent<PlayerBody>();
+            _input = GetComponent<PlayerInput>();
 
             //上下文参数配置
             Paramaters = new PlayerStateMachineParamaters();
             Paramaters.StateMachine = this;
             Paramaters.Body = _body;
+            Paramaters.Input = _input;
             Paramaters.MoveSpeed = _body.MoveSpeed;
             Paramaters.JumpSpeed = _body.JumpSpeed;
 
@@ -59,6 +64,7 @@ namespace Game.Player
             StateCrouch = new PlayerStateCrouch() { Paramaters = Paramaters };
             StateJump = new PlayerStateJump() { Paramaters = Paramaters };
             StateFall = new PlayerStateFall() { Paramaters = Paramaters };
+            StateRope = new PlayerStateRope() { Paramaters = Paramaters };
 
             ChangeState(StateFall);
         }
@@ -99,6 +105,8 @@ namespace Game.Player
 
             if (_currentState is PlayerStateCrouch) return;
 
+            if (_currentState is PlayerStateRope) return;
+
             RequestToChangeState(StateIdle);
         }
 
@@ -109,13 +117,21 @@ namespace Game.Player
 
             if (_currentState is PlayerStateCrouch) return;
 
+            if (_currentState is PlayerStateRope) return;
+
             RequestToChangeState(StateMove);
         }
 
-        private void OnInputJump() { RequestToChangeState(StateJump); }
+        private void OnInputJump()
+        {
+            if (_currentState is PlayerStateRope) return;
+
+            RequestToChangeState(StateJump);
+        }
 
         private void OnInputCrouch()
         {
+            if (_currentState is PlayerStateRope) return;
             if (_currentState is PlayerStateCrouch)
             {
                 RequestToChangeState(Paramaters.MoveDirection != 0 ? StateMove : StateIdle);
@@ -135,11 +151,11 @@ namespace Game.Player
 
         #endregion
 
-        public bool RequestToChangeState(PlayerStateBase state)
+        public bool RequestToChangeState(PlayerStateBase state, bool force = false)
         {
             if (_currentState == state) return false;
 
-            if (_currentState.CanBeInterrupt() && state.CanEnter())
+            if (force || _currentState.CanBeInterrupt() && state.CanEnter())
             {
                 ChangeState(state);
                 return true;
