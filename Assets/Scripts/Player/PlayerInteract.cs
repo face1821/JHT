@@ -4,17 +4,14 @@ using Game.CheckPoint.Events;
 using Game.InteractableObject;
 using Maxy.GameFramework.Common.Events;
 using Maxy.GameFramework.Common.System;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Game.Player
 {
     public class PlayerInteract : MonoBehaviour
     {
-        [SerializeField] private List<IInteractableObject> _interactableObjects = new List<IInteractableObject>();
-
-        private PlayerStateMachine _stateMachine;
-
-        private void Awake() { _stateMachine = GetComponent<PlayerStateMachine>(); }
+        [ShowInInspector, ReadOnly] private List<IInteractableObject> _interactableObjects = new List<IInteractableObject>();
 
         private void OnEnable()
         {

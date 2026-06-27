@@ -26,6 +26,14 @@ namespace Game.Player
                 return;
             }
 
+            //当在攀爬时，按下左右键也会立刻脱离攀爬状态
+            if (PlayerInput.MoveDirection != 0)
+            {
+                StateMachine.RequestToChangeState(StateMachine.StateFall);
+                return;
+            }
+
+
             //攀爬速度
             var climbSpeed = Paramaters.MoveSpeed * Paramaters.ClimbSpeedMultiplier;
             //攀爬速度*=攀爬方向

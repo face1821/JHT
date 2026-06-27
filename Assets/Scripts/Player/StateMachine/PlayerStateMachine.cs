@@ -103,8 +103,6 @@ namespace Game.Player
         {
             Paramaters.MoveDirection = 0;
 
-            if (_currentState is PlayerStateCrouch or PlayerStateClimb) return;
-
             RequestToChangeState(StateIdle);
         }
 
@@ -112,15 +110,6 @@ namespace Game.Player
         {
             Paramaters.MoveDirection = moveDir;
             Paramaters.FaceDirection = moveDir;
-
-            if (_currentState is PlayerStateCrouch) return;
-
-            //当在攀爬时，按下左右键就会立刻脱离攀爬状态
-            if (_currentState is PlayerStateClimb)
-            {
-                RequestToChangeState(StateFall);
-                return;
-            }
 
             RequestToChangeState(StateMove);
         }

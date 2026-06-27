@@ -23,7 +23,7 @@ namespace Game.Player
         public static int MoveDirection => (IsMoveLeft ? -1 : 0) + (IsMoveRight ? 1 : 0);
         public static bool IsMoveLeft { get; private set; }
         public static bool IsMoveRight { get; private set; }
-        
+
         public static int UpDownMoveDirection => (IsJumpHeld ? -1 : 0) + (IsJumpHeld ? 1 : 0);
         public static bool IsJumpHeld { get; private set; }
         public static bool IsCrouchHeld { get; private set; }
@@ -36,12 +36,19 @@ namespace Game.Player
         {
             //输入的优先级由这里的事件发送顺序来表现
 
-            if (!IsMoveLeft && !IsMoveRight || IsMoveLeft && IsMoveRight)
+            //下蹲状态
+            if (IsCrouchHeld)
+            {
+                OnCrouch?.Invoke();
+            }
+            else if (MoveDirection == 0) //移动状态
+            {
                 OnIdle?.Invoke();
-            else if (IsMoveLeft)
-                OnMove?.Invoke(-1);
-            else if (IsMoveRight)
-                OnMove?.Invoke(1);
+            }
+            else //待机状态
+            {
+                OnMove?.Invoke(MoveDirection);
+            }
         }
 
         private void PCInputHandle()
