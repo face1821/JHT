@@ -10,6 +10,7 @@ namespace Game.Player
         public static event Action OnIdle;
         public static event Action<int> OnMove;
         public static event Action OnJump;
+        public static event Action OnCrouch;
         public static event Action OnInteract;
 
         private bool _isMoveLeft;
@@ -61,6 +62,8 @@ namespace Game.Player
         public void BtnReleaseMoveRight() { _isMoveRight = false; }
 
         public void BtnJump() { OnJump?.Invoke(); }
+
+        public void BtnCrouch() { OnCrouch?.Invoke(); }
 
         public void BtnInteract() { OnInteract?.Invoke(); }
 

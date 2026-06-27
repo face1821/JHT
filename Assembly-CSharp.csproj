@@ -68,6 +68,7 @@
     <Compile Include="Assets\Scripts\Player\StateMachine\States\Ground\PlayerStateIdle.cs" />
     <Compile Include="Assets\Scripts\Player\StateMachine\States\PlayerStateAir.cs" />
     <Compile Include="Assets\Scripts\InteractableObject\IInteractableObject.cs" />
+    <Compile Include="Assets\Scripts\Rope\Rope.cs" />
     <Compile Include="Assets\Scripts\MainMenu\MainMenuManager.cs" />
     <Compile Include="Assets\Scripts\CheckPoint\Events\AddPlayerInteractableObjectEvent.cs" />
     <Compile Include="Assets\Scripts\CheckPoint\CheckPointMenu.cs" />
@@ -79,9 +80,11 @@
     <Compile Include="Assets\Scripts\Player\StateMachine\States\Ground\PlayerStateJump.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerInteract.cs" />
     <Compile Include="Assets\Scripts\System\InstanceFinderSystem\InstanceFinder.cs" />
+    <Compile Include="Assets\Scripts\Player\StateMachine\States\Ground\PlayerStateCrouch.cs" />
     <Compile Include="Assets\Scripts\System\AchievementSystem\IAchievementSystem.cs" />
     <Compile Include="Assets\Scripts\Map\Level\LevelSpawnInfo.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerBody.cs" />
+    <Compile Include="Assets\Scripts\Player\StateMachine\States\PlayerStateRope.cs" />
     <Compile Include="Assets\Scripts\Player\StateMachine\States\PlayerStateGround.cs" />
     <Compile Include="Assets\Scripts\System\InstanceFinderSystem\IInstanceFinderSystem.cs" />
     <Compile Include="Assets\Scripts\Player\StateMachine\States\Air\PlayerStateFall.cs" />

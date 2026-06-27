@@ -14,6 +14,7 @@ namespace Game.Player
         public static event Action OnIdle;
         public static event Action<int> OnMove;
         public static event Action OnJump;
+        public static event Action OnCrouch;
 
         #endregion
 
@@ -22,6 +23,7 @@ namespace Game.Player
         [ShowInInspector, ReadOnly] public string CurrentStateName => _currentState?.GetType().Name;
         public PlayerStateBase StateIdle { get; private set; }
         public PlayerStateBase StateMove { get; private set; }
+        public PlayerStateBase StateCrouch { get; private set; }
         public PlayerStateBase StateJump { get; private set; }
         public PlayerStateBase StateFall { get; private set; }
 
@@ -54,6 +56,7 @@ namespace Game.Player
             //状态配置
             StateIdle = new PlayerStateIdle() { Paramaters = Paramaters };
             StateMove = new PlayerStateMove() { Paramaters = Paramaters };
+            StateCrouch = new PlayerStateCrouch() { Paramaters = Paramaters };
             StateJump = new PlayerStateJump() { Paramaters = Paramaters };
             StateFall = new PlayerStateFall() { Paramaters = Paramaters };
 
@@ -65,6 +68,7 @@ namespace Game.Player
             PlayerInput.OnIdle += OnInputIdle;
             PlayerInput.OnMove += OnInputMove;
             PlayerInput.OnJump += OnInputJump;
+            PlayerInput.OnCrouch += OnInputCrouch;
 
             _groundDetection.OnTouched += OnGroundTouched;
             _groundDetection.OnLeave += OnGroundLeave;
@@ -75,6 +79,7 @@ namespace Game.Player
             PlayerInput.OnIdle -= OnInputIdle;
             PlayerInput.OnMove -= OnInputMove;
             PlayerInput.OnJump -= OnInputJump;
+            PlayerInput.OnCrouch -= OnInputCrouch;
 
             _groundDetection.OnTouched -= OnGroundTouched;
             _groundDetection.OnLeave -= OnGroundLeave;
@@ -92,6 +97,8 @@ namespace Game.Player
         {
             Paramaters.MoveDirection = 0;
 
+            if (_currentState is PlayerStateCrouch) return;
+
             RequestToChangeState(StateIdle);
         }
 
@@ -100,10 +107,23 @@ namespace Game.Player
             Paramaters.MoveDirection = moveDir;
             Paramaters.FaceDirection = moveDir;
 
+            if (_currentState is PlayerStateCrouch) return;
+
             RequestToChangeState(StateMove);
         }
 
         private void OnInputJump() { RequestToChangeState(StateJump); }
+
+        private void OnInputCrouch()
+        {
+            if (_currentState is PlayerStateCrouch)
+            {
+                RequestToChangeState(Paramaters.MoveDirection != 0 ? StateMove : StateIdle);
+                return;
+            }
+
+            RequestToChangeState(StateCrouch);
+        }
 
         #endregion
 
@@ -145,6 +165,9 @@ namespace Game.Player
                     return;
                 case PlayerStateJump:
                     OnJump?.Invoke();
+                    return;
+                case PlayerStateCrouch:
+                    OnCrouch?.Invoke();
                     return;
             }
         }
