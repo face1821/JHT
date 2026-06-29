@@ -1,3 +1,4 @@
+using Maxy.GameFramework.Common.System;
 using UnityEngine;
 
 namespace Game.Player
@@ -23,6 +24,12 @@ namespace Game.Player
         public void PlayJump() { _animator.Play("Jump"); }
 
         public void PlayFall() { _animator.Play("Fall"); }
+
+        public void PlayLand()
+        {
+            _animator.Play("Land");
+            MLogger.Log("落地");
+        }
 
         public void PlayClimbIdle() { _animator.Play("ClimbIdle"); }
 

@@ -1,5 +1,6 @@
 using System;
 using Game.InteractableObject;
+using Maxy.GameFramework.Common.System;
 using Maxy.GameFramework.Game2D.Tool;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -69,7 +70,7 @@ namespace Game.Player
             StateFall = new PlayerStateFall() { Paramaters = Paramaters };
             StateClimb = new PlayerStateClimb() { Paramaters = Paramaters };
 
-            ChangeState(StateFall);
+            ChangeState(StateIdle);
         }
 
         private void OnEnable()
@@ -106,7 +107,11 @@ namespace Game.Player
         {
             Paramaters.MoveDirection = 0;
 
-            RequestToChangeState(StateIdle);
+            //只有为地面状态时，才会请求切为站立待机动画
+            if (_currentState is PlayerStateGround)
+            {
+                RequestToChangeState(StateIdle);
+            }
         }
 
         private void OnInputMove(int moveDir)
@@ -147,7 +152,7 @@ namespace Game.Player
         {
             if (_currentState == state) return false;
 
-            if (_currentState.CanBeInterrupt() && state.CanEnter())
+            if (_currentState.CanBeInterrupt(state) && state.CanEnter())
             {
                 ChangeState(state);
                 return true;
@@ -158,6 +163,8 @@ namespace Game.Player
 
         private void ChangeState(PlayerStateBase state)
         {
+            MLogger.Log($"状态切换：{_currentState} -> {state}");
+
             _currentState?.OnExit();
             _currentState = state;
             Paramaters.CurrentState = state;

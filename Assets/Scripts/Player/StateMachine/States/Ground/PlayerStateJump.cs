@@ -14,10 +14,13 @@ namespace Game.Player
         {
             base.OnFixedUpdate();
 
+
             if (Body.Velocity.y <= 0f)
             {
                 StateMachine.RequestToChangeState(StateMachine.StateFall);
             }
         }
+
+        public override bool CanBeInterrupt(PlayerStateBase nextState) => nextState is PlayerStateFall;
     }
 }

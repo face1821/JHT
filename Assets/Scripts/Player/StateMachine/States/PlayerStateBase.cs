@@ -6,6 +6,7 @@ namespace Game.Player
     {
         public PlayerStateMachineParamaters Paramaters;
         public PlayerStateMachine StateMachine => Paramaters.StateMachine;
+        public PlayerStateBase CurrentState => Paramaters.CurrentState;
         public PlayerBody Body => Paramaters.Body;
         public PlayerAnimator Animator => Paramaters.Animator;
 
@@ -14,7 +15,7 @@ namespace Game.Player
         public virtual void OnFixedUpdate() { }
         public virtual void OnExit() { }
 
-        public virtual bool CanBeInterrupt() => true;
+        public virtual bool CanBeInterrupt(PlayerStateBase nextState) => true;
         public virtual bool CanEnter() => true;
     }
 }

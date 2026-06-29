@@ -1,6 +1,7 @@
 using System;
 using Game.InteractableObject;
 using Game.Prop;
+using Maxy.GameFramework.Common.System;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -22,11 +23,12 @@ namespace Game.Player
         [LabelText("攀爬速度倍率")] public float ClimbSpeedMultiplier = 0.3f;
 
         [Header("布尔参数")]
-        [LabelText("地面标记")] public bool IsGrounded;
+        [LabelText("地面标记")] public bool IsGrounded = true;
+        [LabelText("落地标记")] public bool IsLand;
 
         [Header("整数参数")]
-        [LabelText("朝向")] public int FaceDirection = 1;
-        [LabelText("移动方向")] public int MoveDirection = 1;
+        [LabelText("朝向")] public int FaceDirection = -1;
+        [LabelText("移动方向")] public int MoveDirection = -1;
         [LabelText("上下移动方向")] public int UpDownMoveDirection;
 
         [LabelText("攀爬物"), ReadOnly] public IClimbingObject ClimbingObject;
