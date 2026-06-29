@@ -7,7 +7,7 @@ using UnityEngine;
 namespace Game.Player
 {
     [Serializable]
-    [RequireComponent(typeof(PlayerInput), typeof(PlayerBody))]
+    [RequireComponent(typeof(PlayerInput), typeof(PlayerBody), typeof(PlayerAnimator))]
     public class PlayerStateMachine : MonoBehaviour
     {
         #region 事件
@@ -37,6 +37,7 @@ namespace Game.Player
 
         [SerializeField] private BoxColliderDetection2D _groundDetection;
         private PlayerBody _body;
+        private PlayerAnimator _animator;
 
         #endregion
 
@@ -50,11 +51,13 @@ namespace Game.Player
         {
             //组件获取
             _body = GetComponent<PlayerBody>();
+            _animator = GetComponent<PlayerAnimator>();
 
             //上下文参数配置
             Paramaters = new PlayerStateMachineParamaters();
             Paramaters.StateMachine = this;
             Paramaters.Body = _body;
+            Paramaters.Animator = _animator;
             Paramaters.MoveSpeed = _body.MoveSpeed;
             Paramaters.JumpSpeed = _body.JumpSpeed;
 

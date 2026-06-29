@@ -33,6 +33,6 @@ namespace Game.Player
 
         public void SetGravityEnabled(bool toggle) { _body.gravityScale = toggle ? _defaultGravityScale : 0f; }
 
-        public void SetFaceX(int faceDirectionX) { transform.localScale = new Vector3(faceDirectionX, 1, 1); }
+        public void SetFaceX(int faceDirectionX) { transform.localScale = new Vector3(-faceDirectionX, 1, 1); }
     }
 }

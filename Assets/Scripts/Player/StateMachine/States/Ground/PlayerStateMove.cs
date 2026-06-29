@@ -8,6 +8,7 @@ namespace Game.Player
             
             Body.SetVelocityX(Paramaters.MoveDirection * Paramaters.MoveSpeed);
             Body.SetFaceX(Paramaters.FaceDirection);
+            Animator.PlayWalk();
         }
     }
 }

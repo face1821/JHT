@@ -7,6 +7,7 @@ namespace Game.Player
             base.OnEnter();
 
             Body.SetVelocityY(Paramaters.JumpSpeed);
+            Animator.PlayJump();
         }
 
         public override void OnFixedUpdate()

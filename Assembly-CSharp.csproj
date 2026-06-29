@@ -73,6 +73,7 @@
     <Compile Include="Assets\Scripts\System\AchievementSystem\AchievementWindow.cs" />
     <Compile Include="Assets\Scripts\InteractableObject\ClimbingObject\IClimbingObject.cs" />
     <Compile Include="Assets\Scripts\System\InstanceFinderSystem\InstanceFinderSystem.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerAnimator.cs" />
     <Compile Include="Assets\Scripts\CheckPoint\CheckPoint.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerInput.cs" />
     <Compile Include="Assets\Scripts\Map\MapManager.cs" />

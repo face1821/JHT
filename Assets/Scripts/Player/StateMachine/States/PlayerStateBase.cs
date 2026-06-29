@@ -7,6 +7,7 @@ namespace Game.Player
         public PlayerStateMachineParamaters Paramaters;
         public PlayerStateMachine StateMachine => Paramaters.StateMachine;
         public PlayerBody Body => Paramaters.Body;
+        public PlayerAnimator Animator => Paramaters.Animator;
 
         public virtual void OnEnter() { }
         public virtual void OnUpdate() { }

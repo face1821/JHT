@@ -7,6 +7,7 @@ namespace Game.Player
             base.OnEnter();
 
             Body.ZeroVelocityX();
+            Animator.PlayIdle();
         }
     }
 }

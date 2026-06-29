@@ -12,6 +12,7 @@ namespace Game.Player
             Body.ZeroVelocity();
             Body.SetGravityEnabled(false);
             Body.SetPositionX(Paramaters.ClimbingObject.transform.position.x);
+            Animator.PlayClimbIdle();
 
             MLogger.Log($"玩家：攀爬到 {Paramaters.ClimbingObject.transform.name}");
         }
@@ -38,6 +39,16 @@ namespace Game.Player
             var climbSpeed = Paramaters.MoveSpeed * Paramaters.ClimbSpeedMultiplier;
             //攀爬速度*=攀爬方向
             climbSpeed *= PlayerInput.UpDownMoveDirection;
+
+            //动画设置
+            if (climbSpeed != 0f)
+            {
+                Animator.PlayClimb();
+            }
+            else
+            {
+                Animator.PlayClimbIdle();
+            }
 
             //应用最终攀爬方向
             Body.SetVelocityY(climbSpeed);

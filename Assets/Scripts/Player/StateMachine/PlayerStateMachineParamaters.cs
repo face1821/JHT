@@ -12,6 +12,7 @@ namespace Game.Player
         [HideInInspector] public PlayerStateMachine StateMachine;
         [HideInInspector] public PlayerStateBase CurrentState;
         [HideInInspector] public PlayerBody Body;
+        [HideInInspector] public PlayerAnimator Animator;
         [HideInInspector] public PlayerInput Input;
 
         [Header("基本属性")]
