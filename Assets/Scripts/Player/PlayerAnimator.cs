@@ -17,6 +17,8 @@ namespace Game.Player
 
         #region 动画状态
 
+        public void PlayDead() { _animator.Play("Dead"); }
+
         public void PlayIdle() { _animator.Play("Idle"); }
 
         public void PlayWalk() { _animator.Play("Walk"); }
@@ -25,11 +27,7 @@ namespace Game.Player
 
         public void PlayFall() { _animator.Play("Fall"); }
 
-        public void PlayLand()
-        {
-            _animator.Play("Land");
-            MLogger.Log("落地");
-        }
+        public void PlayLand() { _animator.Play("Land"); }
 
         public void PlayClimbIdle() { _animator.Play("ClimbIdle"); }
 

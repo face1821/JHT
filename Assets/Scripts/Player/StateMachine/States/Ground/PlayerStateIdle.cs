@@ -1,5 +1,3 @@
-using Maxy.GameFramework.Common.System;
-
 namespace Game.Player
 {
     public class PlayerStateIdle : PlayerStateGround
@@ -9,17 +7,7 @@ namespace Game.Player
             base.OnEnter();
 
             Body.ZeroVelocityX();
-
-            if (Paramaters.IsLand)
-            {
-                Paramaters.IsLand = false;
-                
-                Animator.PlayLand();
-            }
-            else
-            {
-                Animator.PlayIdle();
-            }
+            Animator.PlayIdle();
         }
     }
 }

@@ -134,8 +134,8 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 2520, y: 5440}
-    spritePosition: {x: 0, y: 1}
+    uvTransform: {x: 2520, y: 5441}
+    spritePosition: {x: 0, y: 0}
   - name: "\u5730\u677F"
     originalName: 
     pivot: {x: 0.5, y: 0.5}

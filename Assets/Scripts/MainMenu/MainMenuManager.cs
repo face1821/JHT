@@ -1,6 +1,9 @@
 using System;
+using System.Collections;
+using Game.LoadingMenu;
 using Game.System;
 using Maxy.GameFramework.Common.System;
+using Maxy.GameFramework.Common.Tool;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -9,6 +12,7 @@ namespace Game.MainMenu
 {
     public class MainMenuManager : MonoBehaviour
     {
+        [SerializeField] private OverlayFadeEffect _overlay;
         [SerializeField] private GameObject _btnContinue;
         [Space]
         [SerializeField] private int LevelCount;
@@ -33,7 +37,7 @@ namespace Game.MainMenu
             //先删除所有关卡和所有成就的记录
             for (int i = 0; i < LevelCount; i++)
             {
-                ES3.Save($"Level-{i}", false);
+                ES3.Save($"Level-{i + 1}", false);
             }
 
             var achievementConfig = Resources.Load<AchievementConfig>("Datas/AchievementConfig");
@@ -43,13 +47,13 @@ namespace Game.MainMenu
             }
 
             //然后进入地图
-            SceneManager.LoadScene("Map Level1");
+            StartCoroutine(nameof(DelayStartGame));
         }
 
         public void Continue()
         {
             //直接进入地图
-            SceneManager.LoadScene("Map Level1");
+            StartCoroutine(nameof(DelayStartGame));
         }
 
         public void Exit() { Application.Quit(); }
@@ -77,5 +81,15 @@ namespace Game.MainMenu
         }
 
         #endregion
+
+        private IEnumerator DelayStartGame()
+        {
+            _overlay.PlayFadeOut();
+
+            yield return new WaitForSeconds(1f);
+
+            LoadingMenuManager.LoadingScene = "Map";
+            SceneManager.LoadScene("LoadingMenu");
+        }
     }
 }

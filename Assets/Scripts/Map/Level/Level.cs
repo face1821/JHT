@@ -5,14 +5,21 @@ namespace Game.Map
 {
     public class Level : MonoBehaviour
     {
-        public int LevelIndex => _levelIndex;
         public Vector2 SpawnPos => _spawnPos;
 
-        [SerializeField] private int _levelIndex;
         [SerializeField] private Vector2 _spawnPos;
         [SerializeField] private List<LevelRuleBase> _levelRules;
         [SerializeField] private List<GameObject> _activeObjs;
         [SerializeField] private List<GameObject> _inactiveObjs;
+
+        private MapManager _mapManager;
+        private int _levelIndex;
+
+        public void Init(MapManager mapManager)
+        {
+            _mapManager = mapManager;
+            _levelIndex = mapManager.Levels.IndexOf(this);
+        }
 
         public void ResetLevel()
         {

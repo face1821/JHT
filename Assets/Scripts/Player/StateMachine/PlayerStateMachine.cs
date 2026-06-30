@@ -25,6 +25,7 @@ namespace Game.Player
         #region 状态
 
         [ShowInInspector, ReadOnly] public string CurrentStateName => _currentState?.GetType().Name;
+        public PlayerStateBase StateDead { get; private set; }
         public PlayerStateBase StateIdle { get; private set; }
         public PlayerStateBase StateMove { get; private set; }
         public PlayerStateBase StateCrouch { get; private set; }
@@ -122,7 +123,7 @@ namespace Game.Player
             Paramaters.FaceDirection = moveDir;
 
             //只有为地面状态时，才会请求切换
-            if (_currentState is PlayerStateGround)
+            if (_currentState is PlayerStateGround && _currentState is not PlayerStateJump && _currentState is not PlayerStateLand)
             {
                 RequestToChangeState(StateMove);
             }

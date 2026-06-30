@@ -176,7 +176,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: -1858, y: 4080}
+    uvTransform: {x: 4, y: 4080}
     spritePosition: {x: 1862, y: 0}
   - name: "\u56FE\u5C42 20"
     originalName: 
