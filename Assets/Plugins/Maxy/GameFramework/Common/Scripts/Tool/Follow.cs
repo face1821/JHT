@@ -26,7 +26,7 @@ namespace Maxy.GameFramework.Common.Tool
 
             if (SyncRotation)
             {
-                if (RotationSmoothFollow)
+                if (RotationSmoothFollow && Mathf.Abs(transform.eulerAngles.z - Target.eulerAngles.z) > 0.1f)
                 {
                     // 帧率无关的指数衰减
                     // Rate 越大，跟随越紧。Rate = 1 时几乎每帧到达
@@ -39,7 +39,7 @@ namespace Maxy.GameFramework.Common.Tool
                 }
             }
 
-            if (SmoothFollow)
+            if (SmoothFollow && Vector3.Distance(transform.position, Offset + Target.position) > 0.1f)
             {
                 // 帧率无关的指数衰减
                 // Rate 越大，跟随越紧。Rate = 1 时几乎每帧到达

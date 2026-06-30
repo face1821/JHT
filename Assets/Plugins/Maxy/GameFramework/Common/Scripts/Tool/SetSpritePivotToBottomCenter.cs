@@ -1,9 +1,11 @@
+using System.Diagnostics;
 using System.IO;
 using UnityEditor;
-using UnityEngine;
+using Debug = UnityEngine.Debug;
 
 namespace Maxy.GameFramework.Common.Tool
 {
+#if UNITY_EDITOR
     /// <summary>
     /// 右键文件，设置所选文件的精灵图们的轴心为底部中心
     /// </summary>
@@ -48,4 +50,5 @@ namespace Maxy.GameFramework.Common.Tool
             return Selection.activeObject != null;
         }
     }
+#endif
 }
