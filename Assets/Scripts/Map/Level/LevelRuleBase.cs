@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Game.Map
 {
-    [RequireComponent(typeof(BoxCollider2D), typeof(SpriteRenderer))]
+    [RequireComponent(typeof(BoxCollider2D))]
     public class LevelRuleBase : MonoBehaviour
     {
         [ShowInInspector, ReadOnly] public bool PlayerEntered => enabled;
