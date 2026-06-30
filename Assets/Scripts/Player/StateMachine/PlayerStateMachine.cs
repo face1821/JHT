@@ -65,6 +65,7 @@ namespace Game.Player
             Paramaters.JumpSpeed = _body.JumpSpeed;
 
             //状态配置
+            StateDead = new PlayerStateDead() { Paramaters = Paramaters };
             StateIdle = new PlayerStateIdle() { Paramaters = Paramaters };
             StateMove = new PlayerStateMove() { Paramaters = Paramaters };
             StateCrouch = new PlayerStateCrouch() { Paramaters = Paramaters };
@@ -178,7 +179,7 @@ namespace Game.Player
 
             MLogger.Log($"状态机：申请从 {_currentState}切换为 {state}");
             //MLogger.Log($"状态机：是否可被该状态打断（{_currentState.CanBeInterrupt(state)}），是否可进入（{state.CanEnter()}）");
-            if (_currentState.CanBeInterrupt(state) && state.CanEnter())
+            if (state is PlayerStateDead || _currentState.CanBeInterrupt(state) && state.CanEnter())
             {
                 MLogger.Log($"状态机：切换成功！");
                 ChangeState(state);

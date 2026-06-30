@@ -7,13 +7,16 @@ namespace Game.Map
     {
         public Vector2 SpawnPos => _spawnPos;
 
+        [SerializeField] private bool _canRuleBeClosed;
         [SerializeField] private Vector2 _spawnPos;
-        [SerializeField] private List<LevelRuleBase> _levelRules;
         [SerializeField] private List<GameObject> _activeObjs;
         [SerializeField] private List<GameObject> _inactiveObjs;
 
         private MapManager _mapManager;
         private int _levelIndex;
+        private LevelRuleBase _levelRule;
+
+        private void Awake() { _levelRule = GetComponent<LevelRuleBase>(); }
 
         public void Init(MapManager mapManager)
         {
@@ -46,13 +49,13 @@ namespace Game.Map
             ES3.Save($"LastPassedLevel", _levelIndex);
         }
 
+        public void ActiveLevel() { _levelRule.enabled = true; }
+
         public void InactiveLevel()
         {
-            //每个规则是一个独立的游戏对象
-            foreach (var item in _levelRules)
-            {
-                item.gameObject.SetActive(false);
-            }
+            if (!_canRuleBeClosed) return;
+
+            _levelRule.enabled = false;
         }
     }
 }
