@@ -19,8 +19,11 @@ namespace Game.Player
             {
                 StateMachine.RequestToChangeState(StateMachine.StateFall);
             }
+
+            Body.SetVelocityX(Paramaters.MoveDirection * Paramaters.MoveSpeed);
+            Body.SetFaceX(Paramaters.FaceDirection);
         }
 
-        public override bool CanBeInterrupt(PlayerStateBase nextState) => nextState is PlayerStateFall;
+        public override bool CanBeInterrupt(PlayerStateBase nextState) => nextState is PlayerStateFall or PlayerStateClimb;
     }
 }

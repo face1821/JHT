@@ -5,13 +5,25 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: Assets/Scenes/Feature Testing/PlayerStateMachine.unity
+    guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: dbcb2a03e488bbe459fc0f11deef0dda
   - enabled: 1
-    path: Assets/Scenes/Map.unity
+    path: Assets/Scenes/Map/Map Level1.unity
     guid: eb6286d5cff0a684f91640a74d12a67e
   - enabled: 1
-    path: Assets/Scenes/Feature Testing/PlayerStateMachine.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
+    path: Assets/Scenes/Map/Map Level2-1.unity
+    guid: d9f60341a31267742b0a423a4b88796a
+  - enabled: 1
+    path: Assets/Scenes/Map/Map Level2-2.unity
+    guid: 98b49ebcc00ecdf42b370a95e77ca693
+  - enabled: 1
+    path: Assets/Scenes/Map/Map Level2-3.unity
+    guid: 32b5929b76654a144b18b41c5a9be8c6
+  - enabled: 1
+    path: Assets/Scenes/Map/Map Level2-4.unity
+    guid: 3aa1fda85d08b3847a79c077d5ed74f5
   m_configObjects: {}

@@ -1,5 +1,7 @@
 using System.Diagnostics;
+using Game.Tool;
 using Maxy.GameFramework.Common.System;
+using UnityEngine;
 
 namespace Game.Player
 {
@@ -11,7 +13,11 @@ namespace Game.Player
         {
             Body.ZeroVelocity();
             Body.SetGravityEnabled(false);
-            Body.SetPositionX(Paramaters.ClimbingObject.transform.position.x);
+
+            int faceToClimbObject = (Paramaters.ClimbingObject.transform.position.x - InstanceFinder.Player.transform.position.x) > 0f ? 1 : -1;
+            var offset = -faceToClimbObject * 0.5f;
+            Body.SetFaceX((int)faceToClimbObject);
+            Body.SetPositionX(Paramaters.ClimbingObject.transform.position.x + offset);
             Animator.PlayClimbIdle();
 
             MLogger.Log($"玩家：攀爬到 {Paramaters.ClimbingObject.transform.name}");
@@ -23,6 +29,7 @@ namespace Game.Player
             var climbingObject = Paramaters.ClimbingObject;
             if (climbingObject == null)
             {
+                MLogger.Log("状态机：攀爬物体消失，脱离攀爬状态");
                 StateMachine.RequestToChangeState(StateMachine.StateFall);
                 return;
             }
@@ -30,6 +37,7 @@ namespace Game.Player
             //当在攀爬时，按下左右键也会立刻脱离攀爬状态
             if (PlayerInput.MoveDirection != 0)
             {
+                MLogger.Log("状态机：左右动，脱离攀爬状态");
                 StateMachine.RequestToChangeState(StateMachine.StateFall);
                 return;
             }
@@ -39,6 +47,8 @@ namespace Game.Player
             var climbSpeed = Paramaters.MoveSpeed * Paramaters.ClimbSpeedMultiplier;
             //攀爬速度*=攀爬方向
             climbSpeed *= PlayerInput.UpDownMoveDirection;
+
+            MLogger.LogWarning($"{Paramaters.MoveSpeed} * {Paramaters.ClimbSpeedMultiplier} * {PlayerInput.UpDownMoveDirection} = {climbSpeed}");
 
             //动画设置
             if (climbSpeed != 0f)

@@ -48,8 +48,8 @@ namespace Game.Player
 
             if (resultObj == null) return;
 
-            resultObj.Interact();
             MLogger.Log("交互中...");
+            resultObj.Interact();
         }
     }
 }

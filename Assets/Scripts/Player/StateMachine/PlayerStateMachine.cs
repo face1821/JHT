@@ -30,6 +30,7 @@ namespace Game.Player
         public PlayerStateBase StateCrouch { get; private set; }
         public PlayerStateBase StateJump { get; private set; }
         public PlayerStateBase StateFall { get; private set; }
+        public PlayerStateBase StateLand { get; private set; }
         public PlayerStateBase StateClimb { get; private set; }
 
         #endregion
@@ -68,6 +69,7 @@ namespace Game.Player
             StateCrouch = new PlayerStateCrouch() { Paramaters = Paramaters };
             StateJump = new PlayerStateJump() { Paramaters = Paramaters };
             StateFall = new PlayerStateFall() { Paramaters = Paramaters };
+            StateLand = new PlayerStateLand() { Paramaters = Paramaters };
             StateClimb = new PlayerStateClimb() { Paramaters = Paramaters };
 
             ChangeState(StateIdle);
@@ -108,7 +110,7 @@ namespace Game.Player
             Paramaters.MoveDirection = 0;
 
             //只有为地面状态时，才会请求切为站立待机动画
-            if (_currentState is PlayerStateGround)
+            if (_currentState is PlayerStateGround && _currentState is not PlayerStateJump && _currentState is not PlayerStateLand)
             {
                 RequestToChangeState(StateIdle);
             }
@@ -119,12 +121,30 @@ namespace Game.Player
             Paramaters.MoveDirection = moveDir;
             Paramaters.FaceDirection = moveDir;
 
-            RequestToChangeState(StateMove);
+            //只有为地面状态时，才会请求切换
+            if (_currentState is PlayerStateGround)
+            {
+                RequestToChangeState(StateMove);
+            }
         }
 
-        private void OnInputJump() { RequestToChangeState(StateJump); }
+        private void OnInputJump()
+        {
+            //只有为地面状态时，才会请求切换
+            if (_currentState is PlayerStateGround)
+            {
+                RequestToChangeState(StateJump);
+            }
+        }
 
-        private void OnInputCrouch() { RequestToChangeState(StateCrouch); }
+        private void OnInputCrouch()
+        {
+            //只有为地面状态时，才会请求切换
+            if (_currentState is PlayerStateGround)
+            {
+                RequestToChangeState(StateCrouch);
+            }
+        }
 
         #endregion
 
@@ -132,9 +152,12 @@ namespace Game.Player
 
         public void TryToClimb(IClimbingObject climbingObject)
         {
-            if (RequestToChangeState(StateClimb))
+            Paramaters.ClimbingObject = climbingObject;
+
+            //如果不能攀爬，就重置攀爬物体对象引用
+            if (!RequestToChangeState(StateClimb))
             {
-                Paramaters.ClimbingObject = climbingObject;
+                Paramaters.ClimbingObject = null;
             }
         }
 
@@ -152,8 +175,11 @@ namespace Game.Player
         {
             if (_currentState == state) return false;
 
+            MLogger.Log($"状态机：申请从 {_currentState}切换为 {state}");
+            //MLogger.Log($"状态机：是否可被该状态打断（{_currentState.CanBeInterrupt(state)}），是否可进入（{state.CanEnter()}）");
             if (_currentState.CanBeInterrupt(state) && state.CanEnter())
             {
+                MLogger.Log($"状态机：切换成功！");
                 ChangeState(state);
                 return true;
             }
@@ -163,8 +189,6 @@ namespace Game.Player
 
         private void ChangeState(PlayerStateBase state)
         {
-            MLogger.Log($"状态切换：{_currentState} -> {state}");
-
             _currentState?.OnExit();
             _currentState = state;
             Paramaters.CurrentState = state;

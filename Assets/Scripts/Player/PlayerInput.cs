@@ -20,13 +20,13 @@ namespace Game.Player
 
         #region 输入状态
 
-        public static int MoveDirection => (IsMoveLeft ? -1 : 0) + (IsMoveRight ? 1 : 0);
-        public static bool IsMoveLeft { get; private set; }
-        public static bool IsMoveRight { get; private set; }
+        [ShowInInspector, ReadOnly] public static int MoveDirection => (IsMoveLeft ? -1 : 0) + (IsMoveRight ? 1 : 0);
+        [ShowInInspector, ReadOnly] public static bool IsMoveLeft { get; private set; }
+        [ShowInInspector, ReadOnly] public static bool IsMoveRight { get; private set; }
 
-        public static int UpDownMoveDirection => (IsJumpHeld ? -1 : 0) + (IsJumpHeld ? 1 : 0);
-        public static bool IsJumpHeld { get; private set; }
-        public static bool IsCrouchHeld { get; private set; }
+        [ShowInInspector, ReadOnly] public static int UpDownMoveDirection => (IsCrouchHeld ? -1 : 0) + (IsJumpHeld ? 1 : 0);
+        [ShowInInspector, ReadOnly] public static bool IsJumpHeld { get; private set; }
+        [ShowInInspector, ReadOnly] public static bool IsCrouchHeld { get; private set; }
 
         #endregion
 

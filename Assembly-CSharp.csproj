@@ -60,6 +60,7 @@
     <Compile Include="Assets\Scripts\Player\StateMachine\States\Ground\PlayerStateJump.cs" />
     <Compile Include="Assets\Scripts\InteractableObject\ClimbingObject\Rope.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerInteract.cs" />
+    <Compile Include="Assets\Scripts\LevelChunk\LevelChunkManager.cs" />
     <Compile Include="Assets\Scripts\System\InstanceFinderSystem\InstanceFinder.cs" />
     <Compile Include="Assets\Scripts\Player\StateMachine\States\Ground\PlayerStateCrouch.cs" />
     <Compile Include="Assets\Scripts\System\AchievementSystem\IAchievementSystem.cs" />
@@ -77,6 +78,8 @@
     <Compile Include="Assets\Scripts\CheckPoint\CheckPoint.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerInput.cs" />
     <Compile Include="Assets\Scripts\Map\MapManager.cs" />
+    <Compile Include="Assets\Scripts\LevelChunk\LevelChunkTrigger.cs" />
+    <Compile Include="Assets\Scripts\Player\StateMachine\States\Ground\PlayerStateLand.cs" />
     <Compile Include="Assets\Scripts\Player\StateMachine\PlayerStateMachine.cs" />
     <Compile Include="Assets\Scripts\Player\StateMachine\States\PlayerStateBase.cs" />
     <Compile Include="Assets\Scripts\Player\StateMachine\PlayerStateMachineParamaters.cs" />
