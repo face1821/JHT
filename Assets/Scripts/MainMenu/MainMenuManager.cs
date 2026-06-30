@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Game.LoadingMenu;
+using Game.Map;
 using Game.System;
 using Maxy.GameFramework.Common.System;
 using Maxy.GameFramework.Common.Tool;
@@ -47,6 +48,7 @@ namespace Game.MainMenu
             }
 
             //然后进入地图
+            MapManager.IsNewGame = true;
             StartCoroutine(nameof(DelayStartGame));
         }
 

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Game.Tool;
+using Maxy.GameFramework.Common.System;
 using Maxy.GameFramework.Common.Tool;
 using UnityEngine;
 
@@ -14,7 +15,7 @@ namespace Game.Map
         [SerializeField] private OverlayFadeEffect _overlay;
         [SerializeField] List<Level> _levels;
 
-        private void Awake()
+        private void Start()
         {
             //渐入场景
             _overlay.PlayFadeIn();
