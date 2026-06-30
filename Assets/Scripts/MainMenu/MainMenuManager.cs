@@ -20,7 +20,13 @@ namespace Game.MainMenu
 
         private IAudioSystem _audioSystem;
 
-        private void Awake() { _audioSystem = SystemCenter.Get<IAudioSystem>(); }
+        private void Awake()
+        {
+            _audioSystem = SystemCenter.Get<IAudioSystem>();
+
+            Application.targetFrameRate = 240;
+            _overlay.PlayFadeIn();
+        }
 
         private void Start()
         {
