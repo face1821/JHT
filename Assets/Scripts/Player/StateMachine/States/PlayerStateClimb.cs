@@ -11,6 +11,10 @@ namespace Game.Player
 
         public override void OnEnter()
         {
+            //手动解除玩家的移动输入，这样玩家就不会刚攀爬到物体后由于手没及时松开移动键而又掉下去的情况
+            PlayerInput.Instance.BtnReleaseMoveLeft();
+            PlayerInput.Instance.BtnReleaseMoveRight();
+
             Body.ZeroVelocity();
             Body.SetGravityEnabled(false);
 

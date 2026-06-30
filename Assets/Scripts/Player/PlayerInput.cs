@@ -8,6 +8,8 @@ namespace Game.Player
 {
     public class PlayerInput : MonoBehaviour
     {
+        public static PlayerInput Instance { get; private set; }
+
         #region 事件
 
         public static event Action OnIdle;
@@ -29,6 +31,18 @@ namespace Game.Player
         [ShowInInspector, ReadOnly] public static bool IsCrouchHeld { get; private set; }
 
         #endregion
+
+        private void Awake()
+        {
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+        }
 
         private void Update() { PhoneInputHandle(); }
 
