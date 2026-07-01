@@ -58,6 +58,7 @@ namespace Game.CheckPoint
             //存档，记录当前关卡已经通关
             //因为该检查点是为了告知玩家这个关卡已经完成，因此：该检查点应该放置在该关卡的终点位置
             ES3.Save($"Level-{currentLevelInfo.LevelIndex + 1}", true);
+            ES3.Save("LastPassedLevel", currentLevelInfo.LevelIndex + 1);
         }
 
         #endregion
