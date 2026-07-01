@@ -1121,6 +1121,9 @@
     <Reference Include="Unity.VisualScripting.State">
       <HintPath>D:\Unity_WorkSpace\JHT\Library\ScriptAssemblies\Unity.VisualScripting.State.dll</HintPath>
     </Reference>
+    <Reference Include="Cinemachine">
+      <HintPath>D:\Unity_WorkSpace\JHT\Library\ScriptAssemblies\Cinemachine.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.ScriptableBuildPipeline.Editor">
       <HintPath>D:\Unity_WorkSpace\JHT\Library\ScriptAssemblies\Unity.ScriptableBuildPipeline.Editor.dll</HintPath>
     </Reference>
@@ -1129,9 +1132,6 @@
     </Reference>
     <Reference Include="Unity.2D.Animation.Editor">
       <HintPath>D:\Unity_WorkSpace\JHT\Library\ScriptAssemblies\Unity.2D.Animation.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Cinemachine">
-      <HintPath>D:\Unity_WorkSpace\JHT\Library\ScriptAssemblies\Cinemachine.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.IK.Editor">
       <HintPath>D:\Unity_WorkSpace\JHT\Library\ScriptAssemblies\Unity.2D.IK.Editor.dll</HintPath>
