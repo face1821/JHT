@@ -1148,6 +1148,10 @@
       <Project>{63a4a78f-1387-36e6-6a06-ecafff8fbf85}</Project>
       <Name>LeanCommon</Name>
     </ProjectReference>
+    <ProjectReference Include="AllIn1SpriteShaderAssembly.csproj">
+      <Project>{4bcf7138-dab0-9156-dffd-45dffba6504c}</Project>
+      <Name>AllIn1SpriteShaderAssembly</Name>
+    </ProjectReference>
     <ProjectReference Include="CW.Common.csproj">
       <Project>{4f9f3a7d-b1ff-26a6-a3ea-b3dd19741dbf}</Project>
       <Name>CW.Common</Name>

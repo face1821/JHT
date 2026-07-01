@@ -58,8 +58,6 @@ namespace Game.Player
             //攀爬速度*=攀爬方向
             climbSpeed *= PlayerInput.UpDownMoveDirection;
 
-            MLogger.LogWarning($"{Paramaters.MoveSpeed} * {Paramaters.ClimbSpeedMultiplier} * {PlayerInput.UpDownMoveDirection} = {climbSpeed}");
-
             //动画设置
             if (climbSpeed != 0f)
             {

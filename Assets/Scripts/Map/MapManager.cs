@@ -10,10 +10,10 @@ namespace Game.Map
     {
         public static bool IsNewGame;
 
-        public List<Level> Levels => _levels;
+        public List<LevelInfo> LevelInfos => _levelInfos;
 
         [SerializeField] private OverlayFadeEffect _overlay;
-        [SerializeField] List<Level> _levels;
+        [SerializeField] List<LevelInfo> _levelInfos;
 
         private void Start()
         {
@@ -28,11 +28,11 @@ namespace Game.Map
             }
 
             //先遍历每个关卡的记录
-            foreach (var level in _levels)
+            foreach (var level in _levelInfos)
             {
                 level.Init(this);
 
-                var passed = ES3.Load($"Level-{_levels.IndexOf(level) + 1}", false);
+                var passed = ES3.Load($"Level-{_levelInfos.IndexOf(level) + 1}", false);
                 if (passed)
                 {
                     level.InactiveLevel();
@@ -40,13 +40,13 @@ namespace Game.Map
             }
 
             //将玩家传送到上一次刚通关的关卡的通关位置
-            var lastPassedLevelIndex = ES3.Load("LastPassedLevel", 0);
+            var lastPassedLevelIndex = ES3.Load("LastPassedLevel", -1);
 
-            //关卡都是正数计数，玩家上次通关的关卡再往外侧拓展一下，就是玩家现在应该所处的通关位置
-            lastPassedLevelIndex += 1;
+            //如果没有存档点位置，就不管了
+            if (lastPassedLevelIndex == -1) return;
 
-            var levelInfo = _levels.Find(x => _levels.IndexOf(x) == lastPassedLevelIndex);
-            InstanceFinder.Player.transform.position = levelInfo.SpawnPos;
+            //传送到存档点位置
+            InstanceFinder.Player.transform.position = _levelInfos[lastPassedLevelIndex].SpawnPos;
         }
     }
 }

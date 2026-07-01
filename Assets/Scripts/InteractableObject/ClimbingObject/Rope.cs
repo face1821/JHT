@@ -1,16 +1,22 @@
+using System;
 using Game.CheckPoint.Events;
 using Game.InteractableObject;
-using Game.Player;
 using Game.Tool;
 using Maxy.GameFramework.Common.Events;
 using Maxy.GameFramework.Common.System;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 namespace Game.Prop
 {
-    [RequireComponent(typeof(BoxCollider2D))]
+    [RequireComponent(typeof(SpriteRenderer))]
+    [RequireComponent(typeof(Light2D), typeof(BoxCollider2D))]
     public class Rope : MonoBehaviour, IClimbingObject
     {
+        protected Light2D _highLight;
+
+        private void Awake() { _highLight = GetComponent<Light2D>(); }
+
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (!other.CompareTag("Player")) return;
@@ -24,6 +30,8 @@ namespace Game.Prop
 
             EventBus.Publish(new RemovePlayerInteractableObjectEvent(this));
         }
+
+        public void SetHighLight(bool state) { _highLight.enabled = state; }
 
         public float GetDistance() { return Vector3.Distance(transform.position, InstanceFinder.Player.transform.position); }
 

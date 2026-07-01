@@ -45,7 +45,6 @@
     <Analyzer Include="D:\Unity2022\2022.3.62f3\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Map\Level\Level.cs" />
     <Compile Include="Assets\Scripts\Player\StateMachine\States\Ground\PlayerStateIdle.cs" />
     <Compile Include="Assets\Scripts\Player\StateMachine\States\PlayerStateAir.cs" />
     <Compile Include="Assets\Scripts\LoadingMenu\LoadingMenuManager.cs" />
@@ -65,6 +64,7 @@
     <Compile Include="Assets\Scripts\Player\StateMachine\States\Ground\PlayerStateCrouch.cs" />
     <Compile Include="Assets\Scripts\System\AchievementSystem\IAchievementSystem.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerBody.cs" />
+    <Compile Include="Assets\Scripts\Map\Level\LevelInfo.cs" />
     <Compile Include="Assets\Scripts\Player\StateMachine\States\PlayerStateGround.cs" />
     <Compile Include="Assets\Scripts\Player\StateMachine\States\PlayerStateClimb.cs" />
     <Compile Include="Assets\Scripts\System\InstanceFinderSystem\IInstanceFinderSystem.cs" />
@@ -936,6 +936,10 @@
     <ProjectReference Include="LeanCommon.csproj">
       <Project>{63a4a78f-1387-36e6-6a06-ecafff8fbf85}</Project>
       <Name>LeanCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="AllIn1SpriteShaderAssembly.csproj">
+      <Project>{4bcf7138-dab0-9156-dffd-45dffba6504c}</Project>
+      <Name>AllIn1SpriteShaderAssembly</Name>
     </ProjectReference>
     <ProjectReference Include="CW.Common.csproj">
       <Project>{4f9f3a7d-b1ff-26a6-a3ea-b3dd19741dbf}</Project>

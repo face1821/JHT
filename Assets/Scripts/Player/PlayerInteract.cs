@@ -12,6 +12,7 @@ namespace Game.Player
     public class PlayerInteract : MonoBehaviour
     {
         [ShowInInspector, ReadOnly] private List<IInteractableObject> _interactableObjects = new List<IInteractableObject>();
+        [ShowInInspector, ReadOnly] private IInteractableObject _closestInteractableObject;
 
         private void OnEnable()
         {
@@ -27,11 +28,30 @@ namespace Game.Player
             EventBus.Unsubscribe<RemovePlayerInteractableObjectEvent>(OnRemoveInteractableObject);
         }
 
-        private void OnAddInteractableObject(AddPlayerInteractableObjectEvent ctx) { _interactableObjects.Add(ctx.Object); }
+        private void OnAddInteractableObject(AddPlayerInteractableObjectEvent ctx)
+        {
+            foreach (var item in _interactableObjects)
+            {
+                item.SetHighLight(false);
+            }
 
-        private void OnRemoveInteractableObject(RemovePlayerInteractableObjectEvent ctx) { _interactableObjects.Remove(ctx.Object); }
+            _interactableObjects.Add(ctx.Object);
+            _closestInteractableObject = GetClosestInteractableObject();
+            _closestInteractableObject.SetHighLight(true);
+        }
 
-        private void OnInteract()
+        private void OnRemoveInteractableObject(RemovePlayerInteractableObjectEvent ctx)
+        {
+            ctx.Object.SetHighLight(false);
+            _interactableObjects.Remove(ctx.Object);
+
+            if (_closestInteractableObject == ctx.Object)
+            {
+                _closestInteractableObject = null;
+            }
+        }
+
+        private IInteractableObject GetClosestInteractableObject()
         {
             //获取最近交互对象
             var minDistance = 100f;
@@ -46,10 +66,15 @@ namespace Game.Player
                 }
             }
 
-            if (resultObj == null) return;
+            return resultObj;
+        }
+
+        private void OnInteract()
+        {
+            if (_closestInteractableObject == null) return;
 
             MLogger.Log("交互中...");
-            resultObj.Interact();
+            _closestInteractableObject.Interact();
         }
     }
 }
