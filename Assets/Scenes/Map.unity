@@ -2192,7 +2192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ddcb68fa5a642949518794dc09f8826, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentLevelInfo: {fileID: 0}
+  currentLevelInfo: {fileID: 800060483}
   _openedCheckPoint: {fileID: 1611600417}
 --- !u!61 &1264989624
 BoxCollider2D:

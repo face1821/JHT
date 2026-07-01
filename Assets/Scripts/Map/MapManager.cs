@@ -12,7 +12,8 @@ namespace Game.Map
 
         public List<LevelInfo> LevelInfos => _levelInfos;
 
-        [Header("LevelInfo自身就是复活点，而且它还可以关闭自身的规则们。而存档点是为了记录到达哪里了，然后根据LevelInfo位置来复活")]
+        [Header("LevelInfo自身就是复活点，而且它还可以关闭自身的规则们")]
+        [Header("而存档点是为了记录到达哪里了，然后根据LevelInfo位置来复活")]
         [SerializeField] private OverlayFadeEffect _overlay;
         [SerializeField] List<LevelInfo> _levelInfos;
 
