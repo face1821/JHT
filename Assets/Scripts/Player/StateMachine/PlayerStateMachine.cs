@@ -111,8 +111,9 @@ namespace Game.Player
         {
             Paramaters.MoveDirection = 0;
 
-            //只有为地面状态时，才会请求切为站立待机动画
-            if (_currentState is PlayerStateGround && _currentState is not PlayerStateJump && _currentState is not PlayerStateLand)
+            //只有为地面移动状态时，才会请求切为站立待机动画
+            if (_currentState is PlayerStateMove && _currentState is not PlayerStateJump && _currentState is not PlayerStateLand
+                || !PlayerInput.IsCrouchHeld && _currentState is PlayerStateCrouch)
             {
                 RequestToChangeState(StateIdle);
             }
@@ -123,8 +124,9 @@ namespace Game.Player
             Paramaters.MoveDirection = moveDir;
             Paramaters.FaceDirection = moveDir;
 
-            //只有为地面状态时，才会请求切换
-            if (_currentState is PlayerStateGround && _currentState is not PlayerStateJump && _currentState is not PlayerStateLand)
+            //只有为地面待机状态时，才会请求切换
+            if (_currentState is PlayerStateIdle && _currentState is not PlayerStateJump && _currentState is not PlayerStateLand
+                || !PlayerInput.IsCrouchHeld && _currentState is PlayerStateCrouch)
             {
                 RequestToChangeState(StateMove);
             }
@@ -139,10 +141,13 @@ namespace Game.Player
             }
         }
 
-        private void OnInputCrouch()
+        private void OnInputCrouch(int moveDirection)
         {
+            Paramaters.MoveDirection = moveDirection;
+            Paramaters.FaceDirection = moveDirection != 0 ? moveDirection : Paramaters.FaceDirection;
+
             //只有为地面状态时，才会请求切换
-            if (_currentState is PlayerStateGround)
+            if (_currentState is PlayerStateIdle or PlayerStateMove)
             {
                 RequestToChangeState(StateCrouch);
             }

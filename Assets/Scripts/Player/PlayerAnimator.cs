@@ -23,6 +23,10 @@ namespace Game.Player
 
         public void PlayWalk() { _animator.Play("Walk"); }
 
+        public void PlayCrouchIdle() { _animator.Play("CrouchIdle"); }
+
+        public void PlayCrouchWalk() { _animator.Play("CrouchWalk"); }
+
         public void PlayJump() { _animator.Play("Jump"); }
 
         public void PlayFall() { _animator.Play("Fall"); }

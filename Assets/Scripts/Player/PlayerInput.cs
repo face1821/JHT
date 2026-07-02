@@ -1,5 +1,4 @@
 using System;
-using Maxy.GameFramework.Common.System;
 using Maxy.GameFramework.Common.Tool;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -15,7 +14,7 @@ namespace Game.Player
         public static event Action OnIdle;
         public static event Action<int> OnMove;
         public static event Action OnJump;
-        public static event Action OnCrouch;
+        public static event Action<int> OnCrouch;
         public static event Action OnInteract;
 
         #endregion
@@ -53,7 +52,7 @@ namespace Game.Player
             //下蹲状态
             if (IsCrouchHeld)
             {
-                OnCrouch?.Invoke();
+                OnCrouch?.Invoke(MoveDirection);
             }
             else if (MoveDirection == 0) //移动状态
             {
@@ -106,15 +105,9 @@ namespace Game.Player
             }
         }
 
-        public void SetCrouchHeld(bool held)
-        {
-            IsCrouchHeld = held;
+        public void BtnPressCrouch() { IsCrouchHeld = true; }
 
-            if (held)
-            {
-                OnCrouch?.Invoke();
-            }
-        }
+        public void BtnReleaseCrouch() { IsCrouchHeld = false; }
 
         public void BtnInteract() { OnInteract?.Invoke(); }
 
