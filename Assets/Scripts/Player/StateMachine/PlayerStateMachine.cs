@@ -39,6 +39,7 @@ namespace Game.Player
 
         #region 组件
 
+        [SerializeField] private BoxColliderDetection2D _crouchHeadDetection;
         [SerializeField] private BoxColliderDetection2D _groundDetection;
         private PlayerBody _body;
         private PlayerAnimator _animator;
@@ -85,6 +86,9 @@ namespace Game.Player
             PlayerInput.OnJump += OnInputJump;
             PlayerInput.OnCrouch += OnInputCrouch;
 
+            _crouchHeadDetection.OnTouched += OnCrouchHeadTouched;
+            _crouchHeadDetection.OnLeave += OnCrouchHeadLeave;
+
             _groundDetection.OnTouched += OnGroundTouched;
             _groundDetection.OnLeave += OnGroundLeave;
         }
@@ -95,6 +99,9 @@ namespace Game.Player
             PlayerInput.OnMove -= OnInputMove;
             PlayerInput.OnJump -= OnInputJump;
             PlayerInput.OnCrouch -= OnInputCrouch;
+
+            _crouchHeadDetection.OnTouched += OnCrouchHeadTouched;
+            _crouchHeadDetection.OnLeave += OnCrouchHeadLeave;
 
             _groundDetection.OnTouched -= OnGroundTouched;
             _groundDetection.OnLeave -= OnGroundLeave;
@@ -173,7 +180,11 @@ namespace Game.Player
 
         #region 碰撞检测接收
 
-        private void OnGroundTouched(Collider2D collision) { Paramaters.IsGrounded = true; }
+        private void OnCrouchHeadTouched(Collider2D collision) { Paramaters.IsCrouchHead = true; }
+
+        private void OnCrouchHeadLeave(Collider2D collision) { Paramaters.IsCrouchHead = false;}
+
+    private void OnGroundTouched(Collider2D collision) { Paramaters.IsGrounded = true; }
 
         private void OnGroundLeave(Collider2D collision) { Paramaters.IsGrounded = false; }
 
@@ -191,7 +202,7 @@ namespace Game.Player
             if (_currentState == state) return false;
 
             MLogger.Log($"状态机：申请从 {_currentState}切换为 {state}");
-            //MLogger.Log($"状态机：是否可被该状态打断（{_currentState.CanBeInterrupt(state)}），是否可进入（{state.CanEnter()}）");
+            MLogger.Log($"状态机：是否可被该状态打断（{_currentState.CanBeInterrupt(state)}），是否可进入（{state.CanEnter()}）");
             if (state is PlayerStateDead || _currentState.CanBeInterrupt(state) && state.CanEnter())
             {
                 MLogger.Log($"状态机：切换成功！");

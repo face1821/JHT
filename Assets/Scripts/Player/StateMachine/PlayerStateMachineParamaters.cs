@@ -24,6 +24,7 @@ namespace Game.Player
 
         [Header("布尔参数")]
         [LabelText("地面标记")] public bool IsGrounded = true;
+        [LabelText("下蹲头顶检测标记")] public bool IsCrouchHead;
 
         [Header("整数参数")]
         [LabelText("朝向")] public int FaceDirection = -1;

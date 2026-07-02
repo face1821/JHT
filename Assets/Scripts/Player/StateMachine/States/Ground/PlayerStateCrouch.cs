@@ -39,5 +39,7 @@ namespace Game.Player
             bodyCollider.offset = new Vector2(bodyCollider.offset.x, -0.7f);
             bodyCollider.size = new Vector2(bodyCollider.size.x, 2.5f);
         }
+
+        public override bool CanBeInterrupt(PlayerStateBase nextState) { return base.CanBeInterrupt(nextState) && !Paramaters.IsCrouchHead; }
     }
 }

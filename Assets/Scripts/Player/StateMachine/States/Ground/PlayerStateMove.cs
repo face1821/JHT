@@ -4,7 +4,7 @@ namespace Game.Player
     {
         public override void OnFixedUpdate()
         {
-            base.OnUpdate();
+            base.OnFixedUpdate();
             
             Body.SetVelocityX(Paramaters.MoveDirection * Paramaters.MoveSpeed);
             Body.SetFaceX(Paramaters.FaceDirection);
