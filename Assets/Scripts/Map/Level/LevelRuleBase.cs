@@ -1,7 +1,6 @@
 using Game.Player;
 using Game.Tool;
 using Maxy.GameFramework.Common.System;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Game.Map
@@ -9,8 +8,6 @@ namespace Game.Map
     [RequireComponent(typeof(BoxCollider2D))]
     public class LevelRuleBase : MonoBehaviour
     {
-        [ShowInInspector, ReadOnly] public bool PlayerEntered => enabled;
-
         protected PlayerStateMachine _playerStateMachine;
 
         private void Start() { _playerStateMachine = InstanceFinder.Player.StateMachine; }

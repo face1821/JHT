@@ -116,7 +116,7 @@ namespace Game.Player
             if (_currentState is PlayerStateMove && _currentState is not PlayerStateJump && _currentState is not PlayerStateLand
                 || !PlayerInput.IsCrouchHeld && _currentState is PlayerStateCrouch)
             {
-                RequestToChangeState(StateIdle);
+                RequestChangeState(StateIdle);
             }
         }
 
@@ -129,7 +129,7 @@ namespace Game.Player
             if (_currentState is PlayerStateIdle && _currentState is not PlayerStateJump && _currentState is not PlayerStateLand
                 || !PlayerInput.IsCrouchHeld && _currentState is PlayerStateCrouch)
             {
-                RequestToChangeState(StateMove);
+                RequestChangeState(StateMove);
             }
         }
 
@@ -138,7 +138,7 @@ namespace Game.Player
             //只有为地面状态时，才会请求切换
             if (_currentState is PlayerStateGround)
             {
-                RequestToChangeState(StateJump);
+                RequestChangeState(StateJump);
             }
         }
 
@@ -150,7 +150,7 @@ namespace Game.Player
             //只有为地面状态时，才会请求切换
             if (_currentState is PlayerStateIdle or PlayerStateMove)
             {
-                RequestToChangeState(StateCrouch);
+                RequestChangeState(StateCrouch);
             }
         }
 
@@ -163,7 +163,7 @@ namespace Game.Player
             Paramaters.ClimbingObject = climbingObject;
 
             //如果不能攀爬，就重置攀爬物体对象引用
-            if (!RequestToChangeState(StateClimb))
+            if (!RequestChangeState(StateClimb))
             {
                 Paramaters.ClimbingObject = null;
             }
@@ -186,7 +186,7 @@ namespace Game.Player
             _currentState.OnEnter();
         }
 
-        public bool RequestToChangeState(PlayerStateBase state)
+        public bool RequestChangeState(PlayerStateBase state)
         {
             if (_currentState == state) return false;
 

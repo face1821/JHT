@@ -17,7 +17,7 @@ namespace Game.Player
 
             if (Body.Velocity.y <= 0f)
             {
-                StateMachine.RequestToChangeState(StateMachine.StateFall);
+                StateMachine.RequestChangeState(StateMachine.StateFall);
             }
 
             Body.SetVelocityX(Paramaters.MoveDirection * Paramaters.MoveSpeed);

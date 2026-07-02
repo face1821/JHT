@@ -6,6 +6,7 @@ namespace Game.Player
         {
             base.OnEnter();
 
+            Body.SetGravityEnabled(true);
             Body.ZeroVelocityX();
             Animator.PlayIdle();
         }

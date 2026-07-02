@@ -9,7 +9,7 @@ namespace Game.Player
             //当不在地面时
             if (!Paramaters.IsGrounded && CurrentState is not PlayerStateJump)
             {
-                StateMachine.RequestToChangeState(StateMachine.StateFall);
+                StateMachine.RequestChangeState(StateMachine.StateFall);
             }
         }
 

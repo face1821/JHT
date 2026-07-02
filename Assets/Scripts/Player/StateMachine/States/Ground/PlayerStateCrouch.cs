@@ -1,7 +1,18 @@
+using UnityEngine;
+
 namespace Game.Player
 {
     public class PlayerStateCrouch : PlayerStateGround
     {
+        public override void OnEnter()
+        {
+            base.OnEnter();
+
+            var bodyCollider = StateMachine.GetComponent<CapsuleCollider2D>();
+            bodyCollider.offset = new Vector2(bodyCollider.offset.x, -1.2f);
+            bodyCollider.size = new Vector2(bodyCollider.size.x, 1.7f);
+        }
+
         public override void OnFixedUpdate()
         {
             base.OnUpdate();
@@ -18,6 +29,15 @@ namespace Game.Player
             {
                 Animator.PlayCrouchWalk();
             }
+        }
+
+        public override void OnExit()
+        {
+            base.OnExit();
+
+            var bodyCollider = StateMachine.GetComponent<CapsuleCollider2D>();
+            bodyCollider.offset = new Vector2(bodyCollider.offset.x, -0.7f);
+            bodyCollider.size = new Vector2(bodyCollider.size.x, 2.5f);
         }
     }
 }

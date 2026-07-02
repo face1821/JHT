@@ -62,6 +62,7 @@
     <Compile Include="Assets\Scripts\Player\PlayerInteract.cs" />
     <Compile Include="Assets\Scripts\System\InstanceFinderSystem\InstanceFinder.cs" />
     <Compile Include="Assets\Scripts\Player\StateMachine\States\Ground\PlayerStateCrouch.cs" />
+    <Compile Include="Assets\Scripts\Stuff\Stone.cs" />
     <Compile Include="Assets\Scripts\System\AchievementSystem\IAchievementSystem.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerBody.cs" />
     <Compile Include="Assets\Scripts\Map\Level\LevelInfo.cs" />
@@ -73,7 +74,9 @@
     <Compile Include="Assets\Scripts\System\AchievementSystem\AchievementWindow.cs" />
     <Compile Include="Assets\Scripts\InteractableObject\ClimbingObject\IClimbingObject.cs" />
     <Compile Include="Assets\Scripts\System\InstanceFinderSystem\InstanceFinderSystem.cs" />
+    <Compile Include="Assets\Scripts\Map\Level\LevelRules\LevelRule2.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerAnimator.cs" />
+    <Compile Include="Assets\Scripts\Stuff\Trap.cs" />
     <Compile Include="Assets\Scripts\PauseMenu\PauseMenuManager.cs" />
     <Compile Include="Assets\Scripts\CheckPoint\CheckPoint.cs" />
     <Compile Include="Assets\Scripts\Player\StateMachine\States\PlayerStateDead.cs" />

@@ -15,7 +15,7 @@ namespace Game.Player
 
             if (Paramaters.IsGrounded)
             {
-                StateMachine.RequestToChangeState(StateMachine.StateLand);
+                StateMachine.RequestChangeState(StateMachine.StateLand);
             }
         }
     }

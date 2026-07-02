@@ -24,6 +24,12 @@ namespace Game.Player
             var offset = -faceToClimbObject * 0.5f;
             Body.SetFaceX((int)faceToClimbObject);
             Body.SetPositionX(Paramaters.ClimbingObject.transform.position.x + offset);
+
+            //设置身体碰撞大小
+            var bodyCollider = StateMachine.GetComponent<CapsuleCollider2D>();
+            bodyCollider.offset = new Vector2(bodyCollider.offset.x, 0f);
+            bodyCollider.size = new Vector2(bodyCollider.size.x, 2f);
+
             Animator.PlayClimbIdle();
 
             MLogger.Log($"玩家：攀爬到 {Paramaters.ClimbingObject.transform.name}");
@@ -39,19 +45,24 @@ namespace Game.Player
             var climbingObject = Paramaters.ClimbingObject;
             if (climbingObject == null)
             {
-                MLogger.Log("状态机：攀爬物体消失，脱离攀爬状态");
-                StateMachine.RequestToChangeState(StateMachine.StateFall);
+                StateMachine.RequestChangeState(StateMachine.StateFall);
                 return;
             }
 
             //当在攀爬时，按下左右键也会立刻脱离攀爬状态
             if (_currentCatReleaseTime >= _cantReleaseTime && PlayerInput.MoveDirection != 0)
             {
-                MLogger.Log("状态机：左右动，脱离攀爬状态");
-                StateMachine.RequestToChangeState(StateMachine.StateFall);
+                StateMachine.RequestChangeState(StateMachine.StateFall);
                 return;
             }
 
+            //当玩家碰不到绳子时，脱离攀爬状态
+            var hit = Physics2D.OverlapCircle(StateMachine.transform.position + new Vector3(0f, -0.6f), 0.7f, LayerMask.GetMask("ClimbingObject"));
+            if (hit is null || hit.transform != climbingObject.transform)
+            {
+                StateMachine.RequestChangeState(StateMachine.StateFall);
+                return;
+            }
 
             //攀爬速度
             var climbSpeed = Paramaters.MoveSpeed * Paramaters.ClimbSpeedMultiplier;
@@ -74,6 +85,11 @@ namespace Game.Player
 
         public override void OnExit()
         {
+            //设置身体碰撞大小
+            var bodyCollider = StateMachine.GetComponent<CapsuleCollider2D>();
+            bodyCollider.offset = new Vector2(bodyCollider.offset.x, -0.7f);
+            bodyCollider.size = new Vector2(bodyCollider.size.x, 2.5f);
+
             Body.SetGravityEnabled(true);
             Paramaters.ClimbingObject = null;
         }

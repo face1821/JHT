@@ -42,13 +42,14 @@ namespace Game.Player
 
         private void OnRemoveInteractableObject(RemovePlayerInteractableObjectEvent ctx)
         {
-            ctx.Object.SetHighLight(false);
-            _interactableObjects.Remove(ctx.Object);
-
-            if (_closestInteractableObject == ctx.Object)
+            foreach (var item in _interactableObjects)
             {
-                _closestInteractableObject = null;
+                item.SetHighLight(false);
             }
+
+            _interactableObjects.Remove(ctx.Object);
+            _closestInteractableObject = GetClosestInteractableObject();
+            _closestInteractableObject?.SetHighLight(true);
         }
 
         private IInteractableObject GetClosestInteractableObject()

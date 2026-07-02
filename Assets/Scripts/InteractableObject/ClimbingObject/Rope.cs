@@ -43,7 +43,7 @@ namespace Game.Prop
             if (ReferenceEquals(playerStateMachine.Paramaters.ClimbingObject, this))
             {
                 MLogger.Log("脱离攀爬");
-                playerStateMachine.RequestToChangeState(playerStateMachine.StateFall);
+                playerStateMachine.RequestChangeState(playerStateMachine.StateFall);
                 return;
             }
 
