@@ -8,6 +8,7 @@ namespace Game.Map
         public Vector2 SpawnPos => transform.position;
         public int LevelIndex => _levelIndex;
 
+        [SerializeField] private bool _canBeReset;
         [SerializeField] private bool _canRuleBeClosed;
         [SerializeField] private List<GameObject> _activeObjs;
         [SerializeField] private List<GameObject> _inactiveObjs;
@@ -26,6 +27,8 @@ namespace Game.Map
 
         public void ResetLevel()
         {
+            if (!_canBeReset) return;
+
             //玩家死亡后，重置关卡
             foreach (var item in _activeObjs)
             {

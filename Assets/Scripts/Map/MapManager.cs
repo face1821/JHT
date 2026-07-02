@@ -59,7 +59,11 @@ namespace Game.Map
             InstanceFinder.Player.transform.position = _levelInfos[lastPassedLevelIndex].SpawnPos;
         }
 
-        private void OnPlayerDead() { StartCoroutine(nameof(DelayRespawn)); }
+        private void OnPlayerDead()
+        {
+            //延迟复活
+            StartCoroutine(nameof(DelayRespawn));
+        }
 
         private IEnumerator DelayRespawn()
         {
@@ -68,11 +72,17 @@ namespace Game.Map
             _overlay.PlayFadeOutAndIn();
             yield return new WaitForSeconds(1.5f);
 
+            //重置每一个关卡
+            foreach (var item in _levelInfos)
+            {
+                item.ResetLevel();
+            }
+
             //将玩家传送到上一次刚通关的关卡的通关位置
             var lastPassedLevelIndex = ES3.Load("LastPassedLevel", -1);
 
             InstanceFinder.Player.StateMachine.Respawn();
-            
+
             //如果没有存档点位置，就回到起始点
             if (lastPassedLevelIndex == -1)
             {
