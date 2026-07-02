@@ -10,7 +10,7 @@ namespace Game.Player
 
             var bodyCollider = StateMachine.GetComponent<CapsuleCollider2D>();
             bodyCollider.offset = new Vector2(bodyCollider.offset.x, -1.2f);
-            bodyCollider.size = new Vector2(bodyCollider.size.x, 1.7f);
+            bodyCollider.size = new Vector2(bodyCollider.size.x, 1.6f);
         }
 
         public override void OnFixedUpdate()
