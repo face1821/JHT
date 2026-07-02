@@ -1,8 +1,13 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using Game.LoadingMenu;
+using Game.Player;
 using Game.Tool;
 using Maxy.GameFramework.Common.System;
 using Maxy.GameFramework.Common.Tool;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Game.Map
 {
@@ -16,6 +21,10 @@ namespace Game.Map
         [Header("而存档点是为了记录到达哪里了，然后根据LevelInfo位置来复活")]
         [SerializeField] private OverlayFadeEffect _overlay;
         [SerializeField] List<LevelInfo> _levelInfos;
+
+        private void OnEnable() { PlayerStateMachine.OnDead += OnPlayerDead; }
+
+        private void OnDisable() { PlayerStateMachine.OnDead -= OnPlayerDead; }
 
         private void Start()
         {
@@ -45,6 +54,31 @@ namespace Game.Map
 
             //如果没有存档点位置，就不管了
             if (lastPassedLevelIndex == -1) return;
+
+            //传送到存档点位置
+            InstanceFinder.Player.transform.position = _levelInfos[lastPassedLevelIndex].SpawnPos;
+        }
+
+        private void OnPlayerDead() { StartCoroutine(nameof(DelayRespawn)); }
+
+        private IEnumerator DelayRespawn()
+        {
+            yield return new WaitForSeconds(1f);
+
+            _overlay.PlayFadeOutAndIn();
+            yield return new WaitForSeconds(1.5f);
+
+            //将玩家传送到上一次刚通关的关卡的通关位置
+            var lastPassedLevelIndex = ES3.Load("LastPassedLevel", -1);
+
+            InstanceFinder.Player.StateMachine.Respawn();
+            
+            //如果没有存档点位置，就回到起始点
+            if (lastPassedLevelIndex == -1)
+            {
+                InstanceFinder.Player.transform.position = new Vector3(-5f, -2.5f, 0f);
+                yield break;
+            }
 
             //传送到存档点位置
             InstanceFinder.Player.transform.position = _levelInfos[lastPassedLevelIndex].SpawnPos;

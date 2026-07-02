@@ -13,6 +13,7 @@ namespace Game.Player
     {
         #region 事件
 
+        public static event Action OnDead;
         public static event Action OnIdle;
         public static event Action<int> OnMove;
         public static event Action OnJump;
@@ -178,6 +179,13 @@ namespace Game.Player
 
         #endregion
 
+        public void Respawn()
+        {
+            //重置为站立待机状态
+            _currentState = StateIdle;
+            _currentState.OnEnter();
+        }
+
         public bool RequestToChangeState(PlayerStateBase state)
         {
             if (_currentState == state) return false;
@@ -204,6 +212,9 @@ namespace Game.Player
             //状态变化的事件调用，供外部使用
             switch (_currentState)
             {
+                case PlayerStateDead:
+                    OnDead?.Invoke();
+                    return;
                 case PlayerStateIdle:
                     OnIdle?.Invoke();
                     return;

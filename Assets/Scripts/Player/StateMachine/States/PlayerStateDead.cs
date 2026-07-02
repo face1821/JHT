@@ -1,3 +1,5 @@
+using Maxy.GameFramework.Common.Events;
+
 namespace Game.Player
 {
     public class PlayerStateDead : PlayerStateBase
@@ -6,6 +8,8 @@ namespace Game.Player
         {
             base.OnEnter();
 
+            Body.SetGravityEnabled(false);
+            Body.ZeroVelocity();
             Animator.PlayDead();
         }
 
