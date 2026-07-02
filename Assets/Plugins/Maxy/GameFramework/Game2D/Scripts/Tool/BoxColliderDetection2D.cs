@@ -51,6 +51,16 @@ namespace Maxy.GameFramework.Game2D.Tool
             OnTouched?.Invoke(other);
         }
 
+        private void OnTriggerStay2D(Collider2D other)
+        {
+            if (!AutoRun) return;
+            if ((LayerMask.value & (1 << other.gameObject.layer)) == 0) return;
+
+            Touched = true;
+            _ColliderArrayCache[0] = other;
+            OnTouched?.Invoke(other);
+        }
+
         private void OnTriggerExit2D(Collider2D other)
         {
             if (!AutoRun) return;
@@ -62,6 +72,16 @@ namespace Maxy.GameFramework.Game2D.Tool
         }
 
         private void OnCollisionEnter2D(Collision2D other)
+        {
+            if (!AutoRun) return;
+            if ((LayerMask.value & (1 << other.gameObject.layer)) == 0) return;
+
+            Touched = true;
+            _ColliderArrayCache[0] = other.collider;
+            OnTouched?.Invoke(other.collider);
+        }
+
+        private void OnCollisionStay2D(Collision2D other)
         {
             if (!AutoRun) return;
             if ((LayerMask.value & (1 << other.gameObject.layer)) == 0) return;

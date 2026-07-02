@@ -11,7 +11,6 @@ namespace Game.Player
             //当不在地面时
             if (!Paramaters.IsGrounded && CurrentState is not PlayerStateJump)
             {
-                MLogger.LogError("下坠");
                 StateMachine.RequestChangeState(StateMachine.StateFall);
             }
         }

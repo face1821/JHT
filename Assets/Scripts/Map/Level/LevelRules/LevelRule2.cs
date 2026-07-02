@@ -7,9 +7,11 @@ namespace Game.Map
     public class LevelRule2 : LevelRuleBase
     {
         [SerializeField] private GameObject _stone;
-        
+
         private void Update()
         {
+            if (_stone.activeSelf) return;
+
             //当玩家跳跃时，激活石头
             if (_playerStateMachine.CurrentState is PlayerStateJump)
             {

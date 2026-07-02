@@ -10,5 +10,12 @@ namespace Game.Player
             Body.ZeroVelocityX();
             Animator.PlayIdle();
         }
+
+        public override void OnFixedUpdate()
+        {
+            base.OnFixedUpdate();
+
+            Body.ZeroVelocityX();
+        }
     }
 }
