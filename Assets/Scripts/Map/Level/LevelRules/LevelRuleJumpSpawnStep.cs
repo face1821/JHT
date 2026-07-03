@@ -28,14 +28,14 @@ namespace Game.Map
             if (_playerStateMachine.CurrentState is PlayerStateJump)
             {
                 MLogger.LogWarning("规则：玩家跳跃了，触犯了规则");
+                _alreadySpawned = true;
 
                 //放置新台阶
-                _index = Mathf.Clamp(_index + 2, 0, _steps.Count);
+                _index = Mathf.Clamp(_index + 2, 0, _steps.Count - 1);
                 if (_index < _steps.Count)
                 {
                     //一次性加俩台阶，快一点
                     _steps.ForEach(x => x.SetActive(false));
-                    _index += 2;
                     _steps[_index].SetActive(true);
                 }
             }

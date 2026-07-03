@@ -53,7 +53,6 @@ namespace Game.Map
                 {
                     //一次性加俩台阶，快一点
                     _steps.ForEach(x => x.SetActive(false));
-                    _index += 2;
                     _steps[_index].SetActive(true);
                 }
             }
