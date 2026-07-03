@@ -745,7 +745,7 @@ GameObject:
   - component: {fileID: 7907067164642112835}
   - component: {fileID: 1620455262945082404}
   - component: {fileID: 6023289480489532674}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: CrouchHeadDetection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -839,7 +839,7 @@ GameObject:
   - component: {fileID: 8319842011990342694}
   - component: {fileID: 8566611836305916039}
   - component: {fileID: 306064028300589105}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: GroundDetection
   m_TagString: Untagged
   m_Icon: {fileID: 0}

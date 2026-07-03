@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6742780516749296521}
   - component: {fileID: 4198245808546776452}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 3835278515588603074}
   - component: {fileID: -2022030174903499021}
   - component: {fileID: -1249533023046547898}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,9 +151,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.07, y: 1}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.2
 --- !u!50 &-2022030174903499021
 Rigidbody2D:
   serializedVersion: 4
@@ -194,4 +194,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Platform: {fileID: 0}
-  _speed: 5
+  _speed: 8
+  _lifeTime: 10

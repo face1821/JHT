@@ -1,4 +1,6 @@
+using System;
 using Game.Tool;
+using Maxy.GameFramework.Common.System;
 using Maxy.GameFramework.Common.Tool;
 using UnityEngine;
 
@@ -10,6 +12,9 @@ namespace Game.Stuff
         [HideInInspector] public FloatingPlatform Platform;
 
         [SerializeField] private float _speed;
+        [SerializeField] private float _lifeTime;
+
+        private void Start() { Invoke(nameof(OnDead), _lifeTime); }
 
         private void FixedUpdate()
         {
@@ -23,9 +28,9 @@ namespace Game.Stuff
 
             if (!enabled) return;
 
-            //碰到物体就让箭矢停下并不再接收碰撞回调，并在5s后销毁自己
+            //碰到物体就让箭矢停下并不再接收碰撞回调
             enabled = false;
-            Destroy(gameObject, 5f);
+            MLogger.LogError($"箭矢：碰到 {other.name}");
 
             //碰到气球的处理
             if (other.name == "气球")
@@ -45,5 +50,7 @@ namespace Game.Stuff
             //让玩家死亡
             InstanceFinder.Player.StateMachine.RequestChangeState(InstanceFinder.Player.StateMachine.StateDead);
         }
+
+        private void OnDead() { Destroy(gameObject); }
     }
 }

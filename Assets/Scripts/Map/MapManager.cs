@@ -91,6 +91,7 @@ namespace Game.Map
             }
 
             //传送到存档点位置
+            MLogger.LogWarning($"系统：玩家重生到 第{lastPassedLevelIndex + 1}个复活点");
             InstanceFinder.Player.transform.position = _levelInfos[lastPassedLevelIndex].SpawnPos;
         }
     }

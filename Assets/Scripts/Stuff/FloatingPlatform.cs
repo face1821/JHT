@@ -26,6 +26,7 @@ namespace Game.Stuff
             SetFloatingStop();
 
             _enableFloating = true;
+            _body.isKinematic = true;
             _body.gravityScale = 0f;
         }
 
@@ -34,6 +35,7 @@ namespace Game.Stuff
             SetFloatingStop();
 
             _enableFloating = false;
+            _body.isKinematic = false;
             _body.gravityScale = 2f;
         }
 

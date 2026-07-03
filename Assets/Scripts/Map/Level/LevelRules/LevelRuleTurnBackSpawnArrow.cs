@@ -24,18 +24,6 @@ namespace Game.Map
             }
         }
 
-        public override void ResetRule()
-        {
-            base.ResetRule();
-
-            //当规则重置时，顺带把箭矢都销毁掉
-            var arrows = GameObject.FindObjectsByType(typeof(Arrow), FindObjectsSortMode.None);
-            foreach (var item in arrows)
-            {
-                Destroy((item as Arrow)!.gameObject);
-            }
-        }
-
         private void FixedUpdate()
         {
             if (!_runing) return;
@@ -52,6 +40,25 @@ namespace Game.Map
             }
 
             _lastFaceDirection = _playerStateMachine.Paramaters.FaceDirection;
+        }
+
+        public override void ResetRule()
+        {
+            base.ResetRule();
+
+            //当规则重置时，顺带把箭矢都销毁掉
+            var arrows = GameObject.FindObjectsByType(typeof(Arrow), FindObjectsSortMode.None);
+            foreach (var item in arrows)
+            {
+                Destroy((item as Arrow)!.gameObject);
+            }
+        }
+
+        public override void OnEnter()
+        {
+            base.OnEnter();
+
+            _lastFaceDirection = 1;
         }
     }
 }

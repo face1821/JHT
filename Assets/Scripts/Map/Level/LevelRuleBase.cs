@@ -20,6 +20,7 @@ namespace Game.Map
 
             MLogger.Log($"{name}：玩家进入规则区域");
             _runing = true;
+            OnEnter();
         }
 
         private void OnTriggerExit2D(Collider2D other)
@@ -28,8 +29,11 @@ namespace Game.Map
 
             MLogger.Log($"{name}：玩家离开规则区域");
             _runing = false;
+            OnExit();
         }
 
         public virtual void ResetRule() { }
+        public virtual void OnEnter() { }
+        public virtual void OnExit() { }
     }
 }
