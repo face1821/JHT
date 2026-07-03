@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Game.Player;
 using Game.Stuff;
 using Maxy.GameFramework.Common.System;
@@ -36,7 +37,14 @@ namespace Game.Map
 
         private void OnPlayerDead()
         {
-            //当玩家死亡时，尖刺就关闭，等待下次启动
+            //当玩家死亡时，尖刺就延迟关闭，等待下次启动
+            StartCoroutine(nameof(DelayOnPlayerDead));
+        }
+
+        private IEnumerator DelayOnPlayerDead()
+        {
+            yield return new WaitForSeconds(1f);
+
             _started = false;
             _spike.Close();
         }
