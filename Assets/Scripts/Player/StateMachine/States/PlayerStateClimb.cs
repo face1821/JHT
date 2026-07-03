@@ -10,7 +10,22 @@ namespace Game.Player
         private float _cantReleaseTime = 0.25f;
         private float _currentCatReleaseTime;
 
-        public override bool CanEnter() => Paramaters.ClimbingObject != null;
+        public override bool CanEnter()
+        {
+            if (Paramaters.ClimbingObject == null) return false;
+
+            //当玩家碰不到攀爬物体时，不能进入该状态
+            var hit = Physics2D.OverlapCircle(
+                StateMachine.transform.position + new Vector3(Paramaters.ClimbingDetectOffset.x, Paramaters.ClimbingDetectOffset.y),
+                Paramaters.ClimbingDetectRadius,
+                LayerMask.GetMask("ClimbingObject"));
+            if (hit is null || hit.transform != Paramaters.ClimbingObject.transform)
+            {
+                return false;
+            }
+
+            return true;
+        }
 
         public override void OnEnter()
         {
@@ -29,25 +44,6 @@ namespace Game.Player
             var bodyCollider = StateMachine.GetComponent<CapsuleCollider2D>();
             bodyCollider.offset = new Vector2(bodyCollider.offset.x, 0f);
             bodyCollider.size = new Vector2(bodyCollider.size.x, 2f);
-
-            float fixDistance = 0f;
-            while (true)
-            {
-                //当玩家碰不到攀爬物体时，就上升0.1，直到玩家碰到攀爬物体
-                var hit = Physics2D.OverlapCircle(
-                    StateMachine.transform.position + new Vector3(Paramaters.ClimbingDetectOffset.x, Paramaters.ClimbingDetectOffset.y + fixDistance),
-                    Paramaters.ClimbingDetectRadius,
-                    LayerMask.GetMask("ClimbingObject"));
-                
-                if (hit is not null && hit.transform == Paramaters.ClimbingObject.transform) break;
-                if (fixDistance > 5f)
-                {
-                    MLogger.LogError("状态机：何意味？没有攀爬物体怎么还进入攀爬状态了？");
-                    break;
-                }
-
-                fixDistance += 0.1f;
-            }
 
             Animator.PlayClimbIdle();
 

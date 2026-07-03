@@ -186,10 +186,7 @@ namespace Game.Player
             }
         }
 
-        public void Die()
-        {
-            RequestChangeState(StateDead);
-        }
+        public void Die() { RequestChangeState(StateDead); }
 
         #endregion
 
