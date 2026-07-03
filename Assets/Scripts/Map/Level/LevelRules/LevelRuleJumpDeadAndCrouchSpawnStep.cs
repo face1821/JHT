@@ -1,31 +1,33 @@
-using System;
 using System.Collections.Generic;
 using Game.Player;
-using Game.Stuff;
 using Maxy.GameFramework.Common.System;
-using Maxy.GameFramework.Common.Tool;
 using UnityEngine;
 
 namespace Game.Map
 {
-    public class LevelRuleJumpSpawnStep : LevelRuleBase
+    public class LevelRuleJumpDeadAndCrouchSpawnStep : LevelRuleBase
     {
         [SerializeField] private List<GameObject> _steps;
 
         private bool _alreadySpawned;
         private int _index;
 
-        private void OnDisable() { _alreadySpawned = false; }
-
         private void FixedUpdate()
         {
             if (!_runing) return;
 
-            if (_playerStateMachine.CurrentState is PlayerStateFall) _alreadySpawned = false;
+            //当玩家处于跳跃状态时，死亡
+            if (_playerStateMachine.CurrentState is PlayerStateJump)
+            {
+                MLogger.LogWarning("规则：玩家跳跃了，触犯了规则");
+                _playerStateMachine.Die();
+            }
+
+            if (_playerStateMachine.CurrentState is PlayerStateIdle) _alreadySpawned = false;
             if (_alreadySpawned) return;
 
-            //当玩家跳跃时，召唤台阶
-            if (_playerStateMachine.CurrentState is PlayerStateJump)
+            //当玩家下蹲时，召唤台阶
+            if (_playerStateMachine.CurrentState is PlayerStateCrouch)
             {
                 MLogger.LogWarning("规则：玩家跳跃了，触犯了规则");
                 _alreadySpawned = true;
@@ -40,5 +42,7 @@ namespace Game.Map
                 }
             }
         }
+
+        private void OnDisable() { _alreadySpawned = false; }
     }
 }

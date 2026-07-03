@@ -1,6 +1,5 @@
 using Game.CheckPoint.Events;
 using Game.InteractableObject;
-using Game.Map;
 using Game.Tool;
 using Maxy.GameFramework.Common.Events;
 using UnityEngine;
@@ -10,7 +9,7 @@ namespace Game.Stuff
 {
     [RequireComponent(typeof(Light2D))]
     [RequireComponent(typeof(BoxCollider2D), typeof(SpriteRenderer))]
-    public class DeadButton : MonoBehaviour, IInteractableObject
+    public class FakeButton : MonoBehaviour, IInteractableObject
     {
         public bool IsActive => gameObject.activeSelf;
 
