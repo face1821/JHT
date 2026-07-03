@@ -47,7 +47,10 @@ namespace Game.InteractableObject
         {
             _rule.enabled = !_rule.enabled;
             _ruleLight.SetActive(_rule.enabled);
-            _renderer.sprite = _rule.enabled ? _closeSprite : _openSprite;
+
+            var sprite = _rule.enabled ? _closeSprite : _openSprite;
+            _renderer.sprite = sprite;
+            _light.lightCookieSprite = sprite;
         }
     }
 }
