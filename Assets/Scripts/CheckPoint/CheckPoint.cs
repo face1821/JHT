@@ -1,9 +1,12 @@
 using System;
+using System.Collections;
 using Game.CheckPoint.Events;
 using Game.InteractableObject;
 using Game.Map;
+using Game.Player;
 using Game.Tool;
 using Maxy.GameFramework.Common.Events;
+using Maxy.GameFramework.Common.System;
 using Maxy.GameFramework.Common.Tool;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
@@ -14,6 +17,8 @@ namespace Game.CheckPoint
     [RequireComponent(typeof(Light2D), typeof(BoxCollider2D))]
     public class CheckPoint : MonoBehaviour, IInteractableObject
     {
+        public bool IsActive => gameObject.activeSelf;
+
         [SerializeField] private LevelInfo currentLevelInfo;
         [SerializeField] private GameObject _openedCheckPoint;
         private OverlayFadeEffect _overlayTip;
@@ -24,6 +29,19 @@ namespace Game.CheckPoint
             _overlayTip = GameObject.FindWithTag("OverlaySaveTip").GetComponent<OverlayFadeEffect>();
             _highLight = GetComponent<Light2D>();
         }
+
+        private void Start()
+        {
+            if (ES3.Load("LastPassedLevel", 0) - 1 < currentLevelInfo.LevelIndex) return;
+
+            gameObject.SetActive(false);
+            EventBus.Publish(new RemovePlayerInteractableObjectEvent(this));
+            _openedCheckPoint.SetActive(true);
+        }
+
+        private void OnEnable() { PlayerStateMachine.OnDead += OnPlayerDead; }
+
+        private void OnDisable() { PlayerStateMachine.OnDead -= OnPlayerDead; }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
@@ -37,6 +55,20 @@ namespace Game.CheckPoint
             if (!other.CompareTag("Player")) return;
 
             EventBus.Publish(new RemovePlayerInteractableObjectEvent(this));
+        }
+
+        private void OnPlayerDead() { StartCoroutine(nameof(DelayOnPlayerDead)); }
+
+        private IEnumerator DelayOnPlayerDead()
+        {
+            yield return new WaitForSeconds(1f);
+
+            //如果玩家存档点在后面或者就在这，那这个存档点就打开门
+            if (ES3.Load("LastPassedLevel", 0) - 1 < currentLevelInfo.LevelIndex) yield break;
+
+            gameObject.SetActive(false);
+            EventBus.Publish(new RemovePlayerInteractableObjectEvent(this));
+            _openedCheckPoint.SetActive(true);
         }
 
         #region 交互
@@ -59,6 +91,7 @@ namespace Game.CheckPoint
             //因为该检查点是为了告知玩家这个关卡已经完成，因此：该检查点应该放置在该关卡的终点位置
             ES3.Save($"Level-{currentLevelInfo.LevelIndex + 1}", true);
             ES3.Save("LastPassedLevel", currentLevelInfo.LevelIndex + 1);
+            MLogger.LogWarning($"存档：到达第{currentLevelInfo.LevelIndex + 1}个存档点");
 
             //存档后，将之前的关卡都给关闭掉
             //不需要了

@@ -30,6 +30,8 @@ namespace Game.Player
 
         private void OnAddInteractableObject(AddPlayerInteractableObjectEvent ctx)
         {
+            if (ctx.Object == null || !ctx.Object.IsActive) return;
+
             foreach (var item in _interactableObjects)
             {
                 item.SetHighLight(false);
@@ -42,6 +44,8 @@ namespace Game.Player
 
         private void OnRemoveInteractableObject(RemovePlayerInteractableObjectEvent ctx)
         {
+            if (ctx.Object == null || !ctx.Object.IsActive) return;
+
             foreach (var item in _interactableObjects)
             {
                 item.SetHighLight(false);

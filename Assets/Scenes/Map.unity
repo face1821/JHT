@@ -3709,7 +3709,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5, y: -0.049999952, z: -10}
+  m_LocalPosition: {x: -2.09, y: -0.049999952, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4999,6 +4999,7 @@ MonoBehaviour:
   _overlay: {fileID: 1090880271}
   _levelInfos:
   - {fileID: 800060483}
+  - {fileID: 817518819}
 --- !u!1 &711074124 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8694371593529232738, guid: 828583eb114a1d54e89c40f9b137f2b7, type: 3}
@@ -5889,7 +5890,7 @@ Transform:
   m_GameObject: {fileID: 800060481}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 85.29, y: -2.91, z: 0}
+  m_LocalPosition: {x: 85.36, y: -2.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5951,7 +5952,7 @@ Transform:
   m_GameObject: {fileID: 817518817}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 111.6, y: -2.91, z: 0}
+  m_LocalPosition: {x: 111.63, y: -2.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5970,11 +5971,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _canBeReset: 0
-  _canRuleBeClosed: 0
-  _levelRules: []
+  _canRuleBeClosed: 1
+  _levelRules:
+  - {fileID: 1524040835}
   _activeObjs: []
   _inactiveObjs: []
-  _ruleLights: []
+  _ruleLights:
+  - {fileID: 627891364}
 --- !u!1 &821737397 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7918759627106196436, guid: 311251dfd53e3b54b8970cfac5dab1c3, type: 3}
@@ -12813,7 +12816,7 @@ PrefabInstance:
       objectReference: {fileID: 519420031}
     - target: {fileID: 7744749020851684764, guid: b6971e342c2db084aa8f58a1442c5dfa, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5
+      value: -2.09
       objectReference: {fileID: 0}
     - target: {fileID: 7744749020851684764, guid: b6971e342c2db084aa8f58a1442c5dfa, type: 3}
       propertyPath: m_LocalPosition.y

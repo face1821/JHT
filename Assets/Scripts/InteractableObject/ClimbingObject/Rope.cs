@@ -13,6 +13,8 @@ namespace Game.Prop
     [RequireComponent(typeof(Light2D), typeof(BoxCollider2D))]
     public class Rope : MonoBehaviour, IClimbingObject
     {
+        public bool IsActive => gameObject.activeSelf;
+
         protected Light2D _highLight;
 
         private void Awake() { _highLight = GetComponent<Light2D>(); }

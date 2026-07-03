@@ -11,6 +11,8 @@ namespace Game.InteractableObject
     [RequireComponent(typeof(BoxCollider2D), typeof(SpriteRenderer))]
     public class LevelRuleToggleButton : MonoBehaviour, IInteractableObject
     {
+        public bool IsActive => gameObject.activeSelf;
+
         [SerializeField] private Sprite _openSprite;
         [SerializeField] private Sprite _closeSprite;
         [SerializeField] private LevelRuleBase _rule;

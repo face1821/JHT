@@ -28,12 +28,13 @@ namespace Game.Map
         {
             if (!_canBeReset) return;
 
+            //玩家死亡后，重置规则
             foreach (var item in _levelRules)
             {
                 item.ResetRule();
             }
 
-            //玩家死亡后，重置关卡
+            //重置关卡
             foreach (var item in _activeObjs)
             {
                 item.SetActive(true);

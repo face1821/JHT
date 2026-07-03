@@ -41,6 +41,8 @@ namespace Game.Map
             //关闭已经通过的关卡的规则
             //不需要了
             //ClosePassedLevels();
+            //初始化
+            _levelInfos.ForEach(x => x.Init(this));
 
             //将玩家传送到上一次刚通关的关卡的通关位置
             var lastPassedLevelIndex = ES3.Load("LastPassedLevel", -1) - 1;
