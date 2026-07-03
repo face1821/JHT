@@ -5,9 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - SystemList
-  - LevelChunkManager
   - OverlaySaveTip
   - LevelRule
+  - MapManager
   layers:
   - Default
   - TransparentFX

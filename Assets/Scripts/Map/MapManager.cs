@@ -38,16 +38,8 @@ namespace Game.Map
                 return;
             }
 
-            //先遍历每个关卡的记录
-            for (int i = 0; i < _levelInfos.Count; i++)
-            {
-                _levelInfos[i].Init(this);
-                var passed = ES3.Load($"Level-{i + 1}", false);
-                if (passed)
-                {
-                    _levelInfos[i].InactiveLevel();
-                }
-            }
+            //关闭已经通过的关卡的规则
+            ClosePassedLevels();
 
             //将玩家传送到上一次刚通关的关卡的通关位置
             var lastPassedLevelIndex = ES3.Load("LastPassedLevel", -1);
@@ -57,6 +49,20 @@ namespace Game.Map
 
             //传送到存档点位置
             InstanceFinder.Player.transform.position = _levelInfos[lastPassedLevelIndex].SpawnPos;
+        }
+
+        public void ClosePassedLevels()
+        {
+            //遍历每个关卡的记录
+            for (int i = 0; i < _levelInfos.Count; i++)
+            {
+                _levelInfos[i].Init(this);
+                var passed = ES3.Load($"Level-{i + 1}", false);
+                if (passed)
+                {
+                    _levelInfos[i].InactiveLevel();
+                }
+            }
         }
 
         private void OnPlayerDead()
@@ -79,12 +85,12 @@ namespace Game.Map
             }
 
             //将玩家传送到上一次刚通关的关卡的通关位置
-            var lastPassedLevelIndex = ES3.Load("LastPassedLevel", -1);
+            var lastPassedLevelIndex = ES3.Load("LastPassedLevel", -1) - 1;
 
             InstanceFinder.Player.StateMachine.Respawn();
 
             //如果没有存档点位置，就回到起始点
-            if (lastPassedLevelIndex == -1)
+            if (lastPassedLevelIndex < 0)
             {
                 InstanceFinder.Player.transform.position = new Vector3(-5f, -2.5f, 0f);
                 yield break;

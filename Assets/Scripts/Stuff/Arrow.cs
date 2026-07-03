@@ -30,7 +30,7 @@ namespace Game.Stuff
 
             //碰到物体就让箭矢停下并不再接收碰撞回调
             enabled = false;
-            MLogger.LogError($"箭矢：碰到 {other.name}");
+            MLogger.Log($"箭矢：碰到 {other.name}");
 
             //碰到气球的处理
             if (other.name == "气球")

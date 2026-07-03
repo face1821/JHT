@@ -1983,7 +1983,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3048215741680653317, guid: 311251dfd53e3b54b8970cfac5dab1c3, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3173456141450511093, guid: 311251dfd53e3b54b8970cfac5dab1c3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2087,7 +2087,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6014143170781766119, guid: 311251dfd53e3b54b8970cfac5dab1c3, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6269452020612499179, guid: 311251dfd53e3b54b8970cfac5dab1c3, type: 3}
       propertyPath: m_Layer
@@ -4757,7 +4757,7 @@ GameObject:
   - component: {fileID: 710824385}
   m_Layer: 0
   m_Name: MapManager
-  m_TagString: LevelChunkManager
+  m_TagString: MapManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12579,10 +12579,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 5463104556364207158, guid: b6971e342c2db084aa8f58a1442c5dfa, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6851226502207279401, guid: b6971e342c2db084aa8f58a1442c5dfa, type: 3}
       propertyPath: m_Camera
       value: 
@@ -12625,10 +12621,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7744749020851684764, guid: b6971e342c2db084aa8f58a1442c5dfa, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8676701943899008598, guid: b6971e342c2db084aa8f58a1442c5dfa, type: 3}
-      propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
