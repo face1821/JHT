@@ -19,6 +19,8 @@ namespace Game.Map
 
         private void OnDisable()
         {
+            _alreadySpawned = false;
+
             //按钮关闭规则时，销毁箭矢
             var arrows = GameObject.FindObjectsByType<Arrow>(FindObjectsSortMode.None);
             foreach (var item in arrows)
