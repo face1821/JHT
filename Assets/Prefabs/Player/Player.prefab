@@ -297,10 +297,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: "\u8E72\u4E0B\u884C\u8D70\u6216\u8BB8\u80FD\u901A\u8FC7\u8FD9\u91CC"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4580ca6cd22530e4380204bc6f3d87cc, type: 2}
-  m_sharedMaterial: {fileID: 4154379978744546984, guid: 4580ca6cd22530e4380204bc6f3d87cc, type: 2}
+  m_sharedMaterial: {fileID: -8975434526221264551, guid: 4580ca6cd22530e4380204bc6f3d87cc, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

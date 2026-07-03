@@ -1132,7 +1132,7 @@ MonoBehaviour:
   m_text: "\u8D70\u5ECA\u5185\u4E0D\u4F1A\u65E0\u6545\u51FA\u73B0\u5751\u6D1E\uFF0C\n\u5982\u9047\u8BF7\u5728\u8DF3\u8FC7\u540E\u7ACB\u523B\u53CD\u5411\u9003\u8DD1\u4EE5\u514D\u53D7\u4F24"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1a7c6e6f77632794b9aee0b7fa7efca4, type: 2}
-  m_sharedMaterial: {fileID: -2423421069561020486, guid: 1a7c6e6f77632794b9aee0b7fa7efca4, type: 2}
+  m_sharedMaterial: {fileID: -2953920115981858899, guid: 1a7c6e6f77632794b9aee0b7fa7efca4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2671,7 +2671,7 @@ MonoBehaviour:
   m_text: "\u4E0D\u8981\u76F8\u4FE1\u8D70\u5ECA\u7684\u4F2A\u88C5\uFF0C\n\u7EF3\u5B50\u4E0B\u9762\u662F\u6DF1\u6E0A"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1a7c6e6f77632794b9aee0b7fa7efca4, type: 2}
-  m_sharedMaterial: {fileID: -2423421069561020486, guid: 1a7c6e6f77632794b9aee0b7fa7efca4, type: 2}
+  m_sharedMaterial: {fileID: -2953920115981858899, guid: 1a7c6e6f77632794b9aee0b7fa7efca4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3612,7 +3612,7 @@ MonoBehaviour:
   m_text: "\u6240\u6709\u7684\u5F00\u5173\u90FD\u662F\u771F\u7684\n\u4E0D\u80FD\u8DD1\u8DF3\uFF01\n\u4F46\u5929\u5802\u7684\u697C\u68AF\u4F1A\u5E2E\u52A9\u4F60\u524D\u8FDB"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1a7c6e6f77632794b9aee0b7fa7efca4, type: 2}
-  m_sharedMaterial: {fileID: -2423421069561020486, guid: 1a7c6e6f77632794b9aee0b7fa7efca4, type: 2}
+  m_sharedMaterial: {fileID: -2953920115981858899, guid: 1a7c6e6f77632794b9aee0b7fa7efca4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5426,11 +5426,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3848507667002041037, guid: 093a85efb91337d4fbff30a779b016b3, type: 3}
   m_PrefabInstance: {fileID: 2025210571}
   m_PrefabAsset: {fileID: 0}
---- !u!224 &916107495 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4551953642747989139, guid: b6971e342c2db084aa8f58a1442c5dfa, type: 3}
-  m_PrefabInstance: {fileID: 5137001464281924708}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &944703294
 GameObject:
   m_ObjectHideFlags: 0
@@ -5491,7 +5486,7 @@ MonoBehaviour:
   m_text: "\u8D70\u5ECA\u7981\u6B62\u5B09\u7B11\u8E66\u8DF3\uFF0C\n\u8BF7\u52A1\u5FC5\u9075\u5B88\u8FD9\u4E00\u70B9\u5E76\u6709\u5E8F\u901A\u884C"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1a7c6e6f77632794b9aee0b7fa7efca4, type: 2}
-  m_sharedMaterial: {fileID: -2423421069561020486, guid: 1a7c6e6f77632794b9aee0b7fa7efca4, type: 2}
+  m_sharedMaterial: {fileID: -2953920115981858899, guid: 1a7c6e6f77632794b9aee0b7fa7efca4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -7561,7 +7556,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.03660202, y: 0.64661705}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -7572,7 +7567,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.92, y: 4.71}
+  m_Size: {x: 3.114769, y: 1.7087214}
   m_EdgeRadius: 0
 --- !u!1 &1425178743
 GameObject:
@@ -7633,8 +7628,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u8BF7\u52A1\u5FC5\u4E0D\u8981\u542C\u8D70\u5ECA\u7684\u5B89\u6392\n\u68A6\u90FD\u662F\u53CD\u7684\uFF0C\u8FD9\u91CC\u4E5F\u662F"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4580ca6cd22530e4380204bc6f3d87cc, type: 2}
-  m_sharedMaterial: {fileID: 4154379978744546984, guid: 4580ca6cd22530e4380204bc6f3d87cc, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1a7c6e6f77632794b9aee0b7fa7efca4, type: 2}
+  m_sharedMaterial: {fileID: -2953920115981858899, guid: 1a7c6e6f77632794b9aee0b7fa7efca4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -8702,7 +8697,7 @@ MonoBehaviour:
   m_text: "\u4E0A\u8BFE\u65F6\u4E0D\u8981\u4EA4\u5934\u63A5\u8033\uFF0C\u5C24\u5176\u4E0D\u80FD\u56DE\u5934\uFF0C\n\u4E0D\u7136\u540E\u679C\u81EA\u8D1F"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1a7c6e6f77632794b9aee0b7fa7efca4, type: 2}
-  m_sharedMaterial: {fileID: -2423421069561020486, guid: 1a7c6e6f77632794b9aee0b7fa7efca4, type: 2}
+  m_sharedMaterial: {fileID: -2953920115981858899, guid: 1a7c6e6f77632794b9aee0b7fa7efca4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -11382,14 +11377,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 68828084}
     m_Modifications:
+    - target: {fileID: 31695150703472795, guid: b6971e342c2db084aa8f58a1442c5dfa, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 70572409353755330, guid: b6971e342c2db084aa8f58a1442c5dfa, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 5258548275298373650, guid: b6971e342c2db084aa8f58a1442c5dfa, type: 3}
-      propertyPath: _bubbleTransform
-      value: 
-      objectReference: {fileID: 916107495}
     - target: {fileID: 6851226502207279401, guid: b6971e342c2db084aa8f58a1442c5dfa, type: 3}
       propertyPath: m_Camera
       value: 
@@ -11433,22 +11428,6 @@ PrefabInstance:
     - target: {fileID: 7744749020851684764, guid: b6971e342c2db084aa8f58a1442c5dfa, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8316531034354826447, guid: b6971e342c2db084aa8f58a1442c5dfa, type: 3}
-      propertyPath: _paramaters.ClimbSpeedMultiplier
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8316531034354826447, guid: b6971e342c2db084aa8f58a1442c5dfa, type: 3}
-      propertyPath: _paramaters.ClimbingDetectRadius
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8316531034354826447, guid: b6971e342c2db084aa8f58a1442c5dfa, type: 3}
-      propertyPath: _paramaters.CrouchSpeedMultiplier
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8316531034354826447, guid: b6971e342c2db084aa8f58a1442c5dfa, type: 3}
-      propertyPath: _paramaters.ClimbingDetectOffset.y
-      value: -0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

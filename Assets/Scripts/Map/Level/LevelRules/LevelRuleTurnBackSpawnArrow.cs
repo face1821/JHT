@@ -1,7 +1,5 @@
 using System;
-using Game.Player;
 using Game.Stuff;
-using Game.Tool;
 using Maxy.GameFramework.Common.System;
 using Maxy.GameFramework.Common.Tool;
 using UnityEngine;
@@ -15,6 +13,28 @@ namespace Game.Map
         [SerializeField] private Transform _arrowSpawnPoint;
 
         private int _lastFaceDirection;
+
+        private void OnDisable()
+        {
+            //当规则关闭时，顺带把箭矢都销毁掉
+            var arrows = GameObject.FindObjectsByType(typeof(Arrow), FindObjectsSortMode.None);
+            foreach (var item in arrows)
+            {
+                Destroy((item as Arrow)!.gameObject);
+            }
+        }
+
+        public override void ResetRule()
+        {
+            base.ResetRule();
+
+            //当规则重置时，顺带把箭矢都销毁掉
+            var arrows = GameObject.FindObjectsByType(typeof(Arrow), FindObjectsSortMode.None);
+            foreach (var item in arrows)
+            {
+                Destroy((item as Arrow)!.gameObject);
+            }
+        }
 
         private void FixedUpdate()
         {

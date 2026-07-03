@@ -27,5 +27,7 @@ namespace Game.Map
             MLogger.Log($"{name}：玩家离开规则区域");
             enabled = false;
         }
+
+        public virtual void ResetRule() { }
     }
 }
