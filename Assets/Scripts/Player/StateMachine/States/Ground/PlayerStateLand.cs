@@ -6,7 +6,7 @@ namespace Game.Player
         {
             base.OnEnter();
 
-            Body.ZeroVelocityX();
+            Body.Lock();
             Animator.PlayLand();
         }
 
@@ -19,6 +19,13 @@ namespace Game.Player
             {
                 StateMachine.RequestChangeState(StateMachine.StateIdle);
             }
+        }
+
+        public override void OnExit()
+        {
+            base.OnExit();
+            
+            Body.UnLock();
         }
 
         public override bool CanBeInterrupt(PlayerStateBase nextState) => Animator.Animator.GetCurrentAnimatorStateInfo(0).IsName("Idle");
