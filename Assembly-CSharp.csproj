@@ -60,6 +60,7 @@
     <Compile Include="Assets\Scripts\Map\Level\LevelRuleBase.cs" />
     <Compile Include="Assets\Scripts\System\AchievementSystem\AchievementSystem.cs" />
     <Compile Include="Assets\Scripts\Map\Level\LevelRules\LevelRuleJumpSpawnArrowAndStep.cs" />
+    <Compile Include="Assets\Scripts\Map\Level\LevelRules\LevelRuleReverseWASD.cs" />
     <Compile Include="Assets\Scripts\CheckPoint\Events\RemovePlayerInteractableObjectEvent.cs" />
     <Compile Include="Assets\Scripts\Player\StateMachine\States\Ground\PlayerStateJump.cs" />
     <Compile Include="Assets\Scripts\InteractableObject\LevelRuleToggleButton.cs" />

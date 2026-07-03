@@ -25,6 +25,7 @@ namespace Game.Player
         [Header("布尔参数")]
         [LabelText("地面标记"), ReadOnly] public bool IsGrounded = true;
         [LabelText("下蹲头顶检测标记"), ReadOnly] public bool IsCrouchHead;
+        [LabelText("WASD反向标记"), ReadOnly] public bool ReverseWASD;
 
         [Header("整数参数")]
         [LabelText("朝向"), ReadOnly] public int FaceDirection = -1;
