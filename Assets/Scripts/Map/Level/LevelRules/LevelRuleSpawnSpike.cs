@@ -14,7 +14,17 @@ namespace Game.Map
 
         private bool _started;
 
-        private void OnEnable() { PlayerStateMachine.OnDead += OnPlayerDead; }
+        private void OnEnable()
+        {
+            //当玩家的存档点是第三个，也就是尖刺后面时，就将尖刺放置在末尾位置
+            if (ES3.Load("LastPassedLevel", 0) - 1 > 1)
+            {
+                _spike.TpToEnd();
+                return;
+            }
+
+            PlayerStateMachine.OnDead += OnPlayerDead;
+        }
 
         private void OnDisable() { PlayerStateMachine.OnDead -= OnPlayerDead; }
 
