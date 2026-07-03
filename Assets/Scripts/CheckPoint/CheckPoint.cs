@@ -61,7 +61,8 @@ namespace Game.CheckPoint
             ES3.Save("LastPassedLevel", currentLevelInfo.LevelIndex + 1);
 
             //存档后，将之前的关卡都给关闭掉
-            GameObject.FindWithTag("MapManager").GetComponent<MapManager>().ClosePassedLevels();
+            //不需要了
+            //GameObject.FindWithTag("MapManager").GetComponent<MapManager>().ClosePassedLevels();
         }
 
         #endregion

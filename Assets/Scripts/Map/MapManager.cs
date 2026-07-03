@@ -39,7 +39,8 @@ namespace Game.Map
             }
 
             //关闭已经通过的关卡的规则
-            ClosePassedLevels();
+            //不需要了
+            //ClosePassedLevels();
 
             //将玩家传送到上一次刚通关的关卡的通关位置
             var lastPassedLevelIndex = ES3.Load("LastPassedLevel", -1);
