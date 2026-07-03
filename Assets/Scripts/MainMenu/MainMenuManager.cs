@@ -31,7 +31,7 @@ namespace Game.MainMenu
         private void Start()
         {
             //如果玩家第一关有通过，那就显示继续按钮
-            if (ES3.Load($"Level-0", false))
+            if (ES3.Load($"LastPassedLevel", 0) > 0)
             {
                 _btnContinue.SetActive(true);
             }

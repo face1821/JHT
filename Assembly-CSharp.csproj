@@ -51,6 +51,7 @@
     <Compile Include="Assets\Scripts\LoadingMenu\LoadingMenuManager.cs" />
     <Compile Include="Assets\Scripts\InteractableObject\IInteractableObject.cs" />
     <Compile Include="Assets\Scripts\Map\Level\LevelRules\LevelRuleSpawnSpike.cs" />
+    <Compile Include="Assets\Scripts\Map\EndPoint.cs" />
     <Compile Include="Assets\Scripts\MainMenu\MainMenuManager.cs" />
     <Compile Include="Assets\Scripts\CheckPoint\Events\AddPlayerInteractableObjectEvent.cs" />
     <Compile Include="Assets\Scripts\CheckPoint\CheckPointMenu.cs" />
