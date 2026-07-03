@@ -7,6 +7,7 @@ TagManager:
   - SystemList
   - LevelChunkManager
   - OverlaySaveTip
+  - LevelRule
   layers:
   - Default
   - TransparentFX

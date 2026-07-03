@@ -14,12 +14,16 @@ namespace Game.Map
 
         private void OnTriggerEnter2D(Collider2D other)
         {
+            if (!other.CompareTag("Player")) return;
+
             MLogger.Log($"{name}：玩家进入规则区域");
             enabled = true;
         }
 
         private void OnTriggerExit2D(Collider2D other)
         {
+            if (!other.CompareTag("Player")) return;
+
             MLogger.Log($"{name}：玩家离开规则区域");
             enabled = false;
         }

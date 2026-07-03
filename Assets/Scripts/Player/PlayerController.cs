@@ -9,6 +9,7 @@ namespace Game.Player
     [RequireComponent(typeof(PlayerBody), typeof(PlayerStateMachine))]
     public class PlayerController : MonoBehaviour
     {
+        public PlayerBubble Bubble { get; private set; }
         public PlayerInput Input { get; private set; }
         public PlayerInteract Interact { get; private set; }
         public PlayerBody Body { get; private set; }
@@ -16,6 +17,7 @@ namespace Game.Player
 
         private void Awake()
         {
+            Bubble = GetComponent<PlayerBubble>();
             Input = GetComponent<PlayerInput>();
             Interact = GetComponent<PlayerInteract>();
             Body = GetComponent<PlayerBody>();

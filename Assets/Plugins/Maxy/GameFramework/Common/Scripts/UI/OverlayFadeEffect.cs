@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
@@ -15,6 +14,15 @@ namespace Maxy.GameFramework.Common.Tool
         [SerializeField] private float _duration = 1f;
         [SerializeField] private List<Image> _childImages;
         [SerializeField] private List<TextMeshProUGUI> _childTexts;
+
+        private Image _selfImage;
+        private TextMeshProUGUI _selfText;
+
+        private void Awake()
+        {
+            _selfImage = GetComponent<Image>();
+            _selfText = GetComponentInChildren<TextMeshProUGUI>();
+        }
 
         public void PlayFadeIn(float duration = 1f)
         {
@@ -40,12 +48,15 @@ namespace Maxy.GameFramework.Common.Tool
         private IEnumerator OnFadeIn(float duration)
         {
             IsFinished = false;
-            Image pic = GetComponent<Image>();
 
             var startTime = Time.time;
 
             //预热
-            pic.color = new Color(pic.color.r, pic.color.g, pic.color.b, 1f);
+            if (_selfImage != null)
+                _selfImage.color = new Color(_selfImage.color.r, _selfImage.color.g, _selfImage.color.b, 1f);
+
+            if (_selfText != null)
+                _selfText.color = new Color(_selfText.color.r, _selfText.color.g, _selfText.color.b, 1f);
 
             foreach (var child in _childImages)
             {
@@ -58,10 +69,15 @@ namespace Maxy.GameFramework.Common.Tool
             }
 
             //开始
-            while (pic.color.a > 0f)
+            while (_selfImage.color.a > 0f)
             {
                 yield return null;
-                pic.color = new Color(pic.color.r, pic.color.g, pic.color.b, 1f - (Time.time - startTime) / duration);
+
+                if (_selfImage != null)
+                    _selfImage.color = new Color(_selfImage.color.r, _selfImage.color.g, _selfImage.color.b, 1f - (Time.time - startTime) / duration);
+
+                if (_selfText != null)
+                    _selfText.color = new Color(_selfText.color.r, _selfText.color.g, _selfText.color.b, 1f - (Time.time - startTime) / duration);
 
                 foreach (var child in _childImages)
                 {
@@ -74,9 +90,13 @@ namespace Maxy.GameFramework.Common.Tool
                 }
 
                 //结束工作
-                if (pic.color.a <= 0f)
+                if (_selfImage.color.a <= 0f)
                 {
-                    pic.color = new Color(pic.color.r, pic.color.g, pic.color.b, 0f);
+                    if (_selfImage != null)
+                        _selfImage.color = new Color(_selfImage.color.r, _selfImage.color.g, _selfImage.color.b, 0f);
+
+                    if (_selfText != null)
+                        _selfText.color = new Color(_selfText.color.r, _selfText.color.g, _selfText.color.b, 0f);
 
                     foreach (var child in _childImages)
                     {
@@ -96,12 +116,15 @@ namespace Maxy.GameFramework.Common.Tool
         private IEnumerator OnFadeOut(float duration)
         {
             IsFinished = false;
-            Image pic = GetComponent<Image>();
 
             var startTime = Time.time;
 
             //预热
-            pic.color = new Color(pic.color.r, pic.color.g, pic.color.b, 0f);
+            if (_selfImage != null)
+                _selfImage.color = new Color(_selfImage.color.r, _selfImage.color.g, _selfImage.color.b, 0f);
+
+            if (_selfText != null)
+                _selfText.color = new Color(_selfText.color.r, _selfText.color.g, _selfText.color.b, 0f);
 
             foreach (var child in _childImages)
             {
@@ -114,10 +137,15 @@ namespace Maxy.GameFramework.Common.Tool
             }
 
             //开始
-            while (pic.color.a < 1f)
+            while (_selfImage.color.a < 1f)
             {
                 yield return null;
-                pic.color = new Color(pic.color.r, pic.color.g, pic.color.b, (Time.time - startTime) / duration);
+
+                if (_selfImage != null)
+                    _selfImage.color = new Color(_selfImage.color.r, _selfImage.color.g, _selfImage.color.b, (Time.time - startTime) / duration);
+
+                if (_selfText != null)
+                    _selfText.color = new Color(_selfText.color.r, _selfText.color.g, _selfText.color.b, (Time.time - startTime) / duration);
 
                 foreach (var child in _childImages)
                 {
@@ -129,9 +157,13 @@ namespace Maxy.GameFramework.Common.Tool
                     child.color = new Color(child.color.r, child.color.g, child.color.b, (Time.time - startTime) / duration);
                 }
 
-                if (pic.color.a >= 1f)
+                if (_selfImage.color.a >= 1f)
                 {
-                    pic.color = new Color(pic.color.r, pic.color.g, pic.color.b, 1f);
+                    if (_selfImage != null)
+                        _selfImage.color = new Color(_selfImage.color.r, _selfImage.color.g, _selfImage.color.b, 1f);
+
+                    if (_selfText != null)
+                        _selfText.color = new Color(_selfText.color.r, _selfText.color.g, _selfText.color.b, 1f);
 
                     foreach (var child in _childImages)
                     {
