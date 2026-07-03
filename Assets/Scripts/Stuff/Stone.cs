@@ -26,7 +26,7 @@ namespace Game.Stuff
             //当不在滚动动画时，就没伤害
             if (!_animator.GetCurrentAnimatorStateInfo(0).IsName("Roll")) return;
 
-            InstanceFinder.Player.StateMachine.RequestChangeState(InstanceFinder.Player.StateMachine.StateDead);
+            InstanceFinder.Player.StateMachine.Die();
 
             //再将自己隐藏
             StartCoroutine(nameof(OnDelayDisable));

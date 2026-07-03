@@ -13,7 +13,7 @@ namespace Game.Map
             if (_playerStateMachine.CurrentState is PlayerStateJump)
             {
                 MLogger.LogWarning("规则：玩家跳跃了，触犯了规则");
-                _playerStateMachine.RequestChangeState(_playerStateMachine.StateDead);
+                _playerStateMachine.Die();
             }
         }
     }

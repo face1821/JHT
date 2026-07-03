@@ -48,7 +48,7 @@ namespace Game.Stuff
             Destroy(gameObject);
 
             //让玩家死亡
-            InstanceFinder.Player.StateMachine.RequestChangeState(InstanceFinder.Player.StateMachine.StateDead);
+            InstanceFinder.Player.StateMachine.Die();
         }
 
         private void OnDead() { Destroy(gameObject); }

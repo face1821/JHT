@@ -32,7 +32,7 @@ namespace Game.PauseMenu
         {
             _menu.SetActive(false);
 
-            InstanceFinder.Player.StateMachine.RequestChangeState(InstanceFinder.Player.StateMachine.StateDead);
+            InstanceFinder.Player.StateMachine.Die();
         }
 
         public void ReturnToMainMenu() { StartCoroutine(nameof(DelayReturnToMainMenu)); }

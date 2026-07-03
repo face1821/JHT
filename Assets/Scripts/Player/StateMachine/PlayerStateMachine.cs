@@ -186,6 +186,11 @@ namespace Game.Player
             }
         }
 
+        public void Die()
+        {
+            RequestChangeState(StateDead);
+        }
+
         #endregion
 
         #region 碰撞检测接收
