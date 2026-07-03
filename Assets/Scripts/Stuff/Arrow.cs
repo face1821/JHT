@@ -19,7 +19,7 @@ namespace Game.Stuff
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.CompareTag("LevelRule") || other.name == "Arrow (Clone)") return;
+            if (other.CompareTag("LevelRule") || other.name == "Arrow(Clone)") return;
 
             if (!enabled) return;
 
