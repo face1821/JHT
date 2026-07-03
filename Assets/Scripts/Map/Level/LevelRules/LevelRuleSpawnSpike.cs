@@ -16,13 +16,7 @@ namespace Game.Map
 
         private void OnEnable() { PlayerStateMachine.OnDead += OnPlayerDead; }
 
-        private void OnDisable()
-        {
-            //当规则关闭时，尖刺就放置在末尾，不让玩家回去了
-            _spike.TpToEnd();
-
-            PlayerStateMachine.OnDead -= OnPlayerDead;
-        }
+        private void OnDisable() { PlayerStateMachine.OnDead -= OnPlayerDead; }
 
         public override void OnEnter()
         {
@@ -44,6 +38,13 @@ namespace Game.Map
         private IEnumerator DelayOnPlayerDead()
         {
             yield return new WaitForSeconds(1f);
+
+            //当玩家的存档点是第三个，也就是尖刺后面时，就将尖刺放置在末尾位置
+            if (ES3.Load("LastPassedLevel", 0) - 1 > 1)
+            {
+                _spike.TpToEnd();
+                yield break;
+            }
 
             _started = false;
             _spike.Close();
