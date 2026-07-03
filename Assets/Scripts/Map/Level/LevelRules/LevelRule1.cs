@@ -5,7 +5,7 @@ namespace Game.Map
 {
     public class LevelRule1 : LevelRuleBase
     {
-        private void Update()
+        private void FixedUpdate()
         {
             //当玩家处于跳跃状态时，死亡
             if (_playerStateMachine.CurrentState is PlayerStateJump)

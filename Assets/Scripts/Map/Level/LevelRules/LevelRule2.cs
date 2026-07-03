@@ -8,7 +8,7 @@ namespace Game.Map
     {
         [SerializeField] private GameObject _stone;
 
-        private void Update()
+        private void FixedUpdate()
         {
             if (_stone.activeSelf) return;
 
