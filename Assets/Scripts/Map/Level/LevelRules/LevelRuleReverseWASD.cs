@@ -1,5 +1,7 @@
 using System;
+using Game.Player;
 using Game.Stuff;
+using Game.Tool;
 using Maxy.GameFramework.Common.System;
 using Maxy.GameFramework.Common.Tool;
 using UnityEngine;
@@ -17,24 +19,29 @@ namespace Game.Map
         {
             base.OnEnter();
 
-            //显示反向WASD的GUI
-            _normalMoveGUI.SetActive(false);
-            _normalJumpCrouchGUI.SetActive(false);
-
-            _reverseMoveGUI.SetActive(true);
-            _reverseJumpCrouchGUI.SetActive(false);
+            SetReverseUIShowState(true);
         }
 
         public override void OnExit()
         {
             base.OnExit();
 
-            //恢复
-            _normalMoveGUI.SetActive(true);
-            _normalJumpCrouchGUI.SetActive(true);
+            SetReverseUIShowState(false);
+        }
 
-            _reverseMoveGUI.SetActive(false);
-            _reverseJumpCrouchGUI.SetActive(false);
+        private void SetReverseUIShowState(bool isReverse)
+        {
+            //切换反向WASD的GUI
+            _normalMoveGUI.SetActive(!isReverse);
+            _normalJumpCrouchGUI.SetActive(!isReverse);
+
+            _reverseMoveGUI.SetActive(isReverse);
+            _reverseJumpCrouchGUI.SetActive(isReverse);
+
+            //重置按键的状态
+            InstanceFinder.Player.Input.BtnReleaseMoveLeft();
+            InstanceFinder.Player.Input.BtnReleaseMoveRight();
+            InstanceFinder.Player.Input.BtnReleaseCrouch();
         }
     }
 }

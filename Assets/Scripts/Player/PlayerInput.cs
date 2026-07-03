@@ -43,11 +43,21 @@ namespace Game.Player
             }
         }
 
-        private void Update() { PhoneInputHandle(); }
+        private void Update()
+        {
+            PhoneInputHandle();
+            PCInputHandle();
+        }
 
         private void PhoneInputHandle()
         {
             //输入的优先级由这里的事件发送顺序来表现
+
+            //跳跃状态
+            if (IsJumpHeld)
+            {
+                OnJump?.Invoke();
+            }
 
             //下蹲状态
             if (IsCrouchHeld)
@@ -67,23 +77,35 @@ namespace Game.Player
         private void PCInputHandle()
         {
             //输入的优先级由这里的事件发送顺序来表现
+            IsMoveLeft = Input.GetKey(KeyCode.A);
+            IsMoveRight = Input.GetKey(KeyCode.D);
+            IsJumpHeld = Input.GetKey(KeyCode.Space);
+            IsCrouchHeld = Input.GetKey(KeyCode.LeftShift);
 
-            //移动
-            var moveDir = MTool.GetMoveInput();
-
-            if (moveDir.x != 0f)
+            //交互
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                OnMove?.Invoke((int)moveDir.x);
+                OnInteract?.Invoke();
             }
-            else
+
+            //跳跃状态
+            if (IsJumpHeld)
+            {
+                OnJump?.Invoke();
+            }
+
+            //下蹲状态
+            if (IsCrouchHeld)
+            {
+                OnCrouch?.Invoke(MoveDirection);
+            }
+            else if (MoveDirection == 0) //移动状态
             {
                 OnIdle?.Invoke();
             }
-
-            //跳跃
-            if (Input.GetKey(KeyCode.W))
+            else //待机状态
             {
-                OnJump?.Invoke();
+                OnMove?.Invoke(MoveDirection);
             }
         }
 
@@ -95,15 +117,7 @@ namespace Game.Player
         public void BtnPressMoveRight() { IsMoveRight = true; }
         public void BtnReleaseMoveRight() { IsMoveRight = false; }
 
-        public void SetJumpHeld(bool held)
-        {
-            IsJumpHeld = held;
-
-            if (held)
-            {
-                OnJump?.Invoke();
-            }
-        }
+        public void SetJumpHeld(bool held) { IsJumpHeld = held; }
 
         public void BtnPressCrouch() { IsCrouchHeld = true; }
 

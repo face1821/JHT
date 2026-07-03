@@ -28,8 +28,8 @@ namespace Game.Player
         public void SetVelocityX(float x) { _body.velocity = new Vector2(x, _body.velocity.y); }
         public void SetVelocityY(float y) { _body.velocity = new Vector2(_body.velocity.x, y); }
 
+        public void SetPosition(Vector2 position) { _body.position = position; }
         public void SetPositionX(float x) { _body.position = new Vector2(x, _body.position.y); }
-
         public void SetPositionY(float y) { _body.position = new Vector2(_body.position.x, y); }
 
         public void SetGravityEnabled(bool toggle) { _body.gravityScale = toggle ? _defaultGravityScale : 0f; }
@@ -41,7 +41,6 @@ namespace Game.Player
         }
 
         public void Lock() { _body.constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionX; }
-
         public void UnLock() { _body.constraints = RigidbodyConstraints2D.FreezeRotation; }
     }
 }

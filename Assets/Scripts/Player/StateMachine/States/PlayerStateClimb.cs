@@ -14,6 +14,16 @@ namespace Game.Player
         {
             if (Paramaters.ClimbingObject == null) return false;
 
+            //保存当前的状态信息
+            var oldFace = Paramaters.FaceDirection;
+            var oldPos = StateMachine.transform.position;
+
+            //将玩家放置到攀爬的位置
+            int faceToClimbObject = (Paramaters.ClimbingObject.transform.position.x - InstanceFinder.Player.transform.position.x) > 0f ? 1 : -1;
+            var offset = -faceToClimbObject * 0.5f;
+            Body.SetFaceX(faceToClimbObject);
+            Body.SetPositionX(Paramaters.ClimbingObject.transform.position.x + offset);
+
             //当玩家碰不到攀爬物体时，不能进入该状态
             var hit = Physics2D.OverlapCircle(
                 StateMachine.transform.position + new Vector3(Paramaters.ClimbingDetectOffset.x, Paramaters.ClimbingDetectOffset.y),
@@ -21,6 +31,10 @@ namespace Game.Player
                 LayerMask.GetMask("ClimbingObject"));
             if (hit is null || hit.transform != Paramaters.ClimbingObject.transform)
             {
+                //恢复之前的状态
+                Body.SetFaceX(oldFace);
+                Body.SetPosition(oldPos);
+
                 return false;
             }
 
