@@ -80,6 +80,7 @@
     <Compile Include="Assets\Scripts\Player\StateMachine\States\Air\PlayerStateFall.cs" />
     <Compile Include="Assets\Scripts\System\AchievementSystem\AchievementConfig.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerBubble.cs" />
+    <Compile Include="Assets\Scripts\Map\Level\LevelRules\LevelRuleJumpSpawnStep.cs" />
     <Compile Include="Assets\Scripts\System\AchievementSystem\AchievementWindow.cs" />
     <Compile Include="Assets\Scripts\InteractableObject\ClimbingObject\IClimbingObject.cs" />
     <Compile Include="Assets\Scripts\System\InstanceFinderSystem\InstanceFinderSystem.cs" />

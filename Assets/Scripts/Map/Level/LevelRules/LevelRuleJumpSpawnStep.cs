@@ -8,26 +8,14 @@ using UnityEngine;
 
 namespace Game.Map
 {
-    public class LevelRuleJumpSpawnArrowAndStep : LevelRuleBase
+    public class LevelRuleJumpSpawnStep : LevelRuleBase
     {
         [SerializeField] private List<GameObject> _steps;
-        [SerializeField] private Arrow _arrow;
-        [SerializeField] private Transform _arrowSpawnPoint;
 
         private bool _alreadySpawned;
         private int _index;
 
-        private void OnDisable()
-        {
-            _alreadySpawned = false;
-
-            //按钮关闭规则时，销毁箭矢
-            var arrows = GameObject.FindObjectsByType<Arrow>(FindObjectsSortMode.None);
-            foreach (var item in arrows)
-            {
-                Destroy(item.gameObject);
-            }
-        }
+        private void OnDisable() { _alreadySpawned = false; }
 
         private void FixedUpdate()
         {
@@ -40,12 +28,6 @@ namespace Game.Map
             if (_playerStateMachine.CurrentState is PlayerStateJump)
             {
                 MLogger.LogWarning("规则：玩家跳跃了，触犯了规则");
-
-                //召唤箭矢
-                _alreadySpawned = true;
-                var obj = GameObject.Instantiate(_arrow);
-                obj.transform.position = _arrowSpawnPoint.position;
-                MTool.LookAt2D(obj.transform, _playerStateMachine.transform.position);
 
                 //放置新台阶
                 _index = Mathf.Clamp(_index + 2, 0, _steps.Count);
