@@ -61,6 +61,7 @@
     <Compile Include="Assets\Scripts\Map\Level\LevelRules\LevelRuleJumpSpawnArrowAndStep.cs" />
     <Compile Include="Assets\Scripts\CheckPoint\Events\RemovePlayerInteractableObjectEvent.cs" />
     <Compile Include="Assets\Scripts\Player\StateMachine\States\Ground\PlayerStateJump.cs" />
+    <Compile Include="Assets\Scripts\InteractableObject\LevelRuleToggleButton.cs" />
     <Compile Include="Assets\Scripts\InteractableObject\ClimbingObject\Rope.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerInteract.cs" />
     <Compile Include="Assets\Scripts\System\InstanceFinderSystem\InstanceFinder.cs" />
@@ -68,7 +69,6 @@
     <Compile Include="Assets\Scripts\Map\Level\LevelRules\LevelRuleTurnBackSpawnArrow.cs" />
     <Compile Include="Assets\Scripts\Stuff\Stone.cs" />
     <Compile Include="Assets\Scripts\System\AchievementSystem\IAchievementSystem.cs" />
-    <Compile Include="Assets\Scripts\Map\Level\LevelRuleToggle.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerBody.cs" />
     <Compile Include="Assets\Scripts\Map\Level\LevelInfo.cs" />
     <Compile Include="Assets\Scripts\Player\StateMachine\States\PlayerStateGround.cs" />
