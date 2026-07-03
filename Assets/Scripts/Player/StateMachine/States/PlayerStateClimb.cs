@@ -57,7 +57,10 @@ namespace Game.Player
             }
 
             //当玩家碰不到绳子时，脱离攀爬状态
-            var hit = Physics2D.OverlapCircle(StateMachine.transform.position + new Vector3(0f, -0.6f), 0.7f, LayerMask.GetMask("ClimbingObject"));
+            var hit = Physics2D.OverlapCircle(
+                StateMachine.transform.position + new Vector3(Paramaters.ClimbingDetectOffset.x, Paramaters.ClimbingDetectOffset.y),
+                Paramaters.ClimbingDetectRadius,
+                LayerMask.GetMask("ClimbingObject"));
             if (hit is null || hit.transform != climbingObject.transform)
             {
                 StateMachine.RequestChangeState(StateMachine.StateFall);

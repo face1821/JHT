@@ -69,7 +69,7 @@ namespace Maxy.GameFramework.Common.Tool
             }
 
             //开始
-            while (_selfImage.color.a > 0f)
+            while (_selfImage != null && _selfImage.color.a > 0f || _selfText != null && _selfText.color.a > 0f)
             {
                 yield return null;
 
@@ -90,7 +90,7 @@ namespace Maxy.GameFramework.Common.Tool
                 }
 
                 //结束工作
-                if (_selfImage.color.a <= 0f)
+                if (_selfImage != null && _selfImage.color.a <= 0f || _selfText != null && _selfText.color.a <= 0f)
                 {
                     if (_selfImage != null)
                         _selfImage.color = new Color(_selfImage.color.r, _selfImage.color.g, _selfImage.color.b, 0f);
@@ -137,7 +137,7 @@ namespace Maxy.GameFramework.Common.Tool
             }
 
             //开始
-            while (_selfImage.color.a < 1f)
+            while (_selfImage != null && _selfImage.color.a < 1f || _selfText != null && _selfText.color.a < 1f)
             {
                 yield return null;
 
@@ -157,7 +157,7 @@ namespace Maxy.GameFramework.Common.Tool
                     child.color = new Color(child.color.r, child.color.g, child.color.b, (Time.time - startTime) / duration);
                 }
 
-                if (_selfImage.color.a >= 1f)
+                if (_selfImage != null && _selfImage.color.a >= 1f || _selfText != null && _selfText.color.a >= 1f)
                 {
                     if (_selfImage != null)
                         _selfImage.color = new Color(_selfImage.color.r, _selfImage.color.g, _selfImage.color.b, 1f);

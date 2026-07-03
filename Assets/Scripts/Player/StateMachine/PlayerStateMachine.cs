@@ -46,8 +46,11 @@ namespace Game.Player
 
         #endregion
 
-        [ShowInInspector] public PlayerStateMachineParamaters Paramaters { get; private set; }
+        public PlayerStateMachineParamaters Paramaters => _paramaters;
         public PlayerStateBase CurrentState => _currentState;
+
+        [SerializeField] private PlayerStateMachineParamaters _paramaters;
+
         private PlayerStateBase _currentState;
 
         #region Mono方法
@@ -59,22 +62,21 @@ namespace Game.Player
             _animator = GetComponent<PlayerAnimator>();
 
             //上下文参数配置
-            Paramaters = new PlayerStateMachineParamaters();
-            Paramaters.StateMachine = this;
-            Paramaters.Body = _body;
-            Paramaters.Animator = _animator;
-            Paramaters.MoveSpeed = _body.MoveSpeed;
-            Paramaters.JumpSpeed = _body.JumpSpeed;
+            _paramaters.StateMachine = this;
+            _paramaters.Body = _body;
+            _paramaters.Animator = _animator;
+            _paramaters.MoveSpeed = _body.MoveSpeed;
+            _paramaters.JumpSpeed = _body.JumpSpeed;
 
             //状态配置
-            StateDead = new PlayerStateDead() { Paramaters = Paramaters };
-            StateIdle = new PlayerStateIdle() { Paramaters = Paramaters };
-            StateMove = new PlayerStateMove() { Paramaters = Paramaters };
-            StateCrouch = new PlayerStateCrouch() { Paramaters = Paramaters };
-            StateJump = new PlayerStateJump() { Paramaters = Paramaters };
-            StateFall = new PlayerStateFall() { Paramaters = Paramaters };
-            StateLand = new PlayerStateLand() { Paramaters = Paramaters };
-            StateClimb = new PlayerStateClimb() { Paramaters = Paramaters };
+            StateDead = new PlayerStateDead() { Paramaters = _paramaters };
+            StateIdle = new PlayerStateIdle() { Paramaters = _paramaters };
+            StateMove = new PlayerStateMove() { Paramaters = _paramaters };
+            StateCrouch = new PlayerStateCrouch() { Paramaters = _paramaters };
+            StateJump = new PlayerStateJump() { Paramaters = _paramaters };
+            StateFall = new PlayerStateFall() { Paramaters = _paramaters };
+            StateLand = new PlayerStateLand() { Paramaters = _paramaters };
+            StateClimb = new PlayerStateClimb() { Paramaters = _paramaters };
 
             ChangeState(StateIdle);
         }
@@ -111,13 +113,21 @@ namespace Game.Player
 
         private void FixedUpdate() { _currentState.OnFixedUpdate(); }
 
+        private void OnDrawGizmos()
+        {
+            if (_currentState is PlayerStateClimb)
+            {
+                Gizmos.DrawWireSphere(transform.position + new Vector3(_paramaters.ClimbingDetectOffset.x, _paramaters.ClimbingDetectOffset.y), _paramaters.ClimbingDetectRadius);
+            }
+        }
+
         #endregion
 
         #region 输入接收
 
         private void OnInputIdle()
         {
-            Paramaters.MoveDirection = 0;
+            _paramaters.MoveDirection = 0;
 
             //只有为地面移动状态时，才会请求切为站立待机动画
             if (_currentState is PlayerStateMove && _currentState is not PlayerStateJump && _currentState is not PlayerStateLand
@@ -129,8 +139,8 @@ namespace Game.Player
 
         private void OnInputMove(int moveDir)
         {
-            Paramaters.MoveDirection = moveDir;
-            Paramaters.FaceDirection = moveDir;
+            _paramaters.MoveDirection = moveDir;
+            _paramaters.FaceDirection = moveDir;
 
             //只有为地面待机状态时，才会请求切换
             if (_currentState is PlayerStateIdle && _currentState is not PlayerStateJump && _currentState is not PlayerStateLand
@@ -151,8 +161,8 @@ namespace Game.Player
 
         private void OnInputCrouch(int moveDirection)
         {
-            Paramaters.MoveDirection = moveDirection;
-            Paramaters.FaceDirection = moveDirection != 0 ? moveDirection : Paramaters.FaceDirection;
+            _paramaters.MoveDirection = moveDirection;
+            _paramaters.FaceDirection = moveDirection != 0 ? moveDirection : _paramaters.FaceDirection;
 
             //只有为地面状态时，才会请求切换
             if (_currentState is PlayerStateIdle or PlayerStateMove)
@@ -167,12 +177,12 @@ namespace Game.Player
 
         public void TryToClimb(IClimbingObject climbingObject)
         {
-            Paramaters.ClimbingObject = climbingObject;
+            _paramaters.ClimbingObject = climbingObject;
 
             //如果不能攀爬，就重置攀爬物体对象引用
             if (!RequestChangeState(StateClimb))
             {
-                Paramaters.ClimbingObject = null;
+                _paramaters.ClimbingObject = null;
             }
         }
 
@@ -180,13 +190,13 @@ namespace Game.Player
 
         #region 碰撞检测接收
 
-        private void OnCrouchHeadTouched(Collider2D collision) { Paramaters.IsCrouchHead = true; }
+        private void OnCrouchHeadTouched(Collider2D collision) { _paramaters.IsCrouchHead = true; }
 
-        private void OnCrouchHeadLeave(Collider2D collision) { Paramaters.IsCrouchHead = false;}
+        private void OnCrouchHeadLeave(Collider2D collision) { _paramaters.IsCrouchHead = false; }
 
-    private void OnGroundTouched(Collider2D collision) { Paramaters.IsGrounded = true; }
+        private void OnGroundTouched(Collider2D collision) { _paramaters.IsGrounded = true; }
 
-        private void OnGroundLeave(Collider2D collision) { Paramaters.IsGrounded = false; }
+        private void OnGroundLeave(Collider2D collision) { _paramaters.IsGrounded = false; }
 
         #endregion
 
@@ -217,7 +227,7 @@ namespace Game.Player
         {
             _currentState?.OnExit();
             _currentState = state;
-            Paramaters.CurrentState = state;
+            _paramaters.CurrentState = state;
             _currentState.OnEnter();
 
             //状态变化的事件调用，供外部使用
@@ -230,7 +240,7 @@ namespace Game.Player
                     OnIdle?.Invoke();
                     return;
                 case PlayerStateMove:
-                    OnMove?.Invoke(Paramaters.MoveDirection);
+                    OnMove?.Invoke(_paramaters.MoveDirection);
                     return;
                 case PlayerStateJump:
                     OnJump?.Invoke();

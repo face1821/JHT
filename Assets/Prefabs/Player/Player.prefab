@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 8316531034354826447}
   - component: {fileID: 8579729143213271827}
   - component: {fileID: 5818002765714750678}
+  - component: {fileID: 8767437437434213407}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -130,6 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 084966e2fa3648628934efeb3c36d6a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bubbleTransform: {fileID: 4551953642747989139}
   _moveSpeed: 5
   _jumpSpeed: 8
 --- !u!114 &5002787771726624628
@@ -158,6 +160,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _crouchHeadDetection: {fileID: 1620455262945082404}
   _groundDetection: {fileID: 8566611836305916039}
+  _paramaters:
+    StateMachine: {fileID: 0}
+    Body: {fileID: 0}
+    Animator: {fileID: 0}
+    Input: {fileID: 0}
+    MoveSpeed: 0
+    JumpSpeed: 0
+    CrouchSpeedMultiplier: 0.6
+    ClimbSpeedMultiplier: 0.3
+    IsGrounded: 1
+    IsCrouchHead: 0
+    FaceDirection: -1
+    MoveDirection: -1
+    UpDownMoveDirection: 0
+    ClimbingDetectOffset: {x: 0, y: -0.5}
+    ClimbingDetectRadius: 0.5
 --- !u!114 &8579729143213271827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,6 +201,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 101346763487415ba5d2ab948003e92e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8767437437434213407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 70572409353755330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d00970d7cfb04d57b746127806037ad5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _text: {fileID: 31695150703472795}
+  _bubble: {fileID: 954823625460716496}
 --- !u!1 &711050118006528034
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,6 +225,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4551953642747989139}
   - component: {fileID: 9110263810609375501}
+  - component: {fileID: 954823625460716496}
   - component: {fileID: 31695150703472795}
   m_Layer: 5
   m_Name: Text (TMP)
@@ -228,6 +261,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 711050118006528034}
   m_CullTransparentMesh: 1
+--- !u!114 &954823625460716496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 711050118006528034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60949909f7c7d0f42b41b10ee023acbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsFinished: 0
+  _duration: 1
+  _childImages: []
+  _childTexts: []
 --- !u!114 &31695150703472795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,7 +297,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u8FD9\u91CC\u770B\u8D77\u6765\u597D\u6DF1\uFF0C\u8FD8\u662F\u8EB2\u8FDC\u4E00\u70B9\u5427"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4580ca6cd22530e4380204bc6f3d87cc, type: 2}
   m_sharedMaterial: {fileID: 4154379978744546984, guid: 4580ca6cd22530e4380204bc6f3d87cc, type: 2}

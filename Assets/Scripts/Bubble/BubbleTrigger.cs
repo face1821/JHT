@@ -1,10 +1,9 @@
-using System;
-using Game.Player;
 using Game.Tool;
 using UnityEngine;
 
 namespace Game.Bubble
 {
+    [RequireComponent(typeof(BoxCollider2D))]
     public class BubbleTrigger : MonoBehaviour
     {
         [SerializeField] private bool _onlyOnce;

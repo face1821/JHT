@@ -10,6 +10,7 @@ namespace Game.Player
         public float MoveSpeed => _moveSpeed;
         public float JumpSpeed => _jumpSpeed;
 
+        [SerializeField] private RectTransform _bubbleTransform;
         [SerializeField] private float _moveSpeed;
         [SerializeField] private float _jumpSpeed;
 
@@ -33,6 +34,10 @@ namespace Game.Player
 
         public void SetGravityEnabled(bool toggle) { _body.gravityScale = toggle ? _defaultGravityScale : 0f; }
 
-        public void SetFaceX(int faceDirectionX) { transform.localScale = new Vector3(-faceDirectionX, 1, 1); }
+        public void SetFaceX(int faceDirectionX)
+        {
+            transform.localScale = new Vector3(-faceDirectionX, 1, 1);
+            _bubbleTransform.localScale = new Vector3(-faceDirectionX, 1, 1);
+        }
     }
 }

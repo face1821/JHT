@@ -19,8 +19,6 @@ namespace Game.Stuff
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.CompareTag("LevelRule")) return;
-
             if (!enabled) return;
 
             //碰到物体就让箭矢停下并不再接收碰撞回调
