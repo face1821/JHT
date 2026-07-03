@@ -30,6 +30,19 @@ namespace Game.Player
             bodyCollider.offset = new Vector2(bodyCollider.offset.x, 0f);
             bodyCollider.size = new Vector2(bodyCollider.size.x, 2f);
 
+            while (true)
+            {
+                //当玩家碰不到绳子时，就上升0.1，直到玩家碰到绳子
+                var hit = Physics2D.OverlapCircle(
+                    StateMachine.transform.position + new Vector3(Paramaters.ClimbingDetectOffset.x, Paramaters.ClimbingDetectOffset.y),
+                    Paramaters.ClimbingDetectRadius,
+                    LayerMask.GetMask("ClimbingObject"));
+                
+                if (hit is not null && hit.transform == Paramaters.ClimbingObject.transform) break;
+
+                StateMachine.transform.position += new Vector3(0f, 0.1f);
+            }
+
             Animator.PlayClimbIdle();
 
             MLogger.Log($"玩家：攀爬到 {Paramaters.ClimbingObject.transform.name}");
