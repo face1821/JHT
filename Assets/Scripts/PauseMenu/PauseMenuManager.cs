@@ -1,5 +1,7 @@
 using System.Collections;
 using Game.LoadingMenu;
+using Game.Map;
+using Game.Tool;
 using Maxy.GameFramework.Common.Tool;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -25,6 +27,13 @@ namespace Game.PauseMenu
         public void Pause() { _menu.SetActive(true); }
 
         public void Resume() { _menu.SetActive(false); }
+
+        public void Respawn()
+        {
+            _menu.SetActive(false);
+
+            InstanceFinder.Player.StateMachine.RequestChangeState(InstanceFinder.Player.StateMachine.StateDead);
+        }
 
         public void ReturnToMainMenu() { StartCoroutine(nameof(DelayReturnToMainMenu)); }
     }
