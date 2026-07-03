@@ -39,5 +39,9 @@ namespace Game.Player
             transform.localScale = new Vector3(-faceDirectionX, 1, 1);
             _bubbleTransform.localScale = new Vector3(-faceDirectionX, 1, 1);
         }
+
+        public void Lock() { _body.constraints = RigidbodyConstraints2D.FreezeAll; }
+
+        public void UnLock() { _body.constraints = RigidbodyConstraints2D.FreezeRotation; }
     }
 }

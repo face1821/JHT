@@ -7,15 +7,15 @@ namespace Game.Player
             base.OnEnter();
 
             Body.SetGravityEnabled(true);
-            Body.ZeroVelocityX();
+            Body.Lock();
             Animator.PlayIdle();
         }
 
-        public override void OnFixedUpdate()
+        public override void OnExit()
         {
-            base.OnFixedUpdate();
+            base.OnExit();
 
-            Body.ZeroVelocityX();
+            Body.UnLock();
         }
     }
 }

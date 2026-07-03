@@ -1032,7 +1032,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 87719553}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 97ab0c5d042bb154cbcf654569832b2b, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1899,7 +1899,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -1674534722306669986, guid: 311251dfd53e3b54b8970cfac5dab1c3, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -992609428953004339, guid: 311251dfd53e3b54b8970cfac5dab1c3, type: 3}
       propertyPath: m_Layer
@@ -1919,7 +1919,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -593441720546853400, guid: 311251dfd53e3b54b8970cfac5dab1c3, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -392422149939377241, guid: 311251dfd53e3b54b8970cfac5dab1c3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1979,7 +1979,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2641876353344933165, guid: 311251dfd53e3b54b8970cfac5dab1c3, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3048215741680653317, guid: 311251dfd53e3b54b8970cfac5dab1c3, type: 3}
       propertyPath: m_Layer
@@ -2133,6 +2133,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8544044594656283014, guid: 311251dfd53e3b54b8970cfac5dab1c3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 9.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 8544044594656283014, guid: 311251dfd53e3b54b8970cfac5dab1c3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.25
+      objectReference: {fileID: 0}
     - target: {fileID: 8694371593529232738, guid: 311251dfd53e3b54b8970cfac5dab1c3, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -2273,7 +2281,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 266467426}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 97ab0c5d042bb154cbcf654569832b2b, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -3896,7 +3904,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 584672852}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 97ab0c5d042bb154cbcf654569832b2b, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -5591,7 +5599,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 775774243}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 97ab0c5d042bb154cbcf654569832b2b, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -5981,7 +5989,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 821737397}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 97ab0c5d042bb154cbcf654569832b2b, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -6319,7 +6327,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 1014999814}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 97ab0c5d042bb154cbcf654569832b2b, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -6572,7 +6580,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 1066544062}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 97ab0c5d042bb154cbcf654569832b2b, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -8604,7 +8612,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 1430677487}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 97ab0c5d042bb154cbcf654569832b2b, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -8673,7 +8681,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 1432659917}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 97ab0c5d042bb154cbcf654569832b2b, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -9789,7 +9797,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 1656377129}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 97ab0c5d042bb154cbcf654569832b2b, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -10043,7 +10051,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 1670346159}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 97ab0c5d042bb154cbcf654569832b2b, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -11258,7 +11266,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 1791205684}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 97ab0c5d042bb154cbcf654569832b2b, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -11325,7 +11333,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 1793527469}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 97ab0c5d042bb154cbcf654569832b2b, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -11436,7 +11444,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 1906056503}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 97ab0c5d042bb154cbcf654569832b2b, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -11788,7 +11796,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 1927102292}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 97ab0c5d042bb154cbcf654569832b2b, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -12195,7 +12203,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 2038888658}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 97ab0c5d042bb154cbcf654569832b2b, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -12305,7 +12313,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 2074574078}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 97ab0c5d042bb154cbcf654569832b2b, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

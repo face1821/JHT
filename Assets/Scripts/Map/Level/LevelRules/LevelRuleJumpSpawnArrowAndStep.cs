@@ -40,15 +40,18 @@ namespace Game.Map
                 MLogger.LogWarning("规则：玩家跳跃了，触犯了规则");
 
                 //召唤箭矢
+                _alreadySpawned = true;
                 var obj = GameObject.Instantiate(_arrow);
                 obj.transform.position = _arrowSpawnPoint.position;
                 MTool.LookAt2D(obj.transform, _playerStateMachine.transform.position);
 
                 //放置新台阶
-                if (_index < _steps.Count)
+                if (_index + 2 < _steps.Count)
                 {
+                    //一次性加俩台阶，快一点
                     _steps.ForEach(x => x.SetActive(false));
-                    _steps[_index++].SetActive(true);
+                    _index += 2;
+                    _steps[_index].SetActive(true);
                 }
             }
         }
