@@ -48,13 +48,10 @@ namespace Game.Map
                 MTool.LookAt2D(obj.transform, _playerStateMachine.transform.position);
 
                 //放置新台阶
+                //一次性加俩台阶，快一点
                 _index = Mathf.Clamp(_index + 2, 0, _steps.Count);
-                if (_index < _steps.Count)
-                {
-                    //一次性加俩台阶，快一点
-                    _steps.ForEach(x => x.SetActive(false));
-                    _steps[_index].SetActive(true);
-                }
+                _steps.ForEach(x => x.SetActive(false));
+                _steps[_index].SetActive(true);
             }
         }
     }

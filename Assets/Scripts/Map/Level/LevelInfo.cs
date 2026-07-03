@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Maxy.GameFramework.Common.System;
 using UnityEngine;
 
 namespace Game.Map

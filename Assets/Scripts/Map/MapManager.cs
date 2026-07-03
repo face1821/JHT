@@ -26,7 +26,7 @@ namespace Game.Map
 
         private void OnDisable() { PlayerStateMachine.OnDead -= OnPlayerDead; }
 
-        private void Start()
+        private void Awake()
         {
             //渐入场景
             _overlay.PlayFadeIn();

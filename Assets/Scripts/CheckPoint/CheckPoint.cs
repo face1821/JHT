@@ -33,6 +33,7 @@ namespace Game.CheckPoint
         private void Start()
         {
             if (ES3.Load("LastPassedLevel", 0) - 1 < currentLevelInfo.LevelIndex) return;
+            MLogger.LogWarning($"{currentLevelInfo.name} 存档点{currentLevelInfo.LevelIndex + 1}：发现最新存档点是第{ES3.Load("LastPassedLevel", 0)}个，已经存档过自己了", this);
 
             gameObject.SetActive(false);
             EventBus.Publish(new RemovePlayerInteractableObjectEvent(this));

@@ -72,12 +72,14 @@
     <Compile Include="Assets\Scripts\Stuff\Stone.cs" />
     <Compile Include="Assets\Scripts\System\AchievementSystem\IAchievementSystem.cs" />
     <Compile Include="Assets\Scripts\Stuff\DeadAreaTrap.cs" />
+    <Compile Include="Assets\Scripts\Stuff\StairDisableColliderWhenDetect.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerBody.cs" />
     <Compile Include="Assets\Scripts\Map\Level\LevelRules\LevelRuleJumpDeadAndCrouchSpawnStep.cs" />
     <Compile Include="Assets\Scripts\Map\Level\LevelInfo.cs" />
     <Compile Include="Assets\Scripts\Player\StateMachine\States\PlayerStateGround.cs" />
     <Compile Include="Assets\Scripts\Player\StateMachine\States\PlayerStateClimb.cs" />
     <Compile Include="Assets\Scripts\System\InstanceFinderSystem\IInstanceFinderSystem.cs" />
+    <Compile Include="Assets\Scripts\Map\Level\LevelRules\LevelRuleDeadWhenTouchGroundAndCrouchDespawnStep.cs" />
     <Compile Include="Assets\Scripts\Player\StateMachine\States\Air\PlayerStateFall.cs" />
     <Compile Include="Assets\Scripts\System\AchievementSystem\AchievementConfig.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerBubble.cs" />

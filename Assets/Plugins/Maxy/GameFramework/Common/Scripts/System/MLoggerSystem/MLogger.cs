@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using UnityEngine;
 using Debug = UnityEngine.Debug;
 
 namespace Maxy.GameFramework.Common.System
@@ -9,12 +10,12 @@ namespace Maxy.GameFramework.Common.System
     public static class MLogger
     {
         [Conditional("UNITY_EDITOR")]
-        public static void Log(object message) { Debug.Log(message); }
+        public static void Log(object message, Object ctx = null) { Debug.Log(message, ctx); }
 
         [Conditional("UNITY_EDITOR")]
-        public static void LogWarning(object message) { Debug.LogWarning(message); }
+        public static void LogWarning(object message, Object ctx = null) { Debug.LogWarning(message, ctx); }
 
         [Conditional("UNITY_EDITOR")]
-        public static void LogError(object message) { Debug.LogError(message); }
+        public static void LogError(object message, Object ctx = null) { Debug.LogError(message, ctx); }
     }
 }
