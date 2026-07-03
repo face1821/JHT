@@ -12799,6 +12799,14 @@ PrefabInstance:
       propertyPath: m_Size.x
       value: 0.85
       objectReference: {fileID: 0}
+    - target: {fileID: 306064028300589105, guid: b6971e342c2db084aa8f58a1442c5dfa, type: 3}
+      propertyPath: m_Size.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 306064028300589105, guid: b6971e342c2db084aa8f58a1442c5dfa, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.45
+      objectReference: {fileID: 0}
     - target: {fileID: 6851226502207279401, guid: b6971e342c2db084aa8f58a1442c5dfa, type: 3}
       propertyPath: m_Camera
       value: 
