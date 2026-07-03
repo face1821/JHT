@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Game.Player;
 using Maxy.GameFramework.Common.System;
