@@ -79,8 +79,8 @@ namespace Game.Player
             //输入的优先级由这里的事件发送顺序来表现
             IsMoveLeft = Input.GetKey(KeyCode.A);
             IsMoveRight = Input.GetKey(KeyCode.D);
-            IsJumpHeld = Input.GetKey(KeyCode.Space);
-            IsCrouchHeld = Input.GetKey(KeyCode.LeftShift);
+            IsJumpHeld = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.Space);
+            IsCrouchHeld = Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.LeftShift);
 
             //交互
             if (Input.GetKeyDown(KeyCode.E))
