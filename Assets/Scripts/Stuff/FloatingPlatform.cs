@@ -2,16 +2,25 @@ using UnityEngine;
 
 namespace Game.Stuff
 {
-    [RequireComponent(typeof(BoxCollider2D), typeof(Rigidbody2D))]
+    [RequireComponent(typeof(Collider2D), typeof(Rigidbody2D))]
     public class FloatingPlatform : MonoBehaviour
     {
         [SerializeField] private bool _enableFloating;
         [SerializeField] private float _floatingSpeed;
+        [SerializeField] private int _awakeFloatingDirection;
 
         private Rigidbody2D _body;
         private float _currentSpeed;
 
-        private void Awake() { _body = GetComponent<Rigidbody2D>(); }
+        private void Awake()
+        {
+            _body = GetComponent<Rigidbody2D>();
+
+            if (_awakeFloatingDirection != 0)
+            {
+                _currentSpeed = _awakeFloatingDirection > 0 ? _floatingSpeed : -_floatingSpeed;
+            }
+        }
 
         private void FixedUpdate()
         {

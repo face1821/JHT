@@ -6,9 +6,8 @@ using UnityEngine;
 
 namespace Game.Map
 {
-    public class LevelRuleDeadWhenTouchGroundAndCrouchDespawnStep : LevelRuleBase
+    public class LevelRuleCrouchDespawnStep : LevelRuleBase
     {
-        [SerializeField] private float _groundHeight;
         [SerializeField] private List<GameObject> _steps;
 
         private bool _alreadySpawned;
@@ -19,13 +18,6 @@ namespace Game.Map
         private void FixedUpdate()
         {
             if (!_runing) return;
-
-            //当玩家站在地面时，死亡
-            if (_playerStateMachine.transform.position.y <= _groundHeight)
-            {
-                MLogger.LogWarning("规则：玩家站在地面了，触犯了规则");
-                _playerStateMachine.Die();
-            }
 
             if (_playerStateMachine.CurrentState is PlayerStateIdle) _alreadySpawned = false;
             if (_alreadySpawned) return;
