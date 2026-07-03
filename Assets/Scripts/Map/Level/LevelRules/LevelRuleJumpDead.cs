@@ -3,7 +3,7 @@ using Maxy.GameFramework.Common.System;
 
 namespace Game.Map
 {
-    public class LevelRule1 : LevelRuleBase
+    public class LevelRuleJumpDead : LevelRuleBase
     {
         private void FixedUpdate()
         {

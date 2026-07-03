@@ -2438,7 +2438,7 @@ GameObject:
   - component: {fileID: 577575039}
   - component: {fileID: 577575040}
   m_Layer: 0
-  m_Name: Level2
+  m_Name: LevelJumpSpawnStone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3963,9 +3963,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canBeReset: 1
   _canRuleBeClosed: 1
+  _levelRules:
+  - {fileID: 1081204097}
+  - {fileID: 577575040}
   _activeObjs: []
   _inactiveObjs:
   - {fileID: 10247525}
+  _ruleLights:
+  - {fileID: 1277647805}
+  - {fileID: 2091168156}
+  - {fileID: 139626994}
 --- !u!1 &803757760 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5867206772226685576, guid: 311251dfd53e3b54b8970cfac5dab1c3, type: 3}
@@ -4017,8 +4024,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canBeReset: 0
   _canRuleBeClosed: 0
+  _levelRules: []
   _activeObjs: []
   _inactiveObjs: []
+  _ruleLights: []
 --- !u!1 &821737397 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7918759627106196436, guid: 311251dfd53e3b54b8970cfac5dab1c3, type: 3}
@@ -4603,7 +4612,7 @@ GameObject:
   - component: {fileID: 1081204099}
   - component: {fileID: 1081204097}
   m_Layer: 0
-  m_Name: Level1
+  m_Name: LevelJumpDead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

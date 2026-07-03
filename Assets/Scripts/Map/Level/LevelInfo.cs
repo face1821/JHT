@@ -10,14 +10,13 @@ namespace Game.Map
 
         [SerializeField] private bool _canBeReset;
         [SerializeField] private bool _canRuleBeClosed;
+        [SerializeField] private List<LevelRuleBase> _levelRules;
         [SerializeField] private List<GameObject> _activeObjs;
         [SerializeField] private List<GameObject> _inactiveObjs;
+        [SerializeField] private List<GameObject> _ruleLights;
 
         private MapManager _mapManager;
         private int _levelIndex;
-        private LevelRuleBase _levelRule;
-
-        private void Awake() { _levelRule = GetComponent<LevelRuleBase>(); }
 
         public void Init(MapManager mapManager)
         {
@@ -52,13 +51,32 @@ namespace Game.Map
             ES3.Save($"LastPassedLevel", _levelIndex);
         }
 
-        public void ActiveLevel() { _levelRule.enabled = true; }
+        public void ActiveLevel()
+        {
+            foreach (var item in _levelRules)
+            {
+                item.enabled = true;
+            }
+
+            foreach (var item in _ruleLights)
+            {
+                item.SetActive(true);
+            }
+        }
 
         public void InactiveLevel()
         {
             if (!_canRuleBeClosed) return;
 
-            _levelRule.enabled = false;
+            foreach (var item in _levelRules)
+            {
+                item.enabled = false;
+            }
+
+            foreach (var item in _ruleLights)
+            {
+                item.SetActive(false);
+            }
         }
     }
 }

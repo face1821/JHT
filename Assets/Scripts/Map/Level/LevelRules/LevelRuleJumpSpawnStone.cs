@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Game.Map
 {
-    public class LevelRule2 : LevelRuleBase
+    public class LevelRuleJumpSpawnStone : LevelRuleBase
     {
         [SerializeField] private GameObject _stone;
 
