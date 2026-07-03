@@ -42,16 +42,7 @@ namespace Game.MainMenu
         public void NewGame()
         {
             //先删除所有关卡和所有成就的记录
-            for (int i = 0; i < LevelCount; i++)
-            {
-                ES3.Save($"Level-{i + 1}", false);
-            }
-
-            var achievementConfig = Resources.Load<AchievementConfig>("Datas/AchievementConfig");
-            foreach (var item in achievementConfig.Achievements)
-            {
-                ES3.Save($"Achievement-{item.Name}", false);
-            }
+            ES3.DeleteDirectory("");
 
             //然后进入地图
             MapManager.IsNewGame = true;
