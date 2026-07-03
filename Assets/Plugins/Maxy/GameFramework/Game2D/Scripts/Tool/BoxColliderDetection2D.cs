@@ -68,7 +68,12 @@ namespace Maxy.GameFramework.Game2D.Tool
 
             Touched = false;
             _ColliderArrayCache[0] = null;
-            OnLeave?.Invoke(other);
+
+            //退出时检查是否确实已经没有碰撞物体了
+            if (!Detect())
+            {
+                OnLeave?.Invoke(other);
+            }
         }
 
         private void OnCollisionEnter2D(Collision2D other)
@@ -98,7 +103,12 @@ namespace Maxy.GameFramework.Game2D.Tool
 
             Touched = false;
             _ColliderArrayCache[0] = null;
-            OnLeave?.Invoke(other.collider);
+
+            //退出时检查是否确实已经没有碰撞物体了
+            if (!Detect())
+            {
+                OnLeave?.Invoke(other.collider);
+            }
         }
     }
 }

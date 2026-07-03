@@ -43,12 +43,13 @@ namespace Game.Map
             //ClosePassedLevels();
 
             //将玩家传送到上一次刚通关的关卡的通关位置
-            var lastPassedLevelIndex = ES3.Load("LastPassedLevel", -1);
+            var lastPassedLevelIndex = ES3.Load("LastPassedLevel", -1) - 1;
 
             //如果没有存档点位置，就不管了
-            if (lastPassedLevelIndex == -1) return;
+            if (lastPassedLevelIndex < 0) return;
 
             //传送到存档点位置
+            MLogger.LogWarning($"系统：玩家有记录，传送到第{lastPassedLevelIndex + 1}个存档点");
             InstanceFinder.Player.transform.position = _levelInfos[lastPassedLevelIndex].SpawnPos;
         }
 
