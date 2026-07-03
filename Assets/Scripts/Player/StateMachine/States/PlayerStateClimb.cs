@@ -22,7 +22,7 @@ namespace Game.Player
 
             int faceToClimbObject = (Paramaters.ClimbingObject.transform.position.x - InstanceFinder.Player.transform.position.x) > 0f ? 1 : -1;
             var offset = -faceToClimbObject * 0.5f;
-            Body.SetFaceX((int)faceToClimbObject);
+            Body.SetFaceX(faceToClimbObject);
             Body.SetPositionX(Paramaters.ClimbingObject.transform.position.x + offset);
 
             //设置身体碰撞大小
@@ -33,13 +33,18 @@ namespace Game.Player
             float fixDistance = 0f;
             while (true)
             {
-                //当玩家碰不到绳子时，就上升0.1，直到玩家碰到绳子
+                //当玩家碰不到攀爬物体时，就上升0.1，直到玩家碰到攀爬物体
                 var hit = Physics2D.OverlapCircle(
                     StateMachine.transform.position + new Vector3(Paramaters.ClimbingDetectOffset.x, Paramaters.ClimbingDetectOffset.y + fixDistance),
                     Paramaters.ClimbingDetectRadius,
                     LayerMask.GetMask("ClimbingObject"));
                 
                 if (hit is not null && hit.transform == Paramaters.ClimbingObject.transform) break;
+                if (fixDistance > 5f)
+                {
+                    MLogger.LogError("状态机：何意味？没有攀爬物体怎么还进入攀爬状态了？");
+                    break;
+                }
 
                 fixDistance += 0.1f;
             }
