@@ -3365,6 +3365,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: -3676737983784576259, guid: 68af4666f79c03841a50a70039a96b0a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: -3454279784106847942, guid: 68af4666f79c03841a50a70039a96b0a, type: 3}
       propertyPath: m_LocalScale.y
       value: 3
@@ -3576,6 +3580,14 @@ PrefabInstance:
     - target: {fileID: 3249467220344537017, guid: 68af4666f79c03841a50a70039a96b0a, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3312358752263667970, guid: 68af4666f79c03841a50a70039a96b0a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3312358752263667970, guid: 68af4666f79c03841a50a70039a96b0a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7.1
       objectReference: {fileID: 0}
     - target: {fileID: 3607386062171637947, guid: 68af4666f79c03841a50a70039a96b0a, type: 3}
       propertyPath: m_Layer
@@ -8473,11 +8485,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3848507667002041037, guid: 093a85efb91337d4fbff30a779b016b3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -20.250015
+      value: -20.24
       objectReference: {fileID: 0}
     - target: {fileID: 3848507667002041037, guid: 093a85efb91337d4fbff30a779b016b3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.25
+      value: -0.24
       objectReference: {fileID: 0}
     - target: {fileID: 3848507667002041037, guid: 093a85efb91337d4fbff30a779b016b3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -16238,18 +16250,6 @@ PrefabInstance:
     - target: {fileID: 70572409353755330, guid: b6971e342c2db084aa8f58a1442c5dfa, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 306064028300589105, guid: b6971e342c2db084aa8f58a1442c5dfa, type: 3}
-      propertyPath: m_Size.x
-      value: 0.85
-      objectReference: {fileID: 0}
-    - target: {fileID: 306064028300589105, guid: b6971e342c2db084aa8f58a1442c5dfa, type: 3}
-      propertyPath: m_Size.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 306064028300589105, guid: b6971e342c2db084aa8f58a1442c5dfa, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.45
       objectReference: {fileID: 0}
     - target: {fileID: 6851226502207279401, guid: b6971e342c2db084aa8f58a1442c5dfa, type: 3}
       propertyPath: m_Camera

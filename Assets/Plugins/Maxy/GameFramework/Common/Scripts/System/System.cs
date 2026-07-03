@@ -17,6 +17,7 @@ namespace Maxy.GameFramework.Common.System
             if (root == null)
             {
                 root = new GameObject("SystemList");
+                root.tag = "SystemList";
                 GameObject.DontDestroyOnLoad(root);
             }
 
