@@ -1,3 +1,4 @@
+using System.Threading;
 using Game.Player;
 using Game.Tool;
 using Maxy.GameFramework.Common.System;
@@ -9,6 +10,7 @@ namespace Game.Map
     public class LevelRuleBase : MonoBehaviour
     {
         protected PlayerStateMachine _playerStateMachine;
+        protected bool _runing;
 
         private void Start() { _playerStateMachine = InstanceFinder.Player.StateMachine; }
 
@@ -17,7 +19,7 @@ namespace Game.Map
             if (!other.CompareTag("Player")) return;
 
             MLogger.Log($"{name}：玩家进入规则区域");
-            enabled = true;
+            _runing = true;
         }
 
         private void OnTriggerExit2D(Collider2D other)
@@ -25,7 +27,7 @@ namespace Game.Map
             if (!other.CompareTag("Player")) return;
 
             MLogger.Log($"{name}：玩家离开规则区域");
-            enabled = false;
+            _runing = false;
         }
 
         public virtual void ResetRule() { }

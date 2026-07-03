@@ -7,6 +7,8 @@ namespace Game.Map
     {
         private void FixedUpdate()
         {
+            if (!_runing) return;
+
             //当玩家处于跳跃状态时，死亡
             if (_playerStateMachine.CurrentState is PlayerStateJump)
             {

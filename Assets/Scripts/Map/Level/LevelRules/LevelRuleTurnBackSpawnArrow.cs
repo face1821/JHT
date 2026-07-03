@@ -38,6 +38,8 @@ namespace Game.Map
 
         private void FixedUpdate()
         {
+            if (!_runing) return;
+
             //当玩家转向时，召唤箭矢
             if (_playerStateMachine.Paramaters.FaceDirection == -_lastFaceDirection)
             {

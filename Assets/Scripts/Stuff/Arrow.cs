@@ -19,10 +19,10 @@ namespace Game.Stuff
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.CompareTag("LevelRule") || other.name == "Arrow") return;
-            
+            if (other.CompareTag("LevelRule") || other.name == "Arrow (Clone)") return;
+
             if (!enabled) return;
-            
+
             //碰到物体就让箭矢停下并不再接收碰撞回调，并在5s后销毁自己
             enabled = false;
             Destroy(gameObject, 5f);

@@ -3137,7 +3137,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 577575035}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 43e7b72207944e87917187cb80d6a754, type: 3}
   m_Name: 
@@ -6009,7 +6009,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1081204093}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9ebd3a4f8c6f48af8dee0762d86887e8, type: 3}
   m_Name: 
@@ -6882,7 +6882,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1291706216}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 73114a829a4f45b595187c415a853267, type: 3}
   m_Name: 
@@ -7337,11 +7337,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8166404364641043752, guid: bc1b8aa2b088f904386be0a2be225ad0, type: 3}
       propertyPath: m_SortingLayer
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8166404364641043752, guid: bc1b8aa2b088f904386be0a2be225ad0, type: 3}
       propertyPath: m_SortingLayerID
-      value: 0
+      value: 1158265661
       objectReference: {fileID: 0}
     - target: {fileID: 8544044594656283014, guid: bc1b8aa2b088f904386be0a2be225ad0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7556,7 +7556,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.03660202, y: 0.64661705}
+  m_Offset: {x: -0.22978973, y: 0.7206148}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -7567,7 +7567,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.114769, y: 1.7087214}
+  m_Size: {x: 3.6475525, y: 1.8567169}
   m_EdgeRadius: 0
 --- !u!1 &1425178743
 GameObject:
@@ -11377,10 +11377,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 68828084}
     m_Modifications:
-    - target: {fileID: 31695150703472795, guid: b6971e342c2db084aa8f58a1442c5dfa, type: 3}
-      propertyPath: m_text
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 70572409353755330, guid: b6971e342c2db084aa8f58a1442c5dfa, type: 3}
       propertyPath: m_Name
       value: Player

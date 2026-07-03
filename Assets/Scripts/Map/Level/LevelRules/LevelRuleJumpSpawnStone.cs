@@ -12,6 +12,8 @@ namespace Game.Map
 
         private void FixedUpdate()
         {
+            if (!_runing) return;
+
             //如果玩家跳跃状态过去了，就重置
             if (_playerStateMachine.CurrentState is PlayerStateFall)
             {
