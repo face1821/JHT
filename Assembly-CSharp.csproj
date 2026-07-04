@@ -45,9 +45,11 @@
     <Analyzer Include="D:\Unity2022\2022.3.62f3\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Player\Events\PlayMoveOnGroundEvent.cs" />
     <Compile Include="Assets\Scripts\Player\StateMachine\States\Ground\PlayerStateIdle.cs" />
     <Compile Include="Assets\Scripts\Map\Level\LevelRules\LevelRuleJumpSpawnStone.cs" />
     <Compile Include="Assets\Scripts\Player\StateMachine\States\PlayerStateAir.cs" />
+    <Compile Include="Assets\Scripts\Player\Events\PlayMoveOnStairEvent.cs" />
     <Compile Include="Assets\Scripts\LoadingMenu\LoadingMenuManager.cs" />
     <Compile Include="Assets\Scripts\InteractableObject\IInteractableObject.cs" />
     <Compile Include="Assets\Scripts\Map\Level\LevelRules\LevelRuleSpawnSpike.cs" />
@@ -70,9 +72,11 @@
     <Compile Include="Assets\Scripts\System\InstanceFinderSystem\InstanceFinder.cs" />
     <Compile Include="Assets\Scripts\Player\StateMachine\States\Ground\PlayerStateCrouch.cs" />
     <Compile Include="Assets\Scripts\Map\Level\LevelRules\LevelRuleTurnBackSpawnArrow.cs" />
+    <Compile Include="Assets\Scripts\Player\Events\PlayMoveOnPlatformEvent.cs" />
     <Compile Include="Assets\Scripts\Map\Level\LevelRules\LevelRuleCrouchDespawnStep.cs" />
     <Compile Include="Assets\Scripts\Stuff\Stone.cs" />
     <Compile Include="Assets\Scripts\System\AchievementSystem\IAchievementSystem.cs" />
+    <Compile Include="Assets\Scripts\Player\FootStepAudioType.cs" />
     <Compile Include="Assets\Scripts\Stuff\DeadAreaTrap.cs" />
     <Compile Include="Assets\Scripts\Stuff\StairDisableColliderWhenDetect.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerBody.cs" />
@@ -83,6 +87,7 @@
     <Compile Include="Assets\Scripts\System\InstanceFinderSystem\IInstanceFinderSystem.cs" />
     <Compile Include="Assets\Scripts\Map\Level\LevelRules\LevelRuleDeadWhenTouchGroundAndCrouchDespawnStep.cs" />
     <Compile Include="Assets\Scripts\Player\StateMachine\States\Air\PlayerStateFall.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerAudio.cs" />
     <Compile Include="Assets\Scripts\System\AchievementSystem\AchievementConfig.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerBubble.cs" />
     <Compile Include="Assets\Scripts\Map\Level\LevelRules\LevelRuleJumpSpawnStep.cs" />

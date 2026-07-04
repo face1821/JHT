@@ -9,6 +9,7 @@ namespace Game.Player
         public PlayerStateBase CurrentState => Paramaters.CurrentState;
         public PlayerBody Body => Paramaters.Body;
         public PlayerAnimator Animator => Paramaters.Animator;
+        public PlayerAudio AudioPlayer => Paramaters.AudioPlayer;
 
         public virtual void OnEnter() { }
         public virtual void OnUpdate() { }

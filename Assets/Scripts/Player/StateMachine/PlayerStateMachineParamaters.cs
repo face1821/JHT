@@ -14,6 +14,7 @@ namespace Game.Player
         [HideInInspector] public PlayerStateBase CurrentState;
         [HideInInspector] public PlayerBody Body;
         [HideInInspector] public PlayerAnimator Animator;
+        [HideInInspector] public PlayerAudio AudioPlayer;
         [HideInInspector] public PlayerInput Input;
 
         [Header("基本属性")]
@@ -24,6 +25,7 @@ namespace Game.Player
 
         [Header("布尔参数")]
         [LabelText("地面标记"), ReadOnly] public bool IsGrounded = true;
+        [LabelText("地面类型"), ReadOnly] public FootStepAudioType GroundStandingType;
         [LabelText("下蹲头顶检测标记"), ReadOnly] public bool IsCrouchHead;
 
         [Header("整数参数")]

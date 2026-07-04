@@ -43,6 +43,7 @@ namespace Game.Player
         [SerializeField] private BoxColliderDetection2D _groundDetection;
         private PlayerBody _body;
         private PlayerAnimator _animator;
+        private PlayerAudio _audioPlayer;
 
         #endregion
 
@@ -60,11 +61,13 @@ namespace Game.Player
             //组件获取
             _body = GetComponent<PlayerBody>();
             _animator = GetComponent<PlayerAnimator>();
+            _audioPlayer = GetComponent<PlayerAudio>();
 
             //上下文参数配置
             _paramaters.StateMachine = this;
             _paramaters.Body = _body;
             _paramaters.Animator = _animator;
+            _paramaters.AudioPlayer = _audioPlayer;
             _paramaters.MoveSpeed = _body.MoveSpeed;
             _paramaters.JumpSpeed = _body.JumpSpeed;
 
@@ -196,7 +199,17 @@ namespace Game.Player
 
         private void OnCrouchHeadLeave(Collider2D collision) { _paramaters.IsCrouchHead = false; }
 
-        private void OnGroundTouched(Collider2D collision) { _paramaters.IsGrounded = true; }
+        private void OnGroundTouched(Collider2D collision)
+        {
+            _paramaters.IsGrounded = true;
+
+            if (collision.CompareTag("Platform"))
+                _paramaters.GroundStandingType = FootStepAudioType.Platform;
+            else if (collision.CompareTag("Stair"))
+                _paramaters.GroundStandingType = FootStepAudioType.Stair;
+            else
+                _paramaters.GroundStandingType = FootStepAudioType.Ground;
+        }
 
         private void OnGroundLeave(Collider2D collision) { _paramaters.IsGrounded = false; }
 

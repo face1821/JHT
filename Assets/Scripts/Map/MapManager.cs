@@ -1,14 +1,10 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using Game.LoadingMenu;
 using Game.Player;
 using Game.Tool;
 using Maxy.GameFramework.Common.System;
 using Maxy.GameFramework.Common.Tool;
 using UnityEngine;
-using UnityEngine.Android;
-using UnityEngine.SceneManagement;
 using UnityEngine.Video;
 
 namespace Game.Map
@@ -39,7 +35,7 @@ namespace Game.Map
             if (IsNewGame)
             {
                 IsNewGame = false;
-                
+
                 //但这表示这是新游戏，所以开启进入新游戏的剧情
                 StartCoroutine(nameof(ShowOpeningStory));
 
@@ -56,7 +52,7 @@ namespace Game.Map
             var lastPassedLevelIndex = ES3.Load("LastPassedLevel", -1) - 1;
 
             //如果没有存档点位置，就不管了
-            if (lastPassedLevelIndex < 0)return;
+            if (lastPassedLevelIndex < 0) return;
 
             //传送到存档点位置
             MLogger.LogWarning($"系统：玩家有记录，传送到第{lastPassedLevelIndex + 1}个存档点");
@@ -117,7 +113,7 @@ namespace Game.Map
         {
             //禁用玩家输入
             PlayerInput.Instance.enabled = false;
-            
+
             //显示开场剧情CG
             _storyCanvas.SetActive(true);
             _openingStoryVideoPlayer.gameObject.SetActive(true);

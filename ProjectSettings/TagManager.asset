@@ -9,6 +9,8 @@ TagManager:
   - LevelRule
   - MapManager
   - SceneOverlay
+  - Platform
+  - Stair
   layers:
   - Default
   - TransparentFX

@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 8579729143213271827}
   - component: {fileID: 5818002765714750678}
   - component: {fileID: 8767437437434213407}
+  - component: {fileID: 869121037664831489}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -119,7 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be6693cd6c204dad99eb68e38142340e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _vm: {fileID: 8090582254204848565}
+  _vCam: {fileID: 8090582254204848565}
 --- !u!114 &5258548275298373650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,6 +217,50 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _text: {fileID: 31695150703472795}
   _bubble: {fileID: 954823625460716496}
+--- !u!114 &869121037664831489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 70572409353755330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e33b0d6957c4c2aafebf55958f9a337, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _deadClip: {fileID: 8300000, guid: bde5c84b62ffb3847a6f0bfc57b903a8, type: 3}
+  _deadTransformClip: {fileID: 8300000, guid: ac4ecbce0eff6c6428ef2d8271a01991, type: 3}
+  _jumpClip: {fileID: 8300000, guid: 59a78274f4d36164d938eb5b36318581, type: 3}
+  _landClip: {fileID: 8300000, guid: 41175bbdf601d4e47b39f2d372c1f03b, type: 3}
+  _climbRopeClipList:
+  - {fileID: 8300000, guid: 06c038014b4b61248b696d3f7999ff6c, type: 3}
+  - {fileID: 8300000, guid: 9f49132d3d3b53b4385ab58482915b20, type: 3}
+  _crouchMoveClipList:
+  - {fileID: 8300000, guid: e33c61c47e2a353449f180322a172de5, type: 3}
+  - {fileID: 8300000, guid: e748f11a5b2759141827e2078c47f9c1, type: 3}
+  - {fileID: 8300000, guid: a792e54f46a0fda40b1519fc0a602a20, type: 3}
+  - {fileID: 8300000, guid: c9d58c4606038ae49885f366c69e7a1f, type: 3}
+  _moveGroundClipList:
+  - {fileID: 8300000, guid: 82a8b043877ddba4a8138ee281b38bc1, type: 3}
+  - {fileID: 8300000, guid: 9ef380dda0f3c62489898b65546ebfc4, type: 3}
+  - {fileID: 8300000, guid: 6720e9ad210bcc84bb2f521e0e695309, type: 3}
+  - {fileID: 8300000, guid: 86a976c2d3f790d469c5206d16cd4645, type: 3}
+  _movePlatformClipList:
+  - {fileID: 8300000, guid: 102f8568ae77cc34eb3182fdf98e31a3, type: 3}
+  - {fileID: 8300000, guid: 448f48c1ed3251a438e775025cf1b199, type: 3}
+  - {fileID: 8300000, guid: d2a3bea397e6afc488dfea4eba312bc1, type: 3}
+  - {fileID: 8300000, guid: ef4838d19b12dd2458d1d61440574453, type: 3}
+  - {fileID: 8300000, guid: 8d7bf63039b3fd74b81a0a78e74a871f, type: 3}
+  - {fileID: 8300000, guid: d06f03492e2b8ed4397337c5f49622ee, type: 3}
+  - {fileID: 8300000, guid: 14979fd9f6a3dd24ba609b3b92655b4e, type: 3}
+  _moveStairClipList:
+  - {fileID: 8300000, guid: a77b1e3516a4e764591ebee17cd527ee, type: 3}
+  - {fileID: 8300000, guid: 76be4045949848840b4cefe262ed1d0b, type: 3}
+  - {fileID: 8300000, guid: c2f6b0239d3375942b5abab9885bdcad, type: 3}
+  - {fileID: 8300000, guid: c6d30fde83836dd49b07eb3758446136, type: 3}
+  - {fileID: 8300000, guid: d1e72ee312e564242aef26b41365810c, type: 3}
+  - {fileID: 8300000, guid: 9c66978c59d29e843a2e1020a077e1bc, type: 3}
 --- !u!1 &711050118006528034
 GameObject:
   m_ObjectHideFlags: 0
@@ -590,6 +635,7 @@ GameObject:
   - component: {fileID: 4711570066342235579}
   - component: {fileID: 712687825486605924}
   - component: {fileID: 8505800618675727223}
+  - component: {fileID: 3479477879342260372}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -667,6 +713,23 @@ MonoBehaviour:
   m_MaximumFOV: 60
   m_MinimumOrthoSize: 1
   m_MaximumOrthoSize: 5000
+--- !u!114 &3479477879342260372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3599009835661961735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 11400000, guid: e9ce97b7a206dc64d90931ea044e0c72, type: 2}
+  m_PivotOffset: {x: 0, y: 0, z: 0}
+  m_AmplitudeGain: 1
+  m_FrequencyGain: 1
+  mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &4320477318645108635
 GameObject:
   m_ObjectHideFlags: 0

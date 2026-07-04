@@ -62,7 +62,7 @@ namespace Game.CheckPoint
 
         private IEnumerator DelayOnPlayerDead()
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(1.5f);
 
             //如果玩家存档点在后面或者就在这，那这个存档点就打开门
             if (ES3.Load("LastPassedLevel", 0) - 1 < currentLevelInfo.LevelIndex) yield break;
