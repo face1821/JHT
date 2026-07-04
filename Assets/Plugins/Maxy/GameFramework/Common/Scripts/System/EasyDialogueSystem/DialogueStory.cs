@@ -7,6 +7,8 @@ namespace Maxy.GameFramework.Common.System
     public class DialogueStory : ScriptableObject
     {
         public bool AutoPlay = true;
+        public Sprite GlobalBackGround;
+        
         public List<DialogueStoryContentUnit> contentList = new List<DialogueStoryContentUnit>();
     }
 }

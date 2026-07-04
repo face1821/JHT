@@ -7,9 +7,11 @@ using UnityEngine.UI;
 
 namespace Maxy.GameFramework.Common.System
 {
-    public class EasyDialogSystem : System<EasyDialogSystem>, IDialogSystem
+    public class EasyDialogueSystem : System<EasyDialogueSystem>, IDialogueSystem
     {
         [SerializeField] private GameObject _canvas;
+        [SerializeField] private Image _globalBackground;
+        [SerializeField] private Image _background;
         [SerializeField] private OverlayFadeEffect _windowOverlay;
         [SerializeField] private TextMeshProUGUI _windowCharacterName;
         [SerializeField] private TextMeshProUGUI _windowContent;
@@ -20,10 +22,6 @@ namespace Maxy.GameFramework.Common.System
         private DialogueStory _currentStory;
         private bool _isPlaying;
         private bool _isSkip;
-
-        private void OnEnable() { }
-
-        private void OnDisable() { }
 
         private void Update()
         {
@@ -48,7 +46,9 @@ namespace Maxy.GameFramework.Common.System
         private void ShowDialog()
         {
             _canvas.SetActive(true);
+            _globalBackground.sprite = _currentStory.GlobalBackGround;
             _windowOverlay.SetAlpha(0f);
+            _characterOverlay.SetAlpha(0f);
             _windowOverlay.gameObject.SetActive(true);
         }
 
@@ -75,14 +75,44 @@ namespace Maxy.GameFramework.Common.System
             {
                 var currentInfo = _currentStory.contentList[index];
 
-                //设置立绘
+                //设置立绘位置和图像
+                if (currentInfo.enablePresetPosition)
+                {
+                    var position = Vector2.zero;
+
+                    switch (currentInfo.PresetPosition)
+                    {
+                        case DialogCharaterPresetPosition.Left:
+                            position = new Vector2(-500, -100);
+                            break;
+                        case DialogCharaterPresetPosition.Middle:
+                            position = new Vector2(0, 100);
+                            break;
+                        case DialogCharaterPresetPosition.Right:
+                            position = new Vector2(500, 100);
+                            break;
+                    }
+
+                    (_characterImage.transform as RectTransform)!.anchoredPosition = position;
+                }
+                else
+                {
+                    (_characterImage.transform as RectTransform)!.anchoredPosition = currentInfo.ScreenPosition;
+                }
+
                 if (!currentInfo.FollowTheLastCharacterSprite)
+                {
                     _characterImage.sprite = currentInfo.CharacterSprite;
+                    _characterImage.SetNativeSize();
+                }
 
                 //设置窗口的文本
                 _windowContent.maxVisibleCharacters = 0;
                 _windowCharacterName.text = currentInfo.CharacterName;
                 _windowContent.text = currentInfo.Content;
+
+                //设置背景
+                _background.sprite = currentInfo.BackGround;
 
                 //显示窗口
                 _windowOverlay.PlayFadeOut(0.5f);

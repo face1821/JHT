@@ -20,6 +20,8 @@ namespace Maxy.GameFramework.Common.System
         public float DelayAfterThis;
 
         [FoldoutGroup("Art")]
+        public Sprite BackGround;
+        [Space]
         public bool FollowTheLastCharacterSprite;
         [FoldoutGroup("Art"), HideIf(nameof(FollowTheLastCharacterSprite))]
         public Sprite CharacterSprite;
