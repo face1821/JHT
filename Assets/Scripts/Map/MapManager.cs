@@ -8,6 +8,7 @@ using Maxy.GameFramework.Common.System;
 using Maxy.GameFramework.Common.Tool;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 
 namespace Game.Map
 {
@@ -21,6 +22,8 @@ namespace Game.Map
         [Header("而存档点是为了记录到达哪里了，然后根据LevelInfo位置来复活")]
         [SerializeField] private OverlayFadeEffect _overlay;
         [SerializeField] List<LevelInfo> _levelInfos;
+        [Space]
+        [SerializeField] private VideoPlayer _openingStoryVideoPlayer;
 
         private void OnEnable() { PlayerStateMachine.OnDead += OnPlayerDead; }
 
@@ -47,8 +50,14 @@ namespace Game.Map
             //将玩家传送到上一次刚通关的关卡的通关位置
             var lastPassedLevelIndex = ES3.Load("LastPassedLevel", -1) - 1;
 
-            //如果没有存档点位置，就不管了
-            if (lastPassedLevelIndex < 0) return;
+            //如果没有存档点位置，就不传送了
+            if (lastPassedLevelIndex < 0)
+            {
+                //但这表示这是新游戏，所以开启进入新游戏的剧情
+                StartCoroutine(nameof(ShowOpeningStory));
+
+                return;
+            }
 
             //传送到存档点位置
             MLogger.LogWarning($"系统：玩家有记录，传送到第{lastPassedLevelIndex + 1}个存档点");
@@ -103,6 +112,26 @@ namespace Game.Map
             //传送到存档点位置
             MLogger.LogWarning($"系统：玩家重生到 第{lastPassedLevelIndex + 1}个复活点");
             InstanceFinder.Player.transform.position = _levelInfos[lastPassedLevelIndex].SpawnPos;
+        }
+
+        private IEnumerator ShowOpeningStory()
+        {
+            //禁用玩家输入
+            PlayerInput.Instance.enabled = false;
+
+            //显示开场剧情CG
+            _openingStoryVideoPlayer.Play();
+            yield return new WaitUntil(() => !_openingStoryVideoPlayer.isPlaying);
+
+            //然后显示开场剧情对话
+            Destroy(_openingStoryVideoPlayer.gameObject);
+
+            var dialogue = SystemCenter.Get<IDialogueSystem>();
+            dialogue.StartDialog("OpeningStory");
+            yield return new WaitUntil(() => dialogue.IsPlaying);
+
+            //启用玩家输入
+            PlayerInput.Instance.enabled = true;
         }
     }
 }

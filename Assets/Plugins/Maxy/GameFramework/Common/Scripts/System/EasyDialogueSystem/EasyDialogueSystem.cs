@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using Maxy.GameFramework.Common.Tool;
 using TMPro;
@@ -9,6 +8,8 @@ namespace Maxy.GameFramework.Common.System
 {
     public class EasyDialogueSystem : System<EasyDialogueSystem>, IDialogueSystem
     {
+        public bool IsPlaying => _isPlaying;
+        
         [SerializeField] private GameObject _canvas;
         [SerializeField] private Image _globalBackground;
         [SerializeField] private Image _background;
@@ -45,6 +46,7 @@ namespace Maxy.GameFramework.Common.System
 
         private void ShowDialog()
         {
+            _isPlaying = true;
             _canvas.SetActive(true);
             _windowOverlay.SetAlpha(0f);
             _characterOverlay.SetAlpha(0f);
@@ -53,6 +55,7 @@ namespace Maxy.GameFramework.Common.System
 
         private void HideDialog()
         {
+            _isPlaying = false;
             _canvas.SetActive(false);
             _windowOverlay.gameObject.SetActive(false);
         }
@@ -186,6 +189,9 @@ namespace Maxy.GameFramework.Common.System
                 //进入下一句对话前
                 index++;
             }
+            
+            //结束对话
+            HideDialog();
         }
     }
 }
