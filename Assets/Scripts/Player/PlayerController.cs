@@ -23,12 +23,5 @@ namespace Game.Player
             Body = GetComponent<PlayerBody>();
             StateMachine = GetComponent<PlayerStateMachine>();
         }
-
-        private void Start()
-        {
-            //通知成就系统初始化
-            //测试用途
-            SystemCenter.Get<IAchievementSystem>();
-        }
     }
 }

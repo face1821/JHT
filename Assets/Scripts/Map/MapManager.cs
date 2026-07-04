@@ -38,6 +38,9 @@ namespace Game.Map
             if (IsNewGame)
             {
                 IsNewGame = false;
+                
+                //但这表示这是新游戏，所以开启进入新游戏的剧情
+                StartCoroutine(nameof(ShowOpeningStory));
 
                 return;
             }
@@ -51,14 +54,8 @@ namespace Game.Map
             //将玩家传送到上一次刚通关的关卡的通关位置
             var lastPassedLevelIndex = ES3.Load("LastPassedLevel", -1) - 1;
 
-            //如果没有存档点位置，就不传送了
-            if (lastPassedLevelIndex < 0)
-            {
-                //但这表示这是新游戏，所以开启进入新游戏的剧情
-                StartCoroutine(nameof(ShowOpeningStory));
-
-                return;
-            }
+            //如果没有存档点位置，就不管了
+            if (lastPassedLevelIndex < 0)return;
 
             //传送到存档点位置
             MLogger.LogWarning($"系统：玩家有记录，传送到第{lastPassedLevelIndex + 1}个存档点");
@@ -119,7 +116,7 @@ namespace Game.Map
         {
             //禁用玩家输入
             PlayerInput.Instance.enabled = false;
-
+            
             //显示开场剧情CG
             _storyCanvas.SetActive(true);
             _openingStoryVideoPlayer.gameObject.SetActive(true);
