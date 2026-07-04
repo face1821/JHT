@@ -9,23 +9,23 @@ namespace Maxy.GameFramework.Common.System
 {
     public class EasyAudioSystem : System<EasyAudioSystem>, IAudioSystem
     {
-        public bool Mode2D
+        public float SpaceBlend
         {
-            get => _mode2D;
+            get => _spaceBlend;
             set
             {
-                var state = _mode2D ? 1f : 0f;
-                _musicSource.spatialBlend = state;
-                _sfxSource.spatialBlend = state;
-                _voiceSource.spatialBlend = state;
-                _ambientSource.spatialBlend = state;
-                _mode2D = value;
+                _spaceBlend = value;
+
+                _musicSource.spatialBlend = _spaceBlend;
+                _sfxSource.spatialBlend = _spaceBlend;
+                _voiceSource.spatialBlend = _spaceBlend;
+                _ambientSource.spatialBlend = _spaceBlend;
             }
         }
 
         #region 字段
 
-        [SerializeField] private bool _mode2D;
+        [SerializeField] private float _spaceBlend;
         public AudioMixer GlobalAudioMixer;
 
         #region 公开音量属性
@@ -140,12 +140,11 @@ namespace Maxy.GameFramework.Common.System
             _ambientSource.outputAudioMixerGroup = GlobalAudioMixer.FindMatchingGroups("Ambient")[0];
             _ambientSourceList = new List<AudioSource>();
 
-            //2D模式切换
-            var state = _mode2D ? 1f : 0f;
-            _musicSource.spatialBlend = state;
-            _sfxSource.spatialBlend = state;
-            _voiceSource.spatialBlend = state;
-            _ambientSource.spatialBlend = state;
+            //空间混合
+            _musicSource.spatialBlend = _spaceBlend;
+            _sfxSource.spatialBlend = _spaceBlend;
+            _voiceSource.spatialBlend = _spaceBlend;
+            _ambientSource.spatialBlend = _spaceBlend;
         }
 
         #endregion
@@ -243,7 +242,7 @@ namespace Maxy.GameFramework.Common.System
                 newSfxSource.transform.SetParent(_sfxSource.transform);
                 newSfxSource.outputAudioMixerGroup = GlobalAudioMixer.FindMatchingGroups("Sfx")[0];
                 newSfxSource.clip = clip;
-                newSfxSource.spatialBlend = _mode2D ? 1f : 0f;
+                newSfxSource.spatialBlend = _spaceBlend;
                 newSfxSource.Play();
 
                 if (clipName != null && clipName != String.Empty)
@@ -263,7 +262,7 @@ namespace Maxy.GameFramework.Common.System
             obj.outputAudioMixerGroup = GlobalAudioMixer.FindMatchingGroups("Sfx")[0];
             obj.spatialBlend = 1f;
             obj.clip = clip;
-            obj.spatialBlend = _mode2D ? 1f : 0f;
+            obj.spatialBlend = _spaceBlend;
             obj.Play();
 
             _sfxSourceList.Add(obj);
@@ -278,7 +277,7 @@ namespace Maxy.GameFramework.Common.System
             obj.spatialBlend = 1f;
             obj.outputAudioMixerGroup = GlobalAudioMixer.FindMatchingGroups("Sfx")[0];
             obj.clip = clip;
-            obj.spatialBlend = _mode2D ? 1f : 0f;
+            obj.spatialBlend = _spaceBlend ? 1f : 0f;
             obj.Play();
 
             if (clipName != null && clipName != String.Empty)
@@ -324,7 +323,7 @@ namespace Maxy.GameFramework.Common.System
                 newSfxSource.transform.SetParent(_sfxSource.transform);
                 newSfxSource.outputAudioMixerGroup = GlobalAudioMixer.FindMatchingGroups("Voice")[0];
                 newSfxSource.clip = clip;
-                newSfxSource.spatialBlend = _mode2D ? 1f : 0f;
+                newSfxSource.spatialBlend = _spaceBlend;
                 newSfxSource.Play();
 
                 if (voiceName != null && voiceName != String.Empty)
@@ -344,7 +343,7 @@ namespace Maxy.GameFramework.Common.System
             obj.outputAudioMixerGroup = GlobalAudioMixer.FindMatchingGroups("Voice")[0];
             obj.spatialBlend = 1f;
             obj.clip = clip;
-            obj.spatialBlend = _mode2D ? 1f : 0f;
+            obj.spatialBlend = _spaceBlend;
             obj.Play();
 
             _voiceSourceList.Add(obj);
@@ -414,7 +413,7 @@ namespace Maxy.GameFramework.Common.System
                 newSfxSource.transform.SetParent(_sfxSource.transform);
                 newSfxSource.outputAudioMixerGroup = GlobalAudioMixer.FindMatchingGroups("Ambient")[0];
                 newSfxSource.clip = clip;
-                newSfxSource.spatialBlend = _mode2D ? 1f : 0f;
+                newSfxSource.spatialBlend = _spaceBlend;
                 newSfxSource.Play();
 
                 if (ambientName != null && ambientName != String.Empty)
@@ -434,7 +433,7 @@ namespace Maxy.GameFramework.Common.System
             obj.outputAudioMixerGroup = GlobalAudioMixer.FindMatchingGroups("Ambient")[0];
             obj.spatialBlend = 1f;
             obj.clip = clip;
-            obj.spatialBlend = _mode2D ? 1f : 0f;
+            obj.spatialBlend = _spaceBlend;
             obj.Play();
 
             _ambientSourceList.Add(obj);

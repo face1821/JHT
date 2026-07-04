@@ -45,4 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mode2D: 1
-  GlobalAudioMixer: {fileID: 0}
+  GlobalAudioMixer: {fileID: 24100000, guid: 1cfe77c2c2601834a8716d903821970f, type: 2}

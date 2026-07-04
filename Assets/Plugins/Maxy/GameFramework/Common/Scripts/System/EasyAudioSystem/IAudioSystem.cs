@@ -4,7 +4,7 @@ namespace Maxy.GameFramework.Common.System
 {
     public interface IAudioSystem : ISystem
     {
-        public bool Mode2D { get; set; }
+        public float SpaceBlend { get; set; }
         
         #region Music
 
