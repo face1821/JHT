@@ -220,6 +220,8 @@ namespace Game.Player
             //重置为站立待机状态
             _currentState = StateIdle;
             _currentState.OnEnter();
+            
+            _audioPlayer.PlayDeadTransformSfx();
         }
 
         public bool RequestChangeState(PlayerStateBase state)

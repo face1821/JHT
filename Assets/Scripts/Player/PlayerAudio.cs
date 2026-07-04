@@ -39,6 +39,7 @@ namespace Game.Player
         {
             var randomClip = _moveGroundClipList[Random.Range(0, _moveGroundClipList.Count)];
 
+            MLogger.LogError($"音效：尝试播放脚步声 {_audioSystem} {randomClip} {transform}");
             _audioSystem.PlaySfx(randomClip, "MoveGround", transform);
         }
 

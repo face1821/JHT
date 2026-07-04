@@ -36,5 +36,9 @@ namespace Game.Player
         [LabelText("攀爬物"), ReadOnly] public IClimbingObject ClimbingObject;
         [LabelText("攀爬脱离碰撞偏移检测")] public Vector2 ClimbingDetectOffset;
         [LabelText("攀爬脱离碰撞大小检测")] public float ClimbingDetectRadius;
+
+        public float MoveAudioInterval;
+        public float CrouchMoveAudioInterval;
+        public float ClimbAudioInterval;
     }
 }

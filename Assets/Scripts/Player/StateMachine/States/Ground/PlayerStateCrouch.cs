@@ -4,6 +4,8 @@ namespace Game.Player
 {
     public class PlayerStateCrouch : PlayerStateGround
     {
+        private float _timer;
+        
         public override void OnEnter()
         {
             base.OnEnter();
@@ -11,6 +13,8 @@ namespace Game.Player
             var bodyCollider = StateMachine.GetComponent<CapsuleCollider2D>();
             bodyCollider.offset = new Vector2(bodyCollider.offset.x, -1.2f);
             bodyCollider.size = new Vector2(bodyCollider.size.x, 1.6f);
+
+            _timer = Time.time;
         }
 
         public override void OnFixedUpdate()
@@ -28,6 +32,18 @@ namespace Game.Player
             else
             {
                 Animator.PlayCrouchWalk();
+                
+                //音效计时播放
+                if (_timer > 0f)
+                {
+                    var deltaTime = Time.time - _timer;
+
+                    if (deltaTime >= Paramaters.CrouchMoveAudioInterval)
+                    {
+                        AudioPlayer.PlayCrouchMoveSfx();
+                        _timer = Time.time;
+                    }
+                }
             }
         }
 

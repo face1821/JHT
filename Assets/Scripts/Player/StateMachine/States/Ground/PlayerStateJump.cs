@@ -8,6 +8,8 @@ namespace Game.Player
 
             Body.SetVelocityY(Paramaters.JumpSpeed);
             Animator.PlayJump();
+            
+            AudioPlayer.PlayJumpSfx();
         }
 
         public override void OnFixedUpdate()

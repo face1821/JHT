@@ -166,18 +166,23 @@ MonoBehaviour:
     StateMachine: {fileID: 0}
     Body: {fileID: 0}
     Animator: {fileID: 0}
+    AudioPlayer: {fileID: 0}
     Input: {fileID: 0}
     MoveSpeed: 0
     JumpSpeed: 0
     CrouchSpeedMultiplier: 0.6
     ClimbSpeedMultiplier: 0.3
     IsGrounded: 1
+    GroundStandingType: 0
     IsCrouchHead: 0
     FaceDirection: -1
     MoveDirection: -1
     UpDownMoveDirection: 0
     ClimbingDetectOffset: {x: 0, y: -0.5}
     ClimbingDetectRadius: 0.5
+    MoveAudioInterval: 0.5
+    CrouchMoveAudioInterval: 0.5
+    ClimbAudioInterval: 0.5
 --- !u!114 &8579729143213271827
 MonoBehaviour:
   m_ObjectHideFlags: 0

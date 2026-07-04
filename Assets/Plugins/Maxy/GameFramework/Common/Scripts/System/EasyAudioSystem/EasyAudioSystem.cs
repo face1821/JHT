@@ -110,14 +110,17 @@ namespace Maxy.GameFramework.Common.System
             _sfxSource = new GameObject("SfxSource").AddComponent<AudioSource>();
             _sfxSource.transform.SetParent(transform);
             _sfxSource.outputAudioMixerGroup = GlobalAudioMixer.FindMatchingGroups("Sfx")[0];
+            _sfxSourceList = new List<AudioSource>();
 
             _voiceSource = new GameObject("VoiceSource").AddComponent<AudioSource>();
             _voiceSource.transform.SetParent(transform);
             _voiceSource.outputAudioMixerGroup = GlobalAudioMixer.FindMatchingGroups("Voice")[0];
+            _voiceSourceList = new List<AudioSource>();
 
             _ambientSource = new GameObject("AmbientSource").AddComponent<AudioSource>();
             _ambientSource.transform.SetParent(transform);
             _ambientSource.outputAudioMixerGroup = GlobalAudioMixer.FindMatchingGroups("Ambient")[0];
+            _ambientSourceList = new List<AudioSource>();
         }
 
         #endregion
@@ -228,7 +231,7 @@ namespace Maxy.GameFramework.Common.System
                 return;
             }
 
-            var obj = new GameObject("SfxSource").AddComponent<AudioSource>();
+            var obj = new GameObject($"SfxSource-{clipName}").AddComponent<AudioSource>();
             obj.transform.SetParent(objectToFollow);
             obj.outputAudioMixerGroup = GlobalAudioMixer.FindMatchingGroups("Sfx")[0];
             obj.spatialBlend = 1f;

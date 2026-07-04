@@ -11,6 +11,8 @@ namespace Game.Player
             Body.SetGravityEnabled(false);
             Body.ZeroVelocity();
             Animator.PlayDead();
+            
+            AudioPlayer.PlayDeadSfx();
         }
 
         public override bool CanBeInterrupt(PlayerStateBase nextState) => false;

@@ -5,8 +5,15 @@ namespace Game.Player
 {
     public class PlayerStateMove : PlayerStateGround
     {
-        private float _timeInterval = 0.2f;
         private float _timer;
+
+        public override void OnEnter()
+        {
+            base.OnEnter();
+
+            AudioPlayer.PlayFootStepSfx(Paramaters.GroundStandingType);
+            _timer = Time.time;
+        }
 
         public override void OnFixedUpdate()
         {
@@ -15,9 +22,9 @@ namespace Game.Player
             //音效计时播放
             if (_timer > 0f)
             {
-                _timer = Time.time - _timer;
+                var deltaTime = Time.time - _timer;
 
-                if (_timer >= _timeInterval)
+                if (deltaTime >= Paramaters.MoveAudioInterval)
                 {
                     AudioPlayer.PlayFootStepSfx(Paramaters.GroundStandingType);
                     _timer = Time.time;

@@ -10,6 +10,8 @@ namespace Game.Player
         private float _cantReleaseTime = 0.25f;
         private float _currentCatReleaseTime;
 
+        private float _timer;
+        
         public override bool CanEnter()
         {
             if (Paramaters.ClimbingObject == null) return false;
@@ -105,6 +107,18 @@ namespace Game.Player
             if (climbSpeed != 0f)
             {
                 Animator.PlayClimb();
+                
+                //音效计时播放
+                if (_timer > 0f)
+                {
+                    var deltaTime = Time.time - _timer;
+
+                    if (deltaTime >= Paramaters.ClimbAudioInterval)
+                    {
+                        AudioPlayer.PlayRandomClimbRopeSfx();
+                        _timer = Time.time;
+                    }
+                }
             }
             else
             {
