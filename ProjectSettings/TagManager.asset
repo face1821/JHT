@@ -8,6 +8,7 @@ TagManager:
   - OverlaySaveTip
   - LevelRule
   - MapManager
+  - SceneOverlay
   layers:
   - Default
   - TransparentFX

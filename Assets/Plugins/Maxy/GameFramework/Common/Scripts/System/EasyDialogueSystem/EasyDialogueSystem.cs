@@ -11,6 +11,7 @@ namespace Maxy.GameFramework.Common.System
         public bool IsPlaying => _isPlaying;
 
         [SerializeField] private GameObject _canvas;
+        [SerializeField] private OverlayFadeEffect _overlay;
         [SerializeField] private Image _globalBackground;
         [SerializeField] private Image _background;
         [SerializeField] private OverlayFadeEffect _windowOverlay;
@@ -220,6 +221,14 @@ namespace Maxy.GameFramework.Common.System
                 //进入下一句对话前
                 index++;
             }
+
+            //隐藏角色
+            _characterOverlay.PlayFadeIn(0.5f);
+
+            //进入黑幕
+            GameObject.FindWithTag("SceneOverlay").GetComponent<OverlayFadeEffect>().PlayFadeOutAndIn();
+            _overlay.PlayFadeOutAndIn();
+            yield return new WaitForSeconds(1f);
 
             //结束对话
             HideDialog();
