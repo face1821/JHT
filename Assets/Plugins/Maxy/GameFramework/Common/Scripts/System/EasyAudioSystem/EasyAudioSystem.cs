@@ -111,12 +111,15 @@ namespace Maxy.GameFramework.Common.System
             _voiceVolume = ES3.Load("VoiceVolume", 1f);
             _ambientVolume = ES3.Load("AmbientVolume", 1f);
 
-            GlobalAudioMixer = Resources.Load<AudioMixer>("Datas/GlobalAudioMixer");
-            GlobalAudioMixer.SetFloat("MasterVolume", ToDB(_masterVolume));
-            GlobalAudioMixer.SetFloat("MusicVolume", ToDB(_musicVolume));
-            GlobalAudioMixer.SetFloat("SfxVolume", ToDB(_sfxVolume));
-            GlobalAudioMixer.SetFloat("VoiceVolume", ToDB(_voiceVolume));
-            GlobalAudioMixer.SetFloat("AmbientVolume", ToDB(_ambientVolume));
+            if (GlobalAudioMixer == null)
+            {
+                GlobalAudioMixer = Resources.Load<AudioMixer>("Datas/GlobalAudioMixer");
+                GlobalAudioMixer.SetFloat("MasterVolume", ToDB(_masterVolume));
+                GlobalAudioMixer.SetFloat("MusicVolume", ToDB(_musicVolume));
+                GlobalAudioMixer.SetFloat("SfxVolume", ToDB(_sfxVolume));
+                GlobalAudioMixer.SetFloat("VoiceVolume", ToDB(_voiceVolume));
+                GlobalAudioMixer.SetFloat("AmbientVolume", ToDB(_ambientVolume));
+            }
 
             _musicSource = new GameObject("MusicSource").AddComponent<AudioSource>();
             _musicSource.transform.SetParent(transform);
