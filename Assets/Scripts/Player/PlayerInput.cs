@@ -56,9 +56,9 @@ namespace Game.Player
 
         private void Update()
         {
-            if (Application.isEditor || Application.platform != RuntimePlatform.Android)
-                PCInputHandle();
-            else
+            // if (Application.isEditor || Application.platform != RuntimePlatform.Android)
+            //     PCInputHandle();
+            // else
                 PhoneInputHandle();
         }
 

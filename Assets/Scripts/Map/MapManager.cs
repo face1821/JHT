@@ -177,7 +177,6 @@ namespace Game.Map
 
             //显示开场剧情CG
             _storyCanvas.SetActive(true);
-            _openingStoryVideoPlayer.gameObject.SetActive(true);
             yield return new WaitUntil(() => !_openingStoryVideoPlayer.isPlaying);
 
             //然后显示开场剧情对话

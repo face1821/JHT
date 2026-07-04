@@ -6,13 +6,24 @@ namespace Game.System
 {
     public class InstanceFinderSystem : System<InstanceFinderSystem>, IInstanceFinderSystem
     {
-        public PlayerController Player { get; private set; }
+        public PlayerController Player
+        {
+            get
+            {
+                if (_player == null)
+                    _player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+
+                return _player;
+            }
+        }
+
+        private PlayerController _player;
 
         public override void Init()
         {
             base.Init();
 
-            Player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+            _player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         }
     }
 }
