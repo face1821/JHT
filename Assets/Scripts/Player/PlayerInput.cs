@@ -50,7 +50,7 @@ namespace Game.Player
             if (CheckIfTablet())
             {
                 _vCam.m_Lens.OrthographicSize *= 2f;
-                _vCam.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset *= 2f;
+                _vCam.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset *= 2.5f;
             }
         }
 

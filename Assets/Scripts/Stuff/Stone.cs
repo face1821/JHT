@@ -1,6 +1,7 @@
-using System;
 using System.Collections;
+using Cinemachine;
 using Game.Tool;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Game.Stuff
@@ -9,14 +10,48 @@ namespace Game.Stuff
     [RequireComponent(typeof(Collider2D), typeof(SpriteRenderer))]
     public class Stone : MonoBehaviour
     {
-        private Animator _animator;
+        [SerializeField] private CinemachineVirtualCamera _vCam;
+        [SerializeField, LabelText("幅度")] private float _camShakeAmplitude = 10f;
+        [SerializeField, LabelText("频率")] private float _camShakeFrequency = 10f;
 
-        private void Awake() { _animator = GetComponent<Animator>(); }
+        private Animator _animator;
+        private CinemachineBasicMultiChannelPerlin _noise;
+
+        private bool _firstTime = true;
+
+        private void Awake()
+        {
+            _animator = GetComponent<Animator>();
+
+            _noise = _vCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+
+            // 初始关闭抖动
+            _noise.m_AmplitudeGain = 0;
+            _noise.m_FrequencyGain = 0;
+        }
 
         private void OnEnable()
         {
             //当激活时，播放石头的动画
             _animator.Play("Roll");
+        }
+
+        private void FixedUpdate()
+        {
+            if (_firstTime && _animator.GetCurrentAnimatorStateInfo(0).IsName("EndIdle"))
+            {
+                _firstTime = false;
+
+                _noise.m_AmplitudeGain = 0f;
+                _noise.m_FrequencyGain = 0f;
+            }
+
+            if (!_animator.GetCurrentAnimatorStateInfo(0).IsName("Roll")) return;
+
+            var distance = Vector3.Distance(InstanceFinder.Player.transform.position, transform.position);
+
+            _noise.m_AmplitudeGain = Mathf.Clamp(_camShakeAmplitude / distance, 1f, 5f);
+            _noise.m_FrequencyGain = Mathf.Clamp(_camShakeFrequency / distance, 1f, 5f);
         }
 
         private void OnCollisionEnter2D(Collision2D other)
