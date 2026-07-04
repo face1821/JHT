@@ -7,12 +7,12 @@ namespace Maxy.GameFramework.Common.System
     [CreateAssetMenu(fileName = "NewDialogueStory", menuName = "Maxy/GameFramework/Dialogue Story")]
     public class DialogueStory : ScriptableObject
     {
-        public bool AutoPlay = true;
+        [Header("Settings")]
         public Sprite GlobalBackGround;
-        
-        [FoldoutGroup("Detail")]
+        public bool AutoPlay = true;
         public bool EnableCharacterSpriteFadeEffect;
-        
+
+        [Header("Content")]
         public List<DialogueStoryContentUnit> contentList = new List<DialogueStoryContentUnit>();
     }
 }
