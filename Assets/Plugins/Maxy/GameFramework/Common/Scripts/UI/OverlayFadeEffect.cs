@@ -12,6 +12,10 @@ namespace Maxy.GameFramework.Common.Tool
         [ReadOnly]
         public bool IsFinished;
         [SerializeField] private float _duration = 1f;
+        [SerializeField] private float _minValue;
+        [SerializeField] private float _maxValue = 1f;
+        [SerializeField] private float _childMinValue;
+        [SerializeField] private float _childMaxValue = 1f;
         [SerializeField] private List<Image> _childImages;
         [SerializeField] private List<TextMeshProUGUI> _childTexts;
 
@@ -71,59 +75,59 @@ namespace Maxy.GameFramework.Common.Tool
 
             //预热
             if (_selfImage != null)
-                _selfImage.color = new Color(_selfImage.color.r, _selfImage.color.g, _selfImage.color.b, 1f);
+                _selfImage.color = new Color(_selfImage.color.r, _selfImage.color.g, _selfImage.color.b, _maxValue);
 
             if (_selfText != null)
-                _selfText.color = new Color(_selfText.color.r, _selfText.color.g, _selfText.color.b, 1f);
+                _selfText.color = new Color(_selfText.color.r, _selfText.color.g, _selfText.color.b, _maxValue);
 
             foreach (var child in _childImages)
             {
-                child.color = new Color(child.color.r, child.color.g, child.color.b, 1f);
+                child.color = new Color(child.color.r, child.color.g, child.color.b, _childMaxValue);
             }
 
             foreach (var child in _childTexts)
             {
-                child.color = new Color(child.color.r, child.color.g, child.color.b, 1f);
+                child.color = new Color(child.color.r, child.color.g, child.color.b, _childMaxValue);
             }
 
             //开始
-            while (_selfImage != null && _selfImage.color.a > 0f || _selfText != null && _selfText.color.a > 0f)
+            while (_selfImage != null && _selfImage.color.a > _minValue || _selfText != null && _selfText.color.a > _minValue)
             {
                 yield return null;
 
                 if (_selfImage != null)
-                    _selfImage.color = new Color(_selfImage.color.r, _selfImage.color.g, _selfImage.color.b, 1f - (Time.time - startTime) / duration);
+                    _selfImage.color = new Color(_selfImage.color.r, _selfImage.color.g, _selfImage.color.b, _maxValue - (Time.time - startTime) / duration);
 
                 if (_selfText != null)
-                    _selfText.color = new Color(_selfText.color.r, _selfText.color.g, _selfText.color.b, 1f - (Time.time - startTime) / duration);
+                    _selfText.color = new Color(_selfText.color.r, _selfText.color.g, _selfText.color.b, _maxValue - (Time.time - startTime) / duration);
 
                 foreach (var child in _childImages)
                 {
-                    child.color = new Color(child.color.r, child.color.g, child.color.b, 1f - (Time.time - startTime) / duration);
+                    child.color = new Color(child.color.r, child.color.g, child.color.b, _childMaxValue - (Time.time - startTime) / duration);
                 }
 
                 foreach (var child in _childTexts)
                 {
-                    child.color = new Color(child.color.r, child.color.g, child.color.b, 1f - (Time.time - startTime) / duration);
+                    child.color = new Color(child.color.r, child.color.g, child.color.b, _childMaxValue - (Time.time - startTime) / duration);
                 }
 
                 //结束工作
-                if (_selfImage != null && _selfImage.color.a <= 0f || _selfText != null && _selfText.color.a <= 0f)
+                if (_selfImage != null && _selfImage.color.a <= _minValue || _selfText != null && _selfText.color.a <= _minValue)
                 {
                     if (_selfImage != null)
-                        _selfImage.color = new Color(_selfImage.color.r, _selfImage.color.g, _selfImage.color.b, 0f);
+                        _selfImage.color = new Color(_selfImage.color.r, _selfImage.color.g, _selfImage.color.b, _minValue);
 
                     if (_selfText != null)
-                        _selfText.color = new Color(_selfText.color.r, _selfText.color.g, _selfText.color.b, 0f);
+                        _selfText.color = new Color(_selfText.color.r, _selfText.color.g, _selfText.color.b, _minValue);
 
                     foreach (var child in _childImages)
                     {
-                        child.color = new Color(child.color.r, child.color.g, child.color.b, 0f);
+                        child.color = new Color(child.color.r, child.color.g, child.color.b, _childMinValue);
                     }
 
                     foreach (var child in _childTexts)
                     {
-                        child.color = new Color(child.color.r, child.color.g, child.color.b, 0f);
+                        child.color = new Color(child.color.r, child.color.g, child.color.b, _childMinValue);
                     }
                 }
             }
@@ -139,23 +143,23 @@ namespace Maxy.GameFramework.Common.Tool
 
             //预热
             if (_selfImage != null)
-                _selfImage.color = new Color(_selfImage.color.r, _selfImage.color.g, _selfImage.color.b, 0f);
+                _selfImage.color = new Color(_selfImage.color.r, _selfImage.color.g, _selfImage.color.b, _minValue);
 
             if (_selfText != null)
-                _selfText.color = new Color(_selfText.color.r, _selfText.color.g, _selfText.color.b, 0f);
+                _selfText.color = new Color(_selfText.color.r, _selfText.color.g, _selfText.color.b, _minValue);
 
             foreach (var child in _childImages)
             {
-                child.color = new Color(child.color.r, child.color.g, child.color.b, 0f);
+                child.color = new Color(child.color.r, child.color.g, child.color.b, _childMinValue);
             }
 
             foreach (var child in _childTexts)
             {
-                child.color = new Color(child.color.r, child.color.g, child.color.b, 0f);
+                child.color = new Color(child.color.r, child.color.g, child.color.b, _childMinValue);
             }
 
             //开始
-            while (_selfImage != null && _selfImage.color.a < 1f || _selfText != null && _selfText.color.a < 1f)
+            while (_selfImage != null && _selfImage.color.a < _maxValue || _selfText != null && _selfText.color.a < _maxValue)
             {
                 yield return null;
 
@@ -175,22 +179,22 @@ namespace Maxy.GameFramework.Common.Tool
                     child.color = new Color(child.color.r, child.color.g, child.color.b, (Time.time - startTime) / duration);
                 }
 
-                if (_selfImage != null && _selfImage.color.a >= 1f || _selfText != null && _selfText.color.a >= 1f)
+                if (_selfImage != null && _selfImage.color.a >= _maxValue || _selfText != null && _selfText.color.a >= _maxValue)
                 {
                     if (_selfImage != null)
-                        _selfImage.color = new Color(_selfImage.color.r, _selfImage.color.g, _selfImage.color.b, 1f);
+                        _selfImage.color = new Color(_selfImage.color.r, _selfImage.color.g, _selfImage.color.b, _maxValue);
 
                     if (_selfText != null)
-                        _selfText.color = new Color(_selfText.color.r, _selfText.color.g, _selfText.color.b, 1f);
+                        _selfText.color = new Color(_selfText.color.r, _selfText.color.g, _selfText.color.b, _maxValue);
 
                     foreach (var child in _childImages)
                     {
-                        child.color = new Color(child.color.r, child.color.g, child.color.b, 1f);
+                        child.color = new Color(child.color.r, child.color.g, child.color.b, _childMaxValue);
                     }
 
                     foreach (var child in _childTexts)
                     {
-                        child.color = new Color(child.color.r, child.color.g, child.color.b, 1f);
+                        child.color = new Color(child.color.r, child.color.g, child.color.b, _childMaxValue);
                     }
                 }
             }
