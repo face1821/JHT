@@ -9,7 +9,7 @@ namespace Maxy.GameFramework.Common.System
     public class EasyDialogueSystem : System<EasyDialogueSystem>, IDialogueSystem
     {
         public bool IsPlaying => _isPlaying;
-        
+
         [SerializeField] private GameObject _canvas;
         [SerializeField] private Image _globalBackground;
         [SerializeField] private Image _background;
@@ -29,7 +29,7 @@ namespace Maxy.GameFramework.Common.System
             if (!_isPlaying) return;
 
             //运行对话框的时候，如果点击了，就跳过当前正在显示的对话
-            if (Input.touchCount > 0)
+            if (Input.touchCount > 0 || Input.anyKeyDown)
             {
                 OnGetClick();
             }
@@ -189,7 +189,7 @@ namespace Maxy.GameFramework.Common.System
                 //进入下一句对话前
                 index++;
             }
-            
+
             //结束对话
             HideDialog();
         }

@@ -23,6 +23,7 @@ namespace Game.Map
         [SerializeField] private OverlayFadeEffect _overlay;
         [SerializeField] List<LevelInfo> _levelInfos;
         [Space]
+        [SerializeField] private GameObject _storyCanvas;
         [SerializeField] private VideoPlayer _openingStoryVideoPlayer;
 
         private void OnEnable() { PlayerStateMachine.OnDead += OnPlayerDead; }
@@ -120,7 +121,8 @@ namespace Game.Map
             PlayerInput.Instance.enabled = false;
 
             //显示开场剧情CG
-            _openingStoryVideoPlayer.Play();
+            _storyCanvas.SetActive(true);
+            _openingStoryVideoPlayer.gameObject.SetActive(true);
             yield return new WaitUntil(() => !_openingStoryVideoPlayer.isPlaying);
 
             //然后显示开场剧情对话
@@ -131,6 +133,7 @@ namespace Game.Map
             yield return new WaitUntil(() => dialogue.IsPlaying);
 
             //启用玩家输入
+            _storyCanvas.SetActive(false);
             PlayerInput.Instance.enabled = true;
         }
     }
