@@ -233,6 +233,7 @@ namespace Maxy.GameFramework.Common.System
 
             var obj = new GameObject($"SfxSource-{clipName}").AddComponent<AudioSource>();
             obj.transform.SetParent(objectToFollow);
+            obj.transform.localPosition = Vector3.zero;
             obj.outputAudioMixerGroup = GlobalAudioMixer.FindMatchingGroups("Sfx")[0];
             obj.spatialBlend = 1f;
             obj.clip = clip;
@@ -310,6 +311,7 @@ namespace Maxy.GameFramework.Common.System
 
             var obj = new GameObject("VoiceSource").AddComponent<AudioSource>();
             obj.transform.SetParent(objectToFollow);
+            obj.transform.localPosition = Vector3.zero;
             obj.outputAudioMixerGroup = GlobalAudioMixer.FindMatchingGroups("Voice")[0];
             obj.spatialBlend = 1f;
             obj.clip = clip;
@@ -397,6 +399,7 @@ namespace Maxy.GameFramework.Common.System
 
             var obj = new GameObject("AmbientSource").AddComponent<AudioSource>();
             obj.transform.SetParent(objectToFollow);
+            obj.transform.localPosition = Vector3.zero;
             obj.outputAudioMixerGroup = GlobalAudioMixer.FindMatchingGroups("Ambient")[0];
             obj.spatialBlend = 1f;
             obj.clip = clip;
