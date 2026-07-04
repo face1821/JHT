@@ -132,6 +132,7 @@ namespace Maxy.GameFramework.Common.System
                 }
 
                 //设置窗口的文本
+                _isSkip = false;
                 _windowContent.maxVisibleCharacters = 0;
                 _windowCharacterName.text = currentInfo.CharacterName;
                 _windowContent.text = currentInfo.Content;
@@ -152,16 +153,16 @@ namespace Maxy.GameFramework.Common.System
 
                 //显示窗口
                 _windowOverlay.PlayFadeOut(0.5f);
-                //如果当前图像是保持上一个图像或上一个立绘图像和当前图像一样，就不隐藏立绘图像
+                //如果当前图像是保持上一个图像或上一个立绘图像和当前图像一样，就不显示立绘图像
                 //下面这段代码是反向的逻辑
-                if (index == 0
-                    || !currentInfo.FollowLastCharacterSprite
-                    || _currentStory.contentList[index - 1].CharacterSprite != currentInfo.CharacterSprite)
+                if (_characterImage != null
+                    && (index == 0
+                        || !currentInfo.FollowLastCharacterSprite
+                        || _currentStory.contentList[index - 1].CharacterSprite != currentInfo.CharacterSprite))
                 {
                     _characterOverlay.PlayFadeIn(0.5f);
                 }
 
-                _characterOverlay.PlayFadeOut(0.5f);
                 yield return new WaitForSeconds(0.5f);
 
                 //是否启用打字机效果

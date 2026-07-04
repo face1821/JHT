@@ -224,6 +224,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsFinished: 0
   _duration: 1
+  _minValue: 0
+  _maxValue: 1
+  _childMinValue: 0
+  _childMaxValue: 1
   _childImages: []
   _childTexts: []
 --- !u!1 &1610883699211635212
@@ -657,6 +661,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsFinished: 0
   _duration: 1
+  _minValue: 0
+  _maxValue: 0.78
+  _childMinValue: 0
+  _childMaxValue: 1
   _childImages: []
   _childTexts:
   - {fileID: 2776749854214491174}
