@@ -115,10 +115,20 @@ namespace Maxy.GameFramework.Common.System
                 }
 
                 //设置立绘图像
+                //如果不保持上一个立绘图像，就更换图像
                 if (!currentInfo.FollowLastCharacterSprite)
                 {
-                    _characterImage.sprite = currentInfo.CharacterSprite;
-                    _characterImage.SetNativeSize();
+                    //但更换时，需要更换的结果不是一个空图像
+                    if (currentInfo.CharacterSprite != null)
+                    {
+                        _characterImage.color = Color.white;
+                        _characterImage.sprite = currentInfo.CharacterSprite;
+                        _characterImage.SetNativeSize();
+                    }
+                    else //如果是空图像，就设置空白颜色
+                    {
+                        _characterImage.color = new Color(0, 0, 0, 0);
+                    }
                 }
 
                 //设置窗口的文本
@@ -142,6 +152,15 @@ namespace Maxy.GameFramework.Common.System
 
                 //显示窗口
                 _windowOverlay.PlayFadeOut(0.5f);
+                //如果当前图像是保持上一个图像或上一个立绘图像和当前图像一样，就不隐藏立绘图像
+                //下面这段代码是反向的逻辑
+                if (index == 0
+                    || !currentInfo.FollowLastCharacterSprite
+                    || _currentStory.contentList[index - 1].CharacterSprite != currentInfo.CharacterSprite)
+                {
+                    _characterOverlay.PlayFadeIn(0.5f);
+                }
+
                 _characterOverlay.PlayFadeOut(0.5f);
                 yield return new WaitForSeconds(0.5f);
 
@@ -180,7 +199,16 @@ namespace Maxy.GameFramework.Common.System
 
                 //隐藏窗口
                 _windowOverlay.PlayFadeIn(0.5f);
-                _characterOverlay.PlayFadeIn(0.5f);
+
+                //如果下一个立绘图像是保持当前的图像或一样，就不隐藏立绘图像
+                //下面这段代码是反向的逻辑
+                if (index + 1 >= _currentStory.contentList.Count
+                    || (!_currentStory.contentList[index + 1].FollowLastCharacterSprite
+                        && _currentStory.contentList[index + 1].CharacterSprite != currentInfo.CharacterSprite))
+                {
+                    _characterOverlay.PlayFadeIn(0.5f);
+                }
+
                 yield return new WaitForSeconds(0.5f);
 
                 //隐藏窗口后的延迟等待

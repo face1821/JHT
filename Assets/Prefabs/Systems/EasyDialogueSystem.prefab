@@ -658,7 +658,9 @@ MonoBehaviour:
   IsFinished: 0
   _duration: 1
   _childImages: []
-  _childTexts: []
+  _childTexts:
+  - {fileID: 2776749854214491174}
+  - {fileID: 1565526735169102952}
 --- !u!1 &8080690310880134605
 GameObject:
   m_ObjectHideFlags: 0
