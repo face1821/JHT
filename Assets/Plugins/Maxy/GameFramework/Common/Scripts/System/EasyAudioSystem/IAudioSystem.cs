@@ -4,6 +4,8 @@ namespace Maxy.GameFramework.Common.System
 {
     public interface IAudioSystem : ISystem
     {
+        public bool Mode2D { get; set; }
+        
         #region Music
 
         public void PlayMusic(AudioClip clip, bool loop = true, bool withFadeOutAndIn = true);

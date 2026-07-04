@@ -33,7 +33,11 @@ namespace Game.Player
 
         private IAudioSystem _audioSystem;
 
-        private void Awake() { _audioSystem = SystemCenter.Get<IAudioSystem>(); }
+        private void Awake()
+        {
+            _audioSystem = SystemCenter.Get<IAudioSystem>();
+            _audioSystem.Mode2D = true;
+        }
 
         private void PlayRandomMoveOnGround()
         {
