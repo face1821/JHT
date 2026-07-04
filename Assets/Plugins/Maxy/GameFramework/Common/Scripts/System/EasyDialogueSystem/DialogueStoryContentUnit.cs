@@ -32,7 +32,7 @@ namespace Maxy.GameFramework.Common.System
         [FoldoutGroup("Art"), HideIf(nameof(enablePresetPosition))]
         public Vector2 ScreenPosition;
         [FoldoutGroup("Art"), ShowIf(nameof(enablePresetPosition))]
-        public DialogCharaterPresetPosition PresetPosition;
+        public DialogCharaterPresetPosition PresetPosition = DialogCharaterPresetPosition.Middle;
 
         [FoldoutGroup("Audio")]
         public AudioClip EnterClip;
