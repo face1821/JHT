@@ -89,6 +89,7 @@
     <Compile Include="Assets\Scripts\System\AchievementSystem\AchievementWindow.cs" />
     <Compile Include="Assets\Scripts\InteractableObject\ClimbingObject\IClimbingObject.cs" />
     <Compile Include="Assets\Scripts\System\InstanceFinderSystem\InstanceFinderSystem.cs" />
+    <Compile Include="Assets\Scripts\Tool\ButtonScaleEffecct.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerAnimator.cs" />
     <Compile Include="Assets\Scripts\PauseMenu\PauseMenuManager.cs" />
     <Compile Include="Assets\Scripts\Map\Level\LevelRules\LevelRuleDeadWhenTouchGround.cs" />

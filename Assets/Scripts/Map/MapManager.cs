@@ -7,6 +7,7 @@ using Game.Tool;
 using Maxy.GameFramework.Common.System;
 using Maxy.GameFramework.Common.Tool;
 using UnityEngine;
+using UnityEngine.Android;
 using UnityEngine.SceneManagement;
 using UnityEngine.Video;
 
@@ -34,6 +35,15 @@ namespace Game.Map
         {
             //渐入场景
             _overlay.PlayFadeIn();
+            
+            // 安卓动态申请存储权限
+            if (Application.platform == RuntimePlatform.Android)
+            {
+                if (!Permission.HasUserAuthorizedPermission(Permission.ExternalStorageWrite))
+                {
+                    Permission.RequestUserPermission(Permission.ExternalStorageWrite);
+                }
+            }
 
             if (IsNewGame)
             {

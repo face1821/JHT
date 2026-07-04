@@ -17,8 +17,6 @@ namespace Game.Stuff
         private Animator _animator;
         private CinemachineBasicMultiChannelPerlin _noise;
 
-        private bool _firstTime = true;
-
         private void Awake()
         {
             _animator = GetComponent<Animator>();
@@ -38,10 +36,8 @@ namespace Game.Stuff
 
         private void FixedUpdate()
         {
-            if (_firstTime && _animator.GetCurrentAnimatorStateInfo(0).IsName("EndIdle"))
+            if (_animator.GetCurrentAnimatorStateInfo(0).IsName("EndIdle"))
             {
-                _firstTime = false;
-
                 _noise.m_AmplitudeGain = 0f;
                 _noise.m_FrequencyGain = 0f;
             }
