@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4432788731824057504}
   m_Layer: 5
   m_Name: Jump
-  m_TagString: UIButton
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -197,7 +197,7 @@ GameObject:
   - component: {fileID: 6517292482158655472}
   m_Layer: 5
   m_Name: Right
-  m_TagString: UIButton
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -378,7 +378,7 @@ GameObject:
   - component: {fileID: 8123358845971536463}
   m_Layer: 5
   m_Name: Interact
-  m_TagString: UIButton
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -543,7 +543,7 @@ GameObject:
   - component: {fileID: 366130985874979092}
   m_Layer: 5
   m_Name: Right
-  m_TagString: UIButton
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -998,7 +998,7 @@ GameObject:
   - component: {fileID: 7055312935409648965}
   m_Layer: 5
   m_Name: Crouch
-  m_TagString: UIButton
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1179,7 +1179,7 @@ GameObject:
   - component: {fileID: 1337797400390792439}
   m_Layer: 5
   m_Name: Left
-  m_TagString: UIButton
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1397,7 +1397,7 @@ GameObject:
   - component: {fileID: 1057906228553982322}
   m_Layer: 5
   m_Name: Interact
-  m_TagString: UIButton
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1792,7 +1792,7 @@ GameObject:
   - component: {fileID: 3295852338437403815}
   m_Layer: 5
   m_Name: Crouch
-  m_TagString: UIButton
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1973,7 +1973,7 @@ GameObject:
   - component: {fileID: 1180136652968262380}
   m_Layer: 5
   m_Name: Jump
-  m_TagString: UIButton
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2365,7 +2365,7 @@ GameObject:
   - component: {fileID: 8695687339290961759}
   m_Layer: 5
   m_Name: Left
-  m_TagString: UIButton
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

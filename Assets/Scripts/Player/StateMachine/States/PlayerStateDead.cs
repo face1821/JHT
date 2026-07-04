@@ -13,6 +13,7 @@ namespace Game.Player
             Animator.PlayDead();
             
             AudioPlayer.PlayDeadSfx();
+            AudioPlayer.PlayRandomDeadVoice();
         }
 
         public override bool CanBeInterrupt(PlayerStateBase nextState) => false;

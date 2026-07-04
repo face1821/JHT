@@ -61,6 +61,7 @@
     <Compile Include="Assets\Scripts\Stuff\Arrow.cs" />
     <Compile Include="Assets\Scripts\Player\StateMachine\States\Ground\PlayerStateMove.cs" />
     <Compile Include="Assets\Scripts\Map\Level\LevelRuleBase.cs" />
+    <Compile Include="Assets\Scripts\Tool\ButtonAudio.cs" />
     <Compile Include="Assets\Scripts\System\AchievementSystem\AchievementSystem.cs" />
     <Compile Include="Assets\Scripts\Map\Level\LevelRules\LevelRuleJumpSpawnArrowAndStep.cs" />
     <Compile Include="Assets\Scripts\Map\Level\LevelRules\LevelRuleReverseWASD.cs" />

@@ -8,6 +8,17 @@ namespace Game.Player
 {
     public class PlayerAudio : MonoBehaviour
     {
+        [Header("人声")]
+        [SerializeField]
+        private List<AudioClip> _deadVoiceClipList;
+        [SerializeField]
+        private List<AudioClip> _happyVoiceClipList;
+        [SerializeField]
+        private List<AudioClip> _jumpVoiceClipList;
+        [SerializeField]
+        private AudioClip _confusedVoiceClip;
+
+        [Header("音效")]
         [SerializeField]
         private AudioClip _deadClip;
         [SerializeField]
@@ -60,6 +71,35 @@ namespace Game.Player
 
         #region 公开方法
 
+        #region 人声
+
+        public void PlayRandomDeadVoice()
+        {
+            var randomClip = _deadVoiceClipList[Random.Range(0, _deadVoiceClipList.Count)];
+
+            _audioSystem.PlayVoice(randomClip, "_dead", transform, 0f);
+        }
+
+        public void PlayRandomHappyVoice()
+        {
+            var randomClip = _happyVoiceClipList[Random.Range(0, _happyVoiceClipList.Count)];
+
+            _audioSystem.PlayVoice(randomClip, "_happy", transform, 0f);
+        }
+
+        public void PlayRandomJumpVoice()
+        {
+            var randomClip = _jumpVoiceClipList[Random.Range(0, _jumpVoiceClipList.Count)];
+
+            _audioSystem.PlayVoice(randomClip, "_jump", transform, 0f);
+        }
+
+        public void PlayRandomConfusedVoice() { _audioSystem.PlayVoice(_confusedVoiceClip, "_confused", transform, 0f); }
+
+        #endregion
+
+        #region 音效
+
         public void PlayDeadSfx() { _audioSystem.PlaySfx(_deadClip, "_dead", transform, 0f); }
 
         public void PlayDeadTransformSfx() { _audioSystem.PlaySfx(_deadTransformClip, "_deadTransfrom", transform, 0f); }
@@ -91,6 +131,8 @@ namespace Game.Player
 
             _audioSystem.PlaySfx(randomClip, "_climbRope", transform, 0f);
         }
+
+        #endregion
 
         #endregion
     }

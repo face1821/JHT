@@ -4,6 +4,7 @@ using Game.Map;
 using Maxy.GameFramework.Common.System;
 using Maxy.GameFramework.Common.Tool;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -13,6 +14,7 @@ namespace Game.MainMenu
     {
         [SerializeField] private OverlayFadeEffect _overlay;
         [SerializeField] private GameObject _btnContinue;
+        [SerializeField] private AudioClip _uiEmptyClick;
         [Space]
         [SerializeField] private int LevelCount;
 
@@ -33,6 +35,30 @@ namespace Game.MainMenu
             {
                 _btnContinue.SetActive(true);
             }
+        }
+
+        private void Update()
+        {
+            if (IsAnyFingerJustDownToUI())
+            {
+                var ui = EventSystem.current.currentSelectedGameObject;
+
+                //点非按钮UI时发出空击音效
+                if (ui == null || !ui.CompareTag("UIButton"))
+                    _audioSystem.PlaySfx(_uiEmptyClick, "_uiEmptyClick", null, 0f);
+            }
+        }
+
+        public bool IsAnyFingerJustDownToUI()
+        {
+            // 是否有任意手指刚刚按到UI对象
+            foreach (var t in Input.touches)
+            {
+                if (t.phase == TouchPhase.Began)
+                    return EventSystem.current.IsPointerOverGameObject();
+            }
+
+            return false;
         }
 
         #region 主界面
@@ -61,8 +87,8 @@ namespace Game.MainMenu
 
         public void ToggleSfx(Toggle toggle)
         {
-            var value = ES3.Load("SfxToggle", true);
-            ES3.Save("SfxToggle", toggle.interactable);
+            var value = toggle.isOn;
+            ES3.Save("SfxToggle", value);
 
             _audioSystem.SetSfxVolume(value ? 1f : 0f);
             MLogger.Log($"音频系统：音效（{(value ? "开启" : "关闭")}）");
@@ -70,8 +96,8 @@ namespace Game.MainMenu
 
         public void ToggleMusic(Toggle toggle)
         {
-            var value = ES3.Load("MusicToggle", true);
-            ES3.Save("MusicToggle", toggle.interactable);
+            var value = toggle.isOn;
+            ES3.Save("MusicToggle", value);
 
             _audioSystem.SetMusicVolume(value ? 1f : 0f);
             MLogger.Log($"音频系统：音乐（{(value ? "开启" : "关闭")}）");

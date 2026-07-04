@@ -25,7 +25,6 @@ namespace Game.Map
         [SerializeField] private GameObject _storyCanvas;
         [SerializeField] private VideoPlayer _openingStoryVideoPlayer;
         [SerializeField] private AudioClip _uiEmptyClick;
-        [SerializeField] private AudioClip _uiClick;
 
         private IAudioSystem _audioSystem;
 
@@ -73,9 +72,8 @@ namespace Game.Map
             {
                 var ui = EventSystem.current.currentSelectedGameObject;
 
-                if (ui.CompareTag("UIButton"))
-                    _audioSystem.PlaySfx(_uiClick, "_uiClick", null, 0f);
-                else
+                //点非按钮UI时发出空击音效
+                if (ui == null || !ui.CompareTag("UIButton"))
                     _audioSystem.PlaySfx(_uiEmptyClick, "_uiEmptyClick", null, 0f);
             }
         }

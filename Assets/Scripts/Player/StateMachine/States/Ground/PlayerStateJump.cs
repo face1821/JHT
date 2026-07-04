@@ -10,6 +10,7 @@ namespace Game.Player
             Animator.PlayJump();
             
             AudioPlayer.PlayJumpSfx();
+            AudioPlayer.PlayRandomJumpVoice();
         }
 
         public override void OnFixedUpdate()
