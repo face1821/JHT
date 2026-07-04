@@ -57,7 +57,7 @@ namespace Game.Map
             _levelInfos.ForEach(x => x.Init(this));
 
             //将玩家传送到上一次刚通关的关卡的通关位置
-            var lastPassedLevelIndex = ES3.Load("LastPassedLevel", -1) - 1;
+            var lastPassedLevelIndex = SaveSystem.Load("LastPassedLevel", -1) - 1;
 
             //如果没有存档点位置，就不管了
             if (lastPassedLevelIndex < 0) return;
@@ -85,7 +85,7 @@ namespace Game.Map
             for (int i = 0; i < _levelInfos.Count; i++)
             {
                 _levelInfos[i].Init(this);
-                var passed = ES3.Load($"Level-{i + 1}", false);
+                var passed = SaveSystem.Load($"Level-{i + 1}", false);
                 if (passed)
                 {
                     _levelInfos[i].InactiveLevel();
@@ -119,7 +119,7 @@ namespace Game.Map
         public void ToggleSfx(Toggle toggle)
         {
             var value = toggle.isOn;
-            ES3.Save("SfxToggle", value);
+            SaveSystem.Save("SfxToggle", value);
 
             _audioSystem.SetSfxVolume(value ? 1f : 0f);
             MLogger.Log($"音频系统：音效（{(value ? "开启" : "关闭")}）");
@@ -128,7 +128,7 @@ namespace Game.Map
         public void ToggleMusic(Toggle toggle)
         {
             var value = toggle.isOn;
-            ES3.Save("MusicToggle", value);
+            SaveSystem.Save("MusicToggle", value);
 
             _audioSystem.SetMusicVolume(value ? 1f : 0f);
             MLogger.Log($"音频系统：音乐（{(value ? "开启" : "关闭")}）");
@@ -156,7 +156,7 @@ namespace Game.Map
             }
 
             //将玩家传送到上一次刚通关的关卡的通关位置
-            var lastPassedLevelIndex = ES3.Load("LastPassedLevel", -1) - 1;
+            var lastPassedLevelIndex = SaveSystem.Load("LastPassedLevel", -1) - 1;
 
             InstanceFinder.Player.StateMachine.Respawn();
 

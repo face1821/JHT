@@ -32,7 +32,7 @@ namespace Game.MainMenu
         private void Start()
         {
             //如果玩家第一关有通过，那就显示继续按钮
-            if (ES3.Load($"LastPassedLevel", 0) > 0)
+            if (SaveSystem.Load($"LastPassedLevel", 0) > 0)
             {
                 _btnContinue.SetActive(true);
             }
@@ -76,7 +76,7 @@ namespace Game.MainMenu
         public void NewGame()
         {
             //先删除所有关卡和所有成就的记录
-            ES3.DeleteDirectory("");
+            SaveSystem.Clear();
 
             //然后进入地图
             MapManager.IsNewGame = true;
@@ -98,7 +98,7 @@ namespace Game.MainMenu
         public void ToggleSfx(Toggle toggle)
         {
             var value = toggle.isOn;
-            ES3.Save("SfxToggle", value);
+            SaveSystem.Save("SfxToggle", value);
 
             _audioSystem.SetSfxVolume(value ? 1f : 0f);
             MLogger.Log($"音频系统：音效（{(value ? "开启" : "关闭")}）");
@@ -107,7 +107,7 @@ namespace Game.MainMenu
         public void ToggleMusic(Toggle toggle)
         {
             var value = toggle.isOn;
-            ES3.Save("MusicToggle", value);
+            SaveSystem.Save("MusicToggle", value);
 
             _audioSystem.SetMusicVolume(value ? 1f : 0f);
             MLogger.Log($"音频系统：音乐（{(value ? "开启" : "关闭")}）");

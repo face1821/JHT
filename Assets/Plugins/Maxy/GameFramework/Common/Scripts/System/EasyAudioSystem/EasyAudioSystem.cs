@@ -35,7 +35,7 @@ namespace Maxy.GameFramework.Common.System
             get => _masterVolume;
             set
             {
-                ES3.Save("MasterVolume", value);
+                SaveSystem.Save("MasterVolume", value);
                 _masterVolume = value;
                 GlobalAudioMixer.SetFloat("MasterVolume", ToDB(_masterVolume));
             }
@@ -46,7 +46,7 @@ namespace Maxy.GameFramework.Common.System
             get => _musicVolume;
             set
             {
-                ES3.Save("MusicVolume", value);
+                SaveSystem.Save("MusicVolume", value);
                 _musicVolume = value;
                 GlobalAudioMixer.SetFloat("MusicVolume", ToDB(_musicVolume));
             }
@@ -57,7 +57,7 @@ namespace Maxy.GameFramework.Common.System
             get => _sfxVolume;
             set
             {
-                ES3.Save("SfxVolume", value);
+                SaveSystem.Save("SfxVolume", value);
                 _sfxVolume = value;
                 GlobalAudioMixer.SetFloat("SfxVolume", ToDB(_sfxVolume));
             }
@@ -68,7 +68,7 @@ namespace Maxy.GameFramework.Common.System
             get => _voiceVolume;
             set
             {
-                ES3.Save("VoiceVolume", value);
+                SaveSystem.Save("VoiceVolume", value);
                 _voiceVolume = value;
                 GlobalAudioMixer.SetFloat("VoiceVolume", ToDB(_voiceVolume));
             }
@@ -79,7 +79,7 @@ namespace Maxy.GameFramework.Common.System
             get => _ambientVolume;
             set
             {
-                ES3.Save("AmbientVolume", value);
+                SaveSystem.Save("AmbientVolume", value);
                 _ambientVolume = value;
                 GlobalAudioMixer.SetFloat("AmbientVolume", ToDB(_ambientVolume));
             }
@@ -105,11 +105,11 @@ namespace Maxy.GameFramework.Common.System
         {
             base.Init();
 
-            _masterVolume = ES3.Load("MasterVolume", 1f);
-            _musicVolume = ES3.Load("MusicVolume", 1f);
-            _sfxVolume = ES3.Load("SfxVolume", 1f);
-            _voiceVolume = ES3.Load("VoiceVolume", 1f);
-            _ambientVolume = ES3.Load("AmbientVolume", 1f);
+            _masterVolume = SaveSystem.Load("MasterVolume", 1f);
+            _musicVolume = SaveSystem.Load("MusicVolume", 1f);
+            _sfxVolume = SaveSystem.Load("SfxVolume", 1f);
+            _voiceVolume = SaveSystem.Load("VoiceVolume", 1f);
+            _ambientVolume = SaveSystem.Load("AmbientVolume", 1f);
 
             if (GlobalAudioMixer == null)
             {

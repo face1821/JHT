@@ -25,7 +25,7 @@ namespace Game.System
             _config = Resources.Load<AchievementConfig>("Datas/AchievementConfig");
         }
 
-        public bool HasUnlockedAchievement(string achievementName) { return ES3.Load($"Achievement-{achievementName}", false); }
+        public bool HasUnlockedAchievement(string achievementName) { return SaveSystem.Load($"Achievement-{achievementName}", false); }
 
         [Button]
         public void UnlockAchievement(string achievementName)

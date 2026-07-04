@@ -54,8 +54,8 @@ namespace Game.Map
             InactiveLevel();
 
             //并且存储下来
-            ES3.Save($"Level-{_levelIndex}", true);
-            ES3.Save($"LastPassedLevel", _levelIndex);
+            SaveSystem.Save($"Level-{_levelIndex}", true);
+            SaveSystem.Save($"LastPassedLevel", _levelIndex);
         }
 
         public void ActiveLevel()

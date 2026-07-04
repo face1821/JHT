@@ -32,8 +32,8 @@ namespace Game.CheckPoint
 
         private void Start()
         {
-            if (ES3.Load("LastPassedLevel", 0) - 1 < currentLevelInfo.LevelIndex) return;
-            MLogger.LogWarning($"{currentLevelInfo.name} 存档点{currentLevelInfo.LevelIndex + 1}：发现最新存档点是第{ES3.Load("LastPassedLevel", 0)}个，已经存档过自己了", this);
+            if (SaveSystem.Load("LastPassedLevel", 0) - 1 < currentLevelInfo.LevelIndex) return;
+            MLogger.LogWarning($"{currentLevelInfo.name} 存档点{currentLevelInfo.LevelIndex + 1}：发现最新存档点是第{SaveSystem.Load("LastPassedLevel", 0)}个，已经存档过自己了", this);
 
             gameObject.SetActive(false);
             EventBus.Publish(new RemovePlayerInteractableObjectEvent(this));
@@ -65,7 +65,7 @@ namespace Game.CheckPoint
             yield return new WaitForSeconds(1.5f);
 
             //如果玩家存档点在后面或者就在这，那这个存档点就打开门
-            if (ES3.Load("LastPassedLevel", 0) - 1 < currentLevelInfo.LevelIndex) yield break;
+            if (SaveSystem.Load("LastPassedLevel", 0) - 1 < currentLevelInfo.LevelIndex) yield break;
 
             gameObject.SetActive(false);
             EventBus.Publish(new RemovePlayerInteractableObjectEvent(this));
@@ -90,8 +90,8 @@ namespace Game.CheckPoint
 
             //存档，记录当前关卡已经通关
             //因为该检查点是为了告知玩家这个关卡已经完成，因此：该检查点应该放置在该关卡的终点位置
-            ES3.Save($"Level-{currentLevelInfo.LevelIndex + 1}", true);
-            ES3.Save("LastPassedLevel", currentLevelInfo.LevelIndex + 1);
+            SaveSystem.Save($"Level-{currentLevelInfo.LevelIndex + 1}", true);
+            SaveSystem.Save("LastPassedLevel", currentLevelInfo.LevelIndex + 1);
             MLogger.LogWarning($"存档：到达第{currentLevelInfo.LevelIndex + 1}个存档点");
 
             //存档后，将之前的关卡都给关闭掉

@@ -1,7 +1,6 @@
-using System;
+using Maxy.GameFramework.Common.System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Maxy.GameFramework.Common.Tool
 {
@@ -10,6 +9,6 @@ namespace Maxy.GameFramework.Common.Tool
         public string LoadValueName;
         public string DefaultValue;
 
-        private void Awake() { GetComponent<TextMeshProUGUI>().text = ES3.Load(LoadValueName, defaultValue: DefaultValue); }
+        private void Awake() { GetComponent<TextMeshProUGUI>().text = SaveSystem.Load(LoadValueName, defaultValue: DefaultValue); }
     }
 }

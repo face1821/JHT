@@ -1,4 +1,4 @@
-using System;
+using Maxy.GameFramework.Common.System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +9,6 @@ namespace Maxy.GameFramework.Common.Tool
         public string LoadValueName;
         public bool DefaultValue;
 
-        private void Awake() { GetComponent<Toggle>().isOn = ES3.Load(LoadValueName, DefaultValue); }
+        private void Awake() { GetComponent<Toggle>().isOn = SaveSystem.Load(LoadValueName, DefaultValue); }
     }
 }

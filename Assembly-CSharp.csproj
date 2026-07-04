@@ -60,7 +60,6 @@
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Stuff\Arrow.cs" />
     <Compile Include="Assets\Scripts\Player\StateMachine\States\Ground\PlayerStateMove.cs" />
-    <Compile Include="Assets\Scripts\Tool\Test.cs" />
     <Compile Include="Assets\Scripts\Map\Level\LevelRuleBase.cs" />
     <Compile Include="Assets\Scripts\Tool\ButtonAudio.cs" />
     <Compile Include="Assets\Scripts\System\AchievementSystem\AchievementSystem.cs" />

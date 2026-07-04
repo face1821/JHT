@@ -17,7 +17,7 @@ namespace Game.Map
         private void OnEnable()
         {
             //当玩家的存档点是第三个，也就是尖刺后面时，就将尖刺放置在末尾位置
-            if (ES3.Load("LastPassedLevel", 0) - 1 > 1)
+            if (SaveSystem.Load("LastPassedLevel", 0) - 1 > 1)
             {
                 _spike.TpToEnd();
                 return;
@@ -50,7 +50,7 @@ namespace Game.Map
             yield return new WaitForSeconds(1f);
 
             //当玩家的存档点是第三个，也就是尖刺后面时，就将尖刺放置在末尾位置
-            if (ES3.Load("LastPassedLevel", 0) - 1 > 1)
+            if (SaveSystem.Load("LastPassedLevel", 0) - 1 > 1)
             {
                 _spike.TpToEnd();
                 yield break;
