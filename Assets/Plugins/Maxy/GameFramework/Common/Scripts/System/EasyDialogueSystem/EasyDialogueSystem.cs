@@ -1,5 +1,6 @@
 using System.Collections;
 using Maxy.GameFramework.Common.Tool;
+using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -43,6 +44,15 @@ namespace Maxy.GameFramework.Common.System
 
             StopAllCoroutines();
             StartCoroutine(nameof(PlayDialogue));
+        }
+
+        [Button]
+        public void EndDialog()
+        {
+            StopAllCoroutines();
+
+            //结束对话
+            HideDialog();
         }
 
         private void ShowDialog()
@@ -168,7 +178,7 @@ namespace Maxy.GameFramework.Common.System
                 yield return new WaitForSeconds(0.5f);
 
                 //是否启用打字机效果
-                if (currentInfo.EnableTypeWriterEffect)
+                if (currentInfo.EnableTypeWriterEffect && !string.IsNullOrEmpty(currentInfo.Content))
                 {
                     //通过调整最大显示字数来高性能实现
                     while (_windowContent.maxVisibleCharacters < currentInfo.Content.Length)
@@ -188,8 +198,23 @@ namespace Maxy.GameFramework.Common.System
                 }
                 else
                 {
+                    var startTime = Time.time;
+
                     //持续显示时间
-                    yield return new WaitForSeconds(currentInfo.Duration);
+                    while (true)
+                    {
+                        //如果要跳过
+                        if (_isSkip)
+                        {
+                            _isSkip = false;
+                            break;
+                        }
+
+                        yield return null;
+
+                        //时间到了
+                        if (Time.time - startTime >= currentInfo.Duration) break;
+                    }
                 }
 
                 //是否自动隐藏窗口

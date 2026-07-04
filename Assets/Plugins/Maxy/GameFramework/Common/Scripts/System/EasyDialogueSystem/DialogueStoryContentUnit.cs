@@ -7,9 +7,9 @@ namespace Maxy.GameFramework.Common.System
     [Serializable]
     public class DialogueStoryContentUnit
     {
-        [ShowInInspector, PropertyOrder(-10)] public string Sentence => $"{CharacterName + ": "}{Content}";
+        [ShowInInspector, PropertyOrder(-10)] public string Sentence => $"{CharacterName}{(CharacterName != "" ? ": " : "")}{Content}";
 
-        [FoldoutGroup("Detail", true)]
+        [FoldoutGroup("Detail")]
         public string CharacterName;
         [FoldoutGroup("Detail"), TextArea] public string Content;
 
@@ -31,11 +31,11 @@ namespace Maxy.GameFramework.Common.System
         public bool FollowLastCharacterSprite;
         [FoldoutGroup("Detail/Art"), HideIf(nameof(FollowLastCharacterSprite))]
         public Sprite CharacterSprite;
-        [FoldoutGroup("Detail/Art")]
+        [FoldoutGroup("Detail/Art"), ShowIf("@FollowLastCharacterSprite || CharacterSprite")]
         public bool enablePresetPosition = true;
-        [FoldoutGroup("Detail/Art"), HideIf(nameof(enablePresetPosition))]
+        [FoldoutGroup("Detail/Art"), ShowIf("@!enablePresetPosition && ( CharacterSprite || FollowLastCharacterSprite )")]
         public Vector2 ScreenPosition;
-        [FoldoutGroup("Detail/Art"), ShowIf(nameof(enablePresetPosition))]
+        [FoldoutGroup("Detail/Art"), ShowIf("@enablePresetPosition && ( CharacterSprite || FollowLastCharacterSprite )")]
         public DialogCharaterPresetPosition PresetPosition = DialogCharaterPresetPosition.Middle;
 
         [FoldoutGroup("Detail/Audio")]
