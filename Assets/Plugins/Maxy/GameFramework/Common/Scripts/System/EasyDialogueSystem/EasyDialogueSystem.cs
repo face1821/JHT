@@ -46,7 +46,6 @@ namespace Maxy.GameFramework.Common.System
         private void ShowDialog()
         {
             _canvas.SetActive(true);
-            _globalBackground.sprite = _currentStory.GlobalBackGround;
             _windowOverlay.SetAlpha(0f);
             _characterOverlay.SetAlpha(0f);
             _windowOverlay.gameObject.SetActive(true);
@@ -70,12 +69,24 @@ namespace Maxy.GameFramework.Common.System
             int index = 0;
             _isSkip = false;
 
+            //设置全局背景
+            _globalBackground.sprite = _currentStory.GlobalBackGround;
+            if (_currentStory.GlobalBackGround != null)
+            {
+                _globalBackground.color = Color.white;
+                _globalBackground.sprite = _currentStory.GlobalBackGround;
+            }
+            else
+            {
+                _globalBackground.color = new Color(0, 0, 0, 50);
+            }
+
             //从头到尾一条条显示信息
             while (index < _currentStory.contentList.Count)
             {
                 var currentInfo = _currentStory.contentList[index];
 
-                //设置立绘位置和图像
+                //设置立绘位置
                 if (currentInfo.enablePresetPosition)
                 {
                     var position = Vector2.zero;
@@ -100,7 +111,8 @@ namespace Maxy.GameFramework.Common.System
                     (_characterImage.transform as RectTransform)!.anchoredPosition = currentInfo.ScreenPosition;
                 }
 
-                if (!currentInfo.FollowTheLastCharacterSprite)
+                //设置立绘图像
+                if (!currentInfo.FollowLastCharacterSprite)
                 {
                     _characterImage.sprite = currentInfo.CharacterSprite;
                     _characterImage.SetNativeSize();
@@ -112,7 +124,18 @@ namespace Maxy.GameFramework.Common.System
                 _windowContent.text = currentInfo.Content;
 
                 //设置背景
-                _background.sprite = currentInfo.BackGround;
+                if (!currentInfo.FollowLastBackGround)
+                {
+                    if (currentInfo.BackGround != null)
+                    {
+                        _background.color = Color.white;
+                        _background.sprite = currentInfo.BackGround;
+                    }
+                    else
+                    {
+                        _background.color = new Color(0, 0, 0, 0);
+                    }
+                }
 
                 //显示窗口
                 _windowOverlay.PlayFadeOut(0.5f);
