@@ -11226,7 +11226,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c231fff6494c410d8a2192f2765ffdfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: {fileID: 27822389}
   _overlay: {fileID: 1090880271}
   _levelInfos:
   - {fileID: 800060483}
@@ -11236,6 +11235,7 @@ MonoBehaviour:
   - {fileID: 1740528164}
   _storyCanvas: {fileID: 1257882024}
   _openingStoryVideoPlayer: {fileID: 165458924}
+  _music: {fileID: 8300000, guid: 582a424782bce434f81d7559629ad63d, type: 3}
   _uiEmptyClick: {fileID: 8300000, guid: 0d4fb2f7ff3d57241a3a089e39220637, type: 3}
 --- !u!1 &711074124 stripped
 GameObject:

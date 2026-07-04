@@ -24,6 +24,7 @@ namespace Game.Map
         [Space]
         [SerializeField] private GameObject _storyCanvas;
         [SerializeField] private VideoPlayer _openingStoryVideoPlayer;
+        [SerializeField] private AudioClip _music;
         [SerializeField] private AudioClip _uiEmptyClick;
 
         private IAudioSystem _audioSystem;
@@ -38,6 +39,9 @@ namespace Game.Map
 
             //渐入场景
             _overlay.PlayFadeIn();
+            
+            //播放音乐
+            _audioSystem.PlayMusic(_music);
 
             if (IsNewGame)
             {

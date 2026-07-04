@@ -15,6 +15,7 @@ namespace Game.MainMenu
     {
         [SerializeField] private OverlayFadeEffect _overlay;
         [SerializeField] private GameObject _btnContinue;
+        [SerializeField] private AudioClip _music;
         [SerializeField] private AudioClip _uiEmptyClick;
         [Space]
         [SerializeField] private int LevelCount;
@@ -27,6 +28,9 @@ namespace Game.MainMenu
 
             Application.targetFrameRate = 240;
             _overlay.PlayFadeIn();
+
+            //播放主界面音乐
+            _audioSystem.PlayMusic(_music);
         }
 
         private void Start()
