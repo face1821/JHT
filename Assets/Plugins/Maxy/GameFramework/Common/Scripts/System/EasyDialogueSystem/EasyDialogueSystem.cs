@@ -160,7 +160,7 @@ namespace Maxy.GameFramework.Common.System
                         || !currentInfo.FollowLastCharacterSprite
                         || _currentStory.contentList[index - 1].CharacterSprite != currentInfo.CharacterSprite))
                 {
-                    _characterOverlay.PlayFadeIn(0.5f);
+                    _characterOverlay.PlayFadeOut(0.5f);
                 }
 
                 yield return new WaitForSeconds(0.5f);
