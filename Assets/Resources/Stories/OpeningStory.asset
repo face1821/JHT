@@ -16,7 +16,7 @@ MonoBehaviour:
   AutoPlay: 0
   EnableCharacterSpriteFadeEffect: 0
   contentList:
-  - CharacterName: 
+  - CharacterName: "\u5C0F\u5149"
     Content: "\u5636.....\u5934\u597D\u75DB"
     EnableTypeWriterEffect: 1
     TypeCountPerSecond: 10
@@ -31,7 +31,7 @@ MonoBehaviour:
     PresetPosition: 1
     EnterClip: {fileID: 0}
     ExitClip: {fileID: 0}
-  - CharacterName: 
+  - CharacterName: "\u5C0F\u5149"
     Content: "\u8FD9\u91CC\u662F\u54EA\u91CC\uFF0C\u6211\u4E0D\u662F\u5E94\u8BE5\u5DF2\u7ECF......."
     EnableTypeWriterEffect: 1
     TypeCountPerSecond: 10
@@ -58,7 +58,7 @@ MonoBehaviour:
     CharacterSprite: {fileID: 0}
     enablePresetPosition: 1
     ScreenPosition: {x: 0, y: 0}
-    PresetPosition: 0
+    PresetPosition: 1
     EnterClip: {fileID: 0}
     ExitClip: {fileID: 0}
   - CharacterName: 
@@ -71,9 +71,9 @@ MonoBehaviour:
     BackGround: {fileID: 0}
     FollowLastCharacterSprite: 0
     CharacterSprite: {fileID: 0}
-    enablePresetPosition: 0
+    enablePresetPosition: 1
     ScreenPosition: {x: 0, y: 0}
-    PresetPosition: 0
+    PresetPosition: 1
     EnterClip: {fileID: 0}
     ExitClip: {fileID: 0}
   - CharacterName: 
@@ -86,9 +86,9 @@ MonoBehaviour:
     BackGround: {fileID: 0}
     FollowLastCharacterSprite: 0
     CharacterSprite: {fileID: 0}
-    enablePresetPosition: 0
+    enablePresetPosition: 1
     ScreenPosition: {x: 0, y: 0}
-    PresetPosition: 0
+    PresetPosition: 1
     EnterClip: {fileID: 0}
     ExitClip: {fileID: 0}
   - CharacterName: 
@@ -101,9 +101,9 @@ MonoBehaviour:
     BackGround: {fileID: 0}
     FollowLastCharacterSprite: 0
     CharacterSprite: {fileID: 21300000, guid: a479831073d31c843ab7edf43eec1456, type: 3}
-    enablePresetPosition: 0
+    enablePresetPosition: 1
     ScreenPosition: {x: 0, y: 0}
-    PresetPosition: 0
+    PresetPosition: 1
     EnterClip: {fileID: 0}
     ExitClip: {fileID: 0}
   - CharacterName: 
@@ -138,6 +138,21 @@ MonoBehaviour:
     ExitClip: {fileID: 0}
   - CharacterName: 
     Content: "\u5472\u5472..."
+    EnableTypeWriterEffect: 1
+    TypeCountPerSecond: 10
+    Duration: 3
+    DelayAfterThis: 0
+    FollowLastBackGround: 0
+    BackGround: {fileID: 0}
+    FollowLastCharacterSprite: 0
+    CharacterSprite: {fileID: 0}
+    enablePresetPosition: 1
+    ScreenPosition: {x: 0, y: 0}
+    PresetPosition: 1
+    EnterClip: {fileID: 0}
+    ExitClip: {fileID: 0}
+  - CharacterName: 
+    Content: "\u5472..."
     EnableTypeWriterEffect: 1
     TypeCountPerSecond: 10
     Duration: 3

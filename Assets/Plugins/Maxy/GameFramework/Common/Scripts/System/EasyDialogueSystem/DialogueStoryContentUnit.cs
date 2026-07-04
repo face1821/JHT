@@ -7,40 +7,41 @@ namespace Maxy.GameFramework.Common.System
     [Serializable]
     public class DialogueStoryContentUnit
     {
-        [Title("@GetTitle()")]
-        public string CharacterName;
-        [TextArea] public string Content;
+        [ShowInInspector, PropertyOrder(-10)] public string Sentence => $"{CharacterName + ": "}{Content}";
 
-        [Header("Display Config")]
+        [FoldoutGroup("Detail", true)]
+        public string CharacterName;
+        [FoldoutGroup("Detail"), TextArea] public string Content;
+
+        [FoldoutGroup("Detail"), Header("Display Config")]
         public bool EnableTypeWriterEffect = true;
-        [ShowIf(nameof(EnableTypeWriterEffect))]
+        [FoldoutGroup("Detail"), ShowIf(nameof(EnableTypeWriterEffect))]
         public float TypeCountPerSecond = 10;
-        [HideIf(nameof(EnableTypeWriterEffect))]
+        [FoldoutGroup("Detail"), HideIf(nameof(EnableTypeWriterEffect))]
         public float Duration = 3f;
+        [FoldoutGroup("Detail")]
         public float DelayAfterThis;
 
-        [FoldoutGroup("Art")]
+        [FoldoutGroup("Detail/Art")]
         public bool FollowLastBackGround;
-        [FoldoutGroup("Art"), HideIf(nameof(FollowLastBackGround))]
+        [FoldoutGroup("Detail/Art"), HideIf(nameof(FollowLastBackGround))]
         public Sprite BackGround;
         [Space]
-        [FoldoutGroup("Art")]
+        [FoldoutGroup("Detail/Art")]
         public bool FollowLastCharacterSprite;
-        [FoldoutGroup("Art"), HideIf(nameof(FollowLastCharacterSprite))]
+        [FoldoutGroup("Detail/Art"), HideIf(nameof(FollowLastCharacterSprite))]
         public Sprite CharacterSprite;
-        [FoldoutGroup("Art")]
+        [FoldoutGroup("Detail/Art")]
         public bool enablePresetPosition = true;
-        [FoldoutGroup("Art"), HideIf(nameof(enablePresetPosition))]
+        [FoldoutGroup("Detail/Art"), HideIf(nameof(enablePresetPosition))]
         public Vector2 ScreenPosition;
-        [FoldoutGroup("Art"), ShowIf(nameof(enablePresetPosition))]
+        [FoldoutGroup("Detail/Art"), ShowIf(nameof(enablePresetPosition))]
         public DialogCharaterPresetPosition PresetPosition = DialogCharaterPresetPosition.Middle;
 
-        [FoldoutGroup("Audio")]
+        [FoldoutGroup("Detail/Audio")]
         public AudioClip EnterClip;
-        [FoldoutGroup("Audio")]
+        [FoldoutGroup("Detail/Audio")]
         public AudioClip ExitClip;
-
-        public string GetTitle() => $"{CharacterName}: {Content}";
     }
 
     [Serializable]
