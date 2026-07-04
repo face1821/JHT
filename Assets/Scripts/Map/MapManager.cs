@@ -104,7 +104,7 @@ namespace Game.Map
             //如果没有存档点位置，就回到起始点
             if (lastPassedLevelIndex < 0)
             {
-                InstanceFinder.Player.transform.position = new Vector3(-5f, -2.5f, 0f);
+                InstanceFinder.Player.transform.position = new Vector3(-2.09f, -2.5f, 0f);
                 yield break;
             }
 
