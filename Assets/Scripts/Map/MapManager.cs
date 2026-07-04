@@ -96,6 +96,9 @@ namespace Game.Map
         // 获取触屏点击到的UI物体
         private GameObject GetClickUIObj()
         {
+            GameObject delayResult = null;
+            GameObject obj = null;
+
             foreach (var t in Input.touches)
             {
                 if (t.phase == TouchPhase.Began)
@@ -110,16 +113,23 @@ namespace Game.Map
                     {
                         if (res.gameObject.CompareTag("UIButton"))
                         {
-                            return res.gameObject;
+                            obj = res.gameObject;
+                            break;
                         }
                     }
 
-                    // 没有按钮，再返回最上层普通UI
+                    // 没有按钮，就再等等
                     if (resList.Count > 0)
-                        return resList[0].gameObject;
+                        delayResult = resList[0].gameObject;
                 }
             }
-            return null;
+
+            //如果obj不为null，也就是说多个手指中存在UIButton，就返回它
+            if (obj != null)
+                return obj;
+            
+            //如果为null，就只返回最后一个遍历到的普通UI，反正都一样
+            return delayResult;
         }
 
         #region 设置
