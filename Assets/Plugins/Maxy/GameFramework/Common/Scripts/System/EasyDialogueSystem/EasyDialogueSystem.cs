@@ -160,7 +160,8 @@ namespace Maxy.GameFramework.Common.System
                         || !currentInfo.FollowLastCharacterSprite
                         || _currentStory.contentList[index - 1].CharacterSprite != currentInfo.CharacterSprite))
                 {
-                    _characterOverlay.PlayFadeOut(0.5f);
+                    if (_currentStory.EnableCharacterSpriteFadeEffect)
+                        _characterOverlay.PlayFadeOut(0.5f);
                 }
 
                 yield return new WaitForSeconds(0.5f);
@@ -207,7 +208,8 @@ namespace Maxy.GameFramework.Common.System
                     || (!_currentStory.contentList[index + 1].FollowLastCharacterSprite
                         && _currentStory.contentList[index + 1].CharacterSprite != currentInfo.CharacterSprite))
                 {
-                    _characterOverlay.PlayFadeIn(0.5f);
+                    if (_currentStory.EnableCharacterSpriteFadeEffect)
+                        _characterOverlay.PlayFadeIn(0.5f);
                 }
 
                 yield return new WaitForSeconds(0.5f);
