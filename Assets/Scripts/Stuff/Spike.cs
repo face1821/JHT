@@ -38,7 +38,7 @@ namespace Game.Stuff
 
         private void FixedUpdate()
         {
-            if (!SpikeTrap.gameObject.activeSelf) return;
+            if (!SpikeTrap.gameObject.activeSelf || SpikeTrap.transform.position.x == _endX) return;
 
             var distance = Vector3.Distance(InstanceFinder.Player.transform.position, SpikeTrap.transform.position);
 
