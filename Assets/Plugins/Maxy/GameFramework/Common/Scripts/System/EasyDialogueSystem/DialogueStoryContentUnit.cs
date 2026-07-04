@@ -24,6 +24,7 @@ namespace Maxy.GameFramework.Common.System
         [FoldoutGroup("Art"), HideIf(nameof(FollowLastBackGround))]
         public Sprite BackGround;
         [Space]
+        [FoldoutGroup("Art")]
         public bool FollowLastCharacterSprite;
         [FoldoutGroup("Art"), HideIf(nameof(FollowLastCharacterSprite))]
         public Sprite CharacterSprite;

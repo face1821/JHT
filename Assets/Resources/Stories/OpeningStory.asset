@@ -28,7 +28,7 @@ MonoBehaviour:
     CharacterSprite: {fileID: 21300000, guid: b146943f7756b9e4fa5d3324848554c7, type: 3}
     enablePresetPosition: 1
     ScreenPosition: {x: 0, y: 0}
-    PresetPosition: 0
+    PresetPosition: 1
     EnterClip: {fileID: 0}
     ExitClip: {fileID: 0}
   - CharacterName: 
@@ -43,7 +43,7 @@ MonoBehaviour:
     CharacterSprite: {fileID: 21300000, guid: a479831073d31c843ab7edf43eec1456, type: 3}
     enablePresetPosition: 1
     ScreenPosition: {x: 0, y: 0}
-    PresetPosition: 0
+    PresetPosition: 1
     EnterClip: {fileID: 0}
     ExitClip: {fileID: 0}
   - CharacterName: 
@@ -127,9 +127,9 @@ MonoBehaviour:
     TypeCountPerSecond: 10
     Duration: 3
     DelayAfterThis: 0
-    FollowLastBackGround: 0
+    FollowLastBackGround: 1
     BackGround: {fileID: 0}
-    FollowLastCharacterSprite: 0
+    FollowLastCharacterSprite: 1
     CharacterSprite: {fileID: 21300000, guid: b146943f7756b9e4fa5d3324848554c7, type: 3}
     enablePresetPosition: 0
     ScreenPosition: {x: 0, y: 0}
