@@ -16,6 +16,9 @@ namespace Maxy.GameFramework.Common.System
         public static async void Init()
         {
             _path = Path.Combine(Application.persistentDataPath, "SaveData.json");
+            if (!File.Exists(_path))
+                File.WriteAllText(_path, "{}");
+
             _saveDataDict = JsonConvert.DeserializeObject<Dictionary<string, object>>(await File.ReadAllTextAsync(_path));
         }
 
