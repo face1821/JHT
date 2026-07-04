@@ -68,6 +68,7 @@
     <Compile Include="Assets\Scripts\CheckPoint\Events\RemovePlayerInteractableObjectEvent.cs" />
     <Compile Include="Assets\Scripts\Player\StateMachine\States\Ground\PlayerStateJump.cs" />
     <Compile Include="Assets\Scripts\InteractableObject\LevelRuleToggleButton.cs" />
+    <Compile Include="Assets\Scripts\Tool\SkipUnityLogo.cs" />
     <Compile Include="Assets\Scripts\InteractableObject\ClimbingObject\Rope.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerInteract.cs" />
     <Compile Include="Assets\Scripts\System\InstanceFinderSystem\InstanceFinder.cs" />

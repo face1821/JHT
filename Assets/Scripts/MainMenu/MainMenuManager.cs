@@ -53,40 +53,22 @@ namespace Game.MainMenu
         // 获取触屏点击到的UI物体
         private GameObject GetClickUIObj()
         {
-            GameObject delayResult = null;
-            GameObject obj = null;
+            if (Input.touchCount == 0) return null;
 
-            foreach (var t in Input.touches)
-            {
-                if (t.phase == TouchPhase.Began)
-                {
-                    PointerEventData data = new PointerEventData(EventSystem.current);
-                    data.position = t.position;
-                    List<RaycastResult> resList = new List<RaycastResult>();
-                    EventSystem.current.RaycastAll(data, resList);
+            Touch t = Input.GetTouch(0);
+            if (t.phase != TouchPhase.Began) return null;
 
-                    //先遍历所有，优先返回带UIButton标签的
-                    foreach (var res in resList)
-                    {
-                        if (res.gameObject.CompareTag("UIButton"))
-                        {
-                            obj = res.gameObject;
-                            break;
-                        }
-                    }
+            PointerEventData data = new PointerEventData(EventSystem.current);
+            data.position = t.position;
+            List<RaycastResult> resList = new List<RaycastResult>();
+            EventSystem.current.RaycastAll(data, resList);
 
-                    // 没有按钮，就再等等
-                    if (resList.Count > 0)
-                        delayResult = resList[0].gameObject;
-                }
-            }
+            if (resList.Count == 0) return null;
 
-            //如果obj不为null，也就是说多个手指中存在UIButton，就返回它
-            if (obj != null)
-                return obj;
-            
-            //如果为null，就只返回最后一个遍历到的普通UI，反正都一样
-            return delayResult;
+            // 取视觉最顶层的（resList[0] 就是）
+            GameObject topmost = resList[0].gameObject;
+
+            return topmost;
         }
 
         #region 主界面

@@ -30811,17 +30811,7 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 123218893}
-    m_RemovedComponents:
-    - {fileID: 6539593997206021429, guid: f473b33921a02e14e94504b0e07fc085, type: 3}
-    - {fileID: 7375913435487927266, guid: f473b33921a02e14e94504b0e07fc085, type: 3}
-    - {fileID: 5410964314978977390, guid: f473b33921a02e14e94504b0e07fc085, type: 3}
-    - {fileID: 3286925003582286950, guid: f473b33921a02e14e94504b0e07fc085, type: 3}
-    - {fileID: 7242472275259518009, guid: f473b33921a02e14e94504b0e07fc085, type: 3}
-    - {fileID: 5760872554667721974, guid: f473b33921a02e14e94504b0e07fc085, type: 3}
-    - {fileID: 7749312789321770644, guid: f473b33921a02e14e94504b0e07fc085, type: 3}
-    - {fileID: 4484917618895798106, guid: f473b33921a02e14e94504b0e07fc085, type: 3}
-    - {fileID: 5682414983453497108, guid: f473b33921a02e14e94504b0e07fc085, type: 3}
-    - {fileID: 5087488826481503219, guid: f473b33921a02e14e94504b0e07fc085, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
