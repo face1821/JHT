@@ -23,7 +23,7 @@ namespace Maxy.GameFramework.Common.System
         [SerializeField] private Image _characterImage;
 
         private DialogueStory _currentStory;
-        private bool _isPlaying;
+        [ShowInInspector, ReadOnly] private bool _isPlaying;
         private bool _isSkip;
 
         private void Update()

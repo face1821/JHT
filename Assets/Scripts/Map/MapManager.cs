@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using Game.Player;
@@ -33,7 +32,7 @@ namespace Game.Map
 
         private void OnDisable() { PlayerStateMachine.OnDead -= OnPlayerDead; }
 
-        private void Awake()
+        private void Start()
         {
             _audioSystem = SystemCenter.Get<IAudioSystem>();
 
@@ -110,7 +109,7 @@ namespace Game.Map
 
             // 取视觉最顶层的（resList[0] 就是）
             GameObject topmost = resList[0].gameObject;
-            
+
             return topmost;
         }
 
@@ -176,20 +175,20 @@ namespace Game.Map
         {
             //禁用玩家输入
             PlayerInput.Instance.enabled = false;
-
             //显示开场剧情CG
             _storyCanvas.SetActive(true);
             yield return new WaitUntil(() => !_openingStoryVideoPlayer.isPlaying);
-
+            
             //然后显示开场剧情对话
             Destroy(_openingStoryVideoPlayer.gameObject);
 
             var dialogue = SystemCenter.Get<IDialogueSystem>();
             dialogue.StartDialog("OpeningStory");
-            yield return new WaitUntil(() => dialogue.IsPlaying);
+            _storyCanvas.SetActive(false);
+            
+            yield return new WaitUntil(() => !dialogue.IsPlaying);
 
             //启用玩家输入
-            _storyCanvas.SetActive(false);
             PlayerInput.Instance.enabled = true;
         }
     }
