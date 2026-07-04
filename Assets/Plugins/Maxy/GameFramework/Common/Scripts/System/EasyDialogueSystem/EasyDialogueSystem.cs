@@ -98,13 +98,13 @@ namespace Maxy.GameFramework.Common.System
                     switch (currentInfo.PresetPosition)
                     {
                         case DialogCharaterPresetPosition.Left:
-                            position = new Vector2(-500, -100);
+                            position = new Vector2(-500, 0);
                             break;
                         case DialogCharaterPresetPosition.Middle:
-                            position = new Vector2(0, 100);
+                            position = new Vector2(0, 0);
                             break;
                         case DialogCharaterPresetPosition.Right:
-                            position = new Vector2(500, 100);
+                            position = new Vector2(500, 0);
                             break;
                     }
 
