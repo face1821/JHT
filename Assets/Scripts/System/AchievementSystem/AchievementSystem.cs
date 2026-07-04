@@ -1,4 +1,3 @@
-using System;
 using Maxy.GameFramework.Common.System;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -18,7 +17,7 @@ namespace Game.System
         [SerializeField] private float _duration;
 
         private AchievementConfig _config;
-        
+
         public override void Init()
         {
             base.Init();

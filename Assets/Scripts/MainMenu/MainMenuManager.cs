@@ -1,8 +1,6 @@
-using System;
 using System.Collections;
 using Game.LoadingMenu;
 using Game.Map;
-using Game.System;
 using Maxy.GameFramework.Common.System;
 using Maxy.GameFramework.Common.Tool;
 using UnityEngine;

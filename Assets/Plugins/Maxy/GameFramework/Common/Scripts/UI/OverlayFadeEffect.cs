@@ -24,6 +24,24 @@ namespace Maxy.GameFramework.Common.Tool
             _selfText = GetComponentInChildren<TextMeshProUGUI>();
         }
 
+        public void SetAlpha(float alpha)
+        {
+            if (_selfImage != null)
+                _selfImage.color = new Color(_selfImage.color.r, _selfImage.color.g, _selfImage.color.b, alpha);
+            if (_selfText != null)
+                _selfText.color = new Color(_selfText.color.r, _selfText.color.g, _selfText.color.b, alpha);
+
+            foreach (var child in _childImages)
+            {
+                child.color = new Color(child.color.r, child.color.g, child.color.b, alpha);
+            }
+
+            foreach (var child in _childTexts)
+            {
+                child.color = new Color(child.color.r, child.color.g, child.color.b, alpha);
+            }
+        }
+
         public void PlayFadeIn(float duration = 1f)
         {
             StopAllCoroutines();
