@@ -1,6 +1,8 @@
 using System;
+using Cinemachine;
 using Maxy.GameFramework.Common.Tool;
 using Sirenix.OdinInspector;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Game.Player
@@ -18,6 +20,8 @@ namespace Game.Player
         public static event Action OnInteract;
 
         #endregion
+
+        [SerializeField] private CinemachineVirtualCamera _vCam;
 
         #region 输入状态
 
@@ -41,6 +45,13 @@ namespace Game.Player
             {
                 Destroy(gameObject);
             }
+
+            //判断是不是平板，如果是，就将相机尺寸变更
+            if (CheckIfTablet())
+            {
+                _vCam.m_Lens.OrthographicSize *= 2f;
+                _vCam.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset *= 2f;
+            }
         }
 
         private void Update()
@@ -50,6 +61,54 @@ namespace Game.Player
             else
                 PhoneInputHandle();
         }
+
+        #region 平板设备判断
+
+        private bool CheckIfTablet()
+        {
+            if (Application.platform == RuntimePlatform.IPhonePlayer)
+            {
+                string model = SystemInfo.deviceModel.ToLower();
+                if (model.Contains("ipad"))
+                    return true;
+            }
+            else if (Application.platform == RuntimePlatform.Android)
+            {
+                if (IsTabletScreen())
+                    return true;
+            }
+
+            return false;
+        }
+
+        // 判断是否为平板屏幕（≥6.5英寸 且 最小宽度≥600dp）
+        private static bool IsTabletScreen()
+        {
+            // 物理尺寸（英寸）
+            float screenInch = GetScreenInch();
+            // 最小宽度dp（更稳）
+            float minWidthDp = GetSmallestWidthDp();
+
+            return screenInch >= 6.5f || minWidthDp >= 600f;
+        }
+
+        // 计算屏幕对角线英寸
+        private static float GetScreenInch()
+        {
+            float w = Screen.width / Screen.dpi;
+            float h = Screen.height / Screen.dpi;
+            return Mathf.Sqrt(w * w + h * h);
+        }
+
+        // 获取Android最小宽度dp（适配系统）
+        private static float GetSmallestWidthDp()
+        {
+            // 用Screen.dpi近似，也可调用Android原生API更准
+            float shortSide = Mathf.Min(Screen.width, Screen.height);
+            return shortSide / Screen.dpi * 160f;
+        }
+
+        #endregion
 
         private void PhoneInputHandle()
         {
