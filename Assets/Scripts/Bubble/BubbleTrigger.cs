@@ -8,7 +8,7 @@ namespace Game.Bubble
     [RequireComponent(typeof(BoxCollider2D))]
     public class BubbleTrigger : MonoBehaviour
     {
-        [SerializeField] private AudioClip _confusedVoiceClip;
+        [SerializeField] private AudioClip _voiceClip;
         [SerializeField] private bool _onlyOnce;
         [SerializeField] private string _content;
 
@@ -21,7 +21,10 @@ namespace Game.Bubble
             if (!other.CompareTag("Player")) return;
 
             InstanceFinder.Player.Bubble.Speak(_content);
-            _audioSystem.PlayVoice(_confusedVoiceClip, "_confused", InstanceFinder.Player.transform, 0f);
+            
+            //人声音效
+            if (_voiceClip != null)
+                _audioSystem.PlayVoice(_voiceClip, "_voiceClip", InstanceFinder.Player.transform, 0f);
 
             if (_onlyOnce)
             {

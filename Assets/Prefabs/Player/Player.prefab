@@ -234,6 +234,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e33b0d6957c4c2aafebf55958f9a337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _deadVoiceClipList:
+  - {fileID: 8300000, guid: 84b04686c0728184cad4f9668c0a983b, type: 3}
+  - {fileID: 8300000, guid: 6f9f747cbe1dfc74f9f75ebffb051628, type: 3}
+  _happyVoiceClipList:
+  - {fileID: 8300000, guid: af2d682a61b32974fb4a3a3794a120ff, type: 3}
+  - {fileID: 8300000, guid: 48c6a1d921e860448843920f7b9beb97, type: 3}
+  - {fileID: 8300000, guid: 55d392b165b894c4297e840da4f943e0, type: 3}
+  _jumpVoiceClipList:
+  - {fileID: 8300000, guid: 690bcef72c527a448915bda533057673, type: 3}
+  - {fileID: 8300000, guid: 9df57a5e1654326469951d85099b10aa, type: 3}
+  _confusedVoiceClip: {fileID: 8300000, guid: 4a5dfa1b9979bf045b8328a9ef00d9f2, type: 3}
   _deadClip: {fileID: 8300000, guid: bde5c84b62ffb3847a6f0bfc57b903a8, type: 3}
   _deadTransformClip: {fileID: 8300000, guid: ac4ecbce0eff6c6428ef2d8271a01991, type: 3}
   _jumpClip: {fileID: 8300000, guid: 59a78274f4d36164d938eb5b36318581, type: 3}
