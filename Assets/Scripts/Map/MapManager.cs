@@ -104,11 +104,21 @@ namespace Game.Map
                     data.position = t.position;
                     List<RaycastResult> resList = new List<RaycastResult>();
                     EventSystem.current.RaycastAll(data, resList);
+
+                    //先遍历所有，优先返回带UIButton标签的
+                    foreach (var res in resList)
+                    {
+                        if (res.gameObject.CompareTag("UIButton"))
+                        {
+                            return res.gameObject;
+                        }
+                    }
+
+                    // 没有按钮，再返回最上层普通UI
                     if (resList.Count > 0)
                         return resList[0].gameObject;
                 }
             }
-
             return null;
         }
 

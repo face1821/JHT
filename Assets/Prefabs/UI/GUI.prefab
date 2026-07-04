@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 8746427055364376826}
   - component: {fileID: 2494395208060280484}
   - component: {fileID: 4432788731824057504}
-  - component: {fileID: 4484917618895798106}
   m_Layer: 5
   m_Name: Jump
   m_TagString: UIButton
@@ -182,19 +181,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PressScaleRate: 0.8
   Duration: 0.1
---- !u!114 &4484917618895798106
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 437688274194534014}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c69538787bcb4b70b64d5c6ee677988e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _audioClip: {fileID: 8300000, guid: 1dfc0ef6772ec1a41ad4c35b98668b44, type: 3}
 --- !u!1 &3307975359213436285
 GameObject:
   m_ObjectHideFlags: 0
@@ -209,7 +195,6 @@ GameObject:
   - component: {fileID: 9126831491188419744}
   - component: {fileID: 5370618304900048692}
   - component: {fileID: 6517292482158655472}
-  - component: {fileID: 7375913435487927266}
   m_Layer: 5
   m_Name: Right
   m_TagString: UIButton
@@ -377,19 +362,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PressScaleRate: 0.8
   Duration: 0.1
---- !u!114 &7375913435487927266
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3307975359213436285}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c69538787bcb4b70b64d5c6ee677988e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _audioClip: {fileID: 8300000, guid: 1dfc0ef6772ec1a41ad4c35b98668b44, type: 3}
 --- !u!1 &3363927093717308013
 GameObject:
   m_ObjectHideFlags: 0
@@ -404,7 +376,6 @@ GameObject:
   - component: {fileID: 7100935413802474987}
   - component: {fileID: 3270502699227785302}
   - component: {fileID: 8123358845971536463}
-  - component: {fileID: 3286925003582286950}
   m_Layer: 5
   m_Name: Interact
   m_TagString: UIButton
@@ -556,19 +527,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PressScaleRate: 0.8
   Duration: 0.1
---- !u!114 &3286925003582286950
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3363927093717308013}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c69538787bcb4b70b64d5c6ee677988e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _audioClip: {fileID: 8300000, guid: 1dfc0ef6772ec1a41ad4c35b98668b44, type: 3}
 --- !u!1 &3767815483504410162
 GameObject:
   m_ObjectHideFlags: 0
@@ -583,7 +541,6 @@ GameObject:
   - component: {fileID: 5950939910244460737}
   - component: {fileID: 4368846902051548475}
   - component: {fileID: 366130985874979092}
-  - component: {fileID: 7749312789321770644}
   m_Layer: 5
   m_Name: Right
   m_TagString: UIButton
@@ -751,19 +708,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PressScaleRate: 0.8
   Duration: 0.1
---- !u!114 &7749312789321770644
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3767815483504410162}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c69538787bcb4b70b64d5c6ee677988e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _audioClip: {fileID: 8300000, guid: 1dfc0ef6772ec1a41ad4c35b98668b44, type: 3}
 --- !u!1 &3820352700469465240
 GameObject:
   m_ObjectHideFlags: 0
@@ -1067,7 +1011,6 @@ GameObject:
   - component: {fileID: 8138704704417397312}
   - component: {fileID: 7197604224611080183}
   - component: {fileID: 7055312935409648965}
-  - component: {fileID: 7242472275259518009}
   m_Layer: 5
   m_Name: Crouch
   m_TagString: UIButton
@@ -1235,19 +1178,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PressScaleRate: 0.8
   Duration: 0.1
---- !u!114 &7242472275259518009
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4621849768957647720}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c69538787bcb4b70b64d5c6ee677988e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _audioClip: {fileID: 8300000, guid: 1dfc0ef6772ec1a41ad4c35b98668b44, type: 3}
 --- !u!1 &4924130550818204630
 GameObject:
   m_ObjectHideFlags: 0
@@ -1262,7 +1192,6 @@ GameObject:
   - component: {fileID: 894206635349635939}
   - component: {fileID: 1059494894374391308}
   - component: {fileID: 1337797400390792439}
-  - component: {fileID: 5760872554667721974}
   m_Layer: 5
   m_Name: Left
   m_TagString: UIButton
@@ -1430,19 +1359,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PressScaleRate: 0.8
   Duration: 0.1
---- !u!114 &5760872554667721974
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4924130550818204630}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c69538787bcb4b70b64d5c6ee677988e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _audioClip: {fileID: 8300000, guid: 1dfc0ef6772ec1a41ad4c35b98668b44, type: 3}
 --- !u!1 &5516939725707003975
 GameObject:
   m_ObjectHideFlags: 0
@@ -1494,7 +1410,6 @@ GameObject:
   - component: {fileID: 7001818434196448076}
   - component: {fileID: 1469542896978024212}
   - component: {fileID: 1057906228553982322}
-  - component: {fileID: 5087488826481503219}
   m_Layer: 5
   m_Name: Interact
   m_TagString: UIButton
@@ -1646,19 +1561,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PressScaleRate: 0.8
   Duration: 0.1
---- !u!114 &5087488826481503219
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5692350573563306345}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c69538787bcb4b70b64d5c6ee677988e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _audioClip: {fileID: 8300000, guid: 1dfc0ef6772ec1a41ad4c35b98668b44, type: 3}
 --- !u!1 &5713756106174054484
 GameObject:
   m_ObjectHideFlags: 0
@@ -1903,7 +1805,6 @@ GameObject:
   - component: {fileID: 79699703741993144}
   - component: {fileID: 8943510372700619649}
   - component: {fileID: 3295852338437403815}
-  - component: {fileID: 6539593997206021429}
   m_Layer: 5
   m_Name: Crouch
   m_TagString: UIButton
@@ -2071,19 +1972,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PressScaleRate: 0.8
   Duration: 0.1
---- !u!114 &6539593997206021429
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7521096587204087436}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c69538787bcb4b70b64d5c6ee677988e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _audioClip: {fileID: 8300000, guid: 1dfc0ef6772ec1a41ad4c35b98668b44, type: 3}
 --- !u!1 &7640276798642432611
 GameObject:
   m_ObjectHideFlags: 0
@@ -2098,7 +1986,6 @@ GameObject:
   - component: {fileID: 2943499348483456739}
   - component: {fileID: 8341277794475290261}
   - component: {fileID: 1180136652968262380}
-  - component: {fileID: 5682414983453497108}
   m_Layer: 5
   m_Name: Jump
   m_TagString: UIButton
@@ -2266,19 +2153,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PressScaleRate: 0.8
   Duration: 0.1
---- !u!114 &5682414983453497108
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7640276798642432611}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c69538787bcb4b70b64d5c6ee677988e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _audioClip: {fileID: 8300000, guid: 1dfc0ef6772ec1a41ad4c35b98668b44, type: 3}
 --- !u!1 &7882398866365530289
 GameObject:
   m_ObjectHideFlags: 0
@@ -2504,7 +2378,6 @@ GameObject:
   - component: {fileID: 2092700317453003392}
   - component: {fileID: 1437852059856874423}
   - component: {fileID: 8695687339290961759}
-  - component: {fileID: 5410964314978977390}
   m_Layer: 5
   m_Name: Left
   m_TagString: UIButton
@@ -2672,19 +2545,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PressScaleRate: 0.8
   Duration: 0.1
---- !u!114 &5410964314978977390
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8600914530656529262}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c69538787bcb4b70b64d5c6ee677988e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _audioClip: {fileID: 8300000, guid: 1dfc0ef6772ec1a41ad4c35b98668b44, type: 3}
 --- !u!1001 &3021657468537539655
 PrefabInstance:
   m_ObjectHideFlags: 0
