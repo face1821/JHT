@@ -12,6 +12,7 @@ namespace Game.PauseMenu
     public class PauseMenuManager : MonoBehaviour
     {
         [SerializeField] private GameObject _menu;
+        [SerializeField] private GameObject _settingsMenu;
         [SerializeField, LabelText("渐出（可为空）")] private OverlayFadeEffect _overlay;
 
         private IEnumerator DelayReturnToMainMenu()
@@ -34,6 +35,8 @@ namespace Game.PauseMenu
 
             InstanceFinder.Player.StateMachine.Die();
         }
+
+        public void Settings() { _settingsMenu.SetActive(true); }
 
         public void ReturnToMainMenu() { StartCoroutine(nameof(DelayReturnToMainMenu)); }
     }

@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using Game.LoadingMenu;
 using Game.Map;
 using Maxy.GameFramework.Common.System;
@@ -39,26 +40,33 @@ namespace Game.MainMenu
 
         private void Update()
         {
-            if (IsAnyFingerJustDownToUI())
+            //如果按到了UI对象
+            var ui = GetClickUIObj();
+            if (ui != null)
             {
-                var ui = EventSystem.current.currentSelectedGameObject;
-
                 //点非按钮UI时发出空击音效
-                if (ui == null || !ui.CompareTag("UIButton"))
+                if (!ui.CompareTag("UIButton"))
                     _audioSystem.PlaySfx(_uiEmptyClick, "_uiEmptyClick", null, 0f);
             }
         }
 
-        public bool IsAnyFingerJustDownToUI()
+        // 获取触屏点击到的UI物体
+        private GameObject GetClickUIObj()
         {
-            // 是否有任意手指刚刚按到UI对象
             foreach (var t in Input.touches)
             {
                 if (t.phase == TouchPhase.Began)
-                    return EventSystem.current.IsPointerOverGameObject();
+                {
+                    PointerEventData data = new PointerEventData(EventSystem.current);
+                    data.position = t.position;
+                    List<RaycastResult> resList = new List<RaycastResult>();
+                    EventSystem.current.RaycastAll(data, resList);
+                    if (resList.Count > 0)
+                        return resList[0].gameObject;
+                }
             }
 
-            return false;
+            return null;
         }
 
         #region 主界面
