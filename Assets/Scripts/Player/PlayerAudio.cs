@@ -36,7 +36,7 @@ namespace Game.Player
         private void Awake()
         {
             _audioSystem = SystemCenter.Get<IAudioSystem>();
-            _audioSystem.SpaceBlend = true;
+            _audioSystem.SpaceBlend = 0.5f;
         }
 
         private void PlayRandomMoveOnGround()

@@ -17,7 +17,7 @@ namespace Maxy.GameFramework.Common.System
         
         #region Sfx
 
-        public void PlaySfx(AudioClip clip, string clipName = null, Transform objectToFollow = null);
+        public void PlaySfx(AudioClip clip, string clipName = null, Transform objectToFollow = null, float spaceBlend = -1f);
         public void PlaySfxAt(AudioClip clip, Vector3 pos, string clipName);
         public void StopSfx(string clipName);
         public void StopAllSfxs();
@@ -26,7 +26,7 @@ namespace Maxy.GameFramework.Common.System
         
         #region Voice
 
-        public void PlayVoice(AudioClip clip, string voiceName = null, Transform objectToFollow = null);
+        public void PlayVoice(AudioClip clip, string voiceName = null, Transform objectToFollow = null, float spaceBlend = -1f);
         public void StopVoice(string voiceName);
         public void PauseVoice(string voiceName);
         public void UnPauseVoice(string voiceName);
@@ -36,7 +36,7 @@ namespace Maxy.GameFramework.Common.System
         
         #region Ambient
 
-        public void PlayAmbient(AudioClip clip, string ambientName, bool loop = false, Transform objectToFollow = null);
+        public void PlayAmbient(AudioClip clip, string ambientName, bool loop = false, Transform objectToFollow = null, float spaceBlend = -1f);
         public void StopAmbient(string ambientName);
         public void PauseAmbient(string voiceName);
         public void UnPauseAmbient(string voiceName);
