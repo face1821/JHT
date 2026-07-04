@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8be2fa786693470299c4897379cb4eeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mode2D: 1
+  _spaceBlend: 1
   GlobalAudioMixer: {fileID: 24100000, guid: 1cfe77c2c2601834a8716d903821970f, type: 2}

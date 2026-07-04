@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Game.Player;
@@ -5,6 +6,7 @@ using Game.Tool;
 using Maxy.GameFramework.Common.System;
 using Maxy.GameFramework.Common.Tool;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Video;
 
 namespace Game.Map
@@ -22,6 +24,10 @@ namespace Game.Map
         [Space]
         [SerializeField] private GameObject _storyCanvas;
         [SerializeField] private VideoPlayer _openingStoryVideoPlayer;
+        [SerializeField] private AudioClip _uiEmptyClick;
+        [SerializeField] private AudioClip _uiClick;
+
+        private IAudioSystem _audioSystem;
 
         private void OnEnable() { PlayerStateMachine.OnDead += OnPlayerDead; }
 
@@ -29,6 +35,8 @@ namespace Game.Map
 
         private void Awake()
         {
+            _audioSystem = SystemCenter.Get<IAudioSystem>();
+
             //渐入场景
             _overlay.PlayFadeIn();
 
@@ -59,6 +67,19 @@ namespace Game.Map
             InstanceFinder.Player.transform.position = _levelInfos[lastPassedLevelIndex].SpawnPos;
         }
 
+        private void Update()
+        {
+            if (IsAnyFingerJustDownToUI())
+            {
+                var ui = EventSystem.current.currentSelectedGameObject;
+
+                if (ui.CompareTag("UIButton"))
+                    _audioSystem.PlaySfx(_uiClick, "_uiClick", null, 0f);
+                else
+                    _audioSystem.PlaySfx(_uiEmptyClick, "_uiEmptyClick", null, 0f);
+            }
+        }
+
         public void ClosePassedLevels()
         {
             //遍历每个关卡的记录
@@ -71,6 +92,18 @@ namespace Game.Map
                     _levelInfos[i].InactiveLevel();
                 }
             }
+        }
+
+        public bool IsAnyFingerJustDownToUI()
+        {
+            // 是否有任意手指刚刚按到UI对象
+            foreach (var t in Input.touches)
+            {
+                if (t.phase == TouchPhase.Began)
+                    return EventSystem.current.IsPointerOverGameObject();
+            }
+
+            return false;
         }
 
         private void OnPlayerDead()

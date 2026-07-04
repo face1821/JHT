@@ -11098,6 +11098,8 @@ MonoBehaviour:
   - {fileID: 1740528164}
   _storyCanvas: {fileID: 1257882024}
   _openingStoryVideoPlayer: {fileID: 165458924}
+  _uiEmptyClick: {fileID: 8300000, guid: 0d4fb2f7ff3d57241a3a089e39220637, type: 3}
+  _uiClick: {fileID: 8300000, guid: 1dfc0ef6772ec1a41ad4c35b98668b44, type: 3}
 --- !u!1 &711074124 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8694371593529232738, guid: 828583eb114a1d54e89c40f9b137f2b7, type: 3}
