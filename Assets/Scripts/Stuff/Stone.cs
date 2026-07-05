@@ -1,6 +1,7 @@
 using System.Collections;
 using Cinemachine;
 using Game.Tool;
+using Maxy.GameFramework.Common.System;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -13,6 +14,7 @@ namespace Game.Stuff
         [SerializeField] private CinemachineVirtualCamera _vCam;
         [SerializeField, LabelText("幅度")] private float _camShakeAmplitude = 10f;
         [SerializeField, LabelText("频率")] private float _camShakeFrequency = 10f;
+        [SerializeField] private AudioClip _clip;
 
         private Animator _animator;
         private CinemachineBasicMultiChannelPerlin _noise;
@@ -32,6 +34,7 @@ namespace Game.Stuff
         {
             //当激活时，播放石头的动画
             _animator.Play("Roll");
+            SystemCenter.Get<IAudioSystem>().PlaySfx(_clip, "stone_roll", transform, 0.5f);
         }
 
         private void FixedUpdate()

@@ -41,6 +41,7 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+    <Analyzer Include="D:\Unity_WorkSpace\JHT\Assets\Plugins\Proxima\WebSocketSharp\proxima-websocket-sharp.dll" />
     <Analyzer Include="D:\Unity2022\2022.3.62f3\Editor\Data\Tools\Unity.SourceGenerators\Unity.SourceGenerators.dll" />
     <Analyzer Include="D:\Unity2022\2022.3.62f3\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
@@ -391,6 +392,9 @@
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>D:\Unity_WorkSpace\JHT\Library\PackageCache\com.unity.nuget.newtonsoft-json@3.2.2\Runtime\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="proxima-websocket-sharp">
+      <HintPath>D:\Unity_WorkSpace\JHT\Assets\Plugins\Proxima\WebSocketSharp\proxima-websocket-sharp.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Android.Types">
       <HintPath>D:\Unity2022\2022.3.62f3\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>
@@ -961,6 +965,14 @@
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
       <Project>{5350d802-ec56-36e9-8f78-4ecd045660a1}</Project>
       <Name>Assembly-CSharp-firstpass</Name>
+    </ProjectReference>
+    <ProjectReference Include="Proxima.Editor.csproj">
+      <Project>{2caed329-dc55-0330-b5bb-e629d271efec}</Project>
+      <Name>Proxima.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Proxima.csproj">
+      <Project>{028e6c7e-df73-1f70-790c-4bb88fc8c2c4}</Project>
+      <Name>Proxima</Name>
     </ProjectReference>
     <ProjectReference Include="LeanCommon.csproj">
       <Project>{63a4a78f-1387-36e6-6a06-ecafff8fbf85}</Project>

@@ -34,10 +34,12 @@ namespace Game.CheckPoint
 
         private void Start()
         {
+            _text.text += $"游戏刚开始，我是({currentLevelInfo.LevelIndex + 1})号门，\n";
+            
             if (SaveSystem.Load("LastPassedLevel", 0) - 1 < currentLevelInfo.LevelIndex) return;
             MLogger.LogWarning($"{currentLevelInfo.name} 存档点{currentLevelInfo.LevelIndex + 1}：发现最新存档点是第{SaveSystem.Load("LastPassedLevel", 0)}个，已经存档过自己了", this);
 
-            _text.text += $"游戏刚开始，我是({currentLevelInfo.LevelIndex + 1})号门，我要关了\n";
+            _text.text += $"我要关了\n";
             _text.text += $"因为这个不成立 {SaveSystem.Load("LastPassedLevel", 0) - 1} < {currentLevelInfo.LevelIndex}";
             
             gameObject.SetActive(false);
@@ -72,9 +74,6 @@ namespace Game.CheckPoint
             //如果玩家存档点在后面或者就在这，那这个存档点就打开门
             if (SaveSystem.Load("LastPassedLevel", 0) - 1 < currentLevelInfo.LevelIndex) yield break;
 
-            _text.text += $"玩家死了，我是({currentLevelInfo.LevelIndex + 1})号门，我要关了\n";
-            _text.text += $"因为这个不成立 {SaveSystem.Load("LastPassedLevel", 0) - 1} < {currentLevelInfo.LevelIndex}";
-            
             gameObject.SetActive(false);
             EventBus.Publish(new RemovePlayerInteractableObjectEvent(this));
             _openedCheckPoint.SetActive(true);

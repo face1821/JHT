@@ -13,9 +13,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CW.Common", "CW.Common.cspr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeanTouch", "LeanTouch.csproj", "{759203cb-b9e2-31fb-47ec-24a21fab0d86}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proxima", "Proxima.csproj", "{028e6c7e-df73-1f70-790c-4bb88fc8c2c4}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeanCommon", "LeanCommon.csproj", "{63a4a78f-1387-36e6-6a06-ecafff8fbf85}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor-firstpass", "Assembly-CSharp-Editor-firstpass.csproj", "{76abd3d3-a965-a934-1ec6-51af1358209c}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proxima.Editor", "Proxima.Editor.csproj", "{2caed329-dc55-0330-b5bb-e629d271efec}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,10 +38,14 @@ Global
 		{4f9f3a7d-b1ff-26a6-a3ea-b3dd19741dbf}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{759203cb-b9e2-31fb-47ec-24a21fab0d86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{759203cb-b9e2-31fb-47ec-24a21fab0d86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{028e6c7e-df73-1f70-790c-4bb88fc8c2c4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{028e6c7e-df73-1f70-790c-4bb88fc8c2c4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{63a4a78f-1387-36e6-6a06-ecafff8fbf85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{63a4a78f-1387-36e6-6a06-ecafff8fbf85}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76abd3d3-a965-a934-1ec6-51af1358209c}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{76abd3d3-a965-a934-1ec6-51af1358209c}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2caed329-dc55-0330-b5bb-e629d271efec}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2caed329-dc55-0330-b5bb-e629d271efec}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

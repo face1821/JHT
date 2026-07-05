@@ -41,6 +41,7 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+    <Analyzer Include="D:\Unity_WorkSpace\JHT\Assets\Plugins\Proxima\WebSocketSharp\proxima-websocket-sharp.dll" />
     <Analyzer Include="D:\Unity2022\2022.3.62f3\Editor\Data\Tools\Unity.SourceGenerators\Unity.SourceGenerators.dll" />
     <Analyzer Include="D:\Unity2022\2022.3.62f3\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
@@ -105,7 +106,9 @@
     <None Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Demigiant\readme_DOTweenPro.txt" />
     <None Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Sirenix\Assemblies\Sirenix.Serialization.Config.xml" />
     <None Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Sirenix\Assemblies\Sirenix.OdinInspector.Editor.xml" />
+    <None Include="Assets\Plugins\Proxima\package.json" />
     <None Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets\Plugins\Proxima\Third-Party Notices.txt" />
     <None Include="Assets\Plugins\Maxy\GameFramework\MobileGame\Plugins\CW\READ ME.txt" />
     <None Include="Assets\Plugins\Maxy\GameFramework\MobileGame\Plugins\CW\Third-Party Notices.txt" />
     <None Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Sirenix\Assemblies\Sirenix.OdinInspector.Attributes.xml" />
@@ -119,12 +122,15 @@
     <None Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Sirenix\Readme.txt" />
+    <None Include="Assets\Plugins\Proxima\WebSocketSharp\README.txt" />
+    <None Include="Assets\Plugins\Proxima\WebSocketSharp\LICENSE.txt" />
     <None Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Demigiant\DOTweenPro\readme.txt" />
     <None Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Sirenix\Assemblies\link.xml" />
     <None Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Demigiant\DemiLib\Core\DemiLib.xml" />
     <None Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Sirenix\Assemblies\Sirenix.Utilities.Editor.xml" />
     <None Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets\Plugins\Proxima\link.xml" />
     <None Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Demigiant\DOTween\readme.txt" />
     <None Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
@@ -411,6 +417,9 @@
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>D:\Unity_WorkSpace\JHT\Library\PackageCache\com.unity.nuget.newtonsoft-json@3.2.2\Runtime\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="proxima-websocket-sharp">
+      <HintPath>D:\Unity_WorkSpace\JHT\Assets\Plugins\Proxima\WebSocketSharp\proxima-websocket-sharp.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Android.Types">
       <HintPath>D:\Unity2022\2022.3.62f3\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>
@@ -978,6 +987,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Proxima.Editor.csproj">
+      <Project>{2caed329-dc55-0330-b5bb-e629d271efec}</Project>
+      <Name>Proxima.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Proxima.csproj">
+      <Project>{028e6c7e-df73-1f70-790c-4bb88fc8c2c4}</Project>
+      <Name>Proxima</Name>
+    </ProjectReference>
     <ProjectReference Include="LeanCommon.csproj">
       <Project>{63a4a78f-1387-36e6-6a06-ecafff8fbf85}</Project>
       <Name>LeanCommon</Name>
