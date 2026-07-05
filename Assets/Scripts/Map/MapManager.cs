@@ -39,9 +39,9 @@ namespace Game.Map
 
             //渐入场景
             _overlay.PlayFadeIn();
-
-            //播放音乐
-            _audioSystem.PlayMusic(_music);
+            
+            //停止音乐
+            _audioSystem.StopMusic();
 
             if (IsNewGame)
             {
@@ -170,8 +170,9 @@ namespace Game.Map
             yield return new WaitForSeconds(3f);
             yield return new WaitUntil(() => !_openingStoryVideoPlayer.isPlaying);
 
-            //然后显示开场剧情对话
+            //然后显示开场剧情对话，以及音乐
             Destroy(_openingStoryVideoPlayer.gameObject);
+            _audioSystem.PlayMusic(_music);
 
             var dialogue = SystemCenter.Get<IDialogueSystem>();
             dialogue.StartDialog("OpeningStory");
