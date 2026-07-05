@@ -20,6 +20,7 @@ namespace Game.CheckPoint
 
         [SerializeField] private LevelInfo currentLevelInfo;
         [SerializeField] private GameObject _openedCheckPoint;
+        [SerializeField] private AudioClip _clip;
         private OverlayFadeEffect _overlayTip;
         private Light2D _highLight;
 
@@ -63,7 +64,7 @@ namespace Game.CheckPoint
         {
             //为什么玩家死了就要判断是否打开门？玩家开过就开过啊，跟死了有什么关系
             yield break;
-            
+
             yield return new WaitForSeconds(1.5f);
 
             MLogger.LogWarning($"我是第{currentLevelInfo.LevelIndex + 1}个门，我发现LastPassedLevel是{SaveSystem.Load("LastPassedLevel", 0)}");
@@ -100,6 +101,8 @@ namespace Game.CheckPoint
             SaveSystem.Save($"Level-{currentLevelInfo.LevelIndex + 1}", true);
             SaveSystem.Save("LastPassedLevel", currentLevelInfo.LevelIndex + 1);
             MLogger.LogWarning($"存档：到达第{currentLevelInfo.LevelIndex + 1}个存档点");
+
+            SystemCenter.Get<IAudioSystem>().PlaySfx(_clip, "checkPoint_clip", InstanceFinder.Player.transform, 0f);
 
             //存档后，将之前的关卡都给关闭掉
             //不需要了
