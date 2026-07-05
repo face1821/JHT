@@ -61,6 +61,9 @@ namespace Game.CheckPoint
 
         private IEnumerator DelayOnPlayerDead()
         {
+            //为什么玩家死了就要判断是否打开门？玩家开过就开过啊，跟死了有什么关系
+            yield break;
+            
             yield return new WaitForSeconds(1.5f);
 
             MLogger.LogWarning($"我是第{currentLevelInfo.LevelIndex + 1}个门，我发现LastPassedLevel是{SaveSystem.Load("LastPassedLevel", 0)}");

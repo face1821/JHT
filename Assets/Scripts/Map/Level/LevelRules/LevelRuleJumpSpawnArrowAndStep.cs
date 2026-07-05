@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Game.Player;
 using Game.Stuff;
+using Game.Tool;
 using Maxy.GameFramework.Common.System;
 using Maxy.GameFramework.Common.Tool;
 using UnityEngine;
@@ -10,6 +11,7 @@ namespace Game.Map
 {
     public class LevelRuleJumpSpawnArrowAndStep : LevelRuleBase
     {
+        [SerializeField] private AudioClip _clip;
         [SerializeField] private List<GameObject> _steps;
         [SerializeField] private Arrow _arrow;
         [SerializeField] private Transform _arrowSpawnPoint;
@@ -49,9 +51,14 @@ namespace Game.Map
 
                 //放置新台阶
                 //一次性加俩台阶，快一点
+                var oldIndex = _index;
                 _index = Mathf.Clamp(_index + 2, 0, _steps.Count - 1);
-                _steps.ForEach(x => x.SetActive(false));
-                _steps[_index].SetActive(true);
+                if (_index != oldIndex)
+                {
+                    _steps.ForEach(x => x.SetActive(false));
+                    SystemCenter.Get<IAudioSystem>().PlaySfx(_clip, "stair_clip", InstanceFinder.Player.transform, 0f);
+                    _steps[_index].SetActive(true);
+                }
             }
         }
 

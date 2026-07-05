@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Game.Player;
+using Game.Tool;
 using Maxy.GameFramework.Common.System;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ namespace Game.Map
     public class LevelRuleDeadWhenTouchGroundAndCrouchDespawnStep : LevelRuleBase
     {
         [SerializeField] private float _groundHeight;
+        [SerializeField] private AudioClip _clip;
         [SerializeField] private List<GameObject> _steps;
 
         private bool _alreadySpawned;
@@ -38,11 +40,13 @@ namespace Game.Map
 
                 //销毁新台阶
                 //一次性加俩台阶，快一点
+                var oldIndex = _index;
                 _index = Mathf.Clamp(_index - 2, -1, _steps.Count - 1);
                 _steps.ForEach(x => x.SetActive(false));
 
-                if (_index >= 0)
+                if (_index >= 0 && oldIndex != _index)
                 {
+                    SystemCenter.Get<IAudioSystem>().PlaySfx(_clip, "stair_clip", InstanceFinder.Player.transform, 0f);
                     _steps[_index].SetActive(true);
                 }
             }

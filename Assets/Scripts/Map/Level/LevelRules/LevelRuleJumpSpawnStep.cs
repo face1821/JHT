@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Game.Player;
 using Game.Stuff;
+using Game.Tool;
 using Maxy.GameFramework.Common.System;
 using Maxy.GameFramework.Common.Tool;
 using UnityEngine;
@@ -10,6 +11,7 @@ namespace Game.Map
 {
     public class LevelRuleJumpSpawnStep : LevelRuleBase
     {
+        [SerializeField] private AudioClip _clip;
         [SerializeField] private List<GameObject> _steps;
 
         private bool _alreadySpawned;
@@ -31,11 +33,13 @@ namespace Game.Map
                 _alreadySpawned = true;
 
                 //放置新台阶
+                var oldIndex = _index;
                 _index = Mathf.Clamp(_index + 2, 0, _steps.Count - 1);
-                if (_index < _steps.Count)
+                if (_index < _steps.Count && _index != oldIndex)
                 {
                     //一次性加俩台阶，快一点
                     _steps.ForEach(x => x.SetActive(false));
+                    SystemCenter.Get<IAudioSystem>().PlaySfx(_clip, "stair_clip", InstanceFinder.Player.transform, 0f);
                     _steps[_index].SetActive(true);
                 }
             }
