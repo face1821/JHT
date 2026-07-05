@@ -1,7 +1,9 @@
 using System.Collections;
+using Game.CheckPoint.Events;
 using Game.InteractableObject;
 using Game.LoadingMenu;
 using Game.Tool;
+using Maxy.GameFramework.Common.Events;
 using Maxy.GameFramework.Common.Tool;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
@@ -22,6 +24,21 @@ namespace Game.Suff
         private Light2D _light;
 
         private void Awake() { _light = GetComponent<Light2D>(); }
+
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (!other.CompareTag("Player")) return;
+
+            EventBus.Publish(new AddPlayerInteractableObjectEvent(this));
+        }
+
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            if (!other.CompareTag("Player")) return;
+
+            EventBus.Publish(new RemovePlayerInteractableObjectEvent(this));
+        }
 
         #region 交互
 
