@@ -1,3 +1,4 @@
+using Maxy.GameFramework.Common.System;
 using UnityEditor;
 using UnityEngine;
 
@@ -18,7 +19,7 @@ namespace Maxy.GameFramework.Common.Editor
             var tagManagerAsset = AssetDatabase.LoadAssetAtPath<Object>("ProjectSettings/TagManager.asset");
             if (tagManagerAsset == null)
             {
-                Debug.LogWarning("无法找到TagManager.asset，跳过自动添加Tag");
+                MLogger.LogWarning("无法找到TagManager.asset，跳过自动添加Tag");
                 return;
             }
 
@@ -43,7 +44,7 @@ namespace Maxy.GameFramework.Common.Editor
                     tagsProp.InsertArrayElementAtIndex(tagsProp.arraySize);
                     SerializedProperty newTagProp = tagsProp.GetArrayElementAtIndex(tagsProp.arraySize - 1);
                     newTagProp.stringValue = tag;
-                    Debug.Log($"[AutoAddTags]已自动添加Tag：{tag}");
+                    MLogger.Log($"[AutoAddTags]已自动添加Tag：{tag}");
                 }
             }
 

@@ -53,7 +53,7 @@ namespace Game.CheckPoint
 
             EventBus.Publish(new RemovePlayerInteractableObjectEvent(this));
         }
-        
+
         #region 交互
 
         public void SetHighLight(bool state) { _highLight.enabled = state; }

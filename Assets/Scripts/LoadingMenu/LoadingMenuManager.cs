@@ -34,7 +34,7 @@ namespace Game.LoadingMenu
             
             while (handle.progress < 0.9f)
             {
-                Debug.Log("加载进度：" + handle.progress);
+                MLogger.Log("加载进度：" + handle.progress);
                 yield return null;
             }
             

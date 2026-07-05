@@ -7,7 +7,7 @@ namespace Game.Map
     public class LevelInfo : MonoBehaviour
     {
         public Vector2 SpawnPos => transform.position;
-        public int LevelIndex => _levelIndex;
+        public int LevelIndex => GameObject.FindWithTag("MapManager").GetComponent<MapManager>().LevelInfos.IndexOf(this);
 
         [SerializeField] private bool _canBeReset;
         [SerializeField] private bool _canRuleBeClosed;
@@ -15,15 +15,6 @@ namespace Game.Map
         [SerializeField] private List<GameObject> _activeObjs;
         [SerializeField] private List<GameObject> _inactiveObjs;
         [SerializeField] private List<GameObject> _ruleLights;
-
-        private MapManager _mapManager;
-        private int _levelIndex;
-
-        public void Init(MapManager mapManager)
-        {
-            _mapManager = mapManager;
-            _levelIndex = mapManager.LevelInfos.IndexOf(this);
-        }
 
         public void ResetLevel()
         {
