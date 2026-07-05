@@ -40,10 +40,6 @@ namespace Game.CheckPoint
             _openedCheckPoint.SetActive(true);
         }
 
-        private void OnEnable() { PlayerStateMachine.OnDead += OnPlayerDead; }
-
-        private void OnDisable() { PlayerStateMachine.OnDead -= OnPlayerDead; }
-
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (!other.CompareTag("Player")) return;
@@ -57,29 +53,7 @@ namespace Game.CheckPoint
 
             EventBus.Publish(new RemovePlayerInteractableObjectEvent(this));
         }
-
-        private void OnPlayerDead() { StartCoroutine(nameof(DelayOnPlayerDead)); }
-
-        private IEnumerator DelayOnPlayerDead()
-        {
-            //为什么玩家死了就要判断是否打开门？玩家开过就开过啊，跟死了有什么关系
-            yield break;
-
-            yield return new WaitForSeconds(1.5f);
-
-            MLogger.LogWarning($"我是第{currentLevelInfo.LevelIndex + 1}个门，我发现LastPassedLevel是{SaveSystem.Load("LastPassedLevel", 0)}");
-            MLogger.LogWarning($"所以表达式结果为： SaveSystem.Load(\"LastPassedLevel\", 0) - 1 < currentLevelInfo.LevelIndex");
-            MLogger.LogWarning($" => {SaveSystem.Load("LastPassedLevel", 0) - 1} < {currentLevelInfo.LevelIndex}");
-            //如果玩家存档点在后面或者就在这，那这个存档点就打开门
-            if (SaveSystem.Load("LastPassedLevel", 0) - 1 < currentLevelInfo.LevelIndex) yield break;
-
-            MLogger.LogWarning("所以我显示打开了");
-
-            gameObject.SetActive(false);
-            EventBus.Publish(new RemovePlayerInteractableObjectEvent(this));
-            _openedCheckPoint.SetActive(true);
-        }
-
+        
         #region 交互
 
         public void SetHighLight(bool state) { _highLight.enabled = state; }
