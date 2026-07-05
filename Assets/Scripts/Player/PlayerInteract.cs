@@ -11,6 +11,8 @@ namespace Game.Player
 {
     public class PlayerInteract : MonoBehaviour
     {
+        public IInteractableObject InteractableObject => _closestInteractableObject;
+
         [ShowInInspector, ReadOnly] private List<IInteractableObject> _interactableObjects = new List<IInteractableObject>();
         [ShowInInspector, ReadOnly] private IInteractableObject _closestInteractableObject;
 
