@@ -36,8 +36,7 @@ namespace Game.Map
             yield return new WaitForSeconds(2.5f);
             
             _index = _steps.Count - 1;
-            _steps.ForEach(x => x.SetActive(false));
-            _steps[_index].SetActive(true);
+            _steps.ForEach(x => x.SetActive(true));
         }
 
         private void FixedUpdate()
