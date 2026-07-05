@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
@@ -13,13 +14,13 @@ namespace Maxy.GameFramework.Common.System
 
         static SaveSystem() { Init(); }
 
-        public static async void Init()
+        public static void Init()
         {
             _path = Path.Combine(Application.persistentDataPath, "SaveData.json");
             if (!File.Exists(_path))
                 File.WriteAllText(_path, "{}");
 
-            _saveDataDict = JsonConvert.DeserializeObject<Dictionary<string, object>>(await File.ReadAllTextAsync(_path));
+            _saveDataDict = JsonConvert.DeserializeObject<Dictionary<string, object>>(File.ReadAllText(_path));
         }
 
         public static void Flush()
@@ -45,7 +46,8 @@ namespace Maxy.GameFramework.Common.System
         {
             if (_saveDataDict.ContainsKey(keyName))
             {
-                return (T)_saveDataDict[keyName];
+                // 通用安全类型转换，兼容 long/double/string 转目标类型
+                return (T)Convert.ChangeType(_saveDataDict.ContainsKey(keyName), typeof(T));
             }
 
             return defaultValue;
