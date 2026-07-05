@@ -57,7 +57,6 @@ namespace Game.Map
             }
 
             _started = false;
-            _spike.Close();
         }
     }
 }

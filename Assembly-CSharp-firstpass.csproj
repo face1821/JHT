@@ -410,7 +410,7 @@
       <HintPath>D:\Unity_WorkSpace\JHT\Assets\Plugins\Maxy\GameFramework\Common\Plugins\Sirenix\Assemblies\Sirenix.Utilities.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>D:\Unity_WorkSpace\JHT\Assets\Plugins\Maxy\GameFramework\Common\Plugins\Newtonsoft.Json.dll</HintPath>
+      <HintPath>D:\Unity_WorkSpace\JHT\Library\PackageCache\com.unity.nuget.newtonsoft-json@3.2.2\Runtime\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Android.Types">
       <HintPath>D:\Unity2022\2022.3.62f3\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>
