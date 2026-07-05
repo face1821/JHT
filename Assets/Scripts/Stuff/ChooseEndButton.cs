@@ -19,6 +19,7 @@ namespace Game.Suff
         public bool IsActive => gameObject.activeSelf;
 
         [SerializeField] private GameObject _endVideoCanvas;
+        [SerializeField] private OverlayFadeEffect _videoOverlay;
         [SerializeField] private VideoPlayer _videoPlayer;
 
         private Light2D _light;
@@ -61,7 +62,7 @@ namespace Game.Suff
 
             //播放视频
             _endVideoCanvas.SetActive(true);
-            overlay.PlayFadeIn(0f);
+            _videoOverlay.PlayFadeIn();
             _videoPlayer.gameObject.SetActive(true);
             yield return new WaitForSeconds(0.5f);
 
