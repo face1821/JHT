@@ -33625,21 +33625,9 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 123218893}
-    - target: {fileID: 4091838106865472916, guid: f473b33921a02e14e94504b0e07fc085, type: 3}
-      propertyPath: m_fontColor.a
+    - target: {fileID: 3289869829697924371, guid: f473b33921a02e14e94504b0e07fc085, type: 3}
+      propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4091838106865472916, guid: f473b33921a02e14e94504b0e07fc085, type: 3}
-      propertyPath: m_fontColor32.rgba
-      value: 16777215
-      objectReference: {fileID: 0}
-    - target: {fileID: 4091838106865472916, guid: f473b33921a02e14e94504b0e07fc085, type: 3}
-      propertyPath: m_VerticalAlignment
-      value: 512
-      objectReference: {fileID: 0}
-    - target: {fileID: 4091838106865472916, guid: f473b33921a02e14e94504b0e07fc085, type: 3}
-      propertyPath: m_HorizontalAlignment
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4310378891756216206, guid: f473b33921a02e14e94504b0e07fc085, type: 3}
       propertyPath: m_Name
@@ -33737,26 +33725,6 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 123218893}
-    - target: {fileID: 7056973727250029449, guid: f473b33921a02e14e94504b0e07fc085, type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7056973727250029449, guid: f473b33921a02e14e94504b0e07fc085, type: 3}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7056973727250029449, guid: f473b33921a02e14e94504b0e07fc085, type: 3}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7056973727250029449, guid: f473b33921a02e14e94504b0e07fc085, type: 3}
-      propertyPath: m_Color.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7056973727250029449, guid: f473b33921a02e14e94504b0e07fc085, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7100935413802474987, guid: f473b33921a02e14e94504b0e07fc085, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
