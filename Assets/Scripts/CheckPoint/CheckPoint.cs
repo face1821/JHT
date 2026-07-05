@@ -19,7 +19,7 @@ namespace Game.CheckPoint
     public class CheckPoint : MonoBehaviour, IInteractableObject
     {
         public bool IsActive => gameObject.activeSelf;
-        
+
         [SerializeField] private LevelInfo currentLevelInfo;
         [SerializeField] private GameObject _openedCheckPoint;
         private OverlayFadeEffect _overlayTip;
@@ -35,7 +35,7 @@ namespace Game.CheckPoint
         {
             if (SaveSystem.Load("LastPassedLevel", 0) - 1 < currentLevelInfo.LevelIndex) return;
             MLogger.LogWarning($"{currentLevelInfo.name} 存档点{currentLevelInfo.LevelIndex + 1}：发现最新存档点是第{SaveSystem.Load("LastPassedLevel", 0)}个，已经存档过自己了", this);
-            
+
             gameObject.SetActive(false);
             EventBus.Publish(new RemovePlayerInteractableObjectEvent(this));
             _openedCheckPoint.SetActive(true);
@@ -65,8 +65,13 @@ namespace Game.CheckPoint
         {
             yield return new WaitForSeconds(1.5f);
 
+            MLogger.LogWarning($"我是第{currentLevelInfo.LevelIndex + 1}个门，我发现LastPassedLevel是{SaveSystem.Load("LastPassedLevel", 0)}");
+            MLogger.LogWarning($"所以表达式结果为： SaveSystem.Load(\"LastPassedLevel\", 0) - 1 < currentLevelInfo.LevelIndex");
+            MLogger.LogWarning($" => {SaveSystem.Load("LastPassedLevel", 0) - 1} < {currentLevelInfo.LevelIndex}");
             //如果玩家存档点在后面或者就在这，那这个存档点就打开门
             if (SaveSystem.Load("LastPassedLevel", 0) - 1 < currentLevelInfo.LevelIndex) yield break;
+            
+            MLogger.LogWarning("所以我显示打开了");
 
             gameObject.SetActive(false);
             EventBus.Publish(new RemovePlayerInteractableObjectEvent(this));

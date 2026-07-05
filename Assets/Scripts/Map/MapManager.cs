@@ -39,7 +39,7 @@ namespace Game.Map
 
             //渐入场景
             _overlay.PlayFadeIn();
-            
+
             //播放音乐
             _audioSystem.PlayMusic(_music);
 
@@ -167,15 +167,16 @@ namespace Game.Map
             PlayerInput.Instance.enabled = false;
             //显示开场剧情CG
             _storyCanvas.SetActive(true);
+            yield return new WaitForSeconds(3f);
             yield return new WaitUntil(() => !_openingStoryVideoPlayer.isPlaying);
-            
+
             //然后显示开场剧情对话
             Destroy(_openingStoryVideoPlayer.gameObject);
 
             var dialogue = SystemCenter.Get<IDialogueSystem>();
             dialogue.StartDialog("OpeningStory");
             _storyCanvas.SetActive(false);
-            
+
             yield return new WaitUntil(() => !dialogue.IsPlaying);
 
             //启用玩家输入
