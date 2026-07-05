@@ -47,17 +47,6 @@ namespace Game.Map
             }
         }
 
-        public void PassLevel()
-        {
-            //通过关卡后，关卡不应当再响应任何事件
-            //所以将关卡的所有规则全部关闭
-            InactiveLevel();
-
-            //并且存储下来
-            SaveSystem.Save($"Level-{_levelIndex}", true);
-            SaveSystem.Save($"LastPassedLevel", _levelIndex);
-        }
-
         public void ActiveLevel()
         {
             foreach (var item in _levelRules)

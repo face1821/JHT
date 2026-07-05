@@ -82,20 +82,6 @@ namespace Game.Map
             }
         }
 
-        public void ClosePassedLevels()
-        {
-            //遍历每个关卡的记录
-            for (int i = 0; i < _levelInfos.Count; i++)
-            {
-                _levelInfos[i].Init(this);
-                var passed = SaveSystem.Load($"Level-{i + 1}", false);
-                if (passed)
-                {
-                    _levelInfos[i].InactiveLevel();
-                }
-            }
-        }
-
         // 获取触屏点击到的UI物体
         private GameObject GetClickUIObj()
         {

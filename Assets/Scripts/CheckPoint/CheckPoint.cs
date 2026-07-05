@@ -8,6 +8,7 @@ using Game.Tool;
 using Maxy.GameFramework.Common.Events;
 using Maxy.GameFramework.Common.System;
 using Maxy.GameFramework.Common.Tool;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -19,6 +20,7 @@ namespace Game.CheckPoint
     {
         public bool IsActive => gameObject.activeSelf;
 
+        [SerializeField] private TextMeshProUGUI _text;
         [SerializeField] private LevelInfo currentLevelInfo;
         [SerializeField] private GameObject _openedCheckPoint;
         private OverlayFadeEffect _overlayTip;
@@ -64,8 +66,11 @@ namespace Game.CheckPoint
         {
             yield return new WaitForSeconds(1.5f);
 
+            _text.text += $"我是{name}，是第{currentLevelInfo.LevelIndex + 1}个门，现在LastPassedLevel是{SaveSystem.Load("LastPassedLevel", 0)}\n";
             //如果玩家存档点在后面或者就在这，那这个存档点就打开门
             if (SaveSystem.Load("LastPassedLevel", 0) - 1 < currentLevelInfo.LevelIndex) yield break;
+
+            _text.text += $"我还是{name}，我觉得我应该关掉自己，因为{SaveSystem.Load("LastPassedLevel", 0) - 1} < currentLevelInfo.LevelIndex\n";
 
             gameObject.SetActive(false);
             EventBus.Publish(new RemovePlayerInteractableObjectEvent(this));
