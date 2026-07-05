@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using Game.CheckPoint.Events;
 using Game.InteractableObject;
@@ -8,7 +7,6 @@ using Game.Tool;
 using Maxy.GameFramework.Common.Events;
 using Maxy.GameFramework.Common.System;
 using Maxy.GameFramework.Common.Tool;
-using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -70,7 +68,7 @@ namespace Game.CheckPoint
             MLogger.LogWarning($" => {SaveSystem.Load("LastPassedLevel", 0) - 1} < {currentLevelInfo.LevelIndex}");
             //如果玩家存档点在后面或者就在这，那这个存档点就打开门
             if (SaveSystem.Load("LastPassedLevel", 0) - 1 < currentLevelInfo.LevelIndex) yield break;
-            
+
             MLogger.LogWarning("所以我显示打开了");
 
             gameObject.SetActive(false);
@@ -90,8 +88,8 @@ namespace Game.CheckPoint
             _overlayTip.PlayFadeOutAndIn();
 
             //存档点只能存档一次
-            gameObject.SetActive(false);
             EventBus.Publish(new RemovePlayerInteractableObjectEvent(this));
+            gameObject.SetActive(false);
             _openedCheckPoint.SetActive(true);
 
             //存档，记录当前关卡已经通关

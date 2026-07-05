@@ -49,10 +49,17 @@ namespace Game.Map
 
                 //放置新台阶
                 //一次性加俩台阶，快一点
-                _index = Mathf.Clamp(_index + 2, 0, _steps.Count);
+                _index = Mathf.Clamp(_index + 2, 0, _steps.Count - 1);
                 _steps.ForEach(x => x.SetActive(false));
                 _steps[_index].SetActive(true);
             }
+        }
+
+        public override void OnExit()
+        {
+            base.OnExit();
+
+            _alreadySpawned = false;
         }
     }
 }
