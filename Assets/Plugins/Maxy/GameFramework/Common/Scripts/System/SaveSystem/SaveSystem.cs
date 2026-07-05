@@ -38,6 +38,7 @@ namespace Maxy.GameFramework.Common.System
 
         public static void Save<T>(string keyName, T value)
         {
+            MLogger.LogWarning($"存储系统：写入 {keyName} = {value}");
             _saveDataDict[keyName] = value;
             Flush();
         }
@@ -47,7 +48,8 @@ namespace Maxy.GameFramework.Common.System
             if (_saveDataDict.ContainsKey(keyName))
             {
                 // 通用安全类型转换，兼容 long/double/string 转目标类型
-                return (T)Convert.ChangeType(_saveDataDict.ContainsKey(keyName), typeof(T));
+                MLogger.LogWarning($"存储系统：读取 {keyName} = {(T)Convert.ChangeType(_saveDataDict[keyName], typeof(T))}");
+                return (T)Convert.ChangeType(_saveDataDict[keyName], typeof(T));
             }
 
             return defaultValue;
