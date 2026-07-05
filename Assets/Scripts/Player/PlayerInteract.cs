@@ -44,7 +44,7 @@ namespace Game.Player
 
         private void OnRemoveInteractableObject(RemovePlayerInteractableObjectEvent ctx)
         {
-            if (ctx.Object == null || !ctx.Object.IsActive) return;
+            if (ctx.Object == null) return;
 
             foreach (var item in _interactableObjects)
             {
