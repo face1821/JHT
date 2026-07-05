@@ -19740,6 +19740,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _platform: {fileID: 1076825901}
   _arrow: {fileID: -1249533023046547898, guid: 0517d72096102ae4cb9b866ae9b80fbf, type: 3}
+  _arrowClipList:
+  - {fileID: 8300000, guid: 44a3df489ba75a54d86ceae87da72641, type: 3}
+  - {fileID: 8300000, guid: 3761a574d7bc97e498e317cf3de39750, type: 3}
   _arrowSpawnPoint: {fileID: 776280464}
 --- !u!61 &1291706219
 BoxCollider2D:
@@ -22878,7 +22881,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7818479152a84bd498d5f99a57750ec2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _clip: {fileID: 8300000, guid: 26285fb5347f0974687c0259775a71d6, type: 3}
+  _stairClip: {fileID: 0}
+  _arrowClipList:
+  - {fileID: 8300000, guid: 44a3df489ba75a54d86ceae87da72641, type: 3}
+  - {fileID: 8300000, guid: 3761a574d7bc97e498e317cf3de39750, type: 3}
   _steps:
   - {fileID: 1793527469}
   - {fileID: 1014999814}

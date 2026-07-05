@@ -1,8 +1,11 @@
 using System;
+using System.Collections.Generic;
 using Game.Stuff;
+using Game.Tool;
 using Maxy.GameFramework.Common.System;
 using Maxy.GameFramework.Common.Tool;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Game.Map
 {
@@ -10,6 +13,7 @@ namespace Game.Map
     {
         [SerializeField] private FloatingPlatform _platform;
         [SerializeField] private Arrow _arrow;
+        [SerializeField] private List<AudioClip> _arrowClipList;
         [SerializeField] private Transform _arrowSpawnPoint;
 
         private int _lastFaceDirection;
@@ -27,6 +31,7 @@ namespace Game.Map
                 obj.Platform = _platform;
                 obj.transform.position = _arrowSpawnPoint.position;
                 MTool.LookAt2D(obj.transform, _playerStateMachine.transform.position);
+                SystemCenter.Get<IAudioSystem>().PlaySfx(_arrowClipList[Random.Range(0, _arrowClipList.Count)], "arrow_clip", InstanceFinder.Player.transform, 0f);
             }
 
             _lastFaceDirection = _playerStateMachine.Paramaters.FaceDirection;
