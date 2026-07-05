@@ -40,7 +40,7 @@ namespace Game.Map
             _steps.ForEach(x => x.SetActive(false));
             _steps[_index].SetActive(true);
             
-            _platform.transform.position = _platformStartPos;
+            _platform.transform.localPosition = _platformStartPos;
         }
 
         private void FixedUpdate()
