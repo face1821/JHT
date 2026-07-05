@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using Game.Player;
 using Game.Tool;
@@ -15,6 +17,28 @@ namespace Game.Map
         private int _index;
 
         private void Awake() { _index = _steps.Count - 1; }
+
+        private void OnEnable() { PlayerStateMachine.OnDead += OnPlayerDead; }
+
+        private void OnDisable()
+        {
+            _alreadySpawned = false;
+            PlayerStateMachine.OnDead -= OnPlayerDead;
+        }
+
+        private void OnPlayerDead()
+        {
+            StartCoroutine(nameof(DelayOnPlayerDead));
+        }
+
+        private IEnumerator DelayOnPlayerDead()
+        {
+            yield return new WaitForSeconds(2.5f);
+            
+            _index = _steps.Count - 1;
+            _steps.ForEach(x => x.SetActive(false));
+            _steps[_index].SetActive(true);
+        }
 
         private void FixedUpdate()
         {
@@ -42,7 +66,5 @@ namespace Game.Map
                 }
             }
         }
-
-        private void OnDisable() { _alreadySpawned = false; }
     }
 }

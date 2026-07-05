@@ -17282,6 +17282,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5c7ca1ca7a34cb58f4a7ec1f8c44676, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _platform: {fileID: 249075391}
+  _platformStartPos: {x: 6.58, y: 5.76}
   _groundHeight: -12.9
   _clip: {fileID: 8300000, guid: 26285fb5347f0974687c0259775a71d6, type: 3}
   _steps:

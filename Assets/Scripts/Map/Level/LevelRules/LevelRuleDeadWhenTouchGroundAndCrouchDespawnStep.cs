@@ -1,6 +1,8 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Game.Player;
+using Game.Stuff;
 using Game.Tool;
 using Maxy.GameFramework.Common.System;
 using UnityEngine;
@@ -9,6 +11,8 @@ namespace Game.Map
 {
     public class LevelRuleDeadWhenTouchGroundAndCrouchDespawnStep : LevelRuleBase
     {
+        [SerializeField] private FloatingPlatform _platform;
+        [SerializeField] private Vector2 _platformStartPos;
         [SerializeField] private float _groundHeight;
         [SerializeField] private AudioClip _clip;
         [SerializeField] private List<GameObject> _steps;
@@ -17,6 +21,27 @@ namespace Game.Map
         private int _index;
 
         private void Awake() { _index = _steps.Count - 1; }
+
+        private void OnEnable() { PlayerStateMachine.OnDead += OnPlayerDead; }
+
+        private void OnDisable()
+        {
+            _alreadySpawned = false;
+            PlayerStateMachine.OnDead -= OnPlayerDead;
+        }
+
+        private void OnPlayerDead() { StartCoroutine(nameof(DelayOnPlayerDead)); }
+
+        private IEnumerator DelayOnPlayerDead()
+        {
+            yield return new WaitForSeconds(2.5f);
+
+            _index = _steps.Count - 1;
+            _steps.ForEach(x => x.SetActive(false));
+            _steps[_index].SetActive(true);
+            
+            _platform.transform.position = _platformStartPos;
+        }
 
         private void FixedUpdate()
         {
@@ -51,7 +76,5 @@ namespace Game.Map
                 }
             }
         }
-
-        private void OnDisable() { _alreadySpawned = false; }
     }
 }
