@@ -13903,10 +13903,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 941046551}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 714440cfbb414599b1cd50489e047eeb, type: 3}
+  m_Script: {fileID: 11500000, guid: 6ddcb68fa5a642949518794dc09f8826, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _overlay: {fileID: 1090880271}
+  currentLevelInfo: {fileID: 1740528164}
+  _openedCheckPoint: {fileID: 1768814197}
+  _clip: {fileID: 8300000, guid: 64b90e279f2ee344a9cf077b0996fc3d, type: 3}
 --- !u!1 &944703294
 GameObject:
   m_ObjectHideFlags: 0
@@ -25482,6 +25484,11 @@ PrefabInstance:
 --- !u!4 &1768814196 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -7552582706839291426, guid: d464884a5b7626b40955b63fd9b5ea38, type: 3}
+  m_PrefabInstance: {fileID: 1768814195}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1768814197 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2277457224722103938, guid: d464884a5b7626b40955b63fd9b5ea38, type: 3}
   m_PrefabInstance: {fileID: 1768814195}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1774304227 stripped
