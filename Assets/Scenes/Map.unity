@@ -1266,6 +1266,7 @@ MonoBehaviour:
   _time: 50
   _startPos: {x: 110, y: 0}
   _endX: 215
+  _clip: {fileID: 0}
 --- !u!61 &72769864
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -33638,10 +33639,6 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 123218893}
-    - target: {fileID: 3289869829697924371, guid: f473b33921a02e14e94504b0e07fc085, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4310378891756216206, guid: f473b33921a02e14e94504b0e07fc085, type: 3}
       propertyPath: m_Name
       value: GUI
