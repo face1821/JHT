@@ -4,6 +4,7 @@ using Cinemachine;
 using DG.Tweening;
 using Game.Player;
 using Game.Tool;
+using Maxy.GameFramework.Common.System;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -20,6 +21,7 @@ namespace Game.Stuff
         [SerializeField] private float _time;
         [SerializeField] private Vector2 _startPos;
         [SerializeField] private float _endX;
+        [SerializeField] private AudioClip _clip;
 
         private CinemachineBasicMultiChannelPerlin _noise;
 
@@ -48,6 +50,9 @@ namespace Game.Stuff
 
         public void StartMove()
         {
+            //播放音效
+            SystemCenter.Get<IAudioSystem>().PlaySfx(_clip, "_spike_clip", InstanceFinder.Player.transform, 0f);
+
             SpikeTrap.transform.DOKill();
             SpikeTrap.gameObject.SetActive(true);
             SpikeTrap.transform.position = new Vector3(_startPos.x, _startPos.y);
@@ -70,7 +75,8 @@ namespace Game.Stuff
         private IEnumerator DelayOnPlayerDead()
         {
             yield return new WaitForSeconds(2.5f);
-
+            
+            SystemCenter.Get<IAudioSystem>().StopSfx("_spike_clip");
             SpikeTrap.gameObject.SetActive(false);
             _noise.m_AmplitudeGain = 0f;
             _noise.m_FrequencyGain = 0f;
