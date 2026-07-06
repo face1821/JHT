@@ -11,6 +11,7 @@ namespace Game.Stuff
 {
     public class End4Trigger : MonoBehaviour
     {
+        [SerializeField] private OverlayFadeEffect _overlay;
         [SerializeField] private GameObject _endVideoCanvas;
         [SerializeField] private VideoPlayer _videoPlayer;
 
@@ -23,30 +24,29 @@ namespace Game.Stuff
 
         private IEnumerator OnTrigger()
         {
-            //禁用玩家的交互和移动
-            InstanceFinder.Player.Input.BtnReleaseCrouch();
-            InstanceFinder.Player.Input.BtnReleaseMoveLeft();
-            InstanceFinder.Player.Input.BtnReleaseMoveRight();
-            InstanceFinder.Player.Input.enabled = false;
-            InstanceFinder.Player.Interact.enabled = false;
-
             //黑幕出现
             var overlay = GameObject.FindWithTag("SceneOverlay").GetComponent<OverlayFadeEffect>();
             overlay.PlayFadeOut();
             yield return new WaitForSeconds(1f);
+
+            //禁用玩家的交互和移动
+            InstanceFinder.Player.Input.BtnReleaseCrouch();
+            InstanceFinder.Player.Input.BtnReleaseMoveLeft();
+            InstanceFinder.Player.Input.BtnReleaseMoveRight();
+            InstanceFinder.Player.Interact.enabled = false;
 
             //暂停音乐
             SystemCenter.Get<IAudioSystem>().StopMusic();
 
             //播放视频
             _endVideoCanvas.SetActive(true);
-            overlay.PlayFadeIn(0f);
+            _overlay.PlayFadeIn(0f);
             _videoPlayer.gameObject.SetActive(true);
             yield return new WaitForSeconds(0.5f);
 
             //等待视频播放完毕，黑幕出现
             yield return new WaitUntil(() => !_videoPlayer.isPlaying);
-            overlay.PlayFadeOut();
+            _overlay.PlayFadeOut();
 
             //然后回到主界面
             LoadingMenuManager.LoadingScene = "MainMenu";

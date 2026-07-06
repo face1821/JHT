@@ -57,7 +57,6 @@ namespace Game.Suff
             InstanceFinder.Player.Input.BtnReleaseCrouch();
             InstanceFinder.Player.Input.BtnReleaseMoveLeft();
             InstanceFinder.Player.Input.BtnReleaseMoveRight();
-            InstanceFinder.Player.Input.enabled = false;
             InstanceFinder.Player.Interact.enabled = false;
             SystemCenter.Get<IAudioSystem>().PlaySfx(_clip, "_button_open_clip", InstanceFinder.Player.transform, 0f);
 

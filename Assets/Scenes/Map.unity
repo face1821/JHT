@@ -6918,7 +6918,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &393014567
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14073,7 +14073,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5059174045265446768, guid: bc1b8aa2b088f904386be0a2be225ad0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.3
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: -4110357834475590085, guid: bc1b8aa2b088f904386be0a2be225ad0, type: 3}
       propertyPath: m_Layer
@@ -17166,7 +17166,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 2.057228, y: 0}
+  m_Offset: {x: 2.4160233, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -17177,7 +17177,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 19.885544, y: 9.5}
+  m_Size: {x: 19.167953, y: 9.5}
   m_EdgeRadius: 0
 --- !u!114 &1088644134
 MonoBehaviour:
@@ -20805,6 +20805,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04e637e5b71248d5ba9c933335415af7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _overlay: {fileID: 393014570}
   _endVideoCanvas: {fileID: 1559356812}
   _videoPlayer: {fileID: 1896005223}
 --- !u!1 &1339700934 stripped
@@ -28419,7 +28420,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1804243483
 Transform:
   m_ObjectHideFlags: 0
