@@ -85,6 +85,10 @@ namespace Game.PauseMenu
 
         public void Settings() { _settingsMenu.SetActive(true); }
 
-        public void ReturnToMainMenu() { StartCoroutine(nameof(DelayReturnToMainMenu)); }
+        public void ReturnToMainMenu()
+        {
+            Time.timeScale = 1f;
+            StartCoroutine(nameof(DelayReturnToMainMenu));
+        }
     }
 }

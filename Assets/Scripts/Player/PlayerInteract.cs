@@ -32,7 +32,7 @@ namespace Game.Player
 
         private void OnAddInteractableObject(AddPlayerInteractableObjectEvent ctx)
         {
-            if (ctx.Object == null || !ctx.Object.IsActive) return;
+            if (ctx.Object == null || !ctx.Object.IsActive || _interactableObjects.Contains(ctx.Object)) return;
 
             foreach (var item in _interactableObjects)
             {
@@ -46,7 +46,7 @@ namespace Game.Player
 
         private void OnRemoveInteractableObject(RemovePlayerInteractableObjectEvent ctx)
         {
-            if (ctx.Object == null) return;
+            if (ctx.Object == null || !_interactableObjects.Contains(ctx.Object)) return;
 
             foreach (var item in _interactableObjects)
             {
