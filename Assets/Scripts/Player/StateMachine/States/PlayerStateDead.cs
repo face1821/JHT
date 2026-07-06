@@ -20,6 +20,17 @@ namespace Game.Player
             SaveSystem.Save("DeadCount", SaveSystem.Load("DeadCount", 0) + 1);
         }
 
+        public override void OnExit()
+        {
+            base.OnExit();
+
+            //复活的时候重置输入状态
+            Input.BtnReleaseCrouch();
+            Input.BtnReleaseMoveLeft();
+            Input.BtnReleaseMoveRight();
+            Input.SetJumpHeld(false);
+        }
+
         public override bool CanBeInterrupt(PlayerStateBase nextState) => false;
     }
 }

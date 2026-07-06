@@ -7,6 +7,7 @@ namespace Game.Player
         public PlayerStateMachineParamaters Paramaters;
         public PlayerStateMachine StateMachine => Paramaters.StateMachine;
         public PlayerStateBase CurrentState => Paramaters.CurrentState;
+        public PlayerInput Input => Paramaters.Input;
         public PlayerBody Body => Paramaters.Body;
         public PlayerAnimator Animator => Paramaters.Animator;
         public PlayerAudio AudioPlayer => Paramaters.AudioPlayer;
