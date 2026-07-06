@@ -79,6 +79,7 @@
     <Compile Include="Assets\Scripts\Player\Events\PlayMoveOnPlatformEvent.cs" />
     <Compile Include="Assets\Scripts\Map\Level\LevelRules\LevelRuleCrouchDespawnStep.cs" />
     <Compile Include="Assets\Scripts\Stuff\Stone.cs" />
+    <Compile Include="Assets\Scripts\Map\SettingMenu.cs" />
     <Compile Include="Assets\Scripts\System\AchievementSystem\IAchievementSystem.cs" />
     <Compile Include="Assets\Scripts\Player\FootStepAudioType.cs" />
     <Compile Include="Assets\Scripts\Stuff\DeadAreaTrap.cs" />

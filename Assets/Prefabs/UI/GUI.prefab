@@ -2629,6 +2629,10 @@ PrefabInstance:
       propertyPath: m_SortingLayer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2737855656216720369, guid: 30038fa554db68c40a7a373faad2a70c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 5.4
+      objectReference: {fileID: 0}
     - target: {fileID: 2796081567265745251, guid: 30038fa554db68c40a7a373faad2a70c, type: 3}
       propertyPath: m_SortingLayer
       value: 0
@@ -2640,6 +2644,14 @@ PrefabInstance:
     - target: {fileID: 2978675333086455858, guid: 30038fa554db68c40a7a373faad2a70c, type: 3}
       propertyPath: m_SortingLayer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3232150989465688750, guid: 30038fa554db68c40a7a373faad2a70c, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 3232150989465688750, guid: 30038fa554db68c40a7a373faad2a70c, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 10.8
       objectReference: {fileID: 0}
     - target: {fileID: 3235347876764258861, guid: 30038fa554db68c40a7a373faad2a70c, type: 3}
       propertyPath: m_SortingLayer
@@ -2708,7 +2720,7 @@ PrefabInstance:
     - target: {fileID: 5521627651497739877, guid: 30038fa554db68c40a7a373faad2a70c, type: 3}
       propertyPath: _settingsMenu
       value: 
-      objectReference: {fileID: 1768049859808555271}
+      objectReference: {fileID: 8579544728454580555}
     - target: {fileID: 5767695865369887040, guid: 30038fa554db68c40a7a373faad2a70c, type: 3}
       propertyPath: m_SortingLayer
       value: 0
@@ -2901,6 +2913,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 188b6a158dc84bb8a89930b6dd24eb2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &8579544728454580555 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6845400017676158220, guid: 30038fa554db68c40a7a373faad2a70c, type: 3}
+  m_PrefabInstance: {fileID: 3021657468537539655}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &9027349227578059230 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6100269999333172633, guid: 30038fa554db68c40a7a373faad2a70c, type: 3}
@@ -3015,11 +3032,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4024e6089938e647bd70f8c9fc45380, type: 3}
---- !u!1 &1768049859808555271 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6301587209981786433, guid: c4024e6089938e647bd70f8c9fc45380, type: 3}
-  m_PrefabInstance: {fileID: 5763169177058314310}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &8887424602215951086 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3795578196174086824, guid: c4024e6089938e647bd70f8c9fc45380, type: 3}
