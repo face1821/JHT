@@ -78,7 +78,8 @@ namespace Game.PauseMenu
         public void Respawn()
         {
             _menu.SetActive(false);
-
+            Time.timeScale = 1f;
+            
             InstanceFinder.Player.StateMachine.Die();
         }
 
