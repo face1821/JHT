@@ -4,6 +4,7 @@ using Game.InteractableObject;
 using Game.LoadingMenu;
 using Game.Tool;
 using Maxy.GameFramework.Common.Events;
+using Maxy.GameFramework.Common.System;
 using Maxy.GameFramework.Common.Tool;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
@@ -18,6 +19,7 @@ namespace Game.Suff
     {
         public bool IsActive => gameObject.activeSelf;
 
+        [SerializeField] private AudioClip _clip;
         [SerializeField] private GameObject _endVideoCanvas;
         [SerializeField] private OverlayFadeEffect _videoOverlay;
         [SerializeField] private VideoPlayer _videoPlayer;
@@ -54,11 +56,15 @@ namespace Game.Suff
             //禁用玩家的交互和移动
             InstanceFinder.Player.Input.enabled = false;
             InstanceFinder.Player.Interact.enabled = false;
+            SystemCenter.Get<IAudioSystem>().PlaySfx(_clip, "_button_open_clip", InstanceFinder.Player.transform, 0f);
 
             //黑幕出现
             var overlay = GameObject.FindWithTag("SceneOverlay").GetComponent<OverlayFadeEffect>();
             overlay.PlayFadeOut();
             yield return new WaitForSeconds(1f);
+
+            //暂停音乐
+            SystemCenter.Get<IAudioSystem>().StopMusic();
 
             //播放视频
             _endVideoCanvas.SetActive(true);

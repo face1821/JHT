@@ -63,12 +63,17 @@ namespace Game.PauseMenu
         public void Pause()
         {
             _menu.SetActive(true);
+            Time.timeScale = 0f;
 
             //每次打开暂停界面时，刷新一下死亡计数捏
             UpdateDeadCount();
         }
 
-        public void Resume() { _menu.SetActive(false); }
+        public void Resume()
+        {
+            _menu.SetActive(false);
+            Time.timeScale = 1f;
+        }
 
         public void Respawn()
         {

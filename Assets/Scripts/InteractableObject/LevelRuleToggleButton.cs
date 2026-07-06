@@ -2,6 +2,7 @@ using Game.CheckPoint.Events;
 using Game.Map;
 using Game.Tool;
 using Maxy.GameFramework.Common.Events;
+using Maxy.GameFramework.Common.System;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -13,6 +14,8 @@ namespace Game.InteractableObject
     {
         public bool IsActive => gameObject.activeSelf;
 
+        [SerializeField] private AudioClip _openClip;
+        [SerializeField] private AudioClip _closeClip;
         [SerializeField] private Sprite _openSprite;
         [SerializeField] private Sprite _closeSprite;
         [SerializeField] private LevelRuleBase _rule;
@@ -53,6 +56,11 @@ namespace Game.InteractableObject
             var sprite = _rule.enabled ? _closeSprite : _openSprite;
             _renderer.sprite = sprite;
             _light.lightCookieSprite = sprite;
+
+            if (_rule.enabled)
+                SystemCenter.Get<IAudioSystem>().PlaySfx(_openClip, "_button_open_clip", InstanceFinder.Player.transform, 0f);
+            else
+                SystemCenter.Get<IAudioSystem>().PlaySfx(_closeClip, "_button_open_clip", InstanceFinder.Player.transform, 0f);
         }
     }
 }

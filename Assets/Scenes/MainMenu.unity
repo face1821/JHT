@@ -1901,7 +1901,7 @@ GameObject:
   - component: {fileID: 2268413827051764739}
   m_Layer: 0
   m_Name: "\u7EE7\u7EED\u6E38\u620F"
-  m_TagString: Untagged
+  m_TagString: UIButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2492,7 +2492,7 @@ GameObject:
   - component: {fileID: 7449801422609632902}
   m_Layer: 0
   m_Name: "\u65B0\u6E38\u620F"
-  m_TagString: Untagged
+  m_TagString: UIButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3135,7 +3135,7 @@ GameObject:
   - component: {fileID: 7727471875044363087}
   m_Layer: 0
   m_Name: "\u8BBE\u7F6E"
-  m_TagString: Untagged
+  m_TagString: UIButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

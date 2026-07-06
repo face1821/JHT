@@ -52,6 +52,9 @@ namespace Game.Map
 
                 return;
             }
+            
+            //播放音乐
+            _audioSystem.PlayMusic(_music);
 
             //将玩家传送到上一次刚通关的关卡的通关位置
             var lastPassedLevelIndex = SaveSystem.Load("LastPassedLevel", -1) - 1;
