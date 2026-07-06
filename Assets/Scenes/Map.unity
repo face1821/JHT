@@ -1264,9 +1264,9 @@ MonoBehaviour:
   _camShakeFrequency: 10
   SpikeTrap: {fileID: 581312752}
   _time: 50
-  _startPos: {x: 110, y: 0}
+  _startPos: {x: 105, y: 0}
   _endX: 215
-  _clip: {fileID: 0}
+  _clip: {fileID: 8300000, guid: 10c0586ef3938984b8ae7894eccb43c8, type: 3}
 --- !u!61 &72769864
 BoxCollider2D:
   m_ObjectHideFlags: 0
