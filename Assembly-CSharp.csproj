@@ -73,6 +73,7 @@
     <Compile Include="Assets\Scripts\Tool\SkipUnityLogo.cs" />
     <Compile Include="Assets\Scripts\InteractableObject\ClimbingObject\Rope.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerInteract.cs" />
+    <Compile Include="Assets\Scripts\Map\VideoSkiper.cs" />
     <Compile Include="Assets\Scripts\System\InstanceFinderSystem\InstanceFinder.cs" />
     <Compile Include="Assets\Scripts\Player\StateMachine\States\Ground\PlayerStateCrouch.cs" />
     <Compile Include="Assets\Scripts\Map\Level\LevelRules\LevelRuleTurnBackSpawnArrow.cs" />
