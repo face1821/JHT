@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using DG.Tweening;
 using Game.Player;
 using Game.Stuff;
 using Game.Tool;
@@ -14,6 +16,19 @@ namespace Game.Map
         [SerializeField] private GameObject _reverseMoveGUI;
         [SerializeField] private GameObject _normalJumpCrouchGUI;
         [SerializeField] private GameObject _reverseJumpCrouchGUI;
+        [SerializeField] private List<RectTransform> _buttons;
+
+        private List<Vector3> _buttonScales;
+
+        private void Awake()
+        {
+            _buttonScales = new List<Vector3>();
+
+            foreach (var rectTransform in _buttons)
+            {
+                _buttonScales.Add(rectTransform.localScale);
+            }
+        }
 
         public override void OnEnter()
         {
@@ -31,6 +46,14 @@ namespace Game.Map
 
         private void SetReverseUIShowState(bool isReverse)
         {
+            //每次切换的时候，都将按钮全部重置大小
+            for (int i = 0; i < _buttons.Count; i++)
+            {
+                DOTween.Kill(_buttons[i].gameObject);
+
+                _buttons[i].localScale = _buttonScales[i];
+            }
+            
             //切换反向WASD的GUI
             _normalMoveGUI.SetActive(!isReverse);
             _normalJumpCrouchGUI.SetActive(!isReverse);

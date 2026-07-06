@@ -24,6 +24,9 @@ namespace Game.Stuff
         private IEnumerator OnTrigger()
         {
             //禁用玩家的交互和移动
+            InstanceFinder.Player.Input.BtnReleaseCrouch();
+            InstanceFinder.Player.Input.BtnReleaseMoveLeft();
+            InstanceFinder.Player.Input.BtnReleaseMoveRight();
             InstanceFinder.Player.Input.enabled = false;
             InstanceFinder.Player.Interact.enabled = false;
 
@@ -34,7 +37,7 @@ namespace Game.Stuff
 
             //暂停音乐
             SystemCenter.Get<IAudioSystem>().StopMusic();
-            
+
             //播放视频
             _endVideoCanvas.SetActive(true);
             overlay.PlayFadeIn(0f);

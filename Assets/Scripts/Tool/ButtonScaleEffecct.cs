@@ -20,8 +20,16 @@ namespace Game.Tool
             _defaultScale = _rect.localScale;
         }
 
-        public void OnPointerDown(PointerEventData eventData) { _rect.DOScale(PressScaleRate * _defaultScale, Duration); }
+        public void OnPointerDown(PointerEventData eventData)
+        {
+            DOTween.Kill(gameObject);
+            _rect.DOScale(PressScaleRate * _defaultScale, Duration);
+        }
 
-        public void OnPointerUp(PointerEventData eventData) { _rect.DOScale(_defaultScale, Duration); }
+        public void OnPointerUp(PointerEventData eventData)
+        {
+            DOTween.Kill(gameObject);
+            _rect.DOScale(_defaultScale, Duration);
+        }
     }
 }
