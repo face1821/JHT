@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -154,12 +155,15 @@ namespace Maxy.GameFramework.Common.System
 
         private float ToDB(float volume) => Mathf.Log10(Mathf.Clamp(volume, 0.0001f, 10f)) * 20;
 
-        private IEnumerator DestroyWhenEnd(AudioSource target)
+        private IEnumerator DestroyWhenEnd(AudioSource target, List<AudioSource> list)
         {
             yield return new WaitUntil(() => target.gameObject == null || !target.isPlaying);
 
             if (target.gameObject != null)
+            {
                 Destroy(target.gameObject);
+                list.Remove(target);
+            }
         }
 
         #endregion
@@ -253,7 +257,7 @@ namespace Maxy.GameFramework.Common.System
 
                 _sfxSourceList.Add(newSfxSource);
 
-                _instance.StartCoroutine(DestroyWhenEnd(newSfxSource));
+                _instance.StartCoroutine(DestroyWhenEnd(newSfxSource, _sfxSourceList));
                 return;
             }
 
@@ -268,7 +272,7 @@ namespace Maxy.GameFramework.Common.System
 
             _sfxSourceList.Add(obj);
 
-            _instance.StartCoroutine(DestroyWhenEnd(obj));
+            _instance.StartCoroutine(DestroyWhenEnd(obj, _sfxSourceList));
         }
 
         public void PlaySfxAt(AudioClip clip, Vector3 pos, string clipName)
@@ -287,7 +291,7 @@ namespace Maxy.GameFramework.Common.System
                 _sfxSourceList.Add(obj);
             }
 
-            _instance.StartCoroutine(DestroyWhenEnd(obj));
+            _instance.StartCoroutine(DestroyWhenEnd(obj, _sfxSourceList));
         }
 
         public void StopSfx(string clipName)
@@ -296,6 +300,9 @@ namespace Maxy.GameFramework.Common.System
 
             foreach (var item in _sfxSourceList)
             {
+                if (item.IsDestroyed())
+                    _sfxSourceList.Remove(item);
+
                 if (item.name == clipName)
                 {
                     Destroy(item.gameObject);
@@ -334,7 +341,7 @@ namespace Maxy.GameFramework.Common.System
 
                 _voiceSourceList.Add(newSfxSource);
 
-                _instance.StartCoroutine(DestroyWhenEnd(newSfxSource));
+                _instance.StartCoroutine(DestroyWhenEnd(newSfxSource, _voiceSourceList));
                 return;
             }
 
@@ -349,7 +356,7 @@ namespace Maxy.GameFramework.Common.System
 
             _voiceSourceList.Add(obj);
 
-            _instance.StartCoroutine(DestroyWhenEnd(obj));
+            _instance.StartCoroutine(DestroyWhenEnd(obj, _voiceSourceList));
         }
 
         public void StopVoice(string voiceName)
@@ -424,7 +431,7 @@ namespace Maxy.GameFramework.Common.System
 
                 _ambientSourceList.Add(newSfxSource);
 
-                _instance.StartCoroutine(DestroyWhenEnd(newSfxSource));
+                _instance.StartCoroutine(DestroyWhenEnd(newSfxSource, _ambientSourceList));
                 return;
             }
 
@@ -439,7 +446,7 @@ namespace Maxy.GameFramework.Common.System
 
             _ambientSourceList.Add(obj);
 
-            _instance.StartCoroutine(DestroyWhenEnd(obj));
+            _instance.StartCoroutine(DestroyWhenEnd(obj, _ambientSourceList));
         }
 
         public void StopAmbient(string ambientName)

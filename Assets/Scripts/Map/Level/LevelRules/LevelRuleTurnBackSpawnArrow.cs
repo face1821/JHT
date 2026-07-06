@@ -18,6 +18,13 @@ namespace Game.Map
 
         private int _lastFaceDirection;
 
+        public override void OnEnter()
+        {
+            base.OnEnter();
+            
+            _lastFaceDirection = _playerStateMachine.Paramaters.FaceDirection;
+        }
+
         private void FixedUpdate()
         {
             if (!_runing) return;

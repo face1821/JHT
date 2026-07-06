@@ -1,6 +1,7 @@
 using System.Collections;
 using Game.LoadingMenu;
 using Game.Tool;
+using Maxy.GameFramework.Common.System;
 using Maxy.GameFramework.Common.Tool;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -31,6 +32,9 @@ namespace Game.Stuff
             overlay.PlayFadeOut();
             yield return new WaitForSeconds(1f);
 
+            //暂停音乐
+            SystemCenter.Get<IAudioSystem>().StopMusic();
+            
             //播放视频
             _endVideoCanvas.SetActive(true);
             overlay.PlayFadeIn(0f);

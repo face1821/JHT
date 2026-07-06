@@ -193,6 +193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b09aba93dc3c4709aff302e524831689, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _clip: {fileID: 8300000, guid: 203fb4dd16bbf38499f8ee12d0121d86, type: 3}
   Platform: {fileID: 0}
   _speed: 30
   _lifeTime: 10

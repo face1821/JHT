@@ -8,6 +8,7 @@ namespace Game.Stuff
     [RequireComponent(typeof(CircleCollider2D), typeof(Rigidbody2D))]
     public class Arrow : MonoBehaviour
     {
+        [SerializeField] private AudioClip _clip;
         [HideInInspector] public FloatingPlatform Platform;
 
         [SerializeField] private float _speed;
@@ -34,6 +35,10 @@ namespace Game.Stuff
             //碰到气球的处理
             if (other.name == "气球")
             {
+                //音效
+                MLogger.LogWarning("命中气球");
+                SystemCenter.Get<IAudioSystem>().PlaySfx(_clip, "pop", InstanceFinder.Player.transform, 0f);
+
                 Destroy(gameObject);
                 Destroy(other.gameObject);
 
