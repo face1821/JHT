@@ -1,6 +1,7 @@
 using System;
 using Game.CheckPoint.Events;
 using Game.InteractableObject;
+using Game.Player;
 using Game.Tool;
 using Maxy.GameFramework.Common.Events;
 using Maxy.GameFramework.Common.System;
@@ -24,10 +25,10 @@ namespace Game.Prop
             if (!other.CompareTag("Player")) return;
 
             EventBus.Publish(new AddPlayerInteractableObjectEvent(this));
-            
+
             //自动攀爬功能
             //在将自己加入到玩家的交互列表后，检查自己是否为首选交互物体，如果是，就自动攀爬
-            if ((Rope)InstanceFinder.Player.Interact.InteractableObject == this)
+            if ((Rope)InstanceFinder.Player.Interact.InteractableObject == this && InstanceFinder.Player.StateMachine.CurrentState is PlayerStateJump)
             {
                 MLogger.Log("绳索：触发自动攀爬功能");
                 Interact();
@@ -38,7 +39,7 @@ namespace Game.Prop
         {
             //自动攀爬功能
             //在将自己加入到玩家的交互列表后，检查自己是否为首选交互物体，如果是，就自动攀爬
-            if ((Rope)InstanceFinder.Player.Interact.InteractableObject == this)
+            if ((Rope)InstanceFinder.Player.Interact.InteractableObject == this && InstanceFinder.Player.StateMachine.CurrentState is PlayerStateJump)
             {
                 MLogger.Log("绳索：触发自动攀爬功能");
                 Interact();
