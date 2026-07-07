@@ -19,6 +19,7 @@ namespace Game.Suff
     {
         public bool IsActive => gameObject.activeSelf;
 
+        [SerializeField] private OverlayFadeEffect _wordsOverlay;
         [SerializeField] private AudioClip _clip;
         [SerializeField] private GameObject _endVideoCanvas;
         [SerializeField] private OverlayFadeEffect _videoOverlay;
@@ -34,6 +35,7 @@ namespace Game.Suff
             if (!other.CompareTag("Player")) return;
 
             EventBus.Publish(new AddPlayerInteractableObjectEvent(this));
+            _wordsOverlay.PlayFadeOut();
         }
 
         private void OnTriggerExit2D(Collider2D other)
@@ -41,6 +43,7 @@ namespace Game.Suff
             if (!other.CompareTag("Player")) return;
 
             EventBus.Publish(new RemovePlayerInteractableObjectEvent(this));
+            _wordsOverlay.PlayFadeIn();
         }
 
         #region 交互

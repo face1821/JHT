@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Maxy.GameFramework.Common.System;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
@@ -10,7 +11,9 @@ namespace Maxy.GameFramework.Common.Tool
     public class OverlayFadeEffect : MonoBehaviour
     {
         [ShowInInspector, ReadOnly] public bool IsPlaying => !IsFinished;
-        [HideInInspector] public bool IsFinished;
+        [HideInInspector] public bool IsFinished = true;
+
+        [SerializeField] private bool UseSmoothFadeStart = true;
 
         [SerializeField] private float _duration = 1f;
         [SerializeField] private float _minValue;
@@ -23,10 +26,22 @@ namespace Maxy.GameFramework.Common.Tool
         private Image _selfImage;
         private TextMeshProUGUI _selfText;
 
+        private float _realDuration;
+        private float _realMinValue;
+        private float _realMaxValue;
+        private float _realChildMinValue;
+        private float _realChildMaxValue;
+
         private void Awake()
         {
             _selfImage = GetComponent<Image>();
             _selfText = GetComponentInChildren<TextMeshProUGUI>();
+
+            _realDuration = _duration;
+            _realMinValue = _minValue;
+            _realMaxValue = _maxValue;
+            _realChildMinValue = _childMinValue;
+            _realChildMaxValue = _childMaxValue;
         }
 
         public void SetAlpha(float alpha)
@@ -47,23 +62,67 @@ namespace Maxy.GameFramework.Common.Tool
             }
         }
 
-        public void PlayFadeIn(float duration = 1f)
+        public void Stop()
         {
             StopAllCoroutines();
 
-            StartCoroutine(OnFadeIn(duration == 0f ? _duration : duration));
+            if (UseSmoothFadeStart)
+            {
+                _duration = _realDuration;
+                _minValue = _realMinValue;
+                _maxValue = _realMaxValue;
+                _childMinValue = _realChildMinValue;
+                _childMaxValue = _realChildMaxValue;
+            }
         }
 
-        public void PlayFadeOut(float duration = 1f)
+        public void PlayFadeIn(float duration = -1f)
         {
-            StopAllCoroutines();
+            Stop();
 
-            StartCoroutine(OnFadeOut(duration == 0f ? _duration : duration));
+            duration = duration < 0f ? _duration : duration;
+
+            if (UseSmoothFadeStart)
+            {
+                // _realDuration = _duration;
+                // _duration = _selfImage != null ? _selfImage.color.a : (_selfText != null ? _selfText.color.a : _maxValue);
+
+                _realMaxValue = _maxValue;
+                _maxValue = _selfImage != null ? _selfImage.color.a : (_selfText != null ? _selfText.color.a : _maxValue);
+
+                _realChildMaxValue = _childMaxValue;
+                _childMaxValue = _childImages.Count > 0 ? _childImages[0].color.a : (_childTexts.Count > 0 ? _childTexts[0].color.a : _childMaxValue);
+                MLogger.LogError($"消失：{duration} {_maxValue} {_childMaxValue}");
+            }
+
+            StartCoroutine(OnFadeIn(duration));
         }
 
-        public void PlayFadeOutAndIn(float fadeOutDuration = 1f, float keepDuration = 1f, float fadeInDuration = 1f)
+        public void PlayFadeOut(float duration = -1f)
         {
-            StopAllCoroutines();
+            Stop();
+
+            duration = duration < 0f ? _duration : duration;
+
+            if (UseSmoothFadeStart)
+            {
+                // _realDuration = _duration;
+                // _duration = _selfImage != null ? _maxValue - _selfImage.color.a : (_selfText != null ? _maxValue - _selfText.color.a : _minValue);
+
+                _realMinValue = _minValue;
+                _minValue = _selfImage != null ? _selfImage.color.a : (_selfText != null ? _selfText.color.a : _minValue);
+
+                _realChildMinValue = _childMinValue;
+                _childMinValue = _childImages.Count > 0 ? _childImages[0].color.a : (_childTexts.Count > 0 ? _childTexts[0].color.a : _childMinValue);
+                MLogger.LogError($"出现：{duration} {_minValue} {_childMinValue}");
+            }
+
+            StartCoroutine(OnFadeOut(duration));
+        }
+
+        public void PlayFadeOutAndIn(float fadeOutDuration = -1f, float keepDuration = 1f, float fadeInDuration = -1f)
+        {
+            Stop();
 
             StartCoroutine(OnFadeOutAndIn(fadeOutDuration, keepDuration, fadeInDuration));
         }
@@ -80,19 +139,19 @@ namespace Maxy.GameFramework.Common.Tool
                 yield return null;
 
                 if (_selfImage != null)
-                    _selfImage.color = new Color(_selfImage.color.r, _selfImage.color.g, _selfImage.color.b, _maxValue - (Time.time - startTime) / duration);
+                    _selfImage.color = new Color(_selfImage.color.r, _selfImage.color.g, _selfImage.color.b, _maxValue - (_maxValue - _minValue) * (Time.time - startTime) / duration);
 
                 if (_selfText != null)
-                    _selfText.color = new Color(_selfText.color.r, _selfText.color.g, _selfText.color.b, _maxValue - (Time.time - startTime) / duration);
+                    _selfText.color = new Color(_selfText.color.r, _selfText.color.g, _selfText.color.b, _maxValue - (_maxValue - _minValue) * (Time.time - startTime) / duration);
 
                 foreach (var child in _childImages)
                 {
-                    child.color = new Color(child.color.r, child.color.g, child.color.b, _childMaxValue - (Time.time - startTime) / duration);
+                    child.color = new Color(child.color.r, child.color.g, child.color.b, _childMaxValue - (_childMaxValue - _childMinValue) * (Time.time - startTime) / duration);
                 }
 
                 foreach (var child in _childTexts)
                 {
-                    child.color = new Color(child.color.r, child.color.g, child.color.b, _childMaxValue - (Time.time - startTime) / duration);
+                    child.color = new Color(child.color.r, child.color.g, child.color.b, _childMaxValue - (_childMaxValue - _childMinValue) * (Time.time - startTime) / duration);
                 }
 
                 //结束工作
@@ -116,6 +175,13 @@ namespace Maxy.GameFramework.Common.Tool
                 }
             }
 
+            if (UseSmoothFadeStart)
+            {
+                _duration = _realDuration;
+                _maxValue = _realMaxValue;
+                _childMaxValue = _realChildMaxValue;
+            }
+
             IsFinished = true;
         }
 
@@ -131,19 +197,19 @@ namespace Maxy.GameFramework.Common.Tool
                 yield return null;
 
                 if (_selfImage != null)
-                    _selfImage.color = new Color(_selfImage.color.r, _selfImage.color.g, _selfImage.color.b, (Time.time - startTime) / duration);
+                    _selfImage.color = new Color(_selfImage.color.r, _selfImage.color.g, _selfImage.color.b, _minValue + (_maxValue - _minValue) * (Time.time - startTime) / duration);
 
                 if (_selfText != null)
-                    _selfText.color = new Color(_selfText.color.r, _selfText.color.g, _selfText.color.b, (Time.time - startTime) / duration);
+                    _selfText.color = new Color(_selfText.color.r, _selfText.color.g, _selfText.color.b, _minValue + (_maxValue - _minValue) * (Time.time - startTime) / duration);
 
                 foreach (var child in _childImages)
                 {
-                    child.color = new Color(child.color.r, child.color.g, child.color.b, (Time.time - startTime) / duration);
+                    child.color = new Color(child.color.r, child.color.g, child.color.b, _childMinValue + (_childMaxValue - _childMinValue) * (Time.time - startTime) / duration);
                 }
 
                 foreach (var child in _childTexts)
                 {
-                    child.color = new Color(child.color.r, child.color.g, child.color.b, (Time.time - startTime) / duration);
+                    child.color = new Color(child.color.r, child.color.g, child.color.b, _childMinValue + (_childMaxValue - _childMinValue) * (Time.time - startTime) / duration);
                 }
 
                 if (_selfImage != null && _selfImage.color.a >= _maxValue || _selfText != null && _selfText.color.a >= _maxValue)
@@ -166,14 +232,23 @@ namespace Maxy.GameFramework.Common.Tool
                 }
             }
 
+            if (UseSmoothFadeStart)
+            {
+                _duration = _realDuration;
+                _minValue = _realMinValue;
+                _childMinValue = _realChildMinValue;
+            }
+
             IsFinished = true;
         }
 
         private IEnumerator OnFadeOutAndIn(float fadeOutDuration, float keepDuration, float fadeInDuration)
         {
+            fadeOutDuration = fadeOutDuration < 0f ? _duration : fadeOutDuration;
             StartCoroutine(OnFadeOut(fadeOutDuration));
             yield return new WaitForSeconds(fadeOutDuration + keepDuration);
 
+            fadeInDuration = fadeInDuration < 0f ? _duration : fadeInDuration;
             StartCoroutine(OnFadeIn(fadeInDuration));
         }
     }
