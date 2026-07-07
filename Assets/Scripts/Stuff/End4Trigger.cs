@@ -42,7 +42,7 @@ namespace Game.Stuff
             _endVideoCanvas.SetActive(true);
             _overlay.PlayFadeIn(0f);
             _videoPlayer.gameObject.SetActive(true);
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(3f);
 
             //等待视频播放完毕，黑幕出现
             yield return new WaitUntil(() => !_videoPlayer.isPlaying);

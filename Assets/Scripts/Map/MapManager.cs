@@ -58,6 +58,9 @@ namespace Game.Map
 
             //将玩家传送到上一次刚通关的关卡的通关位置
             var lastPassedLevelIndex = SaveSystem.Load("LastPassedLevel", -1) - 1;
+            
+            //以防万一：将玩家的输入开启
+            PlayerInput.Instance.enabled = true;
 
             //如果没有存档点位置，就不管了
             if (lastPassedLevelIndex < 0) return;
