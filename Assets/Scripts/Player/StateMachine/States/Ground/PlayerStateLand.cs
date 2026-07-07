@@ -17,7 +17,7 @@ namespace Game.Player
         public override void OnFixedUpdate()
         {
             base.OnFixedUpdate();
-            
+
             //如果落地动画已经过渡到待机动画了，就切换为待机状态
             if (Animator.Animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
             {
@@ -28,10 +28,8 @@ namespace Game.Player
         public override void OnExit()
         {
             base.OnExit();
-            
+
             Body.UnLock();
         }
-
-        public override bool CanBeInterrupt(PlayerStateBase nextState) => Animator.Animator.GetCurrentAnimatorStateInfo(0).IsName("Idle");
     }
 }
