@@ -9820,7 +9820,7 @@ GameObject:
   - component: {fileID: 590295980}
   - component: {fileID: 590295979}
   - component: {fileID: 590295978}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: "\u6309\u94AE (2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11812,7 +11812,7 @@ MonoBehaviour:
   m_Intensity: 20
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 000000003dbb0945b9b05e5e490deb644f489f6b8350f4fb9bffc7e00b0ac880f5df87cb
+  m_ApplyToSortingLayers: 00000000
   m_LightCookieSprite: {fileID: -6470537569838749248, guid: 68af4666f79c03841a50a70039a96b0a, type: 3}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -26404,7 +26404,7 @@ GameObject:
   - component: {fileID: 1695051765}
   - component: {fileID: 1695051764}
   - component: {fileID: 1695051763}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: "\u6309\u94AE (3)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26929,7 +26929,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 000000003dbb0945b9b05e5e490deb644f489f6b8350f4fb9bffc7e00b0ac880f5df87cb
+  m_ApplyToSortingLayers: 00000000
   m_LightCookieSprite: {fileID: 618569511682426646, guid: e1564ced7a1b07a409f09557e8b42822, type: 3}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -31659,7 +31659,7 @@ GameObject:
   - component: {fileID: 2023672171}
   - component: {fileID: 2023672172}
   - component: {fileID: 2023672173}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: "\u6309\u94AE (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
