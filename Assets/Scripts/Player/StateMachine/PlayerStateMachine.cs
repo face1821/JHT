@@ -146,7 +146,7 @@ namespace Game.Player
             _paramaters.FaceDirection = moveDir;
 
             //只有为地面待机状态时，才会请求切换
-            if (_currentState is PlayerStateIdle && _currentState is not PlayerStateJump && _currentState is not PlayerStateLand
+            if (_currentState is PlayerStateIdle && _currentState is not PlayerStateJump
                 || !PlayerInput.IsCrouchHeld && _currentState is PlayerStateCrouch)
             {
                 RequestChangeState(StateMove);
@@ -220,7 +220,7 @@ namespace Game.Player
             //重置为站立待机状态
             _currentState = StateIdle;
             _currentState.OnEnter();
-            
+
             _audioPlayer.PlayDeadTransformSfx();
         }
 
