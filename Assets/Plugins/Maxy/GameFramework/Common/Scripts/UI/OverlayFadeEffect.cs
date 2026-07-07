@@ -11,6 +11,7 @@ namespace Maxy.GameFramework.Common.Tool
     {
         [ReadOnly]
         public bool IsFinished;
+        public bool ForceStartFromEdgeValue;
         [SerializeField] private float _duration = 1f;
         [SerializeField] private float _minValue;
         [SerializeField] private float _maxValue = 1f;
@@ -73,21 +74,24 @@ namespace Maxy.GameFramework.Common.Tool
 
             var startTime = Time.time;
 
-            //预热
-            if (_selfImage != null)
-                _selfImage.color = new Color(_selfImage.color.r, _selfImage.color.g, _selfImage.color.b, _maxValue);
-
-            if (_selfText != null)
-                _selfText.color = new Color(_selfText.color.r, _selfText.color.g, _selfText.color.b, _maxValue);
-
-            foreach (var child in _childImages)
+            //从头开始播放
+            if (ForceStartFromEdgeValue)
             {
-                child.color = new Color(child.color.r, child.color.g, child.color.b, _childMaxValue);
-            }
+                if (_selfImage != null)
+                    _selfImage.color = new Color(_selfImage.color.r, _selfImage.color.g, _selfImage.color.b, _maxValue);
 
-            foreach (var child in _childTexts)
-            {
-                child.color = new Color(child.color.r, child.color.g, child.color.b, _childMaxValue);
+                if (_selfText != null)
+                    _selfText.color = new Color(_selfText.color.r, _selfText.color.g, _selfText.color.b, _maxValue);
+
+                foreach (var child in _childImages)
+                {
+                    child.color = new Color(child.color.r, child.color.g, child.color.b, _childMaxValue);
+                }
+
+                foreach (var child in _childTexts)
+                {
+                    child.color = new Color(child.color.r, child.color.g, child.color.b, _childMaxValue);
+                }
             }
 
             //开始
@@ -141,21 +145,24 @@ namespace Maxy.GameFramework.Common.Tool
 
             var startTime = Time.time;
 
-            //预热
-            if (_selfImage != null)
-                _selfImage.color = new Color(_selfImage.color.r, _selfImage.color.g, _selfImage.color.b, _minValue);
-
-            if (_selfText != null)
-                _selfText.color = new Color(_selfText.color.r, _selfText.color.g, _selfText.color.b, _minValue);
-
-            foreach (var child in _childImages)
+            //从头开始播放
+            if (ForceStartFromEdgeValue)
             {
-                child.color = new Color(child.color.r, child.color.g, child.color.b, _childMinValue);
-            }
+                if (_selfImage != null)
+                    _selfImage.color = new Color(_selfImage.color.r, _selfImage.color.g, _selfImage.color.b, _minValue);
 
-            foreach (var child in _childTexts)
-            {
-                child.color = new Color(child.color.r, child.color.g, child.color.b, _childMinValue);
+                if (_selfText != null)
+                    _selfText.color = new Color(_selfText.color.r, _selfText.color.g, _selfText.color.b, _minValue);
+
+                foreach (var child in _childImages)
+                {
+                    child.color = new Color(child.color.r, child.color.g, child.color.b, _childMinValue);
+                }
+
+                foreach (var child in _childTexts)
+                {
+                    child.color = new Color(child.color.r, child.color.g, child.color.b, _childMinValue);
+                }
             }
 
             //开始
