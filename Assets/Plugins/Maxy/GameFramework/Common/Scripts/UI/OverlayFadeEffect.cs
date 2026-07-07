@@ -14,6 +14,8 @@ namespace Maxy.GameFramework.Common.Tool
         [HideInInspector] public bool IsFinished = true;
 
         [SerializeField] private bool UseSmoothFadeStart = true;
+        [ShowInInspector, ShowIf(nameof(UseSmoothFadeStart))]
+        private bool UseScaledDuration;
 
         [SerializeField] private float _duration = 1f;
         [SerializeField] private float _minValue;
@@ -82,17 +84,24 @@ namespace Maxy.GameFramework.Common.Tool
 
             duration = duration < 0f ? _duration : duration;
 
+            //是否平滑中间态过渡
             if (UseSmoothFadeStart)
             {
-                // _realDuration = _duration;
-                // _duration = _selfImage != null ? _selfImage.color.a : (_selfText != null ? _selfText.color.a : _maxValue);
+                //是否根据中间态的已过渡比例来调节过渡时间
+                if (UseScaledDuration)
+                {
+                    duration = _selfImage != null
+                        ? (_selfImage.color.a - _minValue) / (_maxValue - _minValue) * duration
+                        : (_selfText != null
+                            ? (_selfText.color.a - _minValue) / (_maxValue - _minValue) * duration
+                            : duration);
+                }
 
                 _realMaxValue = _maxValue;
                 _maxValue = _selfImage != null ? _selfImage.color.a : (_selfText != null ? _selfText.color.a : _maxValue);
 
                 _realChildMaxValue = _childMaxValue;
                 _childMaxValue = _childImages.Count > 0 ? _childImages[0].color.a : (_childTexts.Count > 0 ? _childTexts[0].color.a : _childMaxValue);
-                MLogger.LogError($"消失：{duration} {_maxValue} {_childMaxValue}");
             }
 
             StartCoroutine(OnFadeIn(duration));
@@ -106,15 +115,20 @@ namespace Maxy.GameFramework.Common.Tool
 
             if (UseSmoothFadeStart)
             {
-                // _realDuration = _duration;
-                // _duration = _selfImage != null ? _maxValue - _selfImage.color.a : (_selfText != null ? _maxValue - _selfText.color.a : _minValue);
+                if (UseScaledDuration)
+                {
+                    duration = _selfImage != null
+                        ? (_maxValue - _selfImage.color.a) / (_maxValue - _minValue) * duration
+                        : (_selfText != null
+                            ? (_maxValue - _selfText.color.a) / (_maxValue - _minValue) * duration
+                            : duration);
+                }
 
                 _realMinValue = _minValue;
                 _minValue = _selfImage != null ? _selfImage.color.a : (_selfText != null ? _selfText.color.a : _minValue);
 
                 _realChildMinValue = _childMinValue;
                 _childMinValue = _childImages.Count > 0 ? _childImages[0].color.a : (_childTexts.Count > 0 ? _childTexts[0].color.a : _childMinValue);
-                MLogger.LogError($"出现：{duration} {_minValue} {_childMinValue}");
             }
 
             StartCoroutine(OnFadeOut(duration));
@@ -177,7 +191,6 @@ namespace Maxy.GameFramework.Common.Tool
 
             if (UseSmoothFadeStart)
             {
-                _duration = _realDuration;
                 _maxValue = _realMaxValue;
                 _childMaxValue = _realChildMaxValue;
             }
@@ -234,7 +247,6 @@ namespace Maxy.GameFramework.Common.Tool
 
             if (UseSmoothFadeStart)
             {
-                _duration = _realDuration;
                 _minValue = _realMinValue;
                 _childMinValue = _realChildMinValue;
             }
