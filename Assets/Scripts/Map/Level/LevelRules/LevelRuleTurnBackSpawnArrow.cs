@@ -38,7 +38,7 @@ namespace Game.Map
                 obj.Platform = _platform;
                 obj.transform.position = _arrowSpawnPoint.position;
                 MTool.LookAt2D(obj.transform, _playerStateMachine.transform.position);
-                SystemCenter.Get<IAudioSystem>().PlaySfx(_arrowClipList[Random.Range(0, _arrowClipList.Count)], "arrow_clip", InstanceFinder.Player.transform, 0f);
+                SystemCenter.Get<IAudioSystem>().PlaySfx(_arrowClipList[Random.Range(0, _arrowClipList.Count)], "arrow_clip", InstanceFinder.Player.transform);
             }
 
             _lastFaceDirection = _playerStateMachine.Paramaters.FaceDirection;

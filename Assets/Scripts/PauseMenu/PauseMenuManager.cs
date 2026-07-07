@@ -72,14 +72,14 @@ namespace Game.PauseMenu
         {
             _menu.SetActive(false);
             Time.timeScale = 1f;
-            SystemCenter.Get<IAudioSystem>().Mute(muteMusic: false);
+            SystemCenter.Get<IAudioSystem>().UnMute();
         }
 
         public void Respawn()
         {
             _menu.SetActive(false);
             Time.timeScale = 1f;
-            SystemCenter.Get<IAudioSystem>().Mute(muteMusic: false);
+            SystemCenter.Get<IAudioSystem>().UnMute();
 
             InstanceFinder.Player.StateMachine.Die();
         }
@@ -89,7 +89,7 @@ namespace Game.PauseMenu
         public void ReturnToMainMenu()
         {
             Time.timeScale = 1f;
-            SystemCenter.Get<IAudioSystem>().Mute(muteMusic: false);
+            SystemCenter.Get<IAudioSystem>().UnMute();
             StartCoroutine(nameof(DelayReturnToMainMenu));
         }
     }

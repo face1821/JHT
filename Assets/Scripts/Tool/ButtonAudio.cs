@@ -12,6 +12,6 @@ namespace Game.Tool
 
         private void Awake() { _audioSystem = SystemCenter.Get<IAudioSystem>(); }
 
-        public void OnPointerDown(PointerEventData eventData) { _audioSystem.PlaySfx(_audioClip, "ButtonAudio", null, 0f); }
+        public void OnPointerDown(PointerEventData eventData) { _audioSystem.PlaySfx(_audioClip, "ButtonAudio"); }
     }
 }

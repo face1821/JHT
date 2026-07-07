@@ -34,7 +34,7 @@ namespace Game.Stuff
         {
             //当激活时，播放石头的动画
             _animator.Play("Roll");
-            SystemCenter.Get<IAudioSystem>().PlaySfx(_clip, "stone_roll", transform, 0.5f);
+            SystemCenter.Get<IAudioSystem>().PlaySfx(_clip, "stone_roll", transform);
         }
 
         private void FixedUpdate()

@@ -37,7 +37,7 @@ namespace Game.Stuff
             {
                 //音效
                 MLogger.LogWarning("命中气球");
-                SystemCenter.Get<IAudioSystem>().PlaySfx(_clip, "pop", InstanceFinder.Player.transform, 0f);
+                SystemCenter.Get<IAudioSystem>().PlaySfx(_clip, "pop", InstanceFinder.Player.transform);
 
                 Destroy(gameObject);
                 Destroy(other.gameObject);

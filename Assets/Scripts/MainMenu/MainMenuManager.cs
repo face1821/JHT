@@ -50,7 +50,7 @@ namespace Game.MainMenu
             {
                 //点非按钮UI时发出空击音效
                 if (!ui.CompareTag("UIButton"))
-                    _audioSystem.PlaySfx(_uiEmptyClick, "_uiEmptyClick", null, 0f);
+                    _audioSystem.PlaySfx(_uiEmptyClick, "_uiEmptyClick");
             }
         }
 

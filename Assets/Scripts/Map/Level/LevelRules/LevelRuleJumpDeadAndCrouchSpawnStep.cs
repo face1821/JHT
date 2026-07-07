@@ -42,7 +42,7 @@ namespace Game.Map
                 if (oldIndex != _index)
                 {
                     _steps.ForEach(x => x.SetActive(false));
-                    SystemCenter.Get<IAudioSystem>().PlaySfx(_clip, "stair_clip", InstanceFinder.Player.transform, 0f);
+                    SystemCenter.Get<IAudioSystem>().PlaySfx(_clip, "stair_clip", InstanceFinder.Player.transform);
                     _steps[_index].SetActive(true);
                 }
             }

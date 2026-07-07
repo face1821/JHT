@@ -76,7 +76,7 @@ namespace Game.CheckPoint
             SaveSystem.Save("LastPassedLevel", currentLevelInfo.LevelIndex + 1);
             MLogger.LogWarning($"存档：到达第{currentLevelInfo.LevelIndex + 1}个存档点");
 
-            SystemCenter.Get<IAudioSystem>().PlaySfx(_clip, "checkPoint_clip", InstanceFinder.Player.transform, 0f);
+            SystemCenter.Get<IAudioSystem>().PlaySfx(_clip, "checkPoint_clip", InstanceFinder.Player.transform);
 
             //存档后，将之前的关卡都给关闭掉
             //不需要了

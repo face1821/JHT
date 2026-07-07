@@ -39,7 +39,7 @@ namespace Game.Map
                 {
                     //一次性加俩台阶，快一点
                     _steps.ForEach(x => x.SetActive(false));
-                    SystemCenter.Get<IAudioSystem>().PlaySfx(_clip, "stair_clip", InstanceFinder.Player.transform, 0f);
+                    SystemCenter.Get<IAudioSystem>().PlaySfx(_clip, "stair_clip", InstanceFinder.Player.transform);
                     _steps[_index].SetActive(true);
                 }
             }

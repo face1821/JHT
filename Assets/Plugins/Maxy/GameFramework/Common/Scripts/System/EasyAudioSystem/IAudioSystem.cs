@@ -4,8 +4,6 @@ namespace Maxy.GameFramework.Common.System
 {
     public interface IAudioSystem : ISystem
     {
-        public float SpaceBlend { get; set; }
-
         public bool IsMuteMusic { get; set; }
         public bool IsMuteSfx { get; set; }
         public bool IsMuteVoice { get; set; }
@@ -32,7 +30,7 @@ namespace Maxy.GameFramework.Common.System
 
         public void MuteSfx();
         public void UnmuteSfx();
-        public void PlaySfx(AudioClip clip, string clipName = "Sfx_Clip", Transform objectToFollow = null, float volume = -1f, float spaceBlend = -1f);
+        public void PlaySfx(AudioClip clip, string clipName = "Sfx_Clip", Transform objectToFollow = null, float volume = -1f);
         public void PlaySfxAt(AudioClip clip, Vector3 pos = default, string clipName = "Sfx_Clip", float volume = -1f);
         public void StopSfx(string clipName);
         public void StopAllSfxs();
@@ -43,7 +41,7 @@ namespace Maxy.GameFramework.Common.System
 
         public void MuteVoice();
         public void UnmuteVoice();
-        public void PlayVoice(AudioClip clip, string voiceName = "Voice_Clip", Transform objectToFollow = null, float volume = -1f, float spaceBlend = -1f);
+        public void PlayVoice(AudioClip clip, string voiceName = "Voice_Clip", Transform objectToFollow = null, float volume = -1f);
         public void PlayVoiceAt(AudioClip clip, Vector3 pos = default, string clipName = "Voice_Clip", float volume = -1f);
         public void StopVoice(string voiceName);
         public void PauseVoice(string voiceName);
@@ -56,7 +54,7 @@ namespace Maxy.GameFramework.Common.System
 
         public void MuteAmbient();
         public void UnmuteAmbient();
-        public void PlayAmbient(AudioClip clip, string ambientName = "Ambient_Clip", bool loop = false, Transform objectToFollow = null, float volume = -1f, float spaceBlend = -1f);
+        public void PlayAmbient(AudioClip clip, string ambientName = "Ambient_Clip", bool loop = false, Transform objectToFollow = null, float volume = -1f);
         public void PlayAmbientAt(AudioClip clip, Vector3 pos = default, string clipName = "Ambient_Clip", float volume = -1f);
         public void StopAmbient(string ambientName);
         public void PauseAmbient(string voiceName);

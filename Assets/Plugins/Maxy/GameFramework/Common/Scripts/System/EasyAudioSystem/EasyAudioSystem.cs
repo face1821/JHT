@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using Sirenix.OdinInspector;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -12,24 +13,9 @@ namespace Maxy.GameFramework.Common.System
     {
         #region 字段
 
-        [SerializeField] private float _spaceBlend;
         public AudioMixer GlobalAudioMixer;
 
         #region 公开属性
-
-        public float SpaceBlend
-        {
-            get => _spaceBlend;
-            set
-            {
-                _spaceBlend = value;
-
-                _musicSource.spatialBlend = _spaceBlend;
-                _sfxSource.spatialBlend = _spaceBlend;
-                _voiceSource.spatialBlend = _spaceBlend;
-                _ambientSource.spatialBlend = _spaceBlend;
-            }
-        }
 
         public bool IsMuteMusic
         {
@@ -51,9 +37,9 @@ namespace Maxy.GameFramework.Common.System
             {
                 _isMuteSfx = value;
                 if (_isMuteSfx)
-                    MuteMusic();
+                    MuteSfx();
                 else
-                    UnmuteMusic();
+                    UnmuteSfx();
             }
         }
         private bool _isMuteSfx;
@@ -64,9 +50,9 @@ namespace Maxy.GameFramework.Common.System
             {
                 _isMuteVoice = value;
                 if (_isMuteVoice)
-                    MuteMusic();
+                    MuteVoice();
                 else
-                    UnmuteMusic();
+                    UnmuteVoice();
             }
         }
         private bool _isMuteVoice;
@@ -77,9 +63,9 @@ namespace Maxy.GameFramework.Common.System
             {
                 _isMuteAmbient = value;
                 if (_isMuteAmbient)
-                    MuteMusic();
+                    MuteAmbient();
                 else
-                    UnmuteMusic();
+                    UnmuteAmbient();
             }
         }
         private bool _isMuteAmbient;
@@ -194,12 +180,11 @@ namespace Maxy.GameFramework.Common.System
             _ambientSource.outputAudioMixerGroup = GlobalAudioMixer.FindMatchingGroups("Ambient")[0];
             _ambientSourceList = new List<AudioSource>();
 
-            //空间混合
-            //音乐强制为0
+            //空间混合都为0
             _musicSource.spatialBlend = 0f;
-            _sfxSource.spatialBlend = _spaceBlend;
-            _voiceSource.spatialBlend = _spaceBlend;
-            _ambientSource.spatialBlend = _spaceBlend;
+            _sfxSource.spatialBlend = 0f;
+            _voiceSource.spatialBlend = 0f;
+            _ambientSource.spatialBlend = 0f;
         }
 
         #endregion
@@ -223,12 +208,14 @@ namespace Maxy.GameFramework.Common.System
 
         #region Music
 
+        [FoldoutGroup("Music"), Button]
         public void MuteMusic()
         {
             _isMuteMusic = true;
             GlobalAudioMixer.SetFloat("MusicVolume", ToDB(0f));
         }
 
+        [FoldoutGroup("Music"), Button]
         public void UnmuteMusic()
         {
             _isMuteMusic = false;
@@ -258,6 +245,7 @@ namespace Maxy.GameFramework.Common.System
             });
         }
 
+        [FoldoutGroup("Music"), Button]
         public void StopMusic(bool withFadeOut = true)
         {
             if (!withFadeOut)
@@ -272,6 +260,7 @@ namespace Maxy.GameFramework.Common.System
                 .OnComplete(() => _musicSource.Stop());
         }
 
+        [FoldoutGroup("Music"), Button]
         public void PauseMusic(bool withFadeOut = true)
         {
             if (!withFadeOut)
@@ -286,6 +275,7 @@ namespace Maxy.GameFramework.Common.System
                 .OnComplete(() => _musicSource.Pause());
         }
 
+        [FoldoutGroup("Music"), Button]
         public void UnPauseMusic(bool withFadeIn = true)
         {
             if (!withFadeIn)
@@ -304,19 +294,21 @@ namespace Maxy.GameFramework.Common.System
 
         #region Sfx
 
+        [FoldoutGroup("Sfx"), Button]
         public void MuteSfx()
         {
             _isMuteSfx = true;
             GlobalAudioMixer.SetFloat("SfxVolume", ToDB(0f));
         }
 
+        [FoldoutGroup("Sfx"), Button]
         public void UnmuteSfx()
         {
             _isMuteSfx = false;
             GlobalAudioMixer.SetFloat("SfxVolume", ToDB(_sfxVolume));
         }
 
-        public void PlaySfx(AudioClip clip, string clipName = "Sfx_Clip", Transform objectToFollow = null, float volume = -1f, float spaceBlend = -1f)
+        public void PlaySfx(AudioClip clip, string clipName = "Sfx_Clip", Transform objectToFollow = null, float volume = -1f)
         {
             if (objectToFollow == null)
             {
@@ -324,7 +316,7 @@ namespace Maxy.GameFramework.Common.System
                 newSfxSource.transform.SetParent(_sfxSource.transform);
                 newSfxSource.outputAudioMixerGroup = GlobalAudioMixer.FindMatchingGroups("Sfx")[0];
                 newSfxSource.clip = clip;
-                newSfxSource.spatialBlend = spaceBlend < 0f ? _spaceBlend : spaceBlend;
+                newSfxSource.spatialBlend = 0f;
                 newSfxSource.volume = volume < 0f ? _sfxVolume : volume;
                 newSfxSource.Play();
 
@@ -345,7 +337,7 @@ namespace Maxy.GameFramework.Common.System
             obj.outputAudioMixerGroup = GlobalAudioMixer.FindMatchingGroups("Sfx")[0];
             obj.clip = clip;
             obj.volume = volume < 0f ? _sfxVolume : volume;
-            obj.spatialBlend = spaceBlend < 0f ? _spaceBlend : spaceBlend;
+            obj.spatialBlend = 0f;
             obj.Play();
 
             _sfxSourceList.Add(obj);
@@ -389,6 +381,7 @@ namespace Maxy.GameFramework.Common.System
             }
         }
 
+        [FoldoutGroup("Sfx"), Button]
         public void StopAllSfxs()
         {
             foreach (var item in _sfxSourceList)
@@ -401,19 +394,21 @@ namespace Maxy.GameFramework.Common.System
 
         #region Voice
 
+        [FoldoutGroup("Voice"), Button]
         public void MuteVoice()
         {
             _isMuteVoice = true;
             GlobalAudioMixer.SetFloat("VoiceVolume", ToDB(0f));
         }
 
+        [FoldoutGroup("Voice"), Button]
         public void UnmuteVoice()
         {
             _isMuteVoice = false;
             GlobalAudioMixer.SetFloat("VoiceVolume", ToDB(_voiceVolume));
         }
 
-        public void PlayVoice(AudioClip clip, string voiceName = "Voice_Clip", Transform objectToFollow = null, float volume = -1f, float spaceBlend = -1f)
+        public void PlayVoice(AudioClip clip, string voiceName = "Voice_Clip", Transform objectToFollow = null, float volume = -1f)
         {
             if (objectToFollow == null)
             {
@@ -422,7 +417,7 @@ namespace Maxy.GameFramework.Common.System
                 newVoiceSource.outputAudioMixerGroup = GlobalAudioMixer.FindMatchingGroups("Voice")[0];
                 newVoiceSource.clip = clip;
                 newVoiceSource.volume = volume < 0f ? _voiceVolume : volume;
-                newVoiceSource.spatialBlend = spaceBlend < 0f ? _spaceBlend : spaceBlend;
+                newVoiceSource.spatialBlend = 0f;
                 newVoiceSource.Play();
 
                 if (voiceName != null && voiceName != String.Empty)
@@ -442,7 +437,7 @@ namespace Maxy.GameFramework.Common.System
             obj.outputAudioMixerGroup = GlobalAudioMixer.FindMatchingGroups("Voice")[0];
             obj.clip = clip;
             obj.volume = volume < 0f ? _voiceVolume : volume;
-            obj.spatialBlend = spaceBlend < 0f ? _spaceBlend : spaceBlend;
+            obj.spatialBlend = 0f;
             obj.Play();
 
             _voiceSourceList.Add(obj);
@@ -511,6 +506,7 @@ namespace Maxy.GameFramework.Common.System
             }
         }
 
+        [FoldoutGroup("Voice"), Button]
         public void StopAllVoices()
         {
             foreach (var item in _voiceSourceList)
@@ -523,19 +519,21 @@ namespace Maxy.GameFramework.Common.System
 
         #region Ambient
 
+        [FoldoutGroup("Ambient"), Button]
         public void MuteAmbient()
         {
             _isMuteAmbient = true;
             GlobalAudioMixer.SetFloat("AmbientVolume", ToDB(0f));
         }
 
+        [FoldoutGroup("Ambient"), Button]
         public void UnmuteAmbient()
         {
             _isMuteAmbient = false;
             GlobalAudioMixer.SetFloat("AmbientVolume", ToDB(_ambientVolume));
         }
 
-        public void PlayAmbient(AudioClip clip, string ambientName = "Ambient_Clip", bool loop = false, Transform objectToFollow = null, float volume = -1f, float spaceBlend = -1f)
+        public void PlayAmbient(AudioClip clip, string ambientName = "Ambient_Clip", bool loop = false, Transform objectToFollow = null, float volume = -1f)
         {
             if (objectToFollow == null)
             {
@@ -543,7 +541,7 @@ namespace Maxy.GameFramework.Common.System
                 newSfxSource.transform.SetParent(_sfxSource.transform);
                 newSfxSource.outputAudioMixerGroup = GlobalAudioMixer.FindMatchingGroups("Ambient")[0];
                 newSfxSource.clip = clip;
-                newSfxSource.spatialBlend = spaceBlend < 0f ? _spaceBlend : spaceBlend;
+                newSfxSource.spatialBlend = 0f;
                 newSfxSource.Play();
 
                 if (ambientName != null && ambientName != String.Empty)
@@ -562,7 +560,7 @@ namespace Maxy.GameFramework.Common.System
             obj.transform.localPosition = Vector3.zero;
             obj.outputAudioMixerGroup = GlobalAudioMixer.FindMatchingGroups("Ambient")[0];
             obj.clip = clip;
-            obj.spatialBlend = spaceBlend < 0f ? _spaceBlend : spaceBlend;
+            obj.spatialBlend = 0f;
             obj.Play();
 
             _ambientSourceList.Add(obj);
@@ -631,6 +629,7 @@ namespace Maxy.GameFramework.Common.System
             }
         }
 
+        [FoldoutGroup("Ambient"), Button]
         public void StopAllAmbients()
         {
             foreach (var item in _ambientSourceList)
@@ -643,6 +642,7 @@ namespace Maxy.GameFramework.Common.System
 
         #region Volume
 
+        [Button]
         public void Mute(bool muteMusic = true, bool muteSfx = true, bool muteVoice = true, bool muteAmbient = true)
         {
             IsMuteMusic = muteMusic;
@@ -651,6 +651,7 @@ namespace Maxy.GameFramework.Common.System
             IsMuteAmbient = muteAmbient;
         }
 
+        [Button]
         public void UnMute()
         {
             IsMuteMusic = false;
@@ -659,10 +660,19 @@ namespace Maxy.GameFramework.Common.System
             IsMuteAmbient = false;
         }
 
+        [Button]
         public void SetMasterVolume(float volume) => MasterVolume = volume;
+
+        [Button]
         public void SetMusicVolume(float volume) => MusicVolume = volume;
+
+        [Button]
         public void SetSfxVolume(float volume) => SfxVolume = volume;
+
+        [Button]
         public void SetVoiceVolume(float volume) => VoiceVolume = volume;
+
+        [Button]
         public void SetAmbientVolume(float volume) => AmbientVolume = volume;
 
         #endregion

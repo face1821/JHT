@@ -49,7 +49,7 @@ namespace Game.Map
                 var obj = GameObject.Instantiate(_arrow);
                 obj.transform.position = _arrowSpawnPoint.position;
                 MTool.LookAt2D(obj.transform, _playerStateMachine.transform.position);
-                SystemCenter.Get<IAudioSystem>().PlaySfx(_arrowClipList[Random.Range(0, _arrowClipList.Count)], "arrow_clip", InstanceFinder.Player.transform, 0f);
+                SystemCenter.Get<IAudioSystem>().PlaySfx(_arrowClipList[Random.Range(0, _arrowClipList.Count)], "arrow_clip", InstanceFinder.Player.transform);
 
                 //放置新台阶
                 //一次性加俩台阶，快一点
@@ -58,7 +58,7 @@ namespace Game.Map
                 if (_index != oldIndex)
                 {
                     _steps.ForEach(x => x.SetActive(false));
-                    SystemCenter.Get<IAudioSystem>().PlaySfx(_stairClip, "stair_clip", InstanceFinder.Player.transform, 0f);
+                    SystemCenter.Get<IAudioSystem>().PlaySfx(_stairClip, "stair_clip", InstanceFinder.Player.transform );
                     _steps[_index].SetActive(true);
                 }
             }

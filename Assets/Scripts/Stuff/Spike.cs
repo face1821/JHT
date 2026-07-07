@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using Cinemachine;
 using DG.Tweening;
@@ -51,7 +50,7 @@ namespace Game.Stuff
         public void StartMove()
         {
             //播放音效
-            SystemCenter.Get<IAudioSystem>().PlaySfx(_clip, "_spike_clip", InstanceFinder.Player.transform, 0f);
+            SystemCenter.Get<IAudioSystem>().PlaySfx(_clip, "_spike_clip", InstanceFinder.Player.transform);
 
             SpikeTrap.transform.DOKill();
             SpikeTrap.gameObject.SetActive(true);

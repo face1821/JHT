@@ -58,9 +58,9 @@ namespace Game.InteractableObject
             _light.lightCookieSprite = sprite;
 
             if (_rule.enabled)
-                SystemCenter.Get<IAudioSystem>().PlaySfx(_openClip, "_button_open_clip", InstanceFinder.Player.transform, 0f);
+                SystemCenter.Get<IAudioSystem>().PlaySfx(_openClip, "_button_open_clip", InstanceFinder.Player.transform);
             else
-                SystemCenter.Get<IAudioSystem>().PlaySfx(_closeClip, "_button_open_clip", InstanceFinder.Player.transform, 0f);
+                SystemCenter.Get<IAudioSystem>().PlaySfx(_closeClip, "_button_open_clip", InstanceFinder.Player.transform);
         }
     }
 }

@@ -71,7 +71,7 @@ namespace Game.Map
 
                 if (_index >= 0 && oldIndex != _index)
                 {
-                    SystemCenter.Get<IAudioSystem>().PlaySfx(_clip, "stair_clip", InstanceFinder.Player.transform, 0f);
+                    SystemCenter.Get<IAudioSystem>().PlaySfx(_clip, "stair_clip", InstanceFinder.Player.transform);
                     _steps[_index].SetActive(true);
                 }
             }

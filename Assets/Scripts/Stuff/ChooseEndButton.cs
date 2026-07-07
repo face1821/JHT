@@ -59,7 +59,7 @@ namespace Game.Suff
             InstanceFinder.Player.Input.BtnReleaseMoveRight();
             InstanceFinder.Player.Input.enabled = false;
             InstanceFinder.Player.Interact.enabled = false;
-            SystemCenter.Get<IAudioSystem>().PlaySfx(_clip, "_button_open_clip", InstanceFinder.Player.transform, 0f);
+            SystemCenter.Get<IAudioSystem>().PlaySfx(_clip, "_button_open_clip", InstanceFinder.Player.transform);
 
             //黑幕出现
             var overlay = GameObject.FindWithTag("SceneOverlay").GetComponent<OverlayFadeEffect>();
