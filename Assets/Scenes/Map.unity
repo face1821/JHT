@@ -17588,7 +17588,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 2.4160233, y: 0}
+  m_Offset: {x: 2.291748, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -17599,7 +17599,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 19.167953, y: 9.5}
+  m_Size: {x: 18.919403, y: 9.5}
   m_EdgeRadius: 0
 --- !u!114 &1088644134
 MonoBehaviour:
@@ -19194,7 +19194,6 @@ MonoBehaviour:
   _groundHeight: -12.9
   _clip: {fileID: 8300000, guid: 26285fb5347f0974687c0259775a71d6, type: 3}
   _steps:
-  - {fileID: 312509768}
   - {fileID: 2123763701}
   - {fileID: 830169817}
   - {fileID: 228375278}
@@ -31481,6 +31480,7 @@ MonoBehaviour:
   - {fileID: 1789385362}
   - {fileID: 277138971}
   - {fileID: 2055407160}
+  - {fileID: 312509768}
 --- !u!61 &1993473432
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -34164,6 +34164,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 306064028300589105, guid: b6971e342c2db084aa8f58a1442c5dfa, type: 3}
+      propertyPath: m_Size.x
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 6851226502207279401, guid: b6971e342c2db084aa8f58a1442c5dfa, type: 3}
       propertyPath: m_Camera
       value: 
@@ -34207,6 +34211,10 @@ PrefabInstance:
     - target: {fileID: 7744749020851684764, guid: b6971e342c2db084aa8f58a1442c5dfa, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8510902998030080634, guid: b6971e342c2db084aa8f58a1442c5dfa, type: 3}
+      propertyPath: m_Size.x
+      value: 0.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
