@@ -32,8 +32,12 @@ namespace Maxy.GameFramework.Common.System
         public void UnmuteSfx();
         public void PlaySfx(AudioClip clip, string clipName = "Sfx_Clip", Transform objectToFollow = null, float volume = -1f);
         public void PlaySfxAt(AudioClip clip, Vector3 pos = default, string clipName = "Sfx_Clip", float volume = -1f);
+        public void PauseSfx(string clipName);
+        public void UnPauseSfx(string clipName);
         public void StopSfx(string clipName);
         public void StopAllSfxs();
+        public void PauseAllSfxs();
+        public void UnPauseAllSfxs();
 
         #endregion
 
@@ -46,6 +50,8 @@ namespace Maxy.GameFramework.Common.System
         public void StopVoice(string voiceName);
         public void PauseVoice(string voiceName);
         public void UnPauseVoice(string voiceName);
+        public void PauseAllVoices();
+        public void UnPauseAllVoices();
         public void StopAllVoices();
 
         #endregion
@@ -59,12 +65,17 @@ namespace Maxy.GameFramework.Common.System
         public void StopAmbient(string ambientName);
         public void PauseAmbient(string voiceName);
         public void UnPauseAmbient(string voiceName);
+        public void PauseAllAmbients();
+        public void UnPauseAllAmbients();
         public void StopAllAmbients();
 
         #endregion
 
         public void Mute(bool muteMusic = true, bool muteSfx = true, bool muteVoice = true, bool muteAmbient = true);
         public void UnMute();
+        public void Pause(bool pauseMusic = true, bool pauseSfx = true, bool pauseVoice = true, bool pauseAmbient = true);
+        public void UnPause();
+        
         public void SetMasterVolume(float volume);
         public void SetMusicVolume(float volume);
         public void SetSfxVolume(float volume);

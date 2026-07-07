@@ -364,6 +364,30 @@ namespace Maxy.GameFramework.Common.System
             _instance.StartCoroutine(DestroyWhenEnd(obj, _sfxSourceList));
         }
 
+        public void PauseSfx(string clipName)
+        {
+            foreach (var item in _sfxSourceList)
+            {
+                if (item.name == clipName)
+                {
+                    item.Pause();
+                    break;
+                }
+            }
+        }
+
+        public void UnPauseSfx(string clipName)
+        {
+            foreach (var item in _sfxSourceList)
+            {
+                if (item.name == clipName)
+                {
+                    item.UnPause();
+                    break;
+                }
+            }
+        }
+
         public void StopSfx(string clipName)
         {
             clipName = $"SfxSource-{clipName}";
@@ -387,6 +411,24 @@ namespace Maxy.GameFramework.Common.System
             foreach (var item in _sfxSourceList)
             {
                 Destroy(item.gameObject);
+            }
+        }
+
+        [FoldoutGroup("Sfx"), Button]
+        public void PauseAllSfxs()
+        {
+            foreach (var item in _sfxSourceList)
+            {
+                item.Pause();
+            }
+        }
+
+        [FoldoutGroup("Sfx"), Button]
+        public void UnPauseAllSfxs()
+        {
+            foreach (var item in _sfxSourceList)
+            {
+                item.UnPause();
             }
         }
 
@@ -503,6 +545,24 @@ namespace Maxy.GameFramework.Common.System
                     item.UnPause();
                     break;
                 }
+            }
+        }
+
+        [FoldoutGroup("Voice"), Button]
+        public void PauseAllVoices()
+        {
+            foreach (var item in _voiceSourceList)
+            {
+                item.Pause();
+            }
+        }
+
+        [FoldoutGroup("Voice"), Button]
+        public void UnPauseAllVoices()
+        {
+            foreach (var item in _voiceSourceList)
+            {
+                item.UnPause();
             }
         }
 
@@ -630,6 +690,24 @@ namespace Maxy.GameFramework.Common.System
         }
 
         [FoldoutGroup("Ambient"), Button]
+        public void PauseAllAmbients()
+        {
+            foreach (var item in _ambientSourceList)
+            {
+                item.Pause();
+            }
+        }
+
+        [FoldoutGroup("Ambient"), Button]
+        public void UnPauseAllAmbients()
+        {
+            foreach (var item in _ambientSourceList)
+            {
+                item.UnPause();
+            }
+        }
+
+        [FoldoutGroup("Ambient"), Button]
         public void StopAllAmbients()
         {
             foreach (var item in _ambientSourceList)
@@ -659,6 +737,19 @@ namespace Maxy.GameFramework.Common.System
             IsMuteVoice = false;
             IsMuteAmbient = false;
         }
+
+
+        [Button]
+        public void Pause(bool pauseMusic = true, bool pauseSfx = true, bool pauseVoice = true, bool pauseAmbient = true)
+        {
+            if (pauseMusic) PauseMusic();
+            if (pauseSfx) PauseAllSfxs();
+            if (pauseVoice) PauseAllVoices();
+            if (pauseAmbient) PauseAllAmbients();
+        }
+
+        [Button]
+        public void UnPause() { }
 
         [Button]
         public void SetMasterVolume(float volume) => MasterVolume = volume;

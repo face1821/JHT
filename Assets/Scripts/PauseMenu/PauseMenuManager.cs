@@ -62,7 +62,7 @@ namespace Game.PauseMenu
         {
             _menu.SetActive(true);
             Time.timeScale = 0f;
-            SystemCenter.Get<IAudioSystem>().Mute(muteMusic: false);
+            SystemCenter.Get<IAudioSystem>().Pause(pauseMusic: false);
 
             //每次打开暂停界面时，刷新一下死亡计数捏
             UpdateDeadCount();
@@ -72,14 +72,14 @@ namespace Game.PauseMenu
         {
             _menu.SetActive(false);
             Time.timeScale = 1f;
-            SystemCenter.Get<IAudioSystem>().UnMute();
+            SystemCenter.Get<IAudioSystem>().UnPause();
         }
 
         public void Respawn()
         {
             _menu.SetActive(false);
             Time.timeScale = 1f;
-            SystemCenter.Get<IAudioSystem>().UnMute();
+            SystemCenter.Get<IAudioSystem>().UnPause();
 
             InstanceFinder.Player.StateMachine.Die();
         }
@@ -89,7 +89,7 @@ namespace Game.PauseMenu
         public void ReturnToMainMenu()
         {
             Time.timeScale = 1f;
-            SystemCenter.Get<IAudioSystem>().UnMute();
+            SystemCenter.Get<IAudioSystem>().UnPause();
             StartCoroutine(nameof(DelayReturnToMainMenu));
         }
     }
