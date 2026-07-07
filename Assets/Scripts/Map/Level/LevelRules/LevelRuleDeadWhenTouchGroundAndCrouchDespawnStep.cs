@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using Game.Player;
@@ -39,13 +38,15 @@ namespace Game.Map
             _index = _steps.Count - 1;
             _steps.ForEach(x => x.SetActive(false));
             _steps[_index].SetActive(true);
-            
+
             _platform.transform.localPosition = _platformStartPos;
         }
 
         private void FixedUpdate()
         {
             if (!_runing) return;
+
+            if (_playerStateMachine.CurrentState is PlayerStateDead) return;
 
             //当玩家站在地面时，死亡
             if (_playerStateMachine.transform.position.y <= _groundHeight)

@@ -55,7 +55,7 @@ namespace Game.Map
                 //销毁新台阶
                 //一次性加俩台阶，快一点
                 var oldIndex = _index;
-                _index = Mathf.Clamp(_index - 2, -1, _steps.Count - 1);
+                _index = Mathf.Clamp(_index - 2, -1, _steps.Count - 4);
                 _steps.ForEach(x => x.SetActive(false));
 
                 if (_index >= 0 && oldIndex != _index)

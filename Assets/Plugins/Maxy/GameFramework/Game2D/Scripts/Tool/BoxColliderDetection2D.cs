@@ -16,7 +16,7 @@ namespace Maxy.GameFramework.Game2D.Tool
         public LayerMask LayerMask;
         public bool AutoRun;
 
-        private Collider2D[] _ColliderArrayCache = new Collider2D[1];
+        [SerializeField, ReadOnly] private Collider2D[] _ColliderArrayCache = new Collider2D[1];
         private BoxCollider2D _boxCollider2D;
 
         private void Awake() { _boxCollider2D = GetComponent<BoxCollider2D>(); }

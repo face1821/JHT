@@ -1,4 +1,4 @@
-using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Maxy.GameFramework.Game2D.Tool
@@ -11,9 +11,9 @@ namespace Maxy.GameFramework.Game2D.Tool
         public Color Color = Color.yellow;
         public bool Touched;
 
-        public Transform ObjectTouched => _ColliderArrayCache[0].transform;
+        [ShowInInspector] public Transform ObjectTouched => _ColliderArrayCache[0].transform;
 
-        private Collider2D[] _ColliderArrayCache = new Collider2D[1];
+        [SerializeField, ReadOnly] private Collider2D[] _ColliderArrayCache = new Collider2D[1];
 
         public bool Detect()
         {
