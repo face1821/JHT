@@ -57,6 +57,7 @@ namespace Game.Suff
             InstanceFinder.Player.Input.BtnReleaseCrouch();
             InstanceFinder.Player.Input.BtnReleaseMoveLeft();
             InstanceFinder.Player.Input.BtnReleaseMoveRight();
+            InstanceFinder.Player.Input.enabled = false;
             InstanceFinder.Player.Interact.enabled = false;
             SystemCenter.Get<IAudioSystem>().PlaySfx(_clip, "_button_open_clip", InstanceFinder.Player.transform, 0f);
 
@@ -76,11 +77,16 @@ namespace Game.Suff
 
             //等待视频播放完毕，黑幕出现
             yield return new WaitUntil(() => !_videoPlayer.isPlaying);
-            overlay.PlayFadeOut();
+            _videoOverlay.PlayFadeOut();
+            overlay.PlayFadeOutAndIn();
+            yield return new WaitForSeconds(1.5f);
 
-            //然后回到主界面
-            LoadingMenuManager.LoadingScene = "MainMenu";
-            SceneManager.LoadScene("LoadingMenu");
+            //关闭画布
+            _endVideoCanvas.gameObject.SetActive(false);
+
+            //然后玩家启用输入和交互
+            InstanceFinder.Player.Input.enabled = true;
+            InstanceFinder.Player.Interact.enabled = true;
         }
 
         #endregion
