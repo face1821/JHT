@@ -9,16 +9,16 @@ namespace Maxy.GameFramework.Common.Tool
 {
     public class OverlayFadeEffect : MonoBehaviour
     {
-        [ReadOnly]
-        public bool IsFinished;
-        public bool ForceStartFromEdgeValue;
+        [ShowInInspector, ReadOnly] public bool IsPlaying => !IsFinished;
+        [HideInInspector] public bool IsFinished;
+
         [SerializeField] private float _duration = 1f;
         [SerializeField] private float _minValue;
         [SerializeField] private float _maxValue = 1f;
         [SerializeField] private float _childMinValue;
         [SerializeField] private float _childMaxValue = 1f;
-        [SerializeField] private List<Image> _childImages;
-        [SerializeField] private List<TextMeshProUGUI> _childTexts;
+        [SerializeField] private List<Image> _childImages = new List<Image>();
+        [SerializeField] private List<TextMeshProUGUI> _childTexts = new List<TextMeshProUGUI>();
 
         private Image _selfImage;
         private TextMeshProUGUI _selfText;
@@ -74,26 +74,6 @@ namespace Maxy.GameFramework.Common.Tool
 
             var startTime = Time.time;
 
-            //从头开始播放
-            if (ForceStartFromEdgeValue)
-            {
-                if (_selfImage != null)
-                    _selfImage.color = new Color(_selfImage.color.r, _selfImage.color.g, _selfImage.color.b, _maxValue);
-
-                if (_selfText != null)
-                    _selfText.color = new Color(_selfText.color.r, _selfText.color.g, _selfText.color.b, _maxValue);
-
-                foreach (var child in _childImages)
-                {
-                    child.color = new Color(child.color.r, child.color.g, child.color.b, _childMaxValue);
-                }
-
-                foreach (var child in _childTexts)
-                {
-                    child.color = new Color(child.color.r, child.color.g, child.color.b, _childMaxValue);
-                }
-            }
-
             //开始
             while (_selfImage != null && _selfImage.color.a > _minValue || _selfText != null && _selfText.color.a > _minValue)
             {
@@ -144,26 +124,6 @@ namespace Maxy.GameFramework.Common.Tool
             IsFinished = false;
 
             var startTime = Time.time;
-
-            //从头开始播放
-            if (ForceStartFromEdgeValue)
-            {
-                if (_selfImage != null)
-                    _selfImage.color = new Color(_selfImage.color.r, _selfImage.color.g, _selfImage.color.b, _minValue);
-
-                if (_selfText != null)
-                    _selfText.color = new Color(_selfText.color.r, _selfText.color.g, _selfText.color.b, _minValue);
-
-                foreach (var child in _childImages)
-                {
-                    child.color = new Color(child.color.r, child.color.g, child.color.b, _childMinValue);
-                }
-
-                foreach (var child in _childTexts)
-                {
-                    child.color = new Color(child.color.r, child.color.g, child.color.b, _childMinValue);
-                }
-            }
 
             //开始
             while (_selfImage != null && _selfImage.color.a < _maxValue || _selfText != null && _selfText.color.a < _maxValue)

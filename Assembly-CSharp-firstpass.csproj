@@ -66,6 +66,7 @@
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Scripts\System\System.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Scripts\UI\ValueAwakeSync\ToggleValueAwakeSync.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Scripts\System\EasyDialogueSystem\DialogueStoryContentUnit.cs" />
+    <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Scripts\System\EasyAudioSystem\AudioSourceWrapper.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Scripts\EventBus\Events\PlayButtonAudioEvent.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Scripts\Tool\BoxColliderDetection.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Demigiant\DOTween\Modules\DOTweenModulePhysics2D.cs" />

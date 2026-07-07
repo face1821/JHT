@@ -68,6 +68,8 @@ namespace Game.Stuff
             SpikeTrap.transform.DOKill();
             SpikeTrap.gameObject.SetActive(true);
             SpikeTrap.transform.position = new Vector3(_endX, _startPos.y);
+            _noise.m_AmplitudeGain = 0f;
+            _noise.m_FrequencyGain = 0f;
         }
 
         private void OnPlayerDead() { StartCoroutine(nameof(DelayOnPlayerDead)); }

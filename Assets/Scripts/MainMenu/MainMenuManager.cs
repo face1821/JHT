@@ -79,6 +79,8 @@ namespace Game.MainMenu
 
         public void NewGame()
         {
+            if (_overlay.IsPlaying) return;
+
             //先删除所有关卡和所有成就的记录
             SaveSystem.Clear();
 
@@ -89,6 +91,8 @@ namespace Game.MainMenu
 
         public void Continue()
         {
+            if (_overlay.IsPlaying) return;
+
             //直接进入地图
             StartCoroutine(nameof(DelayStartGame));
         }
