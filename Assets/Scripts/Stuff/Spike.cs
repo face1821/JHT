@@ -76,8 +76,10 @@ namespace Game.Stuff
         {
             yield return new WaitForSeconds(2.5f);
             
+            //尖刺消失
             SystemCenter.Get<IAudioSystem>().StopSfx("_spike_clip");
             SpikeTrap.gameObject.SetActive(false);
+            MLogger.LogWarning("尖刺消失");
             _noise.m_AmplitudeGain = 0f;
             _noise.m_FrequencyGain = 0f;
         }

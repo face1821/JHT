@@ -10,6 +10,13 @@ namespace Maxy.GameFramework.Common.System
 {
     public class EasyAudioSystem : System<EasyAudioSystem>, IAudioSystem
     {
+        #region 字段
+
+        [SerializeField] private float _spaceBlend;
+        public AudioMixer GlobalAudioMixer;
+
+        #region 公开属性
+
         public float SpaceBlend
         {
             get => _spaceBlend;
@@ -24,12 +31,58 @@ namespace Maxy.GameFramework.Common.System
             }
         }
 
-        #region 字段
-
-        [SerializeField] private float _spaceBlend;
-        public AudioMixer GlobalAudioMixer;
-
-        #region 公开音量属性
+        public bool IsMuteMusic
+        {
+            get => _isMuteMusic;
+            set
+            {
+                _isMuteMusic = value;
+                if (_isMuteMusic)
+                    MuteMusic();
+                else
+                    UnmuteMusic();
+            }
+        }
+        private bool _isMuteMusic;
+        public bool IsMuteSfx
+        {
+            get => _isMuteSfx;
+            set
+            {
+                _isMuteSfx = value;
+                if (_isMuteSfx)
+                    MuteMusic();
+                else
+                    UnmuteMusic();
+            }
+        }
+        private bool _isMuteSfx;
+        public bool IsMuteVoice
+        {
+            get => _isMuteVoice;
+            set
+            {
+                _isMuteVoice = value;
+                if (_isMuteVoice)
+                    MuteMusic();
+                else
+                    UnmuteMusic();
+            }
+        }
+        private bool _isMuteVoice;
+        public bool IsMuteAmbient
+        {
+            get => _isMuteAmbient;
+            set
+            {
+                _isMuteAmbient = value;
+                if (_isMuteAmbient)
+                    MuteMusic();
+                else
+                    UnmuteMusic();
+            }
+        }
+        private bool _isMuteAmbient;
 
         public float MasterVolume
         {
@@ -170,6 +223,18 @@ namespace Maxy.GameFramework.Common.System
 
         #region Music
 
+        public void MuteMusic()
+        {
+            _isMuteMusic = true;
+            GlobalAudioMixer.SetFloat("MusicVolume", ToDB(0f));
+        }
+
+        public void UnmuteMusic()
+        {
+            _isMuteMusic = false;
+            GlobalAudioMixer.SetFloat("MusicVolume", ToDB(_musicVolume));
+        }
+
         public void PlayMusic(AudioClip clip, bool loop = true, bool withFadeOutAndIn = true)
         {
             if (!withFadeOutAndIn)
@@ -239,7 +304,19 @@ namespace Maxy.GameFramework.Common.System
 
         #region Sfx
 
-        public void PlaySfx(AudioClip clip, string clipName = null, Transform objectToFollow = null, float spaceBlend = -1f)
+        public void MuteSfx()
+        {
+            _isMuteSfx = true;
+            GlobalAudioMixer.SetFloat("SfxVolume", ToDB(0f));
+        }
+
+        public void UnmuteSfx()
+        {
+            _isMuteSfx = false;
+            GlobalAudioMixer.SetFloat("SfxVolume", ToDB(_sfxVolume));
+        }
+
+        public void PlaySfx(AudioClip clip, string clipName = "Sfx_Clip", Transform objectToFollow = null, float volume = -1f, float spaceBlend = -1f)
         {
             if (objectToFollow == null)
             {
@@ -248,6 +325,7 @@ namespace Maxy.GameFramework.Common.System
                 newSfxSource.outputAudioMixerGroup = GlobalAudioMixer.FindMatchingGroups("Sfx")[0];
                 newSfxSource.clip = clip;
                 newSfxSource.spatialBlend = spaceBlend < 0f ? _spaceBlend : spaceBlend;
+                newSfxSource.volume = volume < 0f ? _sfxVolume : volume;
                 newSfxSource.Play();
 
                 if (clipName != null && clipName != String.Empty)
@@ -265,8 +343,8 @@ namespace Maxy.GameFramework.Common.System
             obj.transform.SetParent(objectToFollow);
             obj.transform.localPosition = Vector3.zero;
             obj.outputAudioMixerGroup = GlobalAudioMixer.FindMatchingGroups("Sfx")[0];
-            obj.spatialBlend = 1f;
             obj.clip = clip;
+            obj.volume = volume < 0f ? _sfxVolume : volume;
             obj.spatialBlend = spaceBlend < 0f ? _spaceBlend : spaceBlend;
             obj.Play();
 
@@ -275,14 +353,14 @@ namespace Maxy.GameFramework.Common.System
             _instance.StartCoroutine(DestroyWhenEnd(obj, _sfxSourceList));
         }
 
-        public void PlaySfxAt(AudioClip clip, Vector3 pos, string clipName)
+        public void PlaySfxAt(AudioClip clip, Vector3 pos = default, string clipName = "Sfx_Clip", float volume = -1f)
         {
             var obj = new GameObject("SfxSourceFromEasyAudioSystem").AddComponent<AudioSource>();
             obj.transform.position = pos;
             obj.spatialBlend = 1f;
             obj.outputAudioMixerGroup = GlobalAudioMixer.FindMatchingGroups("Sfx")[0];
             obj.clip = clip;
-            obj.spatialBlend = _spaceBlend;
+            obj.volume = volume < 0f ? _sfxVolume : volume;
             obj.Play();
 
             if (clipName != null && clipName != String.Empty)
@@ -323,25 +401,38 @@ namespace Maxy.GameFramework.Common.System
 
         #region Voice
 
-        public void PlayVoice(AudioClip clip, string voiceName = null, Transform objectToFollow = null, float spaceBlend = -1f)
+        public void MuteVoice()
+        {
+            _isMuteVoice = true;
+            GlobalAudioMixer.SetFloat("VoiceVolume", ToDB(0f));
+        }
+
+        public void UnmuteVoice()
+        {
+            _isMuteVoice = false;
+            GlobalAudioMixer.SetFloat("VoiceVolume", ToDB(_voiceVolume));
+        }
+
+        public void PlayVoice(AudioClip clip, string voiceName = "Voice_Clip", Transform objectToFollow = null, float volume = -1f, float spaceBlend = -1f)
         {
             if (objectToFollow == null)
             {
-                var newSfxSource = new GameObject("VoiceSource").AddComponent<AudioSource>();
-                newSfxSource.transform.SetParent(_sfxSource.transform);
-                newSfxSource.outputAudioMixerGroup = GlobalAudioMixer.FindMatchingGroups("Voice")[0];
-                newSfxSource.clip = clip;
-                newSfxSource.spatialBlend = spaceBlend < 0f ? _spaceBlend : spaceBlend;
-                newSfxSource.Play();
+                var newVoiceSource = new GameObject("VoiceSource").AddComponent<AudioSource>();
+                newVoiceSource.transform.SetParent(_sfxSource.transform);
+                newVoiceSource.outputAudioMixerGroup = GlobalAudioMixer.FindMatchingGroups("Voice")[0];
+                newVoiceSource.clip = clip;
+                newVoiceSource.volume = volume < 0f ? _voiceVolume : volume;
+                newVoiceSource.spatialBlend = spaceBlend < 0f ? _spaceBlend : spaceBlend;
+                newVoiceSource.Play();
 
                 if (voiceName != null && voiceName != String.Empty)
                 {
-                    newSfxSource.gameObject.name = $"VoiceSource-{voiceName}";
+                    newVoiceSource.gameObject.name = $"VoiceSource-{voiceName}";
                 }
 
-                _voiceSourceList.Add(newSfxSource);
+                _voiceSourceList.Add(newVoiceSource);
 
-                _instance.StartCoroutine(DestroyWhenEnd(newSfxSource, _voiceSourceList));
+                _instance.StartCoroutine(DestroyWhenEnd(newVoiceSource, _voiceSourceList));
                 return;
             }
 
@@ -349,8 +440,8 @@ namespace Maxy.GameFramework.Common.System
             obj.transform.SetParent(objectToFollow);
             obj.transform.localPosition = Vector3.zero;
             obj.outputAudioMixerGroup = GlobalAudioMixer.FindMatchingGroups("Voice")[0];
-            obj.spatialBlend = 1f;
             obj.clip = clip;
+            obj.volume = volume < 0f ? _voiceVolume : volume;
             obj.spatialBlend = spaceBlend < 0f ? _spaceBlend : spaceBlend;
             obj.Play();
 
@@ -359,11 +450,30 @@ namespace Maxy.GameFramework.Common.System
             _instance.StartCoroutine(DestroyWhenEnd(obj, _voiceSourceList));
         }
 
+        public void PlayVoiceAt(AudioClip clip, Vector3 pos = default, string clipName = "Voice_Clip", float volume = -1f)
+        {
+            var obj = new GameObject("VoiceSourceFromEasyAudioSystem").AddComponent<AudioSource>();
+            obj.transform.position = pos;
+            obj.spatialBlend = 1f;
+            obj.outputAudioMixerGroup = GlobalAudioMixer.FindMatchingGroups("Voice")[0];
+            obj.clip = clip;
+            obj.volume = volume < 0f ? _voiceVolume : volume;
+            obj.Play();
+
+            if (clipName != null && clipName != String.Empty)
+            {
+                obj.gameObject.name = $"VoiceSource-{clipName}";
+                _voiceSourceList.Add(obj);
+            }
+
+            _instance.StartCoroutine(DestroyWhenEnd(obj, _voiceSourceList));
+        }
+
         public void StopVoice(string voiceName)
         {
-            voiceName = $"SfxSource-{voiceName}";
+            voiceName = $"VoiceSource-{voiceName}";
 
-            foreach (var item in _sfxSourceList)
+            foreach (var item in _voiceSourceList)
             {
                 if (item.name == voiceName)
                 {
@@ -375,9 +485,9 @@ namespace Maxy.GameFramework.Common.System
 
         public void PauseVoice(string voiceName)
         {
-            voiceName = $"SfxSource-{voiceName}";
+            voiceName = $"VoiceSource-{voiceName}";
 
-            foreach (var item in _sfxSourceList)
+            foreach (var item in _voiceSourceList)
             {
                 if (item.name == voiceName)
                 {
@@ -389,9 +499,9 @@ namespace Maxy.GameFramework.Common.System
 
         public void UnPauseVoice(string voiceName)
         {
-            voiceName = $"SfxSource-{voiceName}";
+            voiceName = $"VoiceSource-{voiceName}";
 
-            foreach (var item in _sfxSourceList)
+            foreach (var item in _voiceSourceList)
             {
                 if (item.name == voiceName)
                 {
@@ -413,7 +523,19 @@ namespace Maxy.GameFramework.Common.System
 
         #region Ambient
 
-        public void PlayAmbient(AudioClip clip, string ambientName, bool loop = false, Transform objectToFollow = null, float spaceBlend = -1f)
+        public void MuteAmbient()
+        {
+            _isMuteAmbient = true;
+            GlobalAudioMixer.SetFloat("AmbientVolume", ToDB(0f));
+        }
+
+        public void UnmuteAmbient()
+        {
+            _isMuteAmbient = false;
+            GlobalAudioMixer.SetFloat("AmbientVolume", ToDB(_ambientVolume));
+        }
+
+        public void PlayAmbient(AudioClip clip, string ambientName = "Ambient_Clip", bool loop = false, Transform objectToFollow = null, float volume = -1f, float spaceBlend = -1f)
         {
             if (objectToFollow == null)
             {
@@ -439,12 +561,30 @@ namespace Maxy.GameFramework.Common.System
             obj.transform.SetParent(objectToFollow);
             obj.transform.localPosition = Vector3.zero;
             obj.outputAudioMixerGroup = GlobalAudioMixer.FindMatchingGroups("Ambient")[0];
-            obj.spatialBlend = 1f;
             obj.clip = clip;
             obj.spatialBlend = spaceBlend < 0f ? _spaceBlend : spaceBlend;
             obj.Play();
 
             _ambientSourceList.Add(obj);
+
+            _instance.StartCoroutine(DestroyWhenEnd(obj, _ambientSourceList));
+        }
+
+        public void PlayAmbientAt(AudioClip clip, Vector3 pos = default, string clipName = "Ambient_Clip", float volume = -1f)
+        {
+            var obj = new GameObject("AmbientSourceFromEasyAudioSystem").AddComponent<AudioSource>();
+            obj.transform.position = pos;
+            obj.spatialBlend = 1f;
+            obj.outputAudioMixerGroup = GlobalAudioMixer.FindMatchingGroups("Ambient")[0];
+            obj.clip = clip;
+            obj.volume = volume < 0f ? _ambientVolume : volume;
+            obj.Play();
+
+            if (clipName != null && clipName != String.Empty)
+            {
+                obj.gameObject.name = $"AmbientSource-{clipName}";
+                _ambientSourceList.Add(obj);
+            }
 
             _instance.StartCoroutine(DestroyWhenEnd(obj, _ambientSourceList));
         }
@@ -502,6 +642,22 @@ namespace Maxy.GameFramework.Common.System
         #endregion
 
         #region Volume
+
+        public void Mute(bool muteMusic = true, bool muteSfx = true, bool muteVoice = true, bool muteAmbient = true)
+        {
+            IsMuteMusic = muteMusic;
+            IsMuteSfx = muteSfx;
+            IsMuteVoice = muteVoice;
+            IsMuteAmbient = muteAmbient;
+        }
+
+        public void UnMute()
+        {
+            IsMuteMusic = false;
+            IsMuteSfx = false;
+            IsMuteVoice = false;
+            IsMuteAmbient = false;
+        }
 
         public void SetMasterVolume(float volume) => MasterVolume = volume;
         public void SetMusicVolume(float volume) => MusicVolume = volume;
