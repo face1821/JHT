@@ -64,6 +64,7 @@ namespace Game.Stuff
 
         public void TpToEnd()
         {
+            SystemCenter.Get<IAudioSystem>().StopSfx("_spike_clip");
             SpikeTrap.transform.DOKill();
             SpikeTrap.gameObject.SetActive(true);
             SpikeTrap.transform.position = new Vector3(_endX, _startPos.y);
@@ -74,10 +75,19 @@ namespace Game.Stuff
         private IEnumerator DelayOnPlayerDead()
         {
             yield return new WaitForSeconds(2.5f);
-            
+
+            //如果玩家的存档点已经大于尖刺的这个位置
+            if (SaveSystem.Load("LastPassedLevel", 0) > 2)
+            {
+                TpToEnd();
+
+                yield break;
+            }
+
             //尖刺消失
             SystemCenter.Get<IAudioSystem>().StopSfx("_spike_clip");
             SpikeTrap.gameObject.SetActive(false);
+            SpikeTrap.transform.DOKill();
             MLogger.LogWarning("尖刺消失");
             _noise.m_AmplitudeGain = 0f;
             _noise.m_FrequencyGain = 0f;
