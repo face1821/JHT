@@ -1,7 +1,5 @@
-using System;
 using Game.CheckPoint.Events;
 using Game.InteractableObject;
-using Game.Player;
 using Game.Tool;
 using Maxy.GameFramework.Common.Events;
 using Maxy.GameFramework.Common.System;
