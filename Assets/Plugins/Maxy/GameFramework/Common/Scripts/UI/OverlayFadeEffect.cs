@@ -7,14 +7,14 @@ using UnityEngine.UI;
 
 namespace Maxy.GameFramework.Common.Tool
 {
-    public class OverlayFadeEffect : MonoBehaviour
+    public class OverlayFadeEffect : MonoBehaviour, IShowAndHideObject
     {
         [ShowInInspector, ReadOnly] public bool IsPlaying => !IsFinished;
         [HideInInspector] public bool IsFinished = true;
 
         [SerializeField] private bool UseSmoothFadeStart = true;
         [ShowInInspector, ShowIf(nameof(UseSmoothFadeStart))]
-        private bool UseScaledDuration;
+        private bool UseScaledDuration = true;
 
         [SerializeField] private float _duration = 1f;
         [SerializeField] private float _minValue;
@@ -33,6 +33,8 @@ namespace Maxy.GameFramework.Common.Tool
         private float _realChildMinValue;
         private float _realChildMaxValue;
 
+        #region Mono方法
+
         private void Awake()
         {
             _selfImage = GetComponent<Image>();
@@ -45,100 +47,9 @@ namespace Maxy.GameFramework.Common.Tool
             _realChildMaxValue = _childMaxValue;
         }
 
-        public void SetAlpha(float alpha)
-        {
-            if (_selfImage != null)
-                _selfImage.color = new Color(_selfImage.color.r, _selfImage.color.g, _selfImage.color.b, alpha);
-            if (_selfText != null)
-                _selfText.color = new Color(_selfText.color.r, _selfText.color.g, _selfText.color.b, alpha);
+        #endregion
 
-            foreach (var child in _childImages)
-            {
-                child.color = new Color(child.color.r, child.color.g, child.color.b, alpha);
-            }
-
-            foreach (var child in _childTexts)
-            {
-                child.color = new Color(child.color.r, child.color.g, child.color.b, alpha);
-            }
-        }
-
-        public void Stop()
-        {
-            StopAllCoroutines();
-
-            if (UseSmoothFadeStart)
-            {
-                _duration = _realDuration;
-                _minValue = _realMinValue;
-                _maxValue = _realMaxValue;
-                _childMinValue = _realChildMinValue;
-                _childMaxValue = _realChildMaxValue;
-            }
-        }
-
-        public void PlayFadeIn(float duration = -1f)
-        {
-            Stop();
-
-            duration = duration < 0f ? _duration : duration;
-
-            //是否平滑中间态过渡
-            if (UseSmoothFadeStart)
-            {
-                //是否根据中间态的已过渡比例来调节过渡时间
-                if (UseScaledDuration)
-                {
-                    duration = _selfImage != null
-                        ? (_selfImage.color.a - _minValue) / (_maxValue - _minValue) * duration
-                        : (_selfText != null
-                            ? (_selfText.color.a - _minValue) / (_maxValue - _minValue) * duration
-                            : duration);
-                }
-
-                _realMaxValue = _maxValue;
-                _maxValue = _selfImage != null ? _selfImage.color.a : (_selfText != null ? _selfText.color.a : _maxValue);
-
-                _realChildMaxValue = _childMaxValue;
-                _childMaxValue = _childImages.Count > 0 ? _childImages[0].color.a : (_childTexts.Count > 0 ? _childTexts[0].color.a : _childMaxValue);
-            }
-
-            StartCoroutine(OnFadeIn(duration));
-        }
-
-        public void PlayFadeOut(float duration = -1f)
-        {
-            Stop();
-
-            duration = duration < 0f ? _duration : duration;
-
-            if (UseSmoothFadeStart)
-            {
-                if (UseScaledDuration)
-                {
-                    duration = _selfImage != null
-                        ? (_maxValue - _selfImage.color.a) / (_maxValue - _minValue) * duration
-                        : (_selfText != null
-                            ? (_maxValue - _selfText.color.a) / (_maxValue - _minValue) * duration
-                            : duration);
-                }
-
-                _realMinValue = _minValue;
-                _minValue = _selfImage != null ? _selfImage.color.a : (_selfText != null ? _selfText.color.a : _minValue);
-
-                _realChildMinValue = _childMinValue;
-                _childMinValue = _childImages.Count > 0 ? _childImages[0].color.a : (_childTexts.Count > 0 ? _childTexts[0].color.a : _childMinValue);
-            }
-
-            StartCoroutine(OnFadeOut(duration));
-        }
-
-        public void PlayFadeOutAndIn(float fadeOutDuration = -1f, float keepDuration = 1f, float fadeInDuration = -1f)
-        {
-            Stop();
-
-            StartCoroutine(OnFadeOutAndIn(fadeOutDuration, keepDuration, fadeInDuration));
-        }
+        #region 私有方法
 
         private IEnumerator OnFadeIn(float duration)
         {
@@ -262,5 +173,114 @@ namespace Maxy.GameFramework.Common.Tool
             fadeInDuration = fadeInDuration < 0f ? _duration : fadeInDuration;
             StartCoroutine(OnFadeIn(fadeInDuration));
         }
+
+        #endregion
+
+        #region Show & Hide
+
+        public void Show() { PlayFadeOut(); }
+
+        public void Hide() { PlayFadeIn(); }
+
+        #endregion
+
+        #region 公开方法
+
+        public void SetAlpha(float alpha)
+        {
+            if (_selfImage != null)
+                _selfImage.color = new Color(_selfImage.color.r, _selfImage.color.g, _selfImage.color.b, alpha);
+            if (_selfText != null)
+                _selfText.color = new Color(_selfText.color.r, _selfText.color.g, _selfText.color.b, alpha);
+
+            foreach (var child in _childImages)
+            {
+                child.color = new Color(child.color.r, child.color.g, child.color.b, alpha);
+            }
+
+            foreach (var child in _childTexts)
+            {
+                child.color = new Color(child.color.r, child.color.g, child.color.b, alpha);
+            }
+        }
+
+        public void Stop()
+        {
+            StopAllCoroutines();
+
+            if (UseSmoothFadeStart)
+            {
+                _duration = _realDuration;
+                _minValue = _realMinValue;
+                _maxValue = _realMaxValue;
+                _childMinValue = _realChildMinValue;
+                _childMaxValue = _realChildMaxValue;
+            }
+        }
+
+        public void PlayFadeIn(float duration = -1f)
+        {
+            Stop();
+
+            duration = duration < 0f ? _duration : duration;
+
+            //是否平滑中间态过渡
+            if (UseSmoothFadeStart)
+            {
+                //是否根据中间态的已过渡比例来调节过渡时间
+                if (UseScaledDuration)
+                {
+                    duration = _selfImage != null
+                        ? (_selfImage.color.a - _minValue) / (_maxValue - _minValue) * duration
+                        : (_selfText != null
+                            ? (_selfText.color.a - _minValue) / (_maxValue - _minValue) * duration
+                            : duration);
+                }
+
+                _realMaxValue = _maxValue;
+                _maxValue = _selfImage != null ? _selfImage.color.a : (_selfText != null ? _selfText.color.a : _maxValue);
+
+                _realChildMaxValue = _childMaxValue;
+                _childMaxValue = _childImages.Count > 0 ? _childImages[0].color.a : (_childTexts.Count > 0 ? _childTexts[0].color.a : _childMaxValue);
+            }
+
+            StartCoroutine(OnFadeIn(duration));
+        }
+
+        public void PlayFadeOut(float duration = -1f)
+        {
+            Stop();
+
+            duration = duration < 0f ? _duration : duration;
+
+            if (UseSmoothFadeStart)
+            {
+                if (UseScaledDuration)
+                {
+                    duration = _selfImage != null
+                        ? (_maxValue - _selfImage.color.a) / (_maxValue - _minValue) * duration
+                        : (_selfText != null
+                            ? (_maxValue - _selfText.color.a) / (_maxValue - _minValue) * duration
+                            : duration);
+                }
+
+                _realMinValue = _minValue;
+                _minValue = _selfImage != null ? _selfImage.color.a : (_selfText != null ? _selfText.color.a : _minValue);
+
+                _realChildMinValue = _childMinValue;
+                _childMinValue = _childImages.Count > 0 ? _childImages[0].color.a : (_childTexts.Count > 0 ? _childTexts[0].color.a : _childMinValue);
+            }
+
+            StartCoroutine(OnFadeOut(duration));
+        }
+
+        public void PlayFadeOutAndIn(float fadeOutDuration = -1f, float keepDuration = 1f, float fadeInDuration = -1f)
+        {
+            Stop();
+
+            StartCoroutine(OnFadeOutAndIn(fadeOutDuration, keepDuration, fadeInDuration));
+        }
+
+        #endregion
     }
 }

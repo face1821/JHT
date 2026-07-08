@@ -71,6 +71,7 @@
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Scripts\Tool\BoxColliderDetection.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Demigiant\DOTween\Modules\DOTweenModulePhysics2D.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Scripts\UI\TextDisplayLoop.cs" />
+    <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Scripts\Interface\IShowAndHideObject.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Demigiant\DOTweenPro\DOTweenTextMeshPro.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Scripts\UI\OverlayFadeEffect.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Scripts\UI\CallButtonAduio.cs" />
@@ -82,6 +83,7 @@
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Scripts\Tool\CircleDetection.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Demigiant\DOTweenPro\DOTweenProShortcuts.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Scripts\EventBus\EventBus.cs" />
+    <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Scripts\Tool\BoxColliderTrigger2D.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Demigiant\DOTweenPro\DOTweenTk2d.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Scripts\System\EasyDialogueSystem\EasyDialogueSystem.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Scripts\UI\ValueAwakeSync\TextValueAwakeSync.cs" />
