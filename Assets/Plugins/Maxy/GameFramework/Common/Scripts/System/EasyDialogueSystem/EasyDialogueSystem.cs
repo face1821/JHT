@@ -24,16 +24,30 @@ namespace Maxy.GameFramework.Common.System
 
         private DialogueStory _currentStory;
         [ShowInInspector, ReadOnly] private bool _isPlaying;
-        private bool _isSkip;
+        [ShowInInspector, ReadOnly] private PressState _pressState;
+        [ShowInInspector, ReadOnly] private bool _isSkip;
+        [ShowInInspector, ReadOnly] private float _pressTimer;
+
+        private Coroutine _timerCoroutine;
 
         private void Update()
         {
             if (!_isPlaying) return;
 
-            //运行对话框的时候，如果点击了，就跳过当前正在显示的对话
-            if (Input.touchCount > 0 || Input.anyKeyDown)
+            //运行对话框的时候，按下，按住和松开的状态控制
+
+            //当刚按下
+            if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began || Input.anyKeyDown || Input.GetMouseButtonDown(0))
             {
-                OnGetClick();
+                OnGetPress();
+            }
+            else if (Input.touchCount > 0 || Input.anyKey || Input.GetMouseButton(0)) //当按住
+            {
+                OnGetHold();
+            }
+            else //当松开
+            {
+                OnGetRelease();
             }
         }
 
@@ -71,10 +85,53 @@ namespace Maxy.GameFramework.Common.System
             _windowOverlay.gameObject.SetActive(false);
         }
 
-        private void OnGetClick()
+        #region 输入的状态控制
+
+        private void OnGetPress()
         {
-            //跳过一个当前的对话
             _isSkip = true;
+            _pressState = PressState.Press;
+        }
+
+        private void OnGetHold()
+        {
+            //如果已经按住了，就不管
+            if (_timerCoroutine != null) return;
+
+            _pressState = PressState.Hold;
+
+            //启动计时
+            _timerCoroutine = StartCoroutine(nameof(PressTimerCoroutine));
+        }
+
+        private void OnGetRelease()
+        {
+            _isSkip = false;
+            _pressState = PressState.Release;
+        }
+
+        #endregion
+
+        private IEnumerator PressTimerCoroutine()
+        {
+            var startTime = Time.time;
+
+            while (true)
+            {
+                //每帧末尾刷新计时器时间
+                yield return new WaitForEndOfFrame();
+
+                //如果没按住了，就不计时
+                if (_pressState != PressState.Hold)
+                {
+                    _pressTimer = 0f;
+                    _timerCoroutine = null;
+                    yield break;
+                }
+
+                //刷新计时
+                _pressTimer = Time.time - startTime;
+            }
         }
 
         private IEnumerator PlayDialogue()
@@ -163,7 +220,10 @@ namespace Maxy.GameFramework.Common.System
                 }
 
                 //显示窗口
-                _windowOverlay.PlayFadeOut(0.5f);
+                //如果不能快进，或者没按住0.5s，就播放渐变
+                if (!_currentStory.FastForward || _pressTimer < 0.5f)
+                    _windowOverlay.PlayFadeOut(0.5f);
+
                 //如果当前图像是保持上一个图像或上一个立绘图像和当前图像一样，就不显示立绘图像
                 //下面这段代码是反向的逻辑
                 if (_characterImage != null
@@ -171,11 +231,18 @@ namespace Maxy.GameFramework.Common.System
                         || !currentInfo.FollowLastCharacterSprite
                         || _currentStory.contentList[index - 1].CharacterSprite != currentInfo.CharacterSprite))
                 {
+                    //如果启用了渐变功能
                     if (_currentStory.EnableCharacterSpriteFadeEffect)
-                        _characterOverlay.PlayFadeOut(0.5f);
+                    {
+                        //如果不能快进，或者没按住0.5s，就播放渐变
+                        if (!_currentStory.FastForward || _pressTimer < 0.5f)
+                            _characterOverlay.PlayFadeOut(0.5f);
+                    }
                 }
 
-                yield return new WaitForSeconds(0.5f);
+                //如果不能快进，或者没按住0.5s，就延迟等待
+                if (!_currentStory.FastForward || _pressTimer < 0.5f)
+                    yield return new WaitForSeconds(0.5f);
 
                 //是否启用打字机效果
                 if (currentInfo.EnableTypeWriterEffect && !string.IsNullOrEmpty(currentInfo.Content))
@@ -188,7 +255,7 @@ namespace Maxy.GameFramework.Common.System
                         yield return new WaitForSeconds(1f / currentInfo.TypeCountPerSecond);
 
                         //如果要跳过
-                        if (_isSkip)
+                        if (_isSkip || (_currentStory.FastForward && _pressTimer >= 0.5f))
                         {
                             _isSkip = false;
                             _windowContent.maxVisibleCharacters = currentInfo.Content.Length;
@@ -220,13 +287,19 @@ namespace Maxy.GameFramework.Common.System
                 //是否自动隐藏窗口
                 if (!_currentStory.AutoPlay)
                 {
-                    yield return new WaitUntil(() => _isSkip);
+                    //要等待一帧，是因为这一帧的_isSkip已经被消费了，下一帧如果_isSkip还有，就说明玩家又点了一次
+                    yield return null;
+
+                    //如果按住计时大于0.5s，就跳过
+                    yield return new WaitUntil(() => _isSkip || (_currentStory.FastForward && _pressTimer >= 0.5f));
 
                     _isSkip = false;
                 }
 
                 //隐藏窗口
-                _windowOverlay.PlayFadeIn(0.5f);
+                //如果不能快进，或者没刚按下，没按住0.5s，就播放渐变
+                if (!_currentStory.FastForward || _isSkip || _pressTimer < 0.5f)
+                    _windowOverlay.PlayFadeIn(0.5f);
 
                 //如果下一个立绘图像是保持当前的图像或一样，就不隐藏立绘图像
                 //下面这段代码是反向的逻辑
@@ -235,10 +308,16 @@ namespace Maxy.GameFramework.Common.System
                         && _currentStory.contentList[index + 1].CharacterSprite != currentInfo.CharacterSprite))
                 {
                     if (_currentStory.EnableCharacterSpriteFadeEffect)
-                        _characterOverlay.PlayFadeIn(0.5f);
+                    {
+                        //如果不能快进，或者没按住0.5s，就播放渐变
+                        if (!_currentStory.FastForward || _pressTimer < 0.5f)
+                            _characterOverlay.PlayFadeIn(0.5f);
+                    }
                 }
 
-                yield return new WaitForSeconds(0.5f);
+                //如果不能快进，或者没按住0.5s，就延迟等待
+                if (!_currentStory.FastForward || _pressTimer < 0.5f)
+                    yield return new WaitForSeconds(0.5f);
 
                 //隐藏窗口后的延迟等待
                 yield return new WaitForSeconds(currentInfo.DelayAfterThis);
@@ -258,5 +337,12 @@ namespace Maxy.GameFramework.Common.System
             //结束对话
             HideDialog();
         }
+    }
+
+    public enum PressState
+    {
+        Press,
+        Hold,
+        Release
     }
 }

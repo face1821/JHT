@@ -10,6 +10,7 @@ namespace Maxy.GameFramework.Common.System
         [Header("Settings")]
         public Sprite GlobalBackGround;
         public bool AutoPlay = true;
+        public bool FastForward = true;
         public bool EnableCharacterSpriteFadeEffect;
 
         [Header("Content")]
