@@ -63,6 +63,7 @@
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Scripts\System\KeySystem\KeySystem.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Scripts\System\EasyAudioSystem\IAudioSystem.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Game2D\Scripts\Shadow\CharacterSpriteShadow.cs" />
+    <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Scripts\System\SaveSystem\ISaveSystemHelper.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Scripts\System\System.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Scripts\UI\ValueAwakeSync\ToggleValueAwakeSync.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Scripts\System\EasyDialogueSystem\DialogueStoryContentUnit.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Plugins\Demigiant\DOTweenPro\DOTweenTextMeshPro.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Scripts\UI\OverlayFadeEffect.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Scripts\UI\CallButtonAduio.cs" />
+    <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Scripts\System\SaveSystem\SaveSystemHelper.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Scripts\Tool\AddressableAsset.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Scripts\Tool\MTool.cs" />
     <Compile Include="Assets\Plugins\Maxy\GameFramework\Common\Scripts\System\EasyDialogueSystem\IDialogueSystem.cs" />
